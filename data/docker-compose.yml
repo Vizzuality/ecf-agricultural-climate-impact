@@ -31,7 +31,7 @@ services:
         - ./notebooks:/home/jovyan/work/notebooks
         - /opt/ssl-certs/jupyter:/etc/ssl/notebook
       ports:
-        - 8888:8888
+              - 3065:8888
       container_name: ecf_agricultural_climate_impact_jupyter_notebook
       command: "start-notebook.sh \
         --NotebookApp.token=''"
