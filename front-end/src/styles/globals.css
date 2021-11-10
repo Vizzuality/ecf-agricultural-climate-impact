@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '~vizzuality-components/dist/bundle';
-
 @-webkit-keyframes autofill {
   0%,
   100% {

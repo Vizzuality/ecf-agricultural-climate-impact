@@ -31,7 +31,7 @@ export const Modal: FC<ModalProps> = ({
       isOpen: open,
       onClose: onDismiss,
     },
-    containerRef,
+    containerRef
   );
   const { modalProps } = useModal();
   const { dialogProps } = useDialog({ 'aria-label': title }, containerRef);
@@ -94,8 +94,9 @@ export const Modal: FC<ModalProps> = ({
                       <button
                         type="button"
                         onClick={onDismiss}
-                        className="absolute flex items-center px-4 py-4 text-sm text-gray-300 right-4 -top-4 focus:text-black hover:text-black focus:outline-none"
+                        className="absolute flex items-center px-4 py-4 text-sm text-gray-300 right-4 -top-4 focus:text-black hover:text-black"
                       >
+                        <span className="text-xs">Close</span>
                         <Icon icon={CLOSE_SVG} className="inline-block w-3 h-3 ml-2 text-black" />
                       </button>
                     </div>

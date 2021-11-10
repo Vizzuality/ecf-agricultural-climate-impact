@@ -8,7 +8,7 @@ import { THEME } from './constants';
 import type { CheckboxProps } from './types';
 
 export const Checkbox: FC<CheckboxProps> = ({
-  theme = 'light',
+  theme = 'dark',
   input,
   meta = {},
   disabled = false,

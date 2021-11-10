@@ -14,10 +14,6 @@ export interface MapProps extends InteractiveMapProps {
    */
   viewport?: Partial<ViewportProps>;
 
-  basemap: string;
-  labels: string;
-  boundaries: boolean;
-
   /** An object that defines the bounds */
   bounds?: {
     bbox: number[];

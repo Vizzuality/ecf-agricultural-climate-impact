@@ -52,7 +52,7 @@ export const SingleSelect: FC<SelectProps> = ({
         : []),
       ...options,
     ],
-    [options, clearSelectionActive, clearSelectionLabel],
+    [options, clearSelectionActive, clearSelectionLabel]
   );
 
   const getInitialSelected = useMemo(() => {
@@ -240,7 +240,7 @@ export const SingleSelect: FC<SelectProps> = ({
             </ul>
           </Menu>
         </div>,
-        document.body,
+        document.body
       )}
     </div>
   );
