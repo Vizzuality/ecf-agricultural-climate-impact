@@ -67,7 +67,7 @@ export const Map: FC<MapProps> = ({
       setViewport(v);
       debouncedOnMapViewportChange(v);
     },
-    [debouncedOnMapViewportChange]
+    [debouncedOnMapViewportChange],
   );
 
   const handleResize = useCallback(
@@ -80,7 +80,7 @@ export const Map: FC<MapProps> = ({
       setViewport(newViewport);
       debouncedOnMapViewportChange(newViewport);
     },
-    [mapViewport, debouncedOnMapViewportChange]
+    [mapViewport, debouncedOnMapViewportChange],
   );
 
   const handleFitBounds = useCallback(() => {

@@ -73,7 +73,7 @@ const Template: Story<MapProps> = (args: MapProps) => {
         transitionDuration: 500,
       });
     },
-    [viewport]
+    [viewport],
   );
 
   const handleFitBoundsChange = useCallback((b) => {

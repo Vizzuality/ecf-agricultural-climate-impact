@@ -52,7 +52,7 @@ export const Search: FC<SearchProps> = ({
           {
             [THEME[theme]]: true,
             [SIZES[size]]: true,
-          }
+          },
         )}
       />
 
