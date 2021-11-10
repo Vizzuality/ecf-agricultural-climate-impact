@@ -55,7 +55,7 @@ export const Thumb: FC<ThumbProps> = ({
       inputRef,
       isDisabled,
     },
-    sliderState
+    sliderState,
   );
 
   const { focusProps, isFocusVisible } = useFocusRing();

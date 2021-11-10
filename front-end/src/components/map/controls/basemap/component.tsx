@@ -35,28 +35,28 @@ export const BasemapControls: FC<BasemapControlProps> = ({
     (evt) => {
       onChangeBasemap(BASEMAPS[evt.target.value]);
     },
-    [onChangeBasemap]
+    [onChangeBasemap],
   );
 
   const onLabelsChange = useCallback(
     (evt) => {
       onChangeLabels(LABELS[evt.target.value]);
     },
-    [onChangeLabels]
+    [onChangeLabels],
   );
 
   const onBoundariesChange = useCallback(
     (evt) => {
       onChangeBoundaries(evt.target.checked);
     },
-    [onChangeBoundaries]
+    [onChangeBoundaries],
   );
 
   useEffect(
     () => () => {
       document.removeEventListener('click', onScreenClick);
     },
-    []
+    [],
   );
 
   useEffect(() => {

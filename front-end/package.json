@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "check-types": "tsc --noemit -p tsconfig.json",
-    "lint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix --ignore-path .eslintignore . && yarn check-types"
+    "lint": "next lint",
+    "prettier": "prettier --config .prettierrc.json --check --write \"./src/**/*.{tsx,jsx,ts,js}\""
   },
   "dependencies": {
     "@artsy/fresnel": "^3.0.2",

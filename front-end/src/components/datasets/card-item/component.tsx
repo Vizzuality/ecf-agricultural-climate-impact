@@ -29,7 +29,7 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
   const activeDatasets = useAppSelector((state) => state.activeDatasets);
   const isDatasetActive = useMemo(
     () => Boolean(activeDatasets.find((datasetId) => datasetId === dataset.id)),
-    [activeDatasets, dataset]
+    [activeDatasets, dataset],
   );
 
   const handleClick = useCallback(() => {

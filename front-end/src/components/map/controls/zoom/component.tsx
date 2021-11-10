@@ -24,7 +24,7 @@ export const ZoomControl: FC<ZoomControlProps> = ({
         onZoomChange(zoom + 1);
       }
     },
-    [zoom, maxZoom, onZoomChange]
+    [zoom, maxZoom, onZoomChange],
   );
 
   const decreaseZoom = useCallback(
@@ -35,7 +35,7 @@ export const ZoomControl: FC<ZoomControlProps> = ({
         onZoomChange(zoom - 1);
       }
     },
-    [zoom, minZoom, onZoomChange]
+    [zoom, minZoom, onZoomChange],
   );
 
   return (

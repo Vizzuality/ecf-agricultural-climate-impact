@@ -9,7 +9,7 @@ export const getLayerGroups = (layers: Layer[], layerParams: LayerParams) => {
 
   return Object.keys(layersByDataset).map((datasetKey): LayerGroup => {
     const hasHiddenLayers = layersByDataset[datasetKey].find(
-      ({ id }) => layerParams[id]?.visibility === false
+      ({ id }) => layerParams[id]?.visibility === false,
     );
 
     return {

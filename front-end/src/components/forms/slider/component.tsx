@@ -74,7 +74,7 @@ export const Slider: FC<SliderProps> = ({
       id: undefined,
     },
     sliderState,
-    trackRef
+    trackRef,
   );
 
   // When the user clicks the external `<label />`, the hidden range input is focused but the

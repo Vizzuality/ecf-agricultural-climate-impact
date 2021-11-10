@@ -38,7 +38,7 @@ export const Toast: React.FC<ToastProps> = ({
       const y2 = parseInt(y, 10);
       progress.current = y2 / 100;
     },
-    [progress]
+    [progress],
   );
 
   const handleDismiss = useCallback(() => {

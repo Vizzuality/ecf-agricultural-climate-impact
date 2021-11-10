@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const forms = require('@tailwindcss/forms');
 
-const lineClamp = require('./lib/tailwind/line-clamp');
+const lineClamp = require('./src/lib/tailwind/line-clamp');
 
 module.exports = {
   purge: {

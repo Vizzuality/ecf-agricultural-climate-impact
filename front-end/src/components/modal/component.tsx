@@ -31,7 +31,7 @@ export const Modal: FC<ModalProps> = ({
       isOpen: open,
       onClose: onDismiss,
     },
-    containerRef
+    containerRef,
   );
   const { modalProps } = useModal();
   const { dialogProps } = useDialog({ 'aria-label': title }, containerRef);
