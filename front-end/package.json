@@ -8,8 +8,7 @@
     "start": "next start",
     "export": "next export",
     "check-types": "tsc --noemit -p tsconfig.json",
-    "lint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix --ignore-path .eslintignore . && yarn check-types",
-    "postinstall": "husky install"
+    "lint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix --ignore-path .eslintignore . && yarn check-types"
   },
   "dependencies": {
     "@artsy/fresnel": "^3.0.2",
@@ -95,7 +94,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4",
-    "husky": "^6.0.0",
     "image-trace-loader": "^1.0.2",
     "jimp": "^0.16.1",
     "lqip-loader": "^2.2.1",
@@ -106,8 +104,5 @@
     "svgo-loader": "2.2.2",
     "typescript": "^4.4.4",
     "webp-loader": "^0.6.0"
-  },
-  "husky": {
-    "pre-commit": "yarn lint"
   }
 }
