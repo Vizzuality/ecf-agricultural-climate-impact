@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# typescript
+*.tsinfobuild
+
 # Test with Cypress
 /cypress/screenshots
 /cypress/videos
