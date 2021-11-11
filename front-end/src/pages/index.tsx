@@ -2,15 +2,17 @@ import { useState } from 'react';
 // import MapVisualization from 'containers/map-visualization';
 
 import Section from 'containers/section';
+import Headline from 'containers/headline';
+import MapVisualization from 'containers/map-visualization';
 
 const Welcome: React.FC = () => {
   // const [activeLayerId, setActiveLayerId] = useState();
 
   return (
     <div>
-      <h1>Welcome to Agricultural ECF</h1>
+      <Headline />
       <Section id="section-1" title="Section 1">
-        blablablabla 1
+        <MapVisualization activeLayerId="mosaic-land-cover-and-land-use-2000" />
       </Section>
       <Section id="section-2" title="Section 2">
         blablablabla 2
