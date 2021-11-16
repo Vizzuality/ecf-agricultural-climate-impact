@@ -11,16 +11,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Lato', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        serif: ['gimlet-display', 'serif'],
+        sans: ['menca', 'sans-serif'],
       },
       colors: {
-        'rw-pink': '#c32d7b',
-        'rw-blue': '#2c75b0',
-        'rw-gray': '#393f44',
-        'rw-gray-2': '#717171',
-        'rw-gray-3': 'hsla(0,0%,44.3%,.8)',
-        'rw-gray-4': '#f0f1f2',
-        'rw-yellow': '#fab72e',
+        'dark-green': '#283618',
+        'dark-orange': '#BC6C25',
+        'light-orange': '#CC904D',
+        yellow: '#F9F5DB',
       },
       boxShadow: {
         rw: '0 0 0 2px #c32d7b, 0 20px 30px rgba(0,0,0,.2)',
@@ -29,6 +27,12 @@ module.exports = {
       },
       container: {
         padding: '1rem',
+      },
+      fontSize: {
+        headline: '10.75rem',
+      },
+      padding: {
+        '20%': '20%',
       },
     },
   },

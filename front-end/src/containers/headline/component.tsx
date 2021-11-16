@@ -1,12 +1,14 @@
 import { FC } from 'react';
 import { HeadlineProps } from './types';
 
-export const Section: FC<HeadlineProps> = () => {
+export const Headline: FC<HeadlineProps> = () => {
   return (
-    <section className="flex items-center justify-center h-screen bg-green-800">
-      <h1 className="text-5xl text-white">Cambio climático, riesgo agrícola.</h1>
+    <section className="flex items-center justify-center h-screen bg-dark-green text-yellow px-20% text-center">
+      <h1 className="font-serif text-6xl">
+        Impactos del cambio climático en la agricultura española
+      </h1>
     </section>
   );
 };
 
-export default Section;
+export default Headline;

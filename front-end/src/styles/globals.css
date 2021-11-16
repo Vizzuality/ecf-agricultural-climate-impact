@@ -12,7 +12,7 @@
 
 @layer base {
   body {
-    @apply font-normal antialiased;
+    @apply antialiased font-normal;
   }
 
   input[type='search']::-webkit-search-decoration,
@@ -21,17 +21,15 @@
   input[type='search']::-webkit-search-results-decoration {
     -webkit-appearance: none;
   }
-  h2 {
+  /* h2 {
     @apply text-4xl;
     @apply font-light;
-    @apply text-rw-pink;
     @apply mt-6;
     @apply mb-6;
   }
   h3 {
     @apply text-xl;
     @apply font-light;
-    @apply text-rw-pink;
     @apply mt-4;
     @apply mb-2;
   }
@@ -45,7 +43,7 @@
   a {
     @apply text-rw-blue;
     @apply underline;
-  }
+  } */
 }
 
 @layer utilities {
