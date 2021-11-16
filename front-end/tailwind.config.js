@@ -18,6 +18,7 @@ module.exports = {
         'dark-green': '#283618',
         'dark-orange': '#BC6C25',
         'light-orange': '#CC904D',
+        'light-green': '#606C38',
         yellow: '#F9F5DB',
       },
       boxShadow: {
