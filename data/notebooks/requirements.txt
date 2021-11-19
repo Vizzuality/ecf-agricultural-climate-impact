@@ -36,5 +36,8 @@ zarr
 gcsfs
 s3fs
 carto==1.11.1
+Cartopy==0.20.1
+xarray_leaflet==0.1.15
+gdal2tiles==0.1.9
 google-cloud-storage
 google-api-python-client
