@@ -5,6 +5,12 @@ export enum SectionIDs {
   Conclusiones = 'Conclusiones',
 }
 
+export interface SectionObject {
+  id: SectionIDs;
+  label: string;
+  url: string;
+}
+
 export interface AppContextType {
   currentSection: SectionIDs;
 }
