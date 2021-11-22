@@ -14,20 +14,31 @@ export const LAYERS = [
     id: 'gain',
     name: 'Tree cover gain',
     type: 'raster',
-    config: {
-      source: {
-        type: 'raster',
-        tiles: ['https://earthengine.google.org/static/hansen_2013/gain_alpha/{z}/{x}/{y}.png'],
-        minzoom: 3,
-        maxzoom: 12,
-      },
+    source: {
+      type: 'raster',
+      tiles: ['https://earthengine.google.org/static/hansen_2013/gain_alpha/{z}/{x}/{y}.png'],
+      minzoom: 3,
+      maxzoom: 12,
     },
-    legendConfig: {
-      type: 'basic',
-      items: [
+  },
+  {
+    id: 'protected-areas',
+    name: 'Protected areas',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: ['{host}/tiles/composite.10738f07/{z}/{x}/{y}.vector.pbf'],
+    },
+    render: {
+      layers: [
         {
-          name: 'Tree cover gain',
-          color: '#6D6DE5',
+          type: 'fill',
+          'source-layer': 'layer0',
+          featureState: {},
+          paint: {
+            'fill-color': 'hsla(32, 53%, 16%, 0.6)',
+            'fill-translate': [0, -2.5],
+          },
         },
       ],
     },

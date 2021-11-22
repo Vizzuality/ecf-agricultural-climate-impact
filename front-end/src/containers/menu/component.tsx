@@ -1,54 +1,57 @@
-import { FC, useState } from 'react';
-import { MenuProps } from './types';
+/* eslint-disable @next/next/no-img-element */
+import { FC, useState, useContext } from 'react';
 import { motion } from 'framer-motion';
+
+// components
+import Icon from 'components/icon';
+
+// svgs
+import HAMBURGUER_SVG from 'svgs/ui/hamburguer.svg?sprite';
+
+// utils
 import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
+import { AppContext } from 'utils/app-context';
+
+// types
+import { SectionIDs } from 'types';
+
+// local types
+import { MenuProps } from './types';
 
 export const Menu: FC<MenuProps> = () => {
-  const [showDesafioText, setShowDesafioText] = useState<boolean>(false);
-  // const variants = {
-  //   open: { width: '450px' },
-  //   closed: { width: '20px' },
-  // }
+  const [open, setOpen] = useState<boolean>(false);
+  const [state, setState] = useContext(AppContext);
+  const { currentSection } = state;
+  const variants = {
+    open: { width: '450px' },
+    closed: { width: '56px' },
+  };
 
   return (
     <div>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <nav className="fixed top-0 right-0 flex flex-col items-end h-screen text-yellow">
-            <motion.div
-              style={{ width: '10px' }}
-              whileHover={{ width: '450px', transition: { duration: 0.3 } }}
-              className="h-full bg-dark-orange"
-              onHoverStart={() => setShowDesafioText(true)}
-              onHoverEnd={() => setShowDesafioText(false)}
-            >
-              {showDesafioText && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="flex items-center justify-center h-full"
+          <motion.nav
+            className="fixed top-0 left-0 flex flex-col items-end h-screen text-yellow bg-dark-orange"
+            animate={open ? 'open' : 'closed'}
+            variants={variants}
+            transition={{ duration: 1 }}
+          >
+            <button className="absolute top-4 left-4" onClick={() => setOpen(!open)}>
+              <img src="/images/hamburguer.svg" alt="menu" />
+            </button>
+            {open && <div></div>}
+            {!open && (
+              <div className="flex items-center justify-center h-full">
+                <div
+                  className="absolute flex justify-center font-serif text-base transform -rotate-90"
+                  style={{ width: '232px', right: '-88px' }}
                 >
-                  <h3>Un desafío global</h3>
-                </motion.div>
-              )}
-            </motion.div>
-            <motion.div
-              style={{ width: '10px' }}
-              whileHover={{ width: '450px' }}
-              className="h-full bg-dark-green"
-            />
-            <motion.div
-              style={{ width: '10px' }}
-              whileHover={{ width: '450px' }}
-              className="h-full bg-light-orange"
-            />
-            <motion.div
-              style={{ width: '10px' }}
-              whileHover={{ width: '450px' }}
-              className="h-full bg-light-green"
-            />
-          </nav>
+                  {currentSection}
+                </div>
+              </div>
+            )}
+          </motion.nav>
         </Desktop>
         <Mobile>
           <div></div>

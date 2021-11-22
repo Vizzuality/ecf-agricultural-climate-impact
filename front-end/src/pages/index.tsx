@@ -18,7 +18,9 @@ const Welcome: React.FC = () => {
       <Headline />
       <Menu />
       <Section id="section-1" title="Section 1">
-        {/* <MapVisualization activeLayerId="mosaic-land-cover-and-land-use-2000" /> */}
+        <div className="h-screen">
+          <MapVisualization activeLayerId="protected-areas" />
+        </div>
         <DesafioGlobalHeadline />
       </Section>
       <Section id="section-2" title="Section 2">

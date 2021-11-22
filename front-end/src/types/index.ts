@@ -1,3 +1,14 @@
+export enum SectionIDs {
+  DesafioGlobal = 'Un desafío global',
+  EconomiaRiesgo = 'Una economía en riesgo',
+  EfectosCultivos = 'Efectos sobre cultivos',
+  Conclusiones = 'Conclusiones',
+}
+
+export interface AppContextType {
+  currentSection: SectionIDs;
+}
+
 export interface LegendConfigItem {
   value: string;
   color: string;
