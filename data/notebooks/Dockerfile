@@ -31,6 +31,11 @@ RUN apt-get update && \
 RUN git clone https://github.com/mapbox/tippecanoe.git && \
 	cd tippecanoe && \
 	make -j && make install && cd ..
+
+RUN git clone git://github.com/mapbox/mbutil.git && \
+	cd mbutil && \
+	./mb-util -h && python setup.py install && cd ..
+
 RUN export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 RUN pip install jupyter_contrib_nbextensions \

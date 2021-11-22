@@ -41,3 +41,4 @@ xarray_leaflet==0.1.15
 gdal2tiles==0.1.9
 google-cloud-storage
 google-api-python-client
+mapclassify
