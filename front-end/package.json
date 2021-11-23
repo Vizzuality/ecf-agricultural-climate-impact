@@ -8,6 +8,7 @@
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
+    "check-types": "tsc --noemit -p tsconfig.json",
     "prettier": "prettier --config .prettierrc.json --check --write \"./src/**/*.{tsx,jsx,ts,js}\""
   },
   "dependencies": {

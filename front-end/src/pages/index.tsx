@@ -1,27 +1,37 @@
 import { useState } from 'react';
-// import MapVisualization from 'containers/map-visualization';
 
+// containers
 import Section from 'containers/section';
+import Headline from 'containers/headline';
+import MapVisualization from 'containers/map-visualization';
+import DesafioGlobalHeadline from 'containers/sections/desafio-global/headline';
+import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/headline';
+import EfectosSobreCultivosHeadline from 'containers/sections/efectos-sobre-cultivos/headline';
+import ConclusionesHeadline from 'containers/sections/conclusiones/headline';
+import Menu from 'containers/menu';
 
 const Welcome: React.FC = () => {
   // const [activeLayerId, setActiveLayerId] = useState();
 
   return (
     <div>
-      <h1>Welcome to Agricultural ECF</h1>
+      <Headline />
+      <Menu />
       <Section id="section-1" title="Section 1">
-        blablablabla 1
+        <div className="h-screen">
+          <MapVisualization activeLayerId="protected-areas" />
+        </div>
+        <DesafioGlobalHeadline />
       </Section>
       <Section id="section-2" title="Section 2">
-        blablablabla 2
+        <EconomiaEnRiesgoHeadline />
       </Section>
       <Section id="section-3" title="Section 3">
-        blablablabla 3
+        <EfectosSobreCultivosHeadline />
       </Section>
       <Section id="section-4" title="Section 4">
-        blablablabla 4
+        <ConclusionesHeadline />
       </Section>
-      {/* <MapVisualization activeLayer={activeLayerId} bounds={[]} /> */}
     </div>
   );
 };

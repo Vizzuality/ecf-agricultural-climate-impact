@@ -13,17 +13,22 @@ import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 //   Icons,
 // } from 'vizzuality-components';
 
-import { DEFAULT_VIEWPORT } from './constants';
+import { DEFAULT_VIEWPORT, LAYERS } from './constants';
 
 import type { ViewPortTypes } from './types';
 
 const MapVisualization = ({ activeLayerId }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
-  const [layers, setLayers] = useState([]);
+  const [layers, setLayers] = useState(LAYERS);
 
   useEffect(() => {
-    const nextLayers = [];
-    setLayers(nextLayers);
+    setLayers(
+      layers.map((l) => ({
+        ...l,
+        visible: l.id === activeLayerId,
+      })),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeLayerId]);
 
   const handleViewport = useCallback((_viewport) => {
