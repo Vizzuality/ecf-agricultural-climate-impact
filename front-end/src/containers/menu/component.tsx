@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import cx from 'classnames';
 import Link from 'next/link';
@@ -25,6 +25,8 @@ export const Menu: FC<MenuProps> = () => {
     open: { left: 0 },
     closed: { left: '-345px' },
   };
+
+  const currentSectionLabel = useMemo(() => SECTIONS.find((s) => s.id === currentSection).label, [currentSection]);
 
   return (
     <div>
@@ -52,7 +54,10 @@ export const Menu: FC<MenuProps> = () => {
                             'text-2xl': true,
                             'opacity-60': currentSection !== section.id,
                           })}
-                          onClick={() => setOpen(false)}
+                          onClick={() => {
+                            setOpen(false);
+                            setCurrentSection(section.id);
+                          }}
                         >
                           {section.label}
                         </a>
@@ -72,7 +77,7 @@ export const Menu: FC<MenuProps> = () => {
                   className="absolute flex justify-center font-serif text-base transform -rotate-90"
                   style={{ width: '232px', right: '-88px' }}
                 >
-                  {currentSection}
+                  {currentSectionLabel}
                 </div>
               </div>
             )}
