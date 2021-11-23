@@ -16,7 +16,9 @@ export const LAYERS = [
     type: 'raster',
     source: {
       type: 'raster',
-      tiles: ['https://earthengine.google.org/static/hansen_2013/gain_alpha/{z}/{x}/{y}.png'],
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/1961_2000/{z}/{x}/{y}.png',
+      ],
       minzoom: 3,
       maxzoom: 12,
     },
@@ -27,7 +29,9 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: ['{host}/tiles/composite.10738f07/{z}/{x}/{y}.vector.pbf'],
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/OpenGHGMap/%7Bz%7D/%7Bx%7D/%7By%7D.pbf',
+      ],
     },
     render: {
       layers: [
