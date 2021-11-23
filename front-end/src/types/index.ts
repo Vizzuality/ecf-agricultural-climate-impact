@@ -1,8 +1,8 @@
 export enum SectionIDs {
-  DesafioGlobal = 'Un desafío global',
-  EconomiaRiesgo = 'Una economía en riesgo',
-  EfectosCultivos = 'Efectos sobre cultivos',
-  Conclusiones = 'Conclusiones',
+  DesafioGlobal = 'un-desafio-global',
+  EconomiaRiesgo = 'una-economia-en-riesgo',
+  EfectosCultivos = 'efectos-sobre-cultivos',
+  Conclusiones = 'conclusiones',
 }
 
 export interface SectionObject {

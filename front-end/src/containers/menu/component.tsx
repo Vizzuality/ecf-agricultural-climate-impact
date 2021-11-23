@@ -2,6 +2,7 @@
 import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import cx from 'classnames';
+import Link from 'next/link';
 
 // utils
 import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
@@ -44,15 +45,18 @@ export const Menu: FC<MenuProps> = () => {
                 <div className="mt-24">
                   {SECTIONS.map((section) => (
                     <div className="mb-5" key={`menu-item-${section.id}`}>
-                      <span
-                        className={cx({
-                          'opacity-100': currentSection === section.id,
-                          'text-2xl': true,
-                          'opacity-60': currentSection !== section.id,
-                        })}
-                      >
-                        {section.label}
-                      </span>
+                      <Link href={section.url}>
+                        <a
+                          className={cx({
+                            'opacity-100': currentSection === section.id,
+                            'text-2xl': true,
+                            'opacity-60': currentSection !== section.id,
+                          })}
+                          onClick={() => setOpen(false)}
+                        >
+                          {section.label}
+                        </a>
+                        </Link>
                     </div>
                   ))}
                 </div>

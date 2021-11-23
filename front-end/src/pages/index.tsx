@@ -9,6 +9,7 @@ import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/hea
 import EfectosSobreCultivosHeadline from 'containers/sections/efectos-sobre-cultivos/headline';
 import ConclusionesHeadline from 'containers/sections/conclusiones/headline';
 import Menu from 'containers/menu';
+import { SectionIDs } from 'types';
 
 const Welcome: React.FC = () => {
   // const [activeLayerId, setActiveLayerId] = useState();
@@ -17,19 +18,19 @@ const Welcome: React.FC = () => {
     <div>
       <Headline />
       <Menu />
-      <Section id="section-1" title="Section 1">
+      <Section id={SectionIDs.DesafioGlobal} title="Section 1">
         <div className="h-screen">
           <MapVisualization activeLayerId="protected-areas" />
         </div>
         <DesafioGlobalHeadline />
       </Section>
-      <Section id="section-2" title="Section 2">
+      <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
         <EconomiaEnRiesgoHeadline />
       </Section>
-      <Section id="section-3" title="Section 3">
+      <Section id={SectionIDs.EfectosCultivos} title="Section 3">
         <EfectosSobreCultivosHeadline />
       </Section>
-      <Section id="section-4" title="Section 4">
+      <Section id={SectionIDs.Conclusiones} title="Section 4">
         <ConclusionesHeadline />
       </Section>
     </div>
