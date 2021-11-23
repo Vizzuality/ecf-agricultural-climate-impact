@@ -1,13 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, useState, useContext } from 'react';
+import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import cx from 'classnames';
-
-// components
-import Icon from 'components/icon';
-
-// svgs
-import HAMBURGUER_SVG from 'svgs/ui/hamburguer.svg?sprite';
 
 // utils
 import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
@@ -16,14 +10,16 @@ import { AppContext } from 'utils/app-context';
 // types
 import { SectionIDs } from 'types';
 
+// hooks
+import { useAppContext } from 'hooks/use-app-context';
+
 // local types
 import { MenuProps } from './types';
 import { SECTIONS } from './constants';
 
 export const Menu: FC<MenuProps> = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [state, setState] = useContext(AppContext);
-  const { currentSection } = state;
+  const { currentSection, setCurrentSection } = useAppContext();
   const variants = {
     open: { width: '44%' },
     closed: { width: '56px' },

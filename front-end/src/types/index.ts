@@ -13,6 +13,7 @@ export interface SectionObject {
 
 export interface AppContextType {
   currentSection: SectionIDs;
+  setCurrentSection?: (section: SectionIDs) => void;
 }
 
 export interface LegendConfigItem {

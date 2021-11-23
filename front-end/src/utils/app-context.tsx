@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { AppContextType, SectionIDs } from 'types';
 
-const AppContext = React.createContext([{}, () => {}]);
+const defaultState = {
+  currentSection: SectionIDs.DesafioGlobal,
+};
+const AppContext = React.createContext<AppContextType>(defaultState);
 
-const AppContextProvider = (props) => {
-  const [state, setState] = useState<AppContextType>({
-    currentSection: SectionIDs.DesafioGlobal,
-  });
-  return <AppContext.Provider value={[state, setState]}>{props.children}</AppContext.Provider>;
+
+const AppContextProvider = ({ children }) => {
+  const [currentSection, setCurrentSectionSt] = useState(defaultState.currentSection);
+  const setCurrentSection = (section: SectionIDs) => setCurrentSectionSt(section);
+  return <AppContext.Provider value={{
+    currentSection,
+    setCurrentSection,
+  }}>
+    {children}
+    </AppContext.Provider>;
 };
 
 export { AppContext, AppContextProvider };
