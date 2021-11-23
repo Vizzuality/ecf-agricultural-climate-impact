@@ -5,8 +5,22 @@ export enum SectionIDs {
   Conclusiones = 'conclusiones',
 }
 
+export enum SubsectionIDs {
+  Vinedo = 'vinedo',
+  Cereales = 'cereales',
+  Olivar = 'olivar',
+  Dehesa = 'dehesa',
+}
+
 export interface SectionObject {
   id: SectionIDs;
+  label: string;
+  url: string;
+  subsections?: SubsectionObject[];
+}
+
+export interface SubsectionObject{
+  id: SubsectionIDs;
   label: string;
   url: string;
 }
@@ -14,6 +28,8 @@ export interface SectionObject {
 export interface AppContextType {
   currentSection: SectionIDs;
   setCurrentSection?: (section: SectionIDs) => void;
+  currentSubsection: SubsectionIDs,
+  setCurrentSubsection?: (subsection: SubsectionIDs) => void;
 }
 
 export interface LegendConfigItem {
