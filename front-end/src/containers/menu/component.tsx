@@ -21,8 +21,8 @@ export const Menu: FC<MenuProps> = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { currentSection, setCurrentSection } = useAppContext();
   const variants = {
-    open: { width: '44%' },
-    closed: { width: '56px' },
+    open: { left: 0 },
+    closed: { left: '-345px' },
   };
 
   return (
@@ -34,19 +34,10 @@ export const Menu: FC<MenuProps> = () => {
             animate={open ? 'open' : 'closed'}
             variants={variants}
             transition={{ duration: 1 }}
+            style={{ width: '400px' }}
           >
-            <button
-              className={cx({
-                'absolute top-4': true,
-                'left-4': !open,
-                'right-4': open,
-              })}
-              onClick={() => setOpen(!open)}
-            >
-              <img src="/images/hamburguer.svg" alt="menu" />
-            </button>
             {open && (
-              <div className="flex flex-col pt-4 w-full pl-10% font-serif font-normal">
+              <div className="relative flex flex-col pt-4 w-full pl-10% font-serif h-full font-normal">
                 <span style={{ fontSize: '10px' }}>
                   Impactos del cambio climático en la agricultura española
                 </span>
@@ -65,6 +56,10 @@ export const Menu: FC<MenuProps> = () => {
                     </div>
                   ))}
                 </div>
+                <div className="absolute bottom-0 left-0 flex justify-between w-full pl-10% pr-2">
+                  <span className="font-sans" style={{ fontSize: '10px' }}>Sobre nosotros</span>
+                  <img style={{ width: '89px' }} src="images/logo-coag.png" />
+                </div>
               </div>
             )}
             {!open && (
@@ -77,6 +72,14 @@ export const Menu: FC<MenuProps> = () => {
                 </div>
               </div>
             )}
+            <button
+              className={cx({
+                'absolute top-4 right-4': true,
+              })}
+              onClick={() => setOpen(!open)}
+            >
+              <img src="/images/hamburguer.svg" alt="menu" />
+            </button>
           </motion.nav>
         </Desktop>
         <Mobile>
