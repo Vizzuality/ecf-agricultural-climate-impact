@@ -19,24 +19,24 @@ export const SECTIONS: SectionObject[] = [
       {
         id: SubsectionIDs.Cereales,
         label: 'Cereales',
-        url: `#${SubsectionIDs.Cereales}`
+        url: `#${SubsectionIDs.Cereales}`,
       },
       {
         id: SubsectionIDs.Dehesa,
         label: 'Dehesa',
-        url: `#${SubsectionIDs.Dehesa}`
+        url: `#${SubsectionIDs.Dehesa}`,
       },
       {
         id: SubsectionIDs.Olivar,
         label: 'Olivar',
-        url: `#${SubsectionIDs.Olivar}`
+        url: `#${SubsectionIDs.Olivar}`,
       },
       {
         id: SubsectionIDs.Vinedo,
         label: 'Viñedo',
-        url: `#${SubsectionIDs.Vinedo}`
+        url: `#${SubsectionIDs.Vinedo}`,
       },
-    ]
+    ],
   },
   {
     id: SectionIDs.Conclusiones,

@@ -19,7 +19,7 @@ export interface SectionObject {
   subsections?: SubsectionObject[];
 }
 
-export interface SubsectionObject{
+export interface SubsectionObject {
   id: SubsectionIDs;
   label: string;
   url: string;
@@ -28,7 +28,7 @@ export interface SubsectionObject{
 export interface AppContextType {
   currentSection: SectionIDs;
   setCurrentSection?: (section: SectionIDs) => void;
-  currentSubsection: SubsectionIDs,
+  currentSubsection: SubsectionIDs;
   setCurrentSubsection?: (subsection: SubsectionIDs) => void;
 }
 

@@ -19,13 +19,17 @@ import { SECTIONS } from './constants';
 
 export const Menu: FC<MenuProps> = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { currentSection, setCurrentSection, currentSubsection, setCurrentSubsection } = useAppContext();
+  const { currentSection, setCurrentSection, currentSubsection, setCurrentSubsection } =
+    useAppContext();
   const variants = {
     open: { left: 0 },
     closed: { left: '-345px' },
   };
 
-  const currentSectionLabel = useMemo(() => SECTIONS.find((s) => s.id === currentSection).label, [currentSection]);
+  const currentSectionLabel = useMemo(
+    () => SECTIONS.find((s) => s.id === currentSection).label,
+    [currentSection],
+  );
 
   return (
     <div>
@@ -86,7 +90,9 @@ export const Menu: FC<MenuProps> = () => {
                   ))}
                 </ul>
                 <div className="absolute bottom-0 left-0 flex justify-between w-full pl-10% pr-2">
-                  <span className="font-sans" style={{ fontSize: '10px' }}>Sobre nosotros</span>
+                  <span className="font-sans" style={{ fontSize: '10px' }}>
+                    Sobre nosotros
+                  </span>
                   <img style={{ width: '89px' }} src="images/logo-coag.png" />
                 </div>
               </div>
