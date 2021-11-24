@@ -1,1 +1,2 @@
-export interface HeadlineProps {}
+// export interface HeadlineProps {}
+export {};
