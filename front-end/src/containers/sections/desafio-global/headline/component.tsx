@@ -1,4 +1,6 @@
 import { FC } from 'react';
+
+// utils
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 
 // types

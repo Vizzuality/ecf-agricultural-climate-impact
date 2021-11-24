@@ -1,2 +1,2 @@
 // export interface HeadlineProps {}
-export {}
+export {};

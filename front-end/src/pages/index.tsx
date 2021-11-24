@@ -5,6 +5,7 @@ import Section from 'containers/section';
 import Headline from 'containers/headline';
 import MapVisualization from 'containers/map-visualization';
 import DesafioGlobalHeadline from 'containers/sections/desafio-global/headline';
+import DesafioGlobalNarrative from 'containers/sections/desafio-global/narrative';
 import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/headline';
 import EfectosSobreCultivosHeadline from 'containers/sections/efectos-sobre-cultivos/headline';
 import ConclusionesHeadline from 'containers/sections/conclusiones/headline';
@@ -23,6 +24,7 @@ const Welcome: React.FC = () => {
           <MapVisualization activeLayerId="protected-areas" />
         </div>
         <DesafioGlobalHeadline />
+        <DesafioGlobalNarrative />
       </Section>
       <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
         <EconomiaEnRiesgoHeadline />
