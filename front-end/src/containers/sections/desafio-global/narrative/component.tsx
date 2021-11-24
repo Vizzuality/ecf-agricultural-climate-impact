@@ -35,7 +35,9 @@ export const Narrative: FC = () => {
             ))}
           </Scrollama>
         </Desktop>
-        <Mobile><div>Mobile</div></Mobile>
+        <Mobile>
+          <div>Mobile</div>
+        </Mobile>
       </MediaContextProvider>
     </section>
   );
