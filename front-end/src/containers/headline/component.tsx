@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 
 // types
-import { HeadlineProps } from './types';
+// import { HeadlineProps } from './types';
 
-export const Headline: FC<HeadlineProps> = () => {
+export const Headline: FC = () => {
   return (
     <section className="flex flex-col items-center justify-center h-screen bg-dark-green text-yellow px-5 md:px-20% text-center">
       <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center p-5">

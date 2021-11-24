@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 
 // types
-import { HeadlineProps } from './types';
+// import { HeadlineProps } from './types';
 
-export const Headline: FC<HeadlineProps> = () => {
+export const Headline: FC = () => {
   return (
     <section className="relative flex h-screen px-5 md:pt-32 md:px-20 bg-dark-orange text-yellow">
       <MediaContextProvider>

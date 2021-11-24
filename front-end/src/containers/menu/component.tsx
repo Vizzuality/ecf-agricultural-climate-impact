@@ -14,10 +14,10 @@ import { SectionIDs } from 'types';
 import { useAppContext } from 'hooks/use-app-context';
 
 // local types
-import { MenuProps } from './types';
+// import { MenuProps } from './types';
 import { SECTIONS } from './constants';
 
-export const Menu: FC<MenuProps> = () => {
+export const Menu: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { currentSection, setCurrentSection, currentSubsection, setCurrentSubsection } =
     useAppContext();
