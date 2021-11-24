@@ -1,2 +1,2 @@
 // export interface MenuProps {}
-export {}
+export {};
