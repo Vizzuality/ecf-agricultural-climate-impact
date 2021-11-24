@@ -6,9 +6,12 @@ import { HeadlineProps } from './types';
 
 export const Headline: FC<HeadlineProps> = () => {
   return (
-    <section className="flex h-screen px-5 md:pt-32 md:px-20 bg-dark-orange text-yellow">
+    <section className="relative flex h-screen px-5 md:pt-32 md:px-20 bg-dark-orange text-yellow">
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
+          <div className="absolute font-serif text-sm top-6">
+            Impactos del cambio climático en la agricultura española
+          </div>
           <h1 className="font-serif text-headline" style={{ lineHeight: '188px' }}>
             Un desafío Global
           </h1>

@@ -36,7 +36,7 @@ export const Menu: FC<MenuProps> = () => {
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <motion.nav
-            className="fixed top-0 left-0 flex flex-col items-end h-screen text-yellow bg-dark-orange"
+            className="fixed top-0 left-0 z-10 flex flex-col items-end h-screen text-yellow bg-dark-orange"
             animate={open ? 'open' : 'closed'}
             variants={variants}
             transition={{ duration: 1 }}

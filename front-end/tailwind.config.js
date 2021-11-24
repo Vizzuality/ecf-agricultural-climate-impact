@@ -30,7 +30,7 @@ module.exports = {
         padding: '1rem',
       },
       fontSize: {
-        headline: '10.75rem',
+        headline: '9rem',
       },
       padding: {
         '20%': '20%',

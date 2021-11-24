@@ -9,6 +9,9 @@ export const Headline: FC<HeadlineProps> = () => {
     <section className="flex h-screen px-5 md:pt-32 md:px-20 bg-dark-green text-yellow">
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
+          <div className="absolute font-serif text-sm top-6">
+            Impactos del cambio climático en la agricultura española
+          </div>
           <h1 className="font-serif text-headline" style={{ lineHeight: '188px' }}>
             Una economía en riesgo
           </h1>
