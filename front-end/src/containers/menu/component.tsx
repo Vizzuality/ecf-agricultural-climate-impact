@@ -50,8 +50,9 @@ export const Menu: FC = () => {
                 <ul className="mt-24">
                   {SECTIONS.map((section) => (
                     <li className="mb-5" key={`menu-item-${section.id}`}>
-                      <Link href={section.url}>
-                        <a
+                      <Link href={section.url} passHref>
+                        <motion.a
+                          whileHover={{ opacity: 1 }}
                           className={cx({
                             'opacity-100': currentSection === section.id,
                             'text-2xl': true,
@@ -64,12 +65,13 @@ export const Menu: FC = () => {
                           }}
                         >
                           {section.label}
-                        </a>
+                        </motion.a>
                       </Link>
                       {section.subsections?.map((subsection) => (
                         <li key={`sub-menu-item${subsection.id}`} className="my-2 ml-8">
-                          <Link href={subsection.url}>
-                            <a
+                          <Link href={subsection.url} passHref>
+                            <motion.a
+                              whileHover={{ opacity: 1 }}
                               className={cx({
                                 'opacity-100': currentSubsection === subsection.id,
                                 'text-xl': true,
@@ -82,7 +84,7 @@ export const Menu: FC = () => {
                               }}
                             >
                               {subsection.label}
-                            </a>
+                            </motion.a>
                           </Link>
                         </li>
                       ))}
