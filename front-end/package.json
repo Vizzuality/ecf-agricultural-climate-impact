@@ -59,6 +59,7 @@
     "react-aria": "^3.6.0",
     "react-dom": "17.0.2",
     "react-final-form": "^6.5.3",
+    "react-intersection-observer": "^8.32.5",
     "react-map-gl": "^6.1.15",
     "react-popper": "^2.2.5",
     "react-scrollama": "^2.2.16",

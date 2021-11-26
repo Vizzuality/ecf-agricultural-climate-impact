@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 // containers
-import Section from 'containers/section';
 import Headline from 'containers/headline';
 import MapVisualization from 'containers/map-visualization';
 import DesafioGlobalHeadline from 'containers/sections/desafio-global/headline';
@@ -10,31 +9,55 @@ import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/hea
 import EfectosSobreCultivosHeadline from 'containers/sections/efectos-sobre-cultivos/headline';
 import ConclusionesHeadline from 'containers/sections/conclusiones/headline';
 import Menu from 'containers/menu';
+
+// types
 import { SectionIDs } from 'types';
+
+// hooks
+import { useAppContext } from 'hooks/use-app-context';
+import { useEffect } from 'react';
 
 const Welcome: React.FC = () => {
   // const [activeLayerId, setActiveLayerId] = useState();
+  const { ref: desafioRef, inView: desafioInView } = useInView({ threshold: 0 });
+  const { ref: economiaRef, inView: economiaInView } = useInView({ threshold: 0 });
+  const { ref: efectosRef, inView: efectosInView } = useInView({ threshold: 0 });
+  const { ref: conclusionesRef, inView: conclusionesInView } = useInView({ threshold: 0 });
+
+  const { setCurrentSection } = useAppContext();
+
+  useEffect(() => {
+    if (desafioInView) {
+      setCurrentSection(SectionIDs.DesafioGlobal);
+    } else if (economiaInView) {
+      setCurrentSection(SectionIDs.EconomiaRiesgo);
+    } else if (efectosInView) {
+      setCurrentSection(SectionIDs.EfectosCultivos);
+    } else if (conclusionesInView) {
+      setCurrentSection(SectionIDs.Conclusiones);
+    }
+  }, [desafioInView, economiaInView, efectosInView, conclusionesInView, setCurrentSection]);
 
   return (
     <div>
       <Headline />
       <Menu />
-      <Section id={SectionIDs.DesafioGlobal} title="Section 1">
+      <section ref={desafioRef} id={SectionIDs.DesafioGlobal}>
         <div className="h-screen">
           <MapVisualization activeLayerId="protected-areas" />
         </div>
         <DesafioGlobalHeadline />
         <DesafioGlobalNarrative />
-      </Section>
-      <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
+      </section>
+      <section ref={economiaRef} id={SectionIDs.EconomiaRiesgo}>
         <EconomiaEnRiesgoHeadline />
-      </Section>
-      <Section id={SectionIDs.EfectosCultivos} title="Section 3">
+      </section>
+      <section ref={efectosRef} id={SectionIDs.EfectosCultivos}>
         <EfectosSobreCultivosHeadline />
-      </Section>
-      <Section id={SectionIDs.Conclusiones} title="Section 4">
+      </section>
+      <section ref={conclusionesRef} id={SectionIDs.Conclusiones}>
         <ConclusionesHeadline />
-      </Section>
+      </section>
     </div>
   );
 };

@@ -7,14 +7,10 @@ import Link from 'next/link';
 // utils
 import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
 
-// types
-import { SectionIDs } from 'types';
-
 // hooks
 import { useAppContext } from 'hooks/use-app-context';
 
 // local types
-// import { MenuProps } from './types';
 import { SECTIONS } from './constants';
 
 export const Menu: FC = () => {
@@ -31,16 +27,21 @@ export const Menu: FC = () => {
     [currentSection],
   );
 
+  const currentSectionColor = useMemo(
+    () => SECTIONS.find((s) => s.id === currentSection).color,
+    [currentSection],
+  );
+
   return (
     <div>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <motion.nav
-            className="fixed top-0 left-0 z-10 flex flex-col items-end h-screen text-yellow bg-dark-orange"
+            className="fixed top-0 left-0 z-10 flex flex-col items-end h-screen text-yellow"
             animate={open ? 'open' : 'closed'}
             variants={variants}
             transition={{ duration: 1 }}
-            style={{ width: '400px' }}
+            style={{ width: '400px', backgroundColor: currentSectionColor }}
           >
             {open && (
               <div className="relative flex flex-col pt-4 w-full pl-10% font-serif h-full font-normal">
@@ -95,7 +96,7 @@ export const Menu: FC = () => {
                   <span className="font-sans" style={{ fontSize: '10px' }}>
                     Sobre nosotros
                   </span>
-                  <img style={{ width: '89px' }} src="images/logo-coag.png" />
+                  <img style={{ width: '89px' }} src="images/logo-coag.png" alt="logo" />
                 </div>
               </div>
             )}

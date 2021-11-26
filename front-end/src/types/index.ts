@@ -16,6 +16,7 @@ export interface SectionObject {
   id: SectionIDs;
   label: string;
   url: string;
+  color: string;
   subsections?: SubsectionObject[];
 }
 
