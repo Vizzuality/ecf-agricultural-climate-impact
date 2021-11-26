@@ -48,6 +48,7 @@ const MapVisualization = ({ activeLayerId }) => {
       <div className="absolute top-0 left-0 right-0 h-full">
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+          mapStyle="mapbox://styles/aslribeiro/ckvtoz37f27zd14uj0hsxy6j8"
           viewport={viewport}
           onMapViewportChange={handleViewport}
         >
