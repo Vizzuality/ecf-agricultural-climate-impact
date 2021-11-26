@@ -51,6 +51,7 @@ const MapVisualization = ({ activeLayerId }) => {
           mapStyle="mapbox://styles/aslribeiro/ckvtoz37f27zd14uj0hsxy6j8"
           viewport={viewport}
           onMapViewportChange={handleViewport}
+          bounds={{ bbox: [-18.89, 26.14, 5.9, 44.35] }}
         >
           {(map) => (
             <>
