@@ -210,7 +210,7 @@ def get_centroid_values(gdf, ds, da, id_ints_not_in_mask, logical_coordinates=Fa
             
     return values
 
-def display_figures(gdf, gdf_ids, geometry, ds_rasters, dataset, indicator, scenario, year):
+def display_figures(gdf, gdf_vectors, gdf_ids, geometry, ds_rasters, dataset, indicator, scenario, year, bbox, cmap='magma'):
     df = gdf[geometry].copy()
     df = df[(df['dataset'] == dataset) & (df['indicator'] == indicator) & (df['scenario'] == scenario) & (df['year'] == year)]
     
@@ -223,12 +223,12 @@ def display_figures(gdf, gdf_ids, geometry, ds_rasters, dataset, indicator, scen
     
     divider = make_axes_locatable(ax1)
     cax = divider.append_axes("right", size="5%", pad=-0.5) 
-    df.plot(ax=ax1, column='value', cmap='magma', legend=True, cax=cax, legend_kwds={'label': indicator})
+    df.plot(ax=ax1, column='value', cmap=cmap, legend=True, cax=cax, legend_kwds={'label': indicator})
     ax1.set_title(f'time = {year}, scenario = {scenario}')
     
     
     ax2.set_global()
-    ds_rasters[dataset].sel(scenario=scenario).sel(time=year)[indicator].plot.pcolormesh(ax=ax2, cmap='magma', transform=ccrs.PlateCarree(), x='lon', y='lat', add_colorbar=True)
+    ds_rasters[dataset].sel(scenario=scenario).sel(time=year)[indicator].plot.pcolormesh(ax=ax2, cmap=cmap, transform=ccrs.PlateCarree(), x='lon', y='lat', add_colorbar=True)
     ax2.coastlines()
-    ax2.set_ylim([lat_min-1,lat_max+1]);
-    ax2.set_xlim([lon_min-1,lon_max+1]);
+    ax2.set_ylim([bbox[1]-1,bbox[3]+1]);
+    ax2.set_xlim([bbox[0]-1,bbox[2]+1]);
