@@ -232,3 +232,15 @@ def display_figures(gdf, gdf_vectors, gdf_ids, geometry, ds_rasters, dataset, in
     ax2.coastlines()
     ax2.set_ylim([bbox[1]-1,bbox[3]+1]);
     ax2.set_xlim([bbox[0]-1,bbox[2]+1]);
+
+def display_masks(gdf_name, da_masks):
+    fig, axs = plt.subplots(1, 3, figsize=(30,8))
+
+    n=0
+    for ds_name, masks in da_masks.items():
+        mask=masks[gdf_name]
+        mask.plot.pcolormesh(ax=axs[n], cmap='twilight', x='lon', y='lat', add_colorbar=False)
+        axs[n].set_ylim([35, 45]);
+        axs[n].set_xlim([-10, 5]);
+        axs[n].set_title(f"{ds_name} ({gdf_name})");
+        n+=1 
