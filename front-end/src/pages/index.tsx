@@ -2,8 +2,10 @@ import { useState } from 'react';
 
 // containers
 import Section from 'containers/section';
+import Hero from 'containers/sections/hero';
 import Headline from 'containers/headline';
 import MapVisualization from 'containers/map-visualization';
+import CultivoCulturaCambioNarrative from 'containers/sections/cultivo-cultura-cambio/narrative';
 import DesafioGlobalHeadline from 'containers/sections/desafio-global/headline';
 import DesafioGlobalNarrative from 'containers/sections/desafio-global/narrative';
 import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/headline';
@@ -17,16 +19,13 @@ const Welcome: React.FC = () => {
 
   return (
     <div>
-      <Headline />
       <Menu />
-      <Section id={SectionIDs.DesafioGlobal} title="Section 1">
-        <div className="h-screen">
-          <MapVisualization activeLayerId="protected-areas" />
-        </div>
-        <DesafioGlobalHeadline />
-        <DesafioGlobalNarrative />
+      {/* <Headline /> */}
+      <Hero />
+      <Section id={SectionIDs.CultivoCulturaCambio} title="Cultivo, cultura, cambio">
+        <CultivoCulturaCambioNarrative />
       </Section>
-      <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
+      {/* <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
         <EconomiaEnRiesgoHeadline />
       </Section>
       <Section id={SectionIDs.EfectosCultivos} title="Section 3">
@@ -34,7 +33,7 @@ const Welcome: React.FC = () => {
       </Section>
       <Section id={SectionIDs.Conclusiones} title="Section 4">
         <ConclusionesHeadline />
-      </Section>
+      </Section> */}
     </div>
   );
 };

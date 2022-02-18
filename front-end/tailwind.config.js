@@ -15,6 +15,7 @@ module.exports = {
         sans: ['menca', 'sans-serif'],
       },
       colors: {
+        'primary-red': '#A93C3C',
         'dark-green': '#283618',
         'dark-orange': '#BC6C25',
         'light-orange': '#CC904D',
@@ -41,6 +42,7 @@ module.exports = {
   variants: {
     extend: {
       margin: ['first'],
+      padding: ['first'],
     },
   },
   plugins: [forms, lineClamp],

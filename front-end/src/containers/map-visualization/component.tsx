@@ -50,6 +50,7 @@ const MapVisualization = ({ activeLayerId }) => {
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           viewport={viewport}
           onMapViewportChange={handleViewport}
+          scrollZoom={false}
         >
           {(map) => (
             <>

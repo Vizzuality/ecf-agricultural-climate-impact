@@ -17,7 +17,7 @@ export const LAYERS = [
     source: {
       type: 'raster',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/1961_2000/{z}/{x}/{y}.png',
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/1961_2000/{z}/{x}/{y}.png',
       ],
       minzoom: 3,
       maxzoom: 12,

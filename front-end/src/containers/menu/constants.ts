@@ -1,46 +1,55 @@
-import { SectionIDs, SectionObject, SubsectionIDs } from 'types';
+import {
+  SectionIDs,
+  SectionObject,
+  // SubsectionIDs
+} from 'types';
 
 export const SECTIONS: SectionObject[] = [
   {
-    id: SectionIDs.DesafioGlobal,
-    label: 'Un desafío global',
-    url: `#${SectionIDs.DesafioGlobal}`,
+    id: SectionIDs.CultivoCulturaCambio,
+    label: 'Cultivo, cultura, cambio',
+    url: `#${SectionIDs.CultivoCulturaCambio}`,
   },
   {
-    id: SectionIDs.EconomiaRiesgo,
-    label: 'Una economía en riesgo',
-    url: `#${SectionIDs.EconomiaRiesgo}`,
+    id: SectionIDs.ElRiesgoClimatico,
+    label: 'El riesgo climático',
+    url: `#${SectionIDs.ElRiesgoClimatico}`,
   },
   {
-    id: SectionIDs.EfectosCultivos,
-    label: 'Efectos sobre cultivos',
-    url: `#${SectionIDs.EfectosCultivos}`,
-    subsections: [
-      {
-        id: SubsectionIDs.Cereales,
-        label: 'Cereales',
-        url: `#${SubsectionIDs.Cereales}`,
-      },
-      {
-        id: SubsectionIDs.Dehesa,
-        label: 'Dehesa',
-        url: `#${SubsectionIDs.Dehesa}`,
-      },
-      {
-        id: SubsectionIDs.Olivar,
-        label: 'Olivar',
-        url: `#${SubsectionIDs.Olivar}`,
-      },
-      {
-        id: SubsectionIDs.Vinedo,
-        label: 'Viñedo',
-        url: `#${SubsectionIDs.Vinedo}`,
-      },
-    ],
+    id: SectionIDs.ElRiesgoAgricola,
+    label: 'El Riesgo Agrícola',
+    url: `#${SectionIDs.ElRiesgoAgricola}`,
   },
+  // {
+  //   id: SectionIDs.ElRiesgoAgricola,
+  //   label: 'El Riesgo Agrícola',
+  //   url: `#${SectionIDs.ElRiesgoAgricola}`,
+  //   subsections: [
+  //     {
+  //       id: SubsectionIDs.Cereales,
+  //       label: 'Cereales',
+  //       url: `#${SubsectionIDs.Cereales}`,
+  //     },
+  //     {
+  //       id: SubsectionIDs.Dehesa,
+  //       label: 'Dehesa',
+  //       url: `#${SubsectionIDs.Dehesa}`,
+  //     },
+  //     {
+  //       id: SubsectionIDs.Olivar,
+  //       label: 'Olivar',
+  //       url: `#${SubsectionIDs.Olivar}`,
+  //     },
+  //     {
+  //       id: SubsectionIDs.Vinedo,
+  //       label: 'Viñedo',
+  //       url: `#${SubsectionIDs.Vinedo}`,
+  //     },
+  //   ],
+  // },
   {
-    id: SectionIDs.Conclusiones,
-    label: 'Conclusiones',
-    url: `#${SectionIDs.Conclusiones}`,
+    id: SectionIDs.CultivoCulturaResiliencia,
+    label: 'Cultivo, cultura, resiliencia',
+    url: `#${SectionIDs.CultivoCulturaResiliencia}`,
   },
 ];

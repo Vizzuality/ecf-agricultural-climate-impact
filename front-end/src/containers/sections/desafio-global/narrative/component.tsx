@@ -8,7 +8,7 @@ import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 import { STEPS } from './constants';
 
 export const Narrative: FC = () => {
-  const [currentStep, setCurrentStep] = useState(null);
+  const [currentStep, setCurrentStep] = useState(STEPS[0]);
 
   const onStepEnter = ({ data }) => {
     setCurrentStep(data);
