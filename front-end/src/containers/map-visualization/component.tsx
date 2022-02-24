@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import Map from 'components/map';
 import ZoomControls from 'components/map/controls/zoom';
@@ -19,16 +19,31 @@ import type { ViewPortTypes } from './types';
 
 const MapVisualization = ({ activeLayerId }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
-  const [layers, setLayers] = useState(LAYERS);
+  // const [layers, setLayers] = useState(LAYERS);
 
-  useEffect(() => {
-    setLayers(
-      layers.map((l) => ({
-        ...l,
-        visible: l.id === activeLayerId,
-      })),
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   setLayers(
+  //     layers.map((l) => ({
+  //       ...l,
+  //       visible: l.id === activeLayerId,
+  //     })),
+  //   );
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [activeLayerId]);
+
+  const updatedLayers = useMemo(() => {
+    const newLayers = LAYERS.map((l) => ({
+      ...l,
+      visible: l.id === activeLayerId,
+      ...(l.id === activeLayerId && {
+        params: {
+          startYear: '2011',
+          endYear: '2040',
+        },
+      }),
+    }));
+
+    return newLayers;
   }, [activeLayerId]);
 
   const handleViewport = useCallback((_viewport) => {
@@ -43,6 +58,12 @@ const MapVisualization = ({ activeLayerId }) => {
     }));
   }, []);
 
+  // const testFn = () => {
+  //   console.log('olakease1')
+  // };
+
+  // console.log(updatedLayers)
+
   return (
     <div className="relative flex flex-col h-full">
       <div className="absolute top-0 left-0 right-0 h-full">
@@ -54,7 +75,7 @@ const MapVisualization = ({ activeLayerId }) => {
           {(map) => (
             <>
               <LayerManager map={map} plugin={PluginMapboxGl}>
-                {layers.map((l) => (
+                {updatedLayers.map((l) => (
                   <Layer key={l.id} {...l} />
                 ))}
               </LayerManager>
