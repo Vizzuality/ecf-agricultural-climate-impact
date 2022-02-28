@@ -31,19 +31,18 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'http://localhost:3000/map_tiles/MBTiles/Aumento_temperaturas/municipios/{z}/{x}/{y}.pbf',
+        'http://localhost:3000/map_tiles/MBTiles/Aumento_temperaturas/municipios/{z}/{x}/{y}.vector.pbf',
       ],
     },
     render: {
       layers: [
         {
-          type: 'line',
+          type: 'fill',
           'source-layer': 'Aumento_temperaturas',
           featureState: {},
           paint: {
-            'line-color': 'red',
-            'line-opacity': '1',
-            'line-width': '1',
+            'fill-color': 'hsla(32, 53%, 16%, 0.6)',
+            'fill-translate': [0, -2.5],
           },
         },
       ],
