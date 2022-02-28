@@ -42,3 +42,5 @@ yarn-error.log*
 # Test with Cypress
 /cypress/screenshots
 /cypress/videos
+
+/public/map_tiles/
