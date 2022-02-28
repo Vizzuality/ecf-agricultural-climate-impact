@@ -10,9 +10,9 @@ import { STEPS, WORDS } from './constants';
 import { workerData } from 'worker_threads';
 
 // components
-import Hero from '../../hero';
+import Hero from '../hero';
 
-export const Narrative: FC = () => {
+export const CultivoCulturaCambio: FC = () => {
   const [currentStep, setCurrentStep] = useState(STEPS[0]);
   const [currentOpacity, setCurrentOpacity] = useState(0);
 
@@ -100,7 +100,6 @@ export const Narrative: FC = () => {
               </Scrollama>
             </div>
           </div>
-          <div className="relative h-screen bg-blue-300"></div>
         </Desktop>
         <Mobile>
           <div>Mobile</div>
@@ -110,4 +109,4 @@ export const Narrative: FC = () => {
   );
 };
 
-export default Narrative;
+export default CultivoCulturaCambio;
