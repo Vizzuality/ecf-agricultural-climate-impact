@@ -16,7 +16,7 @@ export const ElRiesgoClimatico: FC = (props) => {
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <div className="w-full py-32 bg-primary-red">
-            <div className="flex flex-col items-start w-screen max-w-screen-lg mx-auto bg-primary-red">
+            <div className="flex flex-col items-start w-full max-w-screen-lg mx-auto bg-primary-red">
               <h1 className="relative px-3 py-2 font-serif text-6xl transition-opacity duration-500 text-primary-red">
                 <span className="relative z-10">{TITLE}</span>
                 <motion.div
@@ -41,6 +41,8 @@ export const ElRiesgoClimatico: FC = (props) => {
                   transporte, y agrícola.
                 </p>
               </div>
+            </div>
+            <div className="flex flex-col items-start w-screen max-w-screen-xl mx-auto">
               <div className="w-full">
                 <Chart1 />
               </div>

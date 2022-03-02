@@ -36,7 +36,7 @@ export const Menu: FC = () => {
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <motion.nav
-            className="fixed top-0 left-0 z-30 flex w-screen h-16 text-black bg-white"
+            className="fixed top-0 left-0 z-30 flex w-full h-16 text-black bg-white"
             // transition={{ duration: 1 }}
           >
             <div className="relative flex justify-between w-full max-w-screen-xl mx-auto">
