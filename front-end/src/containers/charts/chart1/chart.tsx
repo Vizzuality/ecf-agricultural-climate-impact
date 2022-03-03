@@ -1,18 +1,16 @@
-import { FC, useState, useEffect, useMemo, useCallback } from 'react';
-import { AreaClosed, Line, LinePath, Bar } from '@visx/shape';
-import { PickD3Scale, scaleTime, scaleLinear } from '@visx/scale';
+/* eslint-disable prettier/prettier */
+import { FC, useState, useEffect, useCallback } from 'react';
+import { Line, LinePath } from '@visx/shape';
+import { scaleLinear } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
-import { useTooltip, useTooltipInPortal, TooltipWithBounds } from '@visx/tooltip';
+import { useTooltip, useTooltipInPortal, Tooltip, defaultStyles } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
-import { max, extent, bisector } from 'd3-array';
-
-// utils
-// import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
+import { extent, bisector } from 'd3-array';
 
 // constants
-import { STEPS, WORDS } from './constants';
-import { values } from 'lodash';
+// import { STEPS, WORDS } from './constants';
+// import { values } from 'lodash';
 
 export const Chart: FC = ({ width, height }) => {
   const [historicData, setHistoricData] = useState([]);
@@ -87,7 +85,7 @@ export const Chart: FC = ({ width, height }) => {
   const { tooltipData, tooltipLeft, tooltipTop, tooltipOpen, showTooltip, hideTooltip } =
     useTooltip();
 
-  const { containerRef, TooltipInPortal } = useTooltipInPortal({
+  const { containerRef } = useTooltipInPortal({
     // use TooltipWithBounds
     detectBounds: true,
     // when tooltip containers are scrolled, this will correctly update the Tooltip position
@@ -98,7 +96,7 @@ export const Chart: FC = ({ width, height }) => {
   const handleTooltip = useCallback(
     (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
       const { x } = localPoint(event) || { x: 0 };
-      const x0 = timeScale.invert(x);
+      const x0 = timeScale.invert(x - margin.left);
       const index = bisectDate(concatData, x0, 1);
       const d0 = concatData[index - 1];
       const d1 = concatData[index];
@@ -110,25 +108,28 @@ export const Chart: FC = ({ width, height }) => {
       if (x0 > historicData[0].year && x0 < historicData[historicData.length - 1].year) {
         showTooltip({
           tooltipData: d,
-          tooltipLeft: x,
+          tooltipLeft: x - margin.left,
           tooltipTop: valueScale(getValue(d)),
         });
       }
     },
-    [showTooltip, valueScale, timeScale],
+    [timeScale, margin.left, bisectDate, concatData, historicData, showTooltip, valueScale],
   );
 
   return (
     <div className="relative">
       <svg ref={containerRef} width={width} height={height + margin.top}>
-        <Group top={margin.top}>
+        <Group
+          left={margin.left}
+          top={margin.top}
+        >
           <AxisLeft
             hideAxisLine={true}
             hideTicks={true}
             scale={valueScale}
             tickLabelProps={() => ({
               fill: '#EDF2F7',
-              fontSize: 9,
+              fontSize: 10,
               fontWeight: 600,
               textAnchor: 'end',
               alignmentBaseline: 'after-edge',
@@ -139,10 +140,11 @@ export const Chart: FC = ({ width, height }) => {
             hideTicks={true}
             scale={timeScale}
             top={innerHeight}
+            // left={margin.left}
             tickFormat={formatDate}
             tickLabelProps={() => ({
               fill: '#EDF2F7',
-              fontSize: 9,
+              fontSize: 10,
               fontWeight: 600,
               textAnchor: 'end',
             })}
@@ -237,7 +239,7 @@ export const Chart: FC = ({ width, height }) => {
             <g>
               <Line
                 from={{ x: tooltipLeft, y: tooltipTop }}
-                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+                to={{ x: tooltipLeft, y: innerHeight + margin.top - 20 }}
                 stroke="white"
                 strokeWidth={2}
                 pointerEvents="none"
@@ -258,7 +260,7 @@ export const Chart: FC = ({ width, height }) => {
                 cx={tooltipLeft}
                 cy={tooltipTop}
                 r={4}
-                fill={'red'}
+                fill="#A93C3C"
                 stroke="white"
                 strokeWidth={2}
                 pointerEvents="none"
@@ -268,14 +270,53 @@ export const Chart: FC = ({ width, height }) => {
         </Group>
       </svg>
       {tooltipOpen && (
-        <TooltipInPortal
-          // set this to random so it correctly updates with parent bounds
+        <Tooltip
           key={Math.random()}
-          top={tooltipTop}
-          left={tooltipLeft}
+          top={tooltipTop - 38}
+          left={tooltipLeft + margin.left - 10}
+          style={{
+            ...defaultStyles,
+            transform: 'translateX(-50%)',
+            borderRadius: '0',
+            boxShadow: 'none',
+            padding: '10px',
+          }}
         >
-          Data value <strong>safasf</strong>
-        </TooltipInPortal>
+          <span style={{
+            position: 'absolute',
+            content: '',
+            top: '100%',
+            left: '50%',
+            width: '0',
+            height: '0',
+            borderLeft: '5px solid transparent',
+            borderRight: '5px solid transparent',
+            borderTop: '5px solid white',
+            transform: 'translateX(-50%)',
+          }}></span>
+          <strong>
+            {tooltipData.value} {tooltipData.unit}
+          </strong>
+        </Tooltip>
+      )}
+      {tooltipOpen && (
+        <Tooltip
+          key={Math.random()}
+          top={innerHeight + 18.5}
+          left={tooltipLeft + margin.left - 10}
+          style={{
+            ...defaultStyles,
+            transform: 'translateX(-50%)',
+            borderRadius: '0',
+            boxShadow: 'none',
+            padding: '2px 4px',
+            backgroundColor: '#A93C3C',
+            color: 'white',
+            fontSize: '10px',
+          }}
+        >
+          <strong>{tooltipData.year}</strong>
+        </Tooltip>
       )}
     </div>
   );
