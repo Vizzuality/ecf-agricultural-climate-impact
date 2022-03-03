@@ -8,11 +8,14 @@ import { useTooltip, useTooltipInPortal, Tooltip, defaultStyles } from '@visx/to
 import { localPoint } from '@visx/event';
 import { extent, bisector } from 'd3-array';
 
+// types
+import { ChartProps } from '../types';
+
 // constants
 // import { STEPS, WORDS } from './constants';
 // import { values } from 'lodash';
 
-export const Chart: FC = ({ width, height }) => {
+export const Chart: FC<ChartProps> = ({ width, height }) => {
   const [historicData, setHistoricData] = useState([]);
   const [wewData, setWewData] = useState([]);
   const [wawData, setWawData] = useState([]);
@@ -133,6 +136,7 @@ export const Chart: FC = ({ width, height }) => {
               fontWeight: 600,
               textAnchor: 'end',
               alignmentBaseline: 'after-edge',
+              opacity: '0.5',
             })}
           />
           <AxisBottom
@@ -140,13 +144,13 @@ export const Chart: FC = ({ width, height }) => {
             hideTicks={true}
             scale={timeScale}
             top={innerHeight}
-            // left={margin.left}
             tickFormat={formatDate}
             tickLabelProps={() => ({
               fill: '#EDF2F7',
               fontSize: 10,
               fontWeight: 600,
               textAnchor: 'end',
+              opacity: '0.5',
             })}
           />
           <LinePath

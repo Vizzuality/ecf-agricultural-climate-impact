@@ -8,7 +8,7 @@ import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 // constants
 import { TITLE } from './constants';
 
-import Chart1 from 'containers/charts/chart1';
+import ChartEmisionesCo2 from 'containers/charts/emisiones-co2';
 
 export const ElRiesgoClimatico: FC = (props) => {
   return (
@@ -44,7 +44,7 @@ export const ElRiesgoClimatico: FC = (props) => {
             </div>
             <div className="flex flex-col items-start w-screen max-w-screen-xl mx-auto">
               <div className="w-full">
-                <Chart1 />
+                <ChartEmisionesCo2 />
               </div>
             </div>
           </div>
