@@ -43,4 +43,5 @@ yarn-error.log*
 /cypress/screenshots
 /cypress/videos
 
+# Maps tiles
 /public/map_tiles/
