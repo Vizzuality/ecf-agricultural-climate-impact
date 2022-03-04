@@ -9,7 +9,7 @@ import { localPoint } from '@visx/event';
 import { extent, bisector } from 'd3-array';
 
 // types
-import { ChartProps } from '../types';
+import { ChartProps, TooltipData } from '../types';
 
 // constants
 // import { STEPS, WORDS } from './constants';
@@ -86,7 +86,7 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
 
   // tooltip
   const { tooltipData, tooltipLeft, tooltipTop, tooltipOpen, showTooltip, hideTooltip } =
-    useTooltip();
+    useTooltip<TooltipData>();
 
   const { containerRef } = useTooltipInPortal({
     // use TooltipWithBounds
