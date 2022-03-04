@@ -1,14 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, useMemo, useState } from 'react';
+import { FC } from 'react';
 import { motion } from 'framer-motion';
 import cx from 'classnames';
 import Link from 'next/link';
 
 // utils
 import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
-
-// types
-import { SectionIDs } from 'types';
 
 // hooks
 import { useAppContext } from 'hooks/use-app-context';
@@ -19,8 +16,7 @@ import { SECTIONS } from './constants';
 
 export const Menu: FC = () => {
   // const [open, setOpen] = useState<boolean>(false);
-  const { currentSection, setCurrentSection, currentSubsection, setCurrentSubsection } =
-    useAppContext();
+  const { currentSection, setCurrentSection } = useAppContext();
   // const variants = {
   //   open: { left: 0 },
   //   closed: { left: '-345px' },
@@ -56,7 +52,6 @@ export const Menu: FC = () => {
                           onClick={() => {
                             // setOpen(false);
                             setCurrentSection(section.id);
-                            setCurrentSubsection(null);
                           }}
                         >
                           {section.label}
