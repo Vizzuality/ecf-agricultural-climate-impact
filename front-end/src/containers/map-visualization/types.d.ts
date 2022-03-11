@@ -4,3 +4,12 @@ export interface ViewPortTypes {
   longitude?: number;
   latitude: number;
 }
+
+export interface TooltipData {
+  // dataset: string;
+  // indicator: string;
+  title: string;
+  value: number;
+  // year: number;
+  unit: string;
+}
