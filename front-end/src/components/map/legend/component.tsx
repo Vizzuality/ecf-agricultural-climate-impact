@@ -37,7 +37,7 @@ export const Legend: FC<LegendProps> = ({
         type="button"
         aria-expanded={active}
         aria-controls={id}
-        className="relative flex items-center w-full px-5 py-3 space-x-2 text-xs text-white uppercase font-heading"
+        className="relative flex items-center w-full px-5 py-3 space-x-2 text-xs text-black uppercase font-heading"
         onClick={onToggleActive}
       >
         <Icon icon={LEGEND_SVG} className="w-4 h-4 text-gray-300" />
