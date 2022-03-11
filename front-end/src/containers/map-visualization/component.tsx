@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useEffect, useState, useRef } from 'react';
+import { FC, useCallback, useMemo, useEffect, useState, useRef } from 'react';
 
 import Map from 'components/map';
 // import ZoomControls from 'components/map/controls/zoom';
@@ -12,13 +12,25 @@ import LegendTypeGradient from 'components/map/legend/types/gradient';
 
 import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, LAYER_GRADIENT } from './constants';
 
-import type { ViewPortTypes, TooltipData } from './types';
+import type {
+  MapTypes,
+  ViewPortTypes,
+  EventTypes,
+  TooltipData,
+  MapVisualizationType,
+} from './types';
 
-const MapVisualization = ({ activeLayerId, geoType, scenario, year, municipality }) => {
+const MapVisualization: FC<MapVisualizationType> = ({
+  activeLayerId,
+  geoType,
+  scenario,
+  year,
+  municipality,
+}) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
-  const HOVER = useRef({});
-  const CLICK = useRef({});
-  const MAP = useRef();
+  const HOVER = useRef<EventTypes>({});
+  const CLICK = useRef<EventTypes>({});
+  const MAP = useRef<MapTypes>();
 
   const promoteId =
     geoType === 'municipios' ? 'CODIGOINE' : geoType === 'provincias' ? 'CO_PROVINC' : 'CO_CCAA';

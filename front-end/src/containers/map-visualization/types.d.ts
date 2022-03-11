@@ -1,3 +1,23 @@
+export interface ScenarioType {
+  value: string;
+  label: string;
+}
+export interface YearType {
+  value: string;
+  label: string;
+}
+export interface MunicipalityType {
+  id: number;
+  name: string;
+}
+
+export interface MapVisualizationType {
+  activeLayerId: string;
+  geoType: string;
+  scenario: ScenarioType;
+  year: YearType;
+  municipality: MunicipalityType;
+}
 export interface ViewPortTypes {
   zoom?: number;
   pitch?: number;
@@ -12,4 +32,13 @@ export interface TooltipData {
   value: number;
   // year: number;
   unit: string;
+}
+
+export interface EventTypes {
+  id?: number;
+  source?: string;
+}
+
+export interface MapTypes {
+  setFeatureState: function;
 }

@@ -1,7 +1,7 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import { motion, AnimatePresence, useViewportScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ReactSlider from 'react-slider';
 // import cx from 'classnames';
 
@@ -20,7 +20,7 @@ const municipalities = [
   { id: 8019, name: 'Barcelona' },
 ];
 
-export const ElRiesgoClimatico: FC = (props) => {
+export const ElRiesgoClimatico: FC = () => {
   const [geoType, setGeoType] = useState('municipios');
   const [scenario, setScenario] = useState(SCENARIOS[0]);
   const [year, setYear] = useState(YEARS[0]);
