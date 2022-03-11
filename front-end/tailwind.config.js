@@ -16,11 +16,12 @@ module.exports = {
       },
       colors: {
         'primary-red': '#A93C3C',
-        'dark-green': '#283618',
-        'dark-orange': '#BC6C25',
-        'light-orange': '#CC904D',
-        'light-green': '#606C38',
-        yellow: '#F9F5DB',
+        'lightest-grey': '#F4F4F4',
+        // 'dark-green': '#283618',
+        // 'dark-orange': '#BC6C25',
+        // 'light-orange': '#CC904D',
+        // 'light-green': '#606C38',
+        // yellow: '#F9F5DB',
       },
       boxShadow: {
         rw: '0 0 0 2px #c32d7b, 0 20px 30px rgba(0,0,0,.2)',
