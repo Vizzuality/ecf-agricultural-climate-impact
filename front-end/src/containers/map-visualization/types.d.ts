@@ -17,6 +17,7 @@ export interface MapVisualizationType {
   scenario: ScenarioType;
   year: YearType;
   municipality?: MunicipalityType;
+  showZoomControls?: boolean;
 }
 export interface ViewPortTypes {
   zoom?: number;

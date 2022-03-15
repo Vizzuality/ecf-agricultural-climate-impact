@@ -6,10 +6,18 @@ const AllMaps: FC = () => {
   return (
     <div>
       <div className="flex h-screen">
-        <ElRiesgoClimaticoMap defaultActiveLayerId="calentamiento" />
+        <ElRiesgoClimaticoMap
+          defaultActiveLayerId="calentamiento"
+          showAreaButtons={true}
+          // showZoomControls={true}
+        />
       </div>
       <div className="flex h-screen">
-        <ElRiesgoClimaticoMap defaultActiveLayerId="sequias" />
+        <ElRiesgoClimaticoMap
+          defaultActiveLayerId="sequias"
+          showAreaButtons={true}
+          // showZoomControls={true}
+        />
       </div>
     </div>
   );

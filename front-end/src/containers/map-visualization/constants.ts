@@ -10,6 +10,10 @@ export const DEFAULT_VIEWPORT = {
 };
 
 export const BOUNDS_SPAIN = [-9.38232421875, 35.92464453144099, 4.39453125, 43.89789239125797];
+export const BBOX_SPAIN = [
+  [-9.38232421875, 35.92464453144099],
+  [4.39453125, 43.89789239125797],
+];
 
 export const LAYERS = [
   {
@@ -66,7 +70,7 @@ export const LAYERS = [
                 2,
                 '#EEF07A',
               ],
-              'red',
+              'transparent',
             ],
             'fill-opacity': 0.7,
           },
@@ -128,10 +132,18 @@ export const LAYERS = [
               'interpolate',
               ['linear'],
               ['get', 'value_{{scenario}}_{{year}}'],
-              1,
-              '#0F031F',
-              100,
-              '#EEF07A',
+              0,
+              '#8bbdce',
+              15,
+              '#b9d09e',
+              30,
+              '#e6e36d',
+              45,
+              '#fdd74d',
+              60,
+              '#fead3d',
+              75,
+              '#ff822d',
             ],
           },
           'fill-opacity': 0.7,
@@ -162,7 +174,7 @@ export const LAYERS = [
   },
 ];
 
-export const LAYER_GRADIENT = [
+export const LAYER_GRADIENT_CALENTAMIENTO = [
   {
     color: '#0F031F',
     value: '<1',
@@ -182,5 +194,37 @@ export const LAYER_GRADIENT = [
   {
     color: '#EEF07A',
     value: '>2',
+  },
+];
+
+export const LAYER_GRADIENT_SEQUIAS = [
+  {
+    color: '#8bbdce',
+    value: '0',
+  },
+  {
+    color: '#b9d09e',
+    value: '15',
+  },
+  {
+    color: '#e6e36d',
+    value: '30',
+  },
+  {
+    color: '#fdec55',
+    value: '',
+  },
+  {
+    color: '#fdd74d',
+    value: '45',
+  },
+  {
+    color: '#fead3d',
+    value: '60',
+  },
+
+  {
+    color: '#ff822d',
+    value: '75',
   },
 ];

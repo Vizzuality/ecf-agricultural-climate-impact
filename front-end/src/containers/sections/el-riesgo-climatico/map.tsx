@@ -17,7 +17,11 @@ import type { ElRiesgoClimaticoMapTypes } from './types';
 //   { id: 8019, name: 'Barcelona' },
 // ];
 
-export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultActiveLayerId }) => {
+export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
+  defaultActiveLayerId = 'calentamiento',
+  showAreaButtons = false,
+  showZoomControls = false,
+}) => {
   const yearsCalentamiento = YEARS_CALENTAMIENTO.map((y) => {
     const splitValues = y.value.split(' - ');
     const label = Math.floor(
@@ -40,7 +44,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultAct
     return y;
   });
 
-  const [activeLayerId, setActiveLayerId] = useState(defaultActiveLayerId || 'calentamiento');
+  const [activeLayerId, setActiveLayerId] = useState(defaultActiveLayerId);
   const [geoType, setGeoType] = useState('municipios');
   const [scenario, setScenario] = useState(SCENARIOS[0]);
   const [year, setYear] = useState(yearsCalentamiento[0]);
@@ -81,7 +85,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultAct
 
   return (
     <div className="flex w-full h-full bg-lightest-grey">
-      <div className="flex flex-col w-2/5 h-full p-4">
+      <div className="flex flex-col w-2/5 h-full p-16">
         <div className="flex-1">
           <div className="text-lg font-bold text-gray-400">En el mapa:</div>
           <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
@@ -90,50 +94,34 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultAct
             <strong>aridificación</strong>.
           </div>
         </div>
-        <div className="flex justify-center">
-          <Button
-            theme="primary"
-            size="base"
-            className="flex-shrink-0 sm:mr-5"
-            onClick={() => handleDatasetChange('calentamiento')}
-          >
-            calentamiento
-          </Button>
-          <Button
-            theme="primary"
-            size="base"
-            className="flex-shrink-0 sm:mr-5"
-            onClick={() => handleDatasetChange('sequias')}
-          >
-            sequías
-          </Button>
-        </div>
-        <div className="flex justify-center">
-          <Button
-            theme="primary"
-            size="base"
-            className="flex-shrink-0 sm:mr-5"
-            onClick={() => handleGeoTypeChange('municipios')}
-          >
-            municipios
-          </Button>
-          <Button
-            theme="primary"
-            size="base"
-            className="flex-shrink-0 sm:mr-5"
-            onClick={() => handleGeoTypeChange('provincias')}
-          >
-            provincias
-          </Button>
-          <Button
-            theme="primary"
-            size="base"
-            className="flex-shrink-0 sm:mr-5"
-            onClick={() => handleGeoTypeChange('comunidades_autonomas')}
-          >
-            comunidades
-          </Button>
-        </div>
+        {showAreaButtons && (
+          <div className="flex justify-center">
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('municipios')}
+            >
+              municipios
+            </Button>
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('provincias')}
+            >
+              provincias
+            </Button>
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('comunidades_autonomas')}
+            >
+              comunidades
+            </Button>
+          </div>
+        )}
         <div className="mt-4">
           <div className="inline-block w-1/2 pr-2">
             <MapSlider values={SCENARIOS} value={scenario} onChange={handleScenarioSliderChange} />
@@ -149,22 +137,22 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultAct
         </div>
         {/* TODO: Select municipalities */}
         {/* <div className="p-4">
-                    <Listbox value={municipality} onChange={handleMunicipalitiesChange}>
-                      <Listbox.Button className="relative w-full px-2 py-1 text-left bg-white border border-black">
-                        <span className="block truncate">{municipality?.name}</span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                          <ChevronDownIcon className="w-5 h-5 text-black" aria-hidden="true" />
-                        </span>
-                      </Listbox.Button>
-                      <Listbox.Options>
-                        {municipalities?.map((municipality) => (
-                          <Listbox.Option key={municipality.id} value={municipality}>
-                            {municipality.name}
-                          </Listbox.Option>
-                        ))}
-                      </Listbox.Options>
-                    </Listbox>
-                  </div> */}
+          <Listbox value={municipality} onChange={handleMunicipalitiesChange}>
+            <Listbox.Button className="relative w-full px-2 py-1 text-left bg-white border border-black">
+              <span className="block truncate">{municipality?.name}</span>
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <ChevronDownIcon className="w-5 h-5 text-black" aria-hidden="true" />
+              </span>
+            </Listbox.Button>
+            <Listbox.Options>
+              {municipalities?.map((municipality) => (
+                <Listbox.Option key={municipality.id} value={municipality}>
+                  {municipality.name}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          </Listbox>
+        </div> */}
       </div>
       <div className="w-3/5 h-full">
         <MapVisualization
@@ -173,6 +161,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultAct
           // municipality={municipality}
           scenario={scenario}
           year={year}
+          showZoomControls={showZoomControls}
         />
       </div>
     </div>

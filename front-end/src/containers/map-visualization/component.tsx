@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo, useState, useRef } from 'react';
 
 import Map from 'components/map';
-// import ZoomControls from 'components/map/controls/zoom';
+import ZoomControls from 'components/map/controls/zoom';
 
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 
@@ -10,7 +10,13 @@ import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 import LegendItem from 'components/map/legend/item';
 import LegendTypeGradient from 'components/map/legend/types/gradient';
 
-import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, LAYER_GRADIENT } from './constants';
+import {
+  DEFAULT_VIEWPORT,
+  LAYERS,
+  BOUNDS_SPAIN,
+  LAYER_GRADIENT_SEQUIAS,
+  LAYER_GRADIENT_CALENTAMIENTO,
+} from './constants';
 
 import type {
   MapTypes,
@@ -25,6 +31,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
   geoType,
   scenario,
   year,
+  showZoomControls,
   // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
@@ -37,7 +44,6 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
-    console.log('year:', year);
     const newLayers = LAYERS.map((l) => ({
       ...l,
       ...(true && {
@@ -203,9 +209,11 @@ const MapVisualization: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        {/* <div className="absolute z-10 top-10 right-5">
-          <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
-        </div> */}
+        {/* {showZoomControls && (
+          <div className="absolute z-10 top-10 right-5">
+            <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
+          </div>
+        )} */}
         {tooltipOpen && (
           <Tooltip
             key={Math.random()}
@@ -238,7 +246,12 @@ const MapVisualization: FC<MapVisualizationType> = ({
             <div className="text-black">{tooltipData.title}</div>
             <div className="mt-1 text-black">
               <strong>
-                {tooltipData.value} {tooltipData.unit}
+                {tooltipData.value >= 0 && (
+                  <>
+                    {tooltipData.value} {tooltipData.unit}
+                  </>
+                )}
+                {!(tooltipData.value >= 0) && <>No disponible</>}
               </strong>
             </div>
           </Tooltip>
@@ -248,9 +261,20 @@ const MapVisualization: FC<MapVisualizationType> = ({
             // description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
             icon={null}
             id="legend-temperature-1"
-            name="Grados de aumento en °C"
+            name={
+              activeLayerId === 'calentamiento'
+                ? 'Grados de aumento en °C'
+                : 'Duración de las sequías (días)'
+            }
           >
-            <LegendTypeGradient className="text-sm text-black" items={LAYER_GRADIENT} />
+            <LegendTypeGradient
+              className="text-sm text-black"
+              items={
+                activeLayerId === 'calentamiento'
+                  ? LAYER_GRADIENT_CALENTAMIENTO
+                  : LAYER_GRADIENT_SEQUIAS
+              }
+            />
           </LegendItem>
         </div>
       </div>
