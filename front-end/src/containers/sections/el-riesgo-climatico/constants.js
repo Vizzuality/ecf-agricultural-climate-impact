@@ -11,45 +11,76 @@ export const SCENARIOS = [
   },
 ];
 
-export const YEARS = [
+export const YEARS_CALENTAMIENTO = [
   {
     value: '1971 - 2001',
-    label: '1986',
+    label: '',
   },
   {
     value: '1985 - 2015',
-    label: '2000',
+    label: '',
   },
   {
     value: '1995 - 2025',
-    label: '2010',
+    label: '',
   },
   {
     value: '2005 - 2035',
-    label: '2020',
+    label: '',
   },
   {
     value: '2015 - 2045',
-    label: '2030',
+    label: '',
   },
   {
     value: '2025 - 2055',
-    label: '2040',
+    label: '',
   },
   {
     value: '2035 - 2065',
-    label: '2050',
+    label: '',
   },
   {
     value: '2045 - 2075',
-    label: '2060',
+    label: '',
   },
   {
     value: '2055 - 2085',
-    label: '2070',
+    label: '',
   },
   {
     value: '2065 - 2095',
-    label: '2080',
+    label: '',
+  },
+];
+
+export const YEARS_SEQUIAS = [
+  {
+    value: '1971 - 1990',
+    label: '',
+  },
+  {
+    value: '1981 - 2000',
+    label: '',
+  },
+  {
+    value: '2001 - 2020',
+    label: '',
+  },
+  {
+    value: '2021 - 2040',
+    label: '',
+  },
+  {
+    value: '2041 - 2060',
+    label: '',
+  },
+  {
+    value: '2061 - 2080',
+    label: '',
+  },
+  {
+    value: '2081 - 2100',
+    label: '',
   },
 ];

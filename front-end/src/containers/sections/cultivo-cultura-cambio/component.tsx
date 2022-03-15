@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
-import { Scrollama, Step } from 'react-scrollama';
+// import { Scrollama, Step } from 'react-scrollama';
+
 import cx from 'classnames';
 
 // utils
@@ -18,6 +19,7 @@ export const CultivoCulturaCambio: FC = () => {
 
   const onStepEnter = (data) => {
     setCurrentStep(data.data);
+    console.log('enter', data.data);
   };
 
   const onStepProgress = (data) => {
@@ -49,10 +51,7 @@ export const CultivoCulturaCambio: FC = () => {
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <div className="flex w-screen max-w-screen-lg mx-auto">
-            <div
-              className="sticky top-0 flex items-center flex-1 h-screen text-lg"
-              style={{ top: '-10%' }}
-            >
+            <div className="top-0 flex items-center flex-1 text-lg" style={{ top: '-10%' }}>
               <div className="fixed top-0 left-0 flex w-screen h-screen">
                 <img
                   className="object-cover w-screen h-auto"
@@ -77,27 +76,22 @@ export const CultivoCulturaCambio: FC = () => {
                 ))}
               </div>
             </div>
-            <div className="relative flex-1" style={{ marginTop: '25vh', marginBottom: '25vh' }}>
-              <Scrollama
-                onStepEnter={onStepEnter}
-                onStepProgress={onStepProgress}
-                offset={0.4}
-                progress={true}
-              >
-                {STEPS.map((step) => (
-                  <Step data={step} key={`desafio-step-${step.id}`}>
-                    <div
-                      className="relative flex items-center py-16 text-lg"
-                      style={{
-                        opacity: step.id === currentStep.id ? currentOpacity : '0',
-                        height: '50vh',
-                      }}
-                    >
-                      {step.content}
-                    </div>
-                  </Step>
-                ))}
-              </Scrollama>
+            <div
+              className="relative flex flex-col flex-1 gap-64"
+              style={{ marginTop: '25vh', marginBottom: '25vh' }}
+            >
+              {STEPS.map((step, i) => (
+                <div
+                  key={`step=${i}`}
+                  className="sticky flex items-center py-16 text-lg top-1/2"
+                  style={{
+                    // opacity: step.id === currentStep.id ? currentOpacity : '0',
+                    height: '50vh',
+                  }}
+                >
+                  {step.content}
+                </div>
+              ))}
             </div>
           </div>
         </Desktop>
