@@ -10,12 +10,14 @@ import MapVisualization from 'containers/map-visualization';
 // constants
 import { SCENARIOS, YEARS_CALENTAMIENTO, YEARS_SEQUIAS } from './constants';
 
+import type { ElRiesgoClimaticoMapTypes } from './types';
+
 // const municipalities = [
 //   { id: 28079, name: 'Madrid' },
 //   { id: 8019, name: 'Barcelona' },
 // ];
 
-export const ElRiesgoClimaticoMap: FC = ({ defaultActiveLayerId }) => {
+export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({ defaultActiveLayerId }) => {
   const yearsCalentamiento = YEARS_CALENTAMIENTO.map((y) => {
     const splitValues = y.value.split(' - ');
     const label = Math.floor(
