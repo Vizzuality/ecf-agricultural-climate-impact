@@ -29,16 +29,46 @@ export const LAYERS = [
           type: 'fill',
           'source-layer': 'Aumento_temperaturas',
           featureState: {},
+          layout: {
+            visibility: '{{visibility}}',
+          },
           paint: {
+            // 'fill-color': [
+            //   'interpolate',
+            //   ['linear'],
+            //   ['get', 'value_{{scenario}}_{{year}}'],
+            //   1,
+            //   '#0F031F',
+            //   1.25,
+            //   '#701360',
+            //   1.5,
+            //   '#C6434A',
+            //   1.75,
+            //   '#F07D24',
+            //   2,
+            //   '#EEF07A',
+            // ],
             'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', '{{promoteId}}'],
-              1,
-              '#0F031F',
-              17,
-              '#EEF07A',
+              'case',
+              ['has', 'value_{{scenario}}_{{year}}'],
+              [
+                'interpolate',
+                ['linear'],
+                ['get', 'value_{{scenario}}_{{year}}'],
+                1,
+                '#0F031F',
+                1.25,
+                '#701360',
+                1.5,
+                '#C6434A',
+                1.75,
+                '#F07D24',
+                2,
+                '#EEF07A',
+              ],
+              'red',
             ],
+            'fill-opacity': 0.7,
           },
         },
         {
@@ -49,20 +79,84 @@ export const LAYERS = [
             source: 'calentamiento',
             sourceLayer: 'Aumento_temperaturas',
           },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
           },
         },
+        // {
+        //   type: 'line',
+        //   'source-layer': 'Aumento_temperaturas',
+        //   featureState: {},
+        //   layout: {
+        //     visibility: '{{visibility}}',
+        //   },
+        //   paint: {
+        //     'line-width': ['case', ['boolean', ['feature-state', 'click'], false], 1, 0],
+        //     'line-color': 'red',
+        //   },
+        // },
+      ],
+    },
+  },
+  {
+    id: 'sequias',
+    name: 'Duración de las sequías a lo largo del ano',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Duracion_sequias/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Duracion_sequias',
+          featureState: {},
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              1,
+              '#0F031F',
+              100,
+              '#EEF07A',
+            ],
+          },
+          'fill-opacity': 0.7,
+        },
         {
           type: 'line',
-          'source-layer': 'Aumento_temperaturas',
+          'source-layer': 'Duracion_sequias',
           featureState: {},
+          layout: {
+            visibility: '{{visibility}}',
+          },
           paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'click'], false], 1, 0],
-            'line-color': 'red',
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
           },
         },
+        // {
+        //   type: 'line',
+        //   'source-layer': 'Aumento_temperaturas',
+        //   featureState: {},
+        //   paint: {
+        //     'line-width': ['case', ['boolean', ['feature-state', 'click'], false], 1, 0],
+        //     'line-color': 'red',
+        //   },
+        // },
       ],
     },
   },
@@ -71,7 +165,7 @@ export const LAYERS = [
 export const LAYER_GRADIENT = [
   {
     color: '#0F031F',
-    value: '1',
+    value: '<1',
   },
   {
     color: '#701360',
@@ -87,6 +181,6 @@ export const LAYER_GRADIENT = [
   },
   {
     color: '#EEF07A',
-    value: '2',
+    value: '>2',
   },
 ];

@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useEffect, useState, useRef } from 'react';
+import { FC, useCallback, useMemo, useState, useRef } from 'react';
 
 import Map from 'components/map';
 // import ZoomControls from 'components/map/controls/zoom';
@@ -25,7 +25,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
   geoType,
   scenario,
   year,
-  municipality,
+  // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
   const HOVER = useRef<EventTypes>({});
@@ -37,25 +37,25 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
+    console.log('year:', year);
     const newLayers = LAYERS.map((l) => ({
       ...l,
-      visible: l.id === activeLayerId,
-      ...(l.id === activeLayerId && {
+      ...(true && {
         params: {
-          startYear: '2011',
-          endYear: '2040',
-          scenario: 'rcp45',
+          year: year.value.split(' - ').join('-'),
+          scenario: scenario.value,
           geoType,
+          visibility: l.id === activeLayerId ? 'visible' : 'none',
           promoteId,
-          municipality,
+          // municipality,
         },
       }),
     }));
 
     return newLayers;
-  }, [activeLayerId, geoType, municipality, promoteId]);
+  }, [activeLayerId, geoType, promoteId, year, scenario]);
+  // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
-  // TODO: Barre? Que es esto?
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
   }, []);
@@ -81,13 +81,13 @@ const MapVisualization: FC<MapVisualizationType> = ({
     const { features } = e;
 
     if (e && features) {
-      const properties = features.find((f) => f.source === LAYERS[0].id)?.properties;
+      const properties = features.find((f) => f.source === activeLayerId)?.properties;
       const id = properties?.[promoteId];
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
 
-      const values = properties?.values && JSON.parse(properties.values);
-      const thisDirtyValue = values && values[scenario.value][year.value];
+      const thisDirtyValue =
+        properties?.[`value_${scenario.value}_${year.value.replace(/ /g, '')}`];
       const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
       const data = {
@@ -148,52 +148,6 @@ const MapVisualization: FC<MapVisualizationType> = ({
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
-    // const { features, center } = e;
-
-    // if (e && features) {
-    //   const properties = features.find((f) => f.source === LAYERS[0].id)?.properties;
-    //   const id = properties?.[promoteId];
-    //   const source = features[0]?.source;
-    //   const sourceLayer = features[0]?.sourceLayer;
-
-    //   const values = properties?.values && JSON.parse(properties.values);
-    //   const thisDirtyValue = values && values[scenario.value][year.value];
-    //   const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
-
-    //   const data = {
-    //     id: properties?.[promoteId],
-    //     title: properties?.NAMEUNIT || properties?.DS_PROVINC || properties?.DS_CCAA,
-    //     unit: properties?.unit,
-    //     value: thisValue,
-    //   };
-
-    //   if (MAP.current && HOVER.current.id) {
-    //     MAP.current.setFeatureState(
-    //       {
-    //         ...HOVER.current,
-    //       },
-    //       { hover: false },
-    //     );
-    //   }
-
-    //   if (id && source) {
-    //     HOVER.current = {
-    //       id,
-    //       source,
-    //       ...(sourceLayer && { sourceLayer }),
-    //     };
-
-    //     if (MAP.current) {
-    //       MAP.current.setFeatureState(
-    //         {
-    //           ...HOVER.current,
-    //         },
-    //         { hover: true },
-    //       );
-    //     }
-    //   }
-
-    //   // console.log(data);
 
     if (data.title) {
       showTooltip({
@@ -204,19 +158,18 @@ const MapVisualization: FC<MapVisualizationType> = ({
     } else {
       hideTooltip();
     }
-    // }
   };
 
-  useEffect(() => {
-    setHighlightedRegion(
-      {
-        id: municipality.id,
-        source: 'calentamiento',
-        sourceLayer: 'Aumento_temperaturas',
-      },
-      'click',
-    );
-  }, [municipality]);
+  // useEffect(() => {
+  //   setHighlightedRegion(
+  //     {
+  //       id: municipality.id,
+  //       source: 'calentamiento',
+  //       sourceLayer: 'Aumento_temperaturas',
+  //     },
+  //     'click',
+  //   );
+  // }, [municipality]);
 
   return (
     <div className="relative flex flex-col h-full">
@@ -232,7 +185,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={['calentamiento-fill-0']} // TODO: get them from tiles
+          interactiveLayerIds={['calentamiento-fill-0', 'sequias-fill-0']} // TODO: get them from tiles
           bounds={{
             bbox: BOUNDS_SPAIN,
             options: {
