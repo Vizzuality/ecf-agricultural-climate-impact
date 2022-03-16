@@ -45,7 +45,7 @@ export const ElRiesgoClimatico: FC = () => {
                 <ChartEmisionesCo2 />
               </div>
             </div>
-            <div className="flex w-full h-screen pt-16">
+            <div className="flex w-full pt-16">
               <ElRiesgoClimaticoMap />
             </div>
           </div>

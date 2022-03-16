@@ -23,6 +23,9 @@ module.exports = {
         // 'light-green': '#606C38',
         // yellow: '#F9F5DB',
       },
+      cursor: {
+        grab: 'grab',
+      },
       boxShadow: {
         rw: '0 0 0 2px #c32d7b, 0 20px 30px rgba(0,0,0,.2)',
         'rw-2': '0 0 0 1px rgba(0,0,0,0.05), 0 1px 6px 0 rgba(0,0,0,.0)',

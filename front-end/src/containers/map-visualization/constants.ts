@@ -37,21 +37,6 @@ export const LAYERS = [
             visibility: '{{visibility}}',
           },
           paint: {
-            // 'fill-color': [
-            //   'interpolate',
-            //   ['linear'],
-            //   ['get', 'value_{{scenario}}_{{year}}'],
-            //   1,
-            //   '#0F031F',
-            //   1.25,
-            //   '#701360',
-            //   1.5,
-            //   '#C6434A',
-            //   1.75,
-            //   '#F07D24',
-            //   2,
-            //   '#EEF07A',
-            // ],
             'fill-color': [
               'case',
               ['has', 'value_{{scenario}}_{{year}}'],
@@ -145,8 +130,8 @@ export const LAYERS = [
               75,
               '#ff822d',
             ],
+            'fill-opacity': 0.7,
           },
-          'fill-opacity': 0.7,
         },
         {
           type: 'line',

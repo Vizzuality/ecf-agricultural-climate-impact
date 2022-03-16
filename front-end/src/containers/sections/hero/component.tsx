@@ -24,55 +24,62 @@ export const Hero: FC = () => {
     <section>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <Scrollama onStepProgress={onStepProgress} progress={true} offset={1}>
-            <Step>
-              <div
-                className="relative w-full"
-                style={{ height: '200vh', zIndex: currentOpacity === 0 ? -1 : 20 }}
+          {/* <Scrollama onStepProgress={onStepProgress} progress={true} offset={1}> */}
+          {/* <Step> */}
+          <div
+            className="relative w-full h-screen"
+            style={{
+              // height: '200vh',
+              zIndex: currentOpacity === 0 ? -1 : 20,
+              background: 'url(images/intro-bg1.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'bottom',
+              // backgroundAttachment: 'fixed',
+            }}
+          >
+            <div
+              className="flex flex-col items-center justify-center w-full h-screen"
+              style={{
+                // opacity: currentOpacity,
+                userSelect: currentOpacity === 0 ? 'none' : 'auto',
+              }}
+            >
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="relative opacity-0 top-8"
               >
-                <div
-                  className="fixed flex flex-col items-center justify-center w-full h-screen"
-                  style={{
-                    opacity: currentOpacity,
-                    userSelect: currentOpacity === 0 ? 'none' : 'auto',
-                  }}
-                >
-                  <motion.div
-                    animate={{ y: '-2rem', opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="relative opacity-0 top-8"
-                  >
-                    <div className="flex flex-col items-center gap-2 px-1 font-serif text-6xl">
-                      {TITLE.map((item) => (
-                        <span
-                          key={`title-${item.id}`}
-                          className="block px-2 py-5 text-white bg-primary-red"
-                        >
-                          {item.content}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    animate={{ y: '-2rem', opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                    className="relative max-w-xl mx-auto mt-8 text-lg text-center opacity-0 top-8"
-                  >
-                    <div>{SUBTITLE}</div>
-                  </motion.div>
-                  <motion.div
-                    animate={{ y: '-2rem', opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                    className="relative mt-16 opacity-0 top-8"
-                  >
-                    <Button theme="primary" size="l">
-                      {BUTTON_TEXT}
-                    </Button>
-                  </motion.div>
+                <div className="flex flex-col items-center gap-2 px-1 font-serif text-6xl">
+                  {TITLE.map((item) => (
+                    <span
+                      key={`title-${item.id}`}
+                      className="block px-2 py-5 text-white bg-primary-red"
+                    >
+                      {item.content}
+                    </span>
+                  ))}
                 </div>
-              </div>
-            </Step>
-          </Scrollama>
+              </motion.div>
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+                className="relative max-w-xl mx-auto mt-8 text-lg text-center opacity-0 top-8"
+              >
+                <div>{SUBTITLE}</div>
+              </motion.div>
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+                className="relative mt-16 opacity-0 top-8"
+              >
+                <Button theme="primary" size="l">
+                  {BUTTON_TEXT}
+                </Button>
+              </motion.div>
+            </div>
+          </div>
+          {/* </Step> */}
+          {/* </Scrollama> */}
         </Desktop>
         <Mobile>
           <div>Mobile</div>
