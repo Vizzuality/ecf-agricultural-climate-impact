@@ -13,16 +13,16 @@ export const LegendTypeBasic: FC<LegendTypeBasicProps> = ({
       [className]: !!className,
     })}
   >
-    <ul className="flex flex-col w-full space-y-1">
+    <ul className="flex flex-wrap w-full">
       {items.map(({ value, color }) => (
-        <li key={`${value}`} className="flex space-x-2 text-xs">
+        <li key={`${value}`} className="flex w-1/2 py-1 space-x-2 text-xs">
           <div
-            className="flex-shrink-0 w-3 h-3 mt-0.5 rounded"
+            className="flex-shrink-0 w-3 h-3 mt-0.5 rounded-full"
             style={{
               backgroundColor: color,
             }}
           />
-          <div>{value}</div>
+          <div className="uppercase">{value}</div>
         </li>
       ))}
     </ul>
