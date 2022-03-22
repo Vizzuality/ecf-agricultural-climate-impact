@@ -53,7 +53,7 @@
     "@vizzuality/layer-manager-react": "^1.0.1",
     "@vizzuality/layer-manager-utils": "^1.0.1",
     "autoprefixer": "^10.2.5",
-    "axios": "^0.21.1",
+    "axios": "0.26.1",
     "classnames": "^2.3.1",
     "d3-ease": "^2.0.0",
     "downshift": "^6.1.3",
