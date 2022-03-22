@@ -12,10 +12,10 @@ export interface MunicipalityType {
 }
 
 export interface MapVisualizationType {
-  activeLayerId: string;
-  geoType: string;
-  scenario: ScenarioType;
-  year: YearType;
+  activeLayerId?: string;
+  geoType?: string;
+  scenario?: ScenarioType;
+  year?: YearType;
   municipality?: MunicipalityType;
   allowZoom?: boolean;
 }

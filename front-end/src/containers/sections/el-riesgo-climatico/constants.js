@@ -12,18 +12,18 @@ export const SCENARIOS = [
 ];
 
 export const YEARS_CALENTAMIENTO = [
-  {
-    value: '1971 - 2001',
-    label: '',
-  },
-  {
-    value: '1985 - 2015',
-    label: '',
-  },
-  {
-    value: '1995 - 2025',
-    label: '',
-  },
+  // {
+  //   value: '1971 - 2001',
+  //   label: '',
+  // },
+  // {
+  //   value: '1985 - 2015',
+  //   label: '',
+  // },
+  // {
+  //   value: '1995 - 2025',
+  //   label: '',
+  // },
   {
     value: '2005 - 2035',
     label: '',
@@ -55,14 +55,14 @@ export const YEARS_CALENTAMIENTO = [
 ];
 
 export const YEARS_SEQUIAS = [
-  {
-    value: '1971 - 1990',
-    label: '',
-  },
-  {
-    value: '1981 - 2000',
-    label: '',
-  },
+  // {
+  //   value: '1971 - 1990',
+  //   label: '',
+  // },
+  // {
+  //   value: '1981 - 2000',
+  //   label: '',
+  // },
   {
     value: '2001 - 2020',
     label: '',

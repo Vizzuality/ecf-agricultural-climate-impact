@@ -15,7 +15,7 @@ import type { ElRiesgoClimaticoMapTypes } from './types';
 export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'calentamiento',
   showAreaButtons = false,
-  showZoomControls = false,
+  allowZoom = false,
 }) => {
   const ELS_test = useRef();
   // useEffect(() => {
@@ -195,7 +195,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                 geoType={geoType}
                 scenario={scenario}
                 year={year}
-                showZoomControls={showZoomControls}
+                allowZoom={allowZoom}
               />
             </div>
             <div className="absolute top-0 right-0 w-3/5 h-screen mapa-sequias">
@@ -204,7 +204,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                 geoType={geoType}
                 scenario={scenario}
                 year={year}
-                showZoomControls={showZoomControls}
+                allowZoom={allowZoom}
               />
             </div>
           </div>

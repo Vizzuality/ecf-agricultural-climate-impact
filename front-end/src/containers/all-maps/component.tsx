@@ -3,7 +3,8 @@ import MapVisualization from 'containers/map-visualization';
 import Button from 'components/button';
 import MapSlider from 'components/map-slider';
 
-// import ElRiesgoClimaticoMap from 'containers/sections/el-riesgo-climatico/map';
+import MapCropsMap from 'containers/sections/agricultural-risk/map-crops';
+import OptimalZonesMap from 'containers/sections/agricultural-risk/map-optimal-zones';
 
 import {
   SCENARIOS,
@@ -14,13 +15,13 @@ import {
 export interface ElRiesgoClimaticoMapTypes {
   defaultActiveLayerId?: string;
   showAreaButtons?: boolean;
-  showZoomControls?: boolean;
+  allowZoom?: boolean;
 }
 
 export const ElRiesgoClimaticoMapCalentamiento: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'calentamiento',
   showAreaButtons = false,
-  showZoomControls = false,
+  allowZoom = false,
 }) => {
   const yearsCalentamiento = YEARS_CALENTAMIENTO.map((y) => {
     const splitValues = y.value.split(' - ');
@@ -131,7 +132,7 @@ export const ElRiesgoClimaticoMapCalentamiento: FC<ElRiesgoClimaticoMapTypes> = 
             geoType={geoType}
             scenario={scenario}
             year={year}
-            showZoomControls={showZoomControls}
+            allowZoom={allowZoom}
           />
         </div>
       </div>
@@ -151,7 +152,7 @@ export const ElRiesgoClimaticoMapCalentamiento: FC<ElRiesgoClimaticoMapTypes> = 
 export const ElRiesgoClimaticoMapSequias: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'sequias',
   showAreaButtons = false,
-  showZoomControls = false,
+  allowZoom = false,
 }) => {
   const yearsCalentamiento = YEARS_CALENTAMIENTO.map((y) => {
     const splitValues = y.value.split(' - ');
@@ -262,7 +263,7 @@ export const ElRiesgoClimaticoMapSequias: FC<ElRiesgoClimaticoMapTypes> = ({
             geoType={geoType}
             scenario={scenario}
             year={year}
-            showZoomControls={showZoomControls}
+            allowZoom={allowZoom}
           />
         </div>
       </div>
@@ -294,15 +295,23 @@ const AllMaps: FC = () => {
         <ElRiesgoClimaticoMapCalentamiento
           defaultActiveLayerId="calentamiento"
           showAreaButtons={true}
-          // showZoomControls={true}
+          allowZoom={true}
         />
       </div>
       <div className="flex h-screen">
         <ElRiesgoClimaticoMapSequias
           defaultActiveLayerId="sequias"
           showAreaButtons={true}
-          // showZoomControls={true}
+          allowZoom={true}
         />
+      </div>
+      <div className="flex h-screen">
+        <MapCropsMap defaultActiveLayerId={'crops'} allowZoom={true} />
+        {/* <MapCrops allowZoom={true} /> */}
+      </div>
+      <div className="flex h-screen">
+        <OptimalZonesMap defaultActiveLayerId={'optimal_zones'} allowZoom={true} />
+        {/* <MapCrops allowZoom={true} /> */}
       </div>
     </div>
   );
