@@ -9,7 +9,7 @@ export const MapCropsMap: FC<ElRiesgoClimaticoMapTypes> = ({
   allowZoom = false,
 }) => {
   return (
-    <div className="relative w-full bg-lightest-grey">
+    <div className="relative w-full overflow-hidden bg-lightest-grey">
       <div className="sticky top-0 left-0 z-20 w-full h-screen">
         <div className="w-2/5 ">
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>

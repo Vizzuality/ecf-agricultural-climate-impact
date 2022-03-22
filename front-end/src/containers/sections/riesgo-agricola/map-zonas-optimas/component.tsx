@@ -1,0 +1,77 @@
+import { FC, useState } from 'react';
+
+import MapSlider from 'components/map-slider';
+
+import MapRisk from 'containers/map-risk';
+
+import type { ElRiesgoClimaticoMapTypes } from './types';
+
+import { YEARS_PROYECCIONES_OLIVO } from './constants';
+export const MapOptimalZonesMap: FC<ElRiesgoClimaticoMapTypes> = ({
+  defaultActiveLayerId = 'optimal_zones',
+  allowZoom = false,
+}) => {
+  const yearsProyeccionesOlivo = YEARS_PROYECCIONES_OLIVO.map((y) => {
+    const splitValues = y.value.split('_');
+    const label = Math.floor(
+      parseInt(splitValues[0]) + (parseInt(splitValues[1]) - parseInt(splitValues[0])) / 2,
+    );
+
+    y.label = '' + label;
+
+    return y;
+  });
+
+  const [year, setYear] = useState(yearsProyeccionesOlivo[0]);
+  const [sliderValue, setSliderValue] = useState(0);
+
+  const handleYearSliderChange = (e) => {
+    const currentYear = yearsProyeccionesOlivo[e];
+    setYear(currentYear);
+    setSliderValue(yearsProyeccionesOlivo.indexOf(currentYear));
+  };
+
+  return (
+    <div className="relative w-full overflow-hidden bg-lightest-grey">
+      <div className="sticky top-0 left-0 z-20 w-full h-screen">
+        <div className="w-2/5 ">
+          <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
+          <div className="absolute bottom-0 z-20 w-2/5 p-16">
+            <div className="inline-block w-1/2 pl-2">
+              <MapSlider
+                values={yearsProyeccionesOlivo}
+                value={year}
+                currentValue={sliderValue}
+                onChange={handleYearSliderChange}
+              />
+            </div>
+          </div>
+        </div>
+        {/* <div className="absolute bottom-0 z-20 w-2/5 p-16"></div> */}
+        <div className="absolute top-0 right-0 w-3/5 h-screen mapa-sequias">
+          <MapRisk
+            activeLayerId={defaultActiveLayerId}
+            allowZoom={allowZoom}
+            year={year}
+            bounds="andalucia"
+          />
+        </div>
+      </div>
+      <div className="relative w-2/5 h-screen p-16 pt-40" style={{ marginTop: '-100vh' }}>
+        <div className="top-0 h-screen">
+          <div className="font-serif text-2xl">Superficie destinada a los cultivos</div>
+          <div className="mt-12">
+            El diseño e implementación de estrategias de prevención debe responder a la diversidad
+            de ambientes y condiciones climáticas en las que prosperan nuestros cultivos (y sus
+            distintas variedades), y también a la variabilidad geográfica de las consecuencias del
+            cambio climático. A continuación, exploramos los efectos del cambio climático en cuatro
+            tipos de zonas agrícolas de interés:{' '}
+            <strong>olivares, viñedos, cereales, y dehesas</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MapOptimalZonesMap;

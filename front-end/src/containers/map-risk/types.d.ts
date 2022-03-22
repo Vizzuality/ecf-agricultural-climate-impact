@@ -18,6 +18,7 @@ export interface MapVisualizationType {
   year?: YearType;
   municipality?: MunicipalityType;
   allowZoom?: boolean;
+  bounds?: string;
 }
 export interface ViewPortTypes {
   zoom?: number;

@@ -10,7 +10,13 @@ import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 import LegendItem from 'components/map/legend/item';
 import LegendTypeBasic from 'components/map/legend/types/basic';
 
-import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, LEGEND_ITEMS } from './constants';
+import {
+  DEFAULT_VIEWPORT,
+  LAYERS,
+  BOUNDS_SPAIN,
+  BOUNDS_ANDALUCIA,
+  LEGEND_ITEMS,
+} from './constants';
 
 import type {
   MapTypes,
@@ -20,12 +26,13 @@ import type {
   MapVisualizationType,
 } from './types';
 
-const MapVisualization: FC<MapVisualizationType> = ({
+const MapRisk: FC<MapVisualizationType> = ({
   activeLayerId,
   geoType,
   scenario,
   year,
   allowZoom,
+  bounds = 'spain',
   // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
@@ -46,7 +53,6 @@ const MapVisualization: FC<MapVisualizationType> = ({
           geoType: geoType || 'municipios',
           visibility: l.id === activeLayerId ? 'visible' : 'none',
           promoteId,
-          // municipality,
         },
       }),
     }));
@@ -56,8 +62,9 @@ const MapVisualization: FC<MapVisualizationType> = ({
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
+    console.log('baunds:', [bounds]);
     return {
-      bbox: BOUNDS_SPAIN,
+      bbox: bounds === 'spain' ? BOUNDS_SPAIN : BOUNDS_ANDALUCIA,
       options: {
         padding: 20,
       },
@@ -70,7 +77,6 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // Map zoom
   const handleZoom = useCallback((zoom) => {
-    console.log('zoom:', zoom);
     setViewport((prevViewport) => ({
       ...prevViewport,
       zoom,
@@ -91,9 +97,13 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
     if (e && features) {
       const properties = features.find((f) => f.source === activeLayerId)?.properties;
-      const id = properties?.ID;
+      const id = properties?.ID || properties?.CODIGOINE;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
+
+      const thisDirtyValue =
+        properties?.[`value_${scenario.value}_${year.value.replace(/ /g, '')}`];
+      const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
       const data = {
         id,
@@ -101,7 +111,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
         sourceLayer,
         title: properties?.NAMEUNIT || properties?.DS_PROVINC || properties?.DS_CCAA,
         unit: properties?.unit,
-        value: properties?.value,
+        value: properties?.value || thisValue,
       };
 
       return data;
@@ -143,13 +153,14 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
-    console.log('hover:', e);
+    if (e.features.length) {
+      console.log('hover:', e);
+    }
     const { center } = e;
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
 
-    console.log('data.id:', data);
     if (data.value) {
       showTooltip({
         tooltipData: data,
@@ -180,14 +191,14 @@ const MapVisualization: FC<MapVisualizationType> = ({
           mapStyle="mapbox://styles/aslribeiro/ckvtoz37f27zd14uj0hsxy6j8"
           viewport={viewport}
           onMapViewportChange={handleViewport}
-          // scrollZoom={false}
-          // dragPan={false}
+          scrollZoom={allowZoom}
+          dragPan={allowZoom}
           dragRotate={false}
           onHover={handleHover}
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={['crops-fill-0']} // TODO: get them from tiles
+          interactiveLayerIds={['crops-fill-0', 'rendimiento-olivo-fill-0']} // TODO: get them from tiles
           bounds={mapBounds}
         >
           {(map) => (
@@ -236,7 +247,10 @@ const MapVisualization: FC<MapVisualizationType> = ({
             ></span>
             <div className="text-black">{tooltipData.title}</div>
             <div className="mt-1 text-black">
-              <strong>{tooltipData.value}</strong>
+              <strong>
+                {tooltipData.value}
+                {tooltipData.unit}
+              </strong>
             </div>
           </Tooltip>
         )}
@@ -250,4 +264,4 @@ const MapVisualization: FC<MapVisualizationType> = ({
   );
 };
 
-export default MapVisualization;
+export default MapRisk;
