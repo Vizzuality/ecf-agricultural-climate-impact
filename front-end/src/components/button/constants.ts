@@ -1,6 +1,6 @@
 export const THEME = {
   primary:
-    'text-black bg-blue-500 hover:bg-blue-400 active:bg-blue-300 border border-blue-500 hover:border-blue-400 active:border-blue-300',
+    'text-white bg-black hover:bg-gray-900 active:bg-black-800 border border-black hover:border-gray-900 active:border-black-900',
   'primary-alt':
     'text-blue-500 bg-transparent hover:bg-transparent active:bg-transparent border border-blue-500 hover:border-blue-400 active:border-blue-300',
 
@@ -19,7 +19,7 @@ export const THEME = {
 export const SIZE = {
   xs: 'text-sm px-2 py-0.5',
   s: 'text-sm px-3 py-0.5',
-  base: 'text-sm px-8 py-2',
-  l: 'text-base px-8 py-3',
+  base: 'text-base px-8 py-2',
+  l: 'text-lg px-8 py-3',
   xl: 'text-base px-14 py-3',
 };

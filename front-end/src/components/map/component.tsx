@@ -127,8 +127,8 @@ export const Map: FC<MapProps> = ({
 
   const handleGetCursor = useCallback(({ isHovering, isDragging }) => {
     if (isHovering) return 'pointer';
-    if (isDragging) return 'grabbing';
-    return 'grab';
+    if (isDragging) return 'default';
+    return 'default';
   }, []);
 
   /**

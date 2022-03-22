@@ -1,35 +1,35 @@
 export enum SectionIDs {
-  DesafioGlobal = 'un-desafio-global',
-  EconomiaRiesgo = 'una-economia-en-riesgo',
-  EfectosCultivos = 'efectos-sobre-cultivos',
-  Conclusiones = 'conclusiones',
+  CultivoCulturaCambio = 'cultivo-cultura-cambio',
+  ElRiesgoClimatico = 'el-riesgo-climatico',
+  ElRiesgoAgricola = 'el-riesgo-agricola',
+  CultivoCulturaResiliencia = 'cultivo-cultura-resiliencia',
 }
 
-export enum SubsectionIDs {
-  Vinedo = 'vinedo',
-  Cereales = 'cereales',
-  Olivar = 'olivar',
-  Dehesa = 'dehesa',
-}
+// export enum SubsectionIDs {
+//   Vinedo = 'vinedo',
+//   Cereales = 'cereales',
+//   Olivar = 'olivar',
+//   Dehesa = 'dehesa',
+// }
 
 export interface SectionObject {
   id: SectionIDs;
   label: string;
   url: string;
-  subsections?: SubsectionObject[];
+  // subsections?: SubsectionObject[];
 }
 
-export interface SubsectionObject {
-  id: SubsectionIDs;
-  label: string;
-  url: string;
-}
+// export interface SubsectionObject {
+//   id: SubsectionIDs;
+//   label: string;
+//   url: string;
+// }
 
 export interface AppContextType {
   currentSection: SectionIDs;
   setCurrentSection?: (section: SectionIDs) => void;
-  currentSubsection: SubsectionIDs;
-  setCurrentSubsection?: (subsection: SubsectionIDs) => void;
+  // currentSubsection: SubsectionIDs;
+  // setCurrentSubsection?: (subsection: SubsectionIDs) => void;
 }
 
 export interface LegendConfigItem {

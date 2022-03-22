@@ -15,11 +15,16 @@ module.exports = {
         sans: ['menca', 'sans-serif'],
       },
       colors: {
-        'dark-green': '#283618',
-        'dark-orange': '#BC6C25',
-        'light-orange': '#CC904D',
-        'light-green': '#606C38',
-        yellow: '#F9F5DB',
+        'primary-red': '#A93C3C',
+        'lightest-grey': '#F4F4F4',
+        // 'dark-green': '#283618',
+        // 'dark-orange': '#BC6C25',
+        // 'light-orange': '#CC904D',
+        // 'light-green': '#606C38',
+        // yellow: '#F9F5DB',
+      },
+      cursor: {
+        grab: 'grab',
       },
       boxShadow: {
         rw: '0 0 0 2px #c32d7b, 0 20px 30px rgba(0,0,0,.2)',
@@ -41,6 +46,7 @@ module.exports = {
   variants: {
     extend: {
       margin: ['first'],
+      padding: ['first'],
     },
   },
   plugins: [forms, lineClamp],

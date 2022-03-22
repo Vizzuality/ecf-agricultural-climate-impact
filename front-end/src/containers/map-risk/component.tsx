@@ -8,15 +8,9 @@ import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
 import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 import LegendItem from 'components/map/legend/item';
-import LegendTypeGradient from 'components/map/legend/types/gradient';
+import LegendTypeBasic from 'components/map/legend/types/basic';
 
-import {
-  DEFAULT_VIEWPORT,
-  LAYERS,
-  BOUNDS_SPAIN,
-  LAYER_GRADIENT_SEQUIAS,
-  LAYER_GRADIENT_CALENTAMIENTO,
-} from './constants';
+import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, LEGEND_ITEMS } from './constants';
 
 import type {
   MapTypes,
@@ -39,8 +33,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
   const CLICK = useRef<EventTypes>({});
   const MAP = useRef<MapTypes>();
 
-  const promoteId =
-    geoType === 'municipios' ? 'CODIGOINE' : geoType === 'provincias' ? 'CO_PROVINC' : 'CO_CCAA';
+  const promoteId = 'value';
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
@@ -48,9 +41,9 @@ const MapVisualization: FC<MapVisualizationType> = ({
       ...l,
       ...(true && {
         params: {
-          year: year.value.split(' - ').join('-'),
-          scenario: scenario.value,
-          geoType,
+          year: year?.value.split(' - ').join('-') || '2010-2020',
+          scenario: scenario?.value || 'rcp45',
+          geoType: geoType || 'municipios',
           visibility: l.id === activeLayerId ? 'visible' : 'none',
           promoteId,
           // municipality,
@@ -77,6 +70,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // Map zoom
   const handleZoom = useCallback((zoom) => {
+    console.log('zoom:', zoom);
     setViewport((prevViewport) => ({
       ...prevViewport,
       zoom,
@@ -97,13 +91,9 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
     if (e && features) {
       const properties = features.find((f) => f.source === activeLayerId)?.properties;
-      const id = properties?.[promoteId];
+      const id = properties?.ID;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
-
-      const thisDirtyValue =
-        properties?.[`value_${scenario.value}_${year.value.replace(/ /g, '')}`];
-      const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
       const data = {
         id,
@@ -111,7 +101,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
         sourceLayer,
         title: properties?.NAMEUNIT || properties?.DS_PROVINC || properties?.DS_CCAA,
         unit: properties?.unit,
-        value: thisValue,
+        value: properties?.value,
       };
 
       return data;
@@ -151,20 +141,16 @@ const MapVisualization: FC<MapVisualizationType> = ({
     }
   };
 
-  // const handleClick = (e) => {
-  //   const data = getRegionData(e);
-
-  //   setHighlightedRegion(data, 'click');
-  // };
-
   // toolip: show on hover
   const handleHover = (e) => {
+    console.log('hover:', e);
     const { center } = e;
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
 
-    if (data.title) {
+    console.log('data.id:', data);
+    if (data.value) {
       showTooltip({
         tooltipData: data,
         tooltipLeft: center.x,
@@ -194,14 +180,14 @@ const MapVisualization: FC<MapVisualizationType> = ({
           mapStyle="mapbox://styles/aslribeiro/ckvtoz37f27zd14uj0hsxy6j8"
           viewport={viewport}
           onMapViewportChange={handleViewport}
-          scrollZoom={allowZoom}
-          dragPan={allowZoom}
+          // scrollZoom={false}
+          // dragPan={false}
           dragRotate={false}
           onHover={handleHover}
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={['calentamiento-fill-0', 'sequias-fill-0']} // TODO: get them from tiles
+          interactiveLayerIds={['crops-fill-0']} // TODO: get them from tiles
           bounds={mapBounds}
         >
           {(map) => (
@@ -250,36 +236,13 @@ const MapVisualization: FC<MapVisualizationType> = ({
             ></span>
             <div className="text-black">{tooltipData.title}</div>
             <div className="mt-1 text-black">
-              <strong>
-                {tooltipData.value >= 0 && (
-                  <>
-                    {tooltipData.value} {tooltipData.unit}
-                  </>
-                )}
-                {!(tooltipData.value >= 0) && <>No disponible</>}
-              </strong>
+              <strong>{tooltipData.value}</strong>
             </div>
           </Tooltip>
         )}
-        <div className="absolute py-1 bg-white bottom-4 right-4 w-60">
-          <LegendItem
-            // description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-            icon={null}
-            id="legend-temperature-1"
-            name={
-              activeLayerId === 'calentamiento'
-                ? 'Grados de aumento en °C'
-                : 'Duración de las sequías (días)'
-            }
-          >
-            <LegendTypeGradient
-              className="text-sm text-black"
-              items={
-                activeLayerId === 'calentamiento'
-                  ? LAYER_GRADIENT_CALENTAMIENTO
-                  : LAYER_GRADIENT_SEQUIAS
-              }
-            />
+        <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+          <LegendItem icon={null} id="legend-crops-1" name="Superficie destinada a cultivos clave">
+            <LegendTypeBasic className="text-sm text-black" items={LEGEND_ITEMS} />
           </LegendItem>
         </div>
       </div>

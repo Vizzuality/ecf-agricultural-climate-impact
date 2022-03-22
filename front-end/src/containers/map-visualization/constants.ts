@@ -1,50 +1,187 @@
 export const DEFAULT_VIEWPORT = {
-  zoom: 2,
+  zoom: 0,
   latitude: 0,
   longitude: 0,
   pitch: 0,
   bearing: 0,
   transitionDuration: 250,
-  maxZoom: 22,
-  minZoom: 1,
+  maxZoom: 10,
+  minZoom: 5,
 };
+
+export const BOUNDS_SPAIN = [-9.38232421875, 35.92464453144099, 4.39453125, 43.89789239125797];
+export const BBOX_SPAIN = [
+  [-9.38232421875, 35.92464453144099],
+  [4.39453125, 43.89789239125797],
+];
 
 export const LAYERS = [
   {
-    id: 'gain',
-    name: 'Tree cover gain',
-    type: 'raster',
-    source: {
-      type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/1961_2000/{z}/{x}/{y}.png',
-      ],
-      minzoom: 3,
-      maxzoom: 12,
-    },
-  },
-  {
-    id: 'protected-areas',
-    name: 'Protected areas',
+    id: 'calentamiento',
+    name: 'Proyecciones de calentamiento',
     type: 'vector',
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/OpenGHGMap/%7Bz%7D/%7Bx%7D/%7By%7D.pbf',
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aumento_temperaturas/{{geoType}}/{z}/{x}/{y}.vector.pbf',
       ],
+      promoteId: '{{promoteId}}',
     },
     render: {
       layers: [
         {
           type: 'fill',
-          'source-layer': 'layer0',
+          'source-layer': 'Aumento_temperaturas',
           featureState: {},
+          layout: {
+            visibility: '{{visibility}}',
+          },
           paint: {
-            'fill-color': 'hsla(32, 53%, 16%, 0.6)',
-            'fill-translate': [0, -2.5],
+            'fill-color': [
+              'case',
+              ['has', 'value_{{scenario}}_{{year}}'],
+              [
+                'interpolate',
+                ['linear'],
+                ['get', 'value_{{scenario}}_{{year}}'],
+                1,
+                '#0F031F',
+                2,
+                '#C6434A',
+                3,
+                '#F07D24',
+                4,
+                '#EEF07A',
+              ],
+              'transparent',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Aumento_temperaturas',
+          featureState: {
+            id: 16,
+            source: 'calentamiento',
+            sourceLayer: 'Aumento_temperaturas',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
           },
         },
       ],
     },
+  },
+  {
+    id: 'sequias',
+    name: 'Duración de las sequías a lo largo del ano',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Duracion_sequias/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Duracion_sequias',
+          featureState: {},
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0,
+              '#8bbdce',
+              15,
+              '#b9d09e',
+              30,
+              '#e6e36d',
+              45,
+              '#fdd74d',
+              60,
+              '#fead3d',
+              75,
+              '#ff822d',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Duracion_sequias',
+          featureState: {},
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+];
+
+export const LAYER_GRADIENT_CALENTAMIENTO = [
+  {
+    color: '#0F031F',
+    value: '<1',
+  },
+  {
+    color: '#C6434A',
+    value: '2',
+  },
+  {
+    color: '#F07D24',
+    value: '3',
+  },
+  {
+    color: '#EEF07A',
+    value: '>4',
+  },
+];
+
+export const LAYER_GRADIENT_SEQUIAS = [
+  {
+    color: '#8bbdce',
+    value: '0',
+  },
+  {
+    color: '#b9d09e',
+    value: '15',
+  },
+  {
+    color: '#e6e36d',
+    value: '30',
+  },
+  {
+    color: '#fdec55',
+    value: '',
+  },
+  {
+    color: '#fdd74d',
+    value: '45',
+  },
+  {
+    color: '#fead3d',
+    value: '60',
+  },
+
+  {
+    color: '#ff822d',
+    value: '75',
   },
 ];
