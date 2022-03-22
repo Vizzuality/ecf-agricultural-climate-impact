@@ -16,7 +16,7 @@ export const MapCropsMap: FC<ElRiesgoClimaticoMapTypes> = ({
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16"></div>
         <div className="absolute top-0 right-0 w-3/5 h-screen mapa-sequias">
-          <MapRisk activeLayerId={defaultActiveLayerId} allowZoom={allowZoom} />
+          <MapRisk activeLayerId={defaultActiveLayerId} allowZoom={allowZoom} legend="cultivos" />
         </div>
       </div>
       <div className="relative w-2/5 h-screen p-16 pt-40" style={{ marginTop: '-100vh' }}>

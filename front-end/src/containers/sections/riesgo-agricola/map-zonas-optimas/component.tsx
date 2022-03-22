@@ -54,19 +54,24 @@ export const MapOptimalZonesMap: FC<ElRiesgoClimaticoMapTypes> = ({
             allowZoom={allowZoom}
             year={year}
             bounds="andalucia"
+            legend="zonas-optimas-olivo"
           />
         </div>
       </div>
       <div className="relative w-2/5 h-screen p-16 pt-40" style={{ marginTop: '-100vh' }}>
         <div className="top-0 h-screen">
-          <div className="font-serif text-2xl">Superficie destinada a los cultivos</div>
+          <div className="font-serif text-2xl">
+            Cambio en zonas óptimas para el cultivo de olivo
+          </div>
           <div className="mt-12">
-            El diseño e implementación de estrategias de prevención debe responder a la diversidad
-            de ambientes y condiciones climáticas en las que prosperan nuestros cultivos (y sus
-            distintas variedades), y también a la variabilidad geográfica de las consecuencias del
-            cambio climático. A continuación, exploramos los efectos del cambio climático en cuatro
-            tipos de zonas agrícolas de interés:{' '}
-            <strong>olivares, viñedos, cereales, y dehesas</strong>.
+            Las alteraciones en la temporalidad y abundancia de la precipitación van a provocar
+            <strong>
+              cambios en las zonas geográficas óptimas para el cultivo de la aceituna
+            </strong>{' '}
+            (aunque afectará de forma distinta a cada variedad). Por ejemplo, la variedad Picual,
+            que actualmente ocupa 1.867.700 Ha (o el 60% de todo el olivar andaluz) vería su zona
+            óptima de cultivo reducida en un ##%, particularmente en las provincias de {'{'}
+            provincias{'}'}.
           </div>
         </div>
       </div>

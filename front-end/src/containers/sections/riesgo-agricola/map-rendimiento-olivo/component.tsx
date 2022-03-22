@@ -67,19 +67,28 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             geoType={geoType}
             scenario={scenario}
             year={{ value: '2041–2070', label: '' }}
+            legend="rendimiento-olivo"
           />
         </div>
       </div>
       <div className="relative w-2/5 h-screen p-16 pt-40" style={{ marginTop: '-100vh' }}>
         <div className="top-0 h-screen">
-          <div className="font-serif text-2xl">Superficie destinada a los cultivos</div>
+          <div className="font-serif text-2xl">Proyecciones de rendimiento del olivo</div>
           <div className="mt-12">
-            El diseño e implementación de estrategias de prevención debe responder a la diversidad
-            de ambientes y condiciones climáticas en las que prosperan nuestros cultivos (y sus
-            distintas variedades), y también a la variabilidad geográfica de las consecuencias del
-            cambio climático. A continuación, exploramos los efectos del cambio climático en cuatro
-            tipos de zonas agrícolas de interés:{' '}
-            <strong>olivares, viñedos, cereales, y dehesas</strong>.
+            <p>
+              Además de estos cambios en la distribución geográfica de las zonas óptimas para
+              cultivo, se podría esperar un{' '}
+              <strong>descenso de la producción de hasta el 20%</strong> en la Península Ibérica
+              para los olivares de secano con un incremento de la temperatura de 2,5ºC.
+            </p>
+            <p>
+              <strong>
+                Aunque una gestión más eficiente de los recursos hídricos será necesaria para
+                abastecer los olivares, la implementación de medidas urgentes que reduzcan las
+                emisiones de gases efecto invernadero y/o aumenten la captación de carbono
+                atmosférico podrían evitar impactos irreversibles sobre estos cultivos.
+              </strong>
+            </p>
           </div>
         </div>
       </div>

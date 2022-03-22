@@ -165,7 +165,7 @@ export const LAYERS = [
   },
 ];
 
-export const LEGEND_ITEMS = [
+export const LEGEND_ITEMS_CULTIVOS = [
   {
     color: '#90A070',
     value: 'Olivar',
@@ -181,5 +181,20 @@ export const LEGEND_ITEMS = [
   {
     color: '#38A6A5',
     value: 'Dehesa',
+  },
+];
+
+export const LEGEND_ITEMS_RENDIMIENTO = [
+  {
+    color: '#F52D00',
+    value: 'MIN',
+  },
+  {
+    color: '#FFFFF5',
+    value: 'MIDDLE',
+  },
+  {
+    color: '#018571',
+    value: 'MAX',
   },
 ];

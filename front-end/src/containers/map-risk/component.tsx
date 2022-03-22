@@ -7,16 +7,10 @@ import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 
 import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
 import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
-import LegendItem from 'components/map/legend/item';
-import LegendTypeBasic from 'components/map/legend/types/basic';
 
-import {
-  DEFAULT_VIEWPORT,
-  LAYERS,
-  BOUNDS_SPAIN,
-  BOUNDS_ANDALUCIA,
-  LEGEND_ITEMS,
-} from './constants';
+import Legend from './legend';
+
+import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, BOUNDS_ANDALUCIA } from './constants';
 
 import type {
   MapTypes,
@@ -33,6 +27,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   year,
   allowZoom,
   bounds = 'spain',
+  legend,
   // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
@@ -69,7 +64,7 @@ const MapRisk: FC<MapVisualizationType> = ({
         padding: 20,
       },
     };
-  }, []);
+  }, [bounds]);
 
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
@@ -255,9 +250,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           </Tooltip>
         )}
         <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
-          <LegendItem icon={null} id="legend-crops-1" name="Superficie destinada a cultivos clave">
-            <LegendTypeBasic className="text-sm text-black" items={LEGEND_ITEMS} />
-          </LegendItem>
+          <Legend legendType={legend} />
         </div>
       </div>
     </div>
