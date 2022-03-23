@@ -25,7 +25,9 @@ const getYear = (d: DatasetItem) => new Date(d?.year);
 const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).left;
 
 // Format date for axis
-const formatDate = (year) => year.toString();
+const formatDate = (year: number) => year.toString();
+
+const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
 export const Chart: React.FC<ChartProps> = ({ width, height }) => {
   const [historicData, wewData, wawData] = useClimateRiskData();
@@ -39,7 +41,6 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
   const lastWawPoint = useMemo(() => wawData.data[wawData.data.length - 1], [wawData]);
 
   // size adjustments
-  const margin = { top: 40, right: 100, bottom: 50, left: 70 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -61,7 +62,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
       scaleLinear({
         range: [0, innerWidth],
         domain: extent(concatData, getYear),
-        // nice: true,
+        clamp: true,
       }),
     [concatData, innerWidth],
   );
@@ -72,7 +73,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
       scaleLinear({
         range: [innerHeight, 0],
         domain: extent(concatData, getValue),
-        // nice: true,
+        clamp: true,
       }),
     [concatData, innerHeight],
   );
@@ -114,13 +115,23 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
         tooltipTop: valueScale(Math.max(...values)),
       });
     },
-    [isFetching, timeScale, margin.left, concatData, showTooltip, getDataByYear, valueScale],
+    [isFetching, timeScale, concatData, showTooltip, getDataByYear, valueScale],
   );
 
   return (
     <div className="relative">
       <svg ref={containerRef} width={width} height={height + margin.top}>
         <Group left={margin.left} top={margin.top}>
+          <text
+            x={-margin.left}
+            y={innerHeight / 2}
+            transform={`rotate(-90, -${margin.left - 20}, ${margin.top + margin.bottom})`}
+            fontSize={10}
+            fill="white"
+            className="font-bold"
+          >
+            Tonnes of CO2
+          </text>
           <AxisLeft
             hideAxisLine={true}
             hideTicks={true}
