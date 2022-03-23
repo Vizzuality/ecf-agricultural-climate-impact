@@ -201,6 +201,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             'rendimiento-cereal-fill-0',
             'zonas-optimas-vino-fill-0',
             'sequias-dehesa-fill-0',
+            'incendios-dehesa-fill-0',
           ]} // TODO: get them from tiles
           bounds={mapBounds}
         >

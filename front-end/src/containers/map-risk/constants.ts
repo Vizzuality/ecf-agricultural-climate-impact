@@ -308,9 +308,9 @@ export const LAYERS = [
             source: 'sequias-dehesa',
             sourceLayer: 'Indicadores_dehesa',
           },
-          // layout: {
-          //   visibility: '{{visibility}}',
-          // },
+          layout: {
+            visibility: '{{visibility}}',
+          },
           paint: {
             'fill-color': [
               'interpolate',
@@ -338,6 +338,68 @@ export const LAYERS = [
           featureState: {
             id: 16,
             source: 'sequias-dehesa',
+            sourceLayer: 'Indicadores_dehesa',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'incendios-dehesa',
+    name: 'Zonas incendios dehesa',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Indicadores_dehesa/dehesa_fire_danger/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Indicadores_dehesa',
+          featureState: {
+            id: 16,
+            source: 'incendios-dehesa',
+            sourceLayer: 'Indicadores_dehesa',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              20,
+              '#FFFFB2',
+              35,
+              '#FECC5C',
+              50,
+              '#FD8D3C',
+              65,
+              '#F03B20',
+              80,
+              '#BD0026',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Indicadores_dehesa',
+          featureState: {
+            id: 16,
+            source: 'incendios-dehesa',
             sourceLayer: 'Indicadores_dehesa',
           },
           layout: {
@@ -462,5 +524,28 @@ export const LAYER_GRADIENT_SEQUIAS_DEHESA = [
   {
     color: '#ff822d',
     value: '75',
+  },
+];
+
+export const LAYER_GRADIENT_INCENDIOS_DEHESA = [
+  {
+    color: '#FFFFB2',
+    value: 'Muy bajo',
+  },
+  {
+    color: '#FECC5C',
+    value: 'Bajo',
+  },
+  {
+    color: '#FD8D3C',
+    value: 'Medio',
+  },
+  {
+    color: '#F03B20',
+    value: 'Alto',
+  },
+  {
+    color: '#BD0026',
+    value: 'Muy Alto',
   },
 ];

@@ -3,6 +3,7 @@ import { FC } from 'react';
 import LegendItem from 'components/map/legend/item';
 import LegendTypeBasic from 'components/map/legend/types/basic';
 import LegendTypeGradient from 'components/map/legend/types/gradient';
+import LegendTypeChoropleth from 'components/map/legend/types/choropleth';
 
 import {
   LEGEND_ITEMS_CULTIVOS,
@@ -10,6 +11,7 @@ import {
   LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO,
   LEGEND_ITEMS_ZONAS_OPTIMAS_VINO,
   LAYER_GRADIENT_SEQUIAS_DEHESA,
+  LAYER_GRADIENT_INCENDIOS_DEHESA,
 } from './constants';
 
 const Legend: FC<{ legendType: string }> = ({ legendType }) => {
@@ -96,14 +98,21 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
       case 'sequias-dehesa':
         return (
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
-            <LegendItem
-              icon={null}
-              id="legend-sequias-dehesa-1"
-              name="Cambios en zonas óptimas para el cultivo de olivo"
-            >
+            <LegendItem icon={null} id="legend-sequias-dehesa-1" name="Duración de sequías (días)">
               <LegendTypeGradient
                 className="text-sm text-black"
                 items={LAYER_GRADIENT_SEQUIAS_DEHESA}
+              />
+            </LegendItem>
+          </div>
+        );
+      case 'incendios-dehesa':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem icon={null} id="legend-incendio-dehesa-1" name="Riesgo de incendio">
+              <LegendTypeChoropleth
+                className="text-sm text-black"
+                items={LAYER_GRADIENT_INCENDIOS_DEHESA}
               />
             </LegendItem>
           </div>
