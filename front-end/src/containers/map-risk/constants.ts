@@ -20,7 +20,7 @@ export const BOUNDS_ANDALUCIA = [
 
 export const LAYERS = [
   {
-    id: 'crops',
+    id: 'cultivos',
     name: 'Mapa de Cultivos',
     type: 'vector',
     source: {
@@ -37,7 +37,7 @@ export const LAYERS = [
           'source-layer': 'Mapa_cultivos',
           featureState: {
             id: 16,
-            source: 'crops',
+            source: 'cultivos',
             sourceLayer: 'Mapa_cultivos',
           },
           layout: {
@@ -56,22 +56,6 @@ export const LAYERS = [
               '#90A070', // otherwise (= "Olivar")
             ],
             'fill-opacity': 0.7,
-          },
-        },
-        {
-          type: 'line',
-          'source-layer': 'Mapa_cultivos',
-          featureState: {
-            id: 16,
-            source: 'crops',
-            sourceLayer: 'Mapa_cultivos',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
-          paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-            'line-color': '#000',
           },
         },
       ],
@@ -196,11 +180,11 @@ export const LAYERS = [
                 ['linear'],
                 ['get', 'value_{{scenario}}_{{crop}}'],
                 -25,
-                'red',
+                '#F52D00',
                 -6,
-                'blue',
+                '#FFFFF5',
                 12,
-                'green',
+                '#018571',
               ],
               'transparent',
             ],
@@ -233,7 +217,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/dehesa_dry_spells/rejilla/{z}/{x}/{y}.vector.pbf',
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/rejilla/{z}/{x}/{y}.vector.pbf',
       ],
       promoteId: '{{promoteId}}',
     },
@@ -241,11 +225,11 @@ export const LAYERS = [
       layers: [
         {
           type: 'fill',
-          'source-layer': 'dehesa_dry_spells',
+          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
           featureState: {
             id: 16,
             source: 'zonas-optimas-vino',
-            sourceLayer: 'dehesa_dry_spells',
+            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
           },
           layout: {
             visibility: '{{visibility}}',
@@ -270,11 +254,11 @@ export const LAYERS = [
         },
         {
           type: 'line',
-          'source-layer': 'dehesa_dry_spells',
+          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
           featureState: {
             id: 16,
             source: 'zonas-optimas-vino',
-            sourceLayer: 'dehesa_dry_spells',
+            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
           },
           layout: {
             visibility: '{{visibility}}',
@@ -312,23 +296,7 @@ export const LAYERS = [
             visibility: '{{visibility}}',
           },
           paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', 'value_{{scenario}}_{{year}}'],
-              0,
-              '#8bbdce',
-              15,
-              '#b9d09e',
-              30,
-              '#e6e36d',
-              45,
-              '#fdd74d',
-              60,
-              '#fead3d',
-              75,
-              '#ff822d',
-            ],
+            'fill-color': ['interpolate', ['linear'], ['get', 'value_{{scenario}}_{{year}}']],
             'fill-opacity': 0.7,
           },
         },
@@ -380,15 +348,15 @@ export const LAYERS = [
               'interpolate',
               ['linear'],
               ['get', 'value_{{scenario}}_{{year}}'],
-              20,
+              10,
               '#FFFFB2',
-              35,
+              25,
               '#FECC5C',
-              50,
+              40,
               '#FD8D3C',
-              65,
+              55,
               '#F03B20',
-              80,
+              70,
               '#BD0026',
             ],
             'fill-opacity': 0.7,
@@ -402,6 +370,107 @@ export const LAYERS = [
             source: 'incendios-dehesa',
             sourceLayer: 'Indicadores_dehesa',
           },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'aridez',
+    name: 'Aridez',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Aridez',
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0.1,
+              '#057FFA',
+              0.3,
+              '#FECC4D',
+              0.6,
+              '#790B0B',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Aridez',
+          // source: 'aridez',
+          // featureState: {
+          //   id: 16,
+          //   sourceLayer: 'Aridez',
+          // },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'precipitacion',
+    name: 'Precipitacion',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Precipitacion_trimestre_mas_humedo',
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0.1,
+              '#057FFA',
+              0.3,
+              '#FECC4D',
+              0.6,
+              '#790B0B',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Precipitacion_trimestre_mas_humedo',
           layout: {
             visibility: '{{visibility}}',
           },
@@ -497,33 +566,16 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
 
 export const LAYER_GRADIENT_SEQUIAS_DEHESA = [
   {
-    color: '#8bbdce',
+    color: '#057FFA',
     value: '0',
   },
   {
-    color: '#b9d09e',
-    value: '15',
-  },
-  {
-    color: '#e6e36d',
-    value: '30',
-  },
-  {
-    color: '#fdec55',
-    value: '',
-  },
-  {
-    color: '#fdd74d',
+    color: '#FECC4D',
     value: '45',
   },
   {
-    color: '#fead3d',
-    value: '60',
-  },
-
-  {
-    color: '#ff822d',
-    value: '75',
+    color: '#790B0B',
+    value: '90',
   },
 ];
 
@@ -547,5 +599,20 @@ export const LAYER_GRADIENT_INCENDIOS_DEHESA = [
   {
     color: '#BD0026',
     value: 'Muy Alto',
+  },
+];
+
+export const LAYER_GRADIENT_ARIDEZ = [
+  {
+    color: '#057FFA',
+    value: '0.1',
+  },
+  {
+    color: '#FECC4D',
+    value: '0.3',
+  },
+  {
+    color: '#790B0B',
+    value: '0.6',
   },
 ];

@@ -22,9 +22,9 @@ import type {
 
 const MapRisk: FC<MapVisualizationType> = ({
   activeLayerId,
-  geoType,
-  scenario,
-  year,
+  geoType = 'municipio',
+  scenario = { value: 'rcp45', label: '1.5°C' },
+  year = { value: '2010-2020', label: '' },
   allowZoom,
   bounds = 'spain',
   legend,
@@ -36,7 +36,14 @@ const MapRisk: FC<MapVisualizationType> = ({
   const CLICK = useRef<EventTypes>({});
   const MAP = useRef<MapTypes>();
 
-  const promoteId = 'value';
+  const promoteId =
+    activeLayerId === 'cultivos'
+      ? 'value'
+      : geoType === 'municipios'
+      ? 'CODIGOINE'
+      : geoType === 'provincias'
+      ? 'CO_PROVINC'
+      : 'CO_CCAA';
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
@@ -44,9 +51,9 @@ const MapRisk: FC<MapVisualizationType> = ({
       ...l,
       ...(true && {
         params: {
-          year: year?.value.split(' - ').join('-') || '2010-2020',
-          scenario: scenario?.value || 'rcp45',
-          geoType: geoType || 'municipios',
+          year: year?.value.split(' - ').join('-'),
+          scenario: scenario?.value,
+          geoType: geoType,
           crop: crop?.value || '',
           visibility: l.id === activeLayerId ? 'visible' : 'none',
           promoteId,
@@ -89,15 +96,19 @@ const MapRisk: FC<MapVisualizationType> = ({
   };
 
   const getRegionData = (e) => {
+    console.log('caca:', e);
     const { features } = e;
 
     if (e && features) {
       const properties = features.find((f) => f.source === activeLayerId)?.properties;
-      const id = properties?.ID || properties?.CODIGOINE;
+      const id = properties?.[promoteId] || properties?.ID || properties?.CODIGOINE;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
+      console.log('features:', features);
 
-      const secondValue = year ? year.value.replace(/ /g, '') : crop.value;
+      console.log('year:', year);
+      console.log('crop:', crop);
+      const secondValue = year ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
 
       const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
       const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
@@ -118,6 +129,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   };
 
   const setHighlightedRegion = (data, eventType) => {
+    console.log('datadata:', data);
     const { id, source, sourceLayer } = data;
     const EVENT = eventType === 'click' ? CLICK : HOVER;
 
@@ -150,6 +162,7 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
+    console.log('bobidi:', e);
     if (e.features.length) {
       console.log('hover:', e);
     }
@@ -196,12 +209,14 @@ const MapRisk: FC<MapVisualizationType> = ({
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
           interactiveLayerIds={[
-            'crops-fill-0',
+            'cultivos-fill-0',
             'rendimiento-olivo-fill-0',
             'rendimiento-cereal-fill-0',
             'zonas-optimas-vino-fill-0',
-            'sequias-dehesa-fill-0',
+            // 'sequias-dehesa-fill-0',
             'incendios-dehesa-fill-0',
+            'aridez-fill-0',
+            'precipitacion-fill-0',
           ]} // TODO: get them from tiles
           bounds={mapBounds}
         >
@@ -251,7 +266,9 @@ const MapRisk: FC<MapVisualizationType> = ({
             ></span>
             <div className="text-black">{tooltipData.title}</div>
             <div className="mt-1 text-black">
-              <strong>{`${tooltipData.value} ${tooltipData.unit}`}</strong>
+              <strong>
+                {`${tooltipData.value}${tooltipData.unit ? ' ' + tooltipData.unit : ''}`}
+              </strong>
             </div>
           </Tooltip>
         )}

@@ -12,6 +12,7 @@ import {
   LEGEND_ITEMS_ZONAS_OPTIMAS_VINO,
   LAYER_GRADIENT_SEQUIAS_DEHESA,
   LAYER_GRADIENT_INCENDIOS_DEHESA,
+  LAYER_GRADIENT_ARIDEZ,
 } from './constants';
 
 const Legend: FC<{ legendType: string }> = ({ legendType }) => {
@@ -114,6 +115,14 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                 className="text-sm text-black"
                 items={LAYER_GRADIENT_INCENDIOS_DEHESA}
               />
+            </LegendItem>
+          </div>
+        );
+      case 'aridez':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem icon={null} id="legend-aridez-1" name="Grado de aridez">
+              <LegendTypeGradient className="text-sm text-black" items={LAYER_GRADIENT_ARIDEZ} />
             </LegendItem>
           </div>
         );
