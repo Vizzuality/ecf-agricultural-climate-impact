@@ -4,7 +4,12 @@ import LegendItem from 'components/map/legend/item';
 import LegendTypeBasic from 'components/map/legend/types/basic';
 import LegendTypeGradient from 'components/map/legend/types/gradient';
 
-import { LEGEND_ITEMS_CULTIVOS, LEGEND_ITEMS_RENDIMIENTO } from './constants';
+import {
+  LEGEND_ITEMS_CULTIVOS,
+  LEGEND_ITEMS_RENDIMIENTO,
+  LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO,
+  LEGEND_ITEMS_ZONAS_OPTIMAS_VINO,
+} from './constants';
 
 const Legend: FC<{ legendType: string }> = ({ legendType }) => {
   const thisLegend = (legendType) => {
@@ -45,9 +50,48 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
           </div>
         );
+      case 'rendimiento-cereal':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-rendimiento-cereales-1"
+              name="Cambio en el rendimiento (%)"
+            >
+              <LegendTypeGradient className="text-sm text-black" items={LEGEND_ITEMS_RENDIMIENTO} />
+            </LegendItem>
+          </div>
+        );
+      case 'zonas-optimas-vino':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-rendimiento-cereales-1"
+              name="Cambios en zonas óptimas para el cultivo de olivo"
+            >
+              <LegendTypeGradient
+                className="text-sm text-black"
+                items={LEGEND_ITEMS_ZONAS_OPTIMAS_VINO}
+              />
+            </LegendItem>
+          </div>
+        );
       case 'zonas-optimas-olivo':
-        // It's raster and I have no data
-        return null;
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-rendimiento-cereales-1"
+              name="Cambios en zonas óptimas para el cultivo de olivo"
+            >
+              <LegendTypeGradient
+                className="text-sm text-black"
+                items={LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO}
+              />
+            </LegendItem>
+          </div>
+        );
       default:
         return null;
     }

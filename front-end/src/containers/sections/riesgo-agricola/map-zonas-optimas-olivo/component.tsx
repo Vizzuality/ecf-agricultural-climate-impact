@@ -7,7 +7,7 @@ import MapRisk from 'containers/map-risk';
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
 import { YEARS_PROYECCIONES_OLIVO } from './constants';
-export const MapOptimalZonesMap: FC<ElRiesgoClimaticoMapTypes> = ({
+export const MapOptimalZonesOliveMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'optimal_zones',
   allowZoom = false,
 }) => {
@@ -79,4 +79,4 @@ export const MapOptimalZonesMap: FC<ElRiesgoClimaticoMapTypes> = ({
   );
 };
 
-export default MapOptimalZonesMap;
+export default MapOptimalZonesOliveMap;

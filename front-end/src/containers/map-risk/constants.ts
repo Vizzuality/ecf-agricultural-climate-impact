@@ -226,6 +226,67 @@ export const LAYERS = [
       ],
     },
   },
+  {
+    id: 'zonas-optimas-vino',
+    name: 'Zonas óptimas vino',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/rejilla/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
+          featureState: {
+            id: 16,
+            source: 'zonas-optimas-vino',
+            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'case',
+              ['has', 'value_{{scenario}}_{{year}}'],
+              [
+                'interpolate',
+                ['linear'],
+                ['get', 'value_{{scenario}}_{{year}}'],
+                1,
+                '#E6E4E1',
+                12,
+                '#4E6605',
+              ],
+              'transparent',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
+          featureState: {
+            id: 16,
+            source: 'zonas-optimas-vino',
+            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export const LEGEND_ITEMS_CULTIVOS = [
@@ -259,5 +320,51 @@ export const LEGEND_ITEMS_RENDIMIENTO = [
   {
     color: '#018571',
     value: 'MAX',
+  },
+];
+
+export const LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO = [
+  {
+    color: '#E6E4E1',
+    value: '0',
+  },
+  {
+    color: '#D2D2CE',
+    value: '250',
+  },
+  {
+    color: '#9BAC7C',
+    value: '500',
+  },
+  {
+    color: '#709010',
+    value: '750',
+  },
+  {
+    color: '#4E6605',
+    value: '1000',
+  },
+];
+
+export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
+  {
+    color: '#E6E4E1',
+    value: '0',
+  },
+  {
+    color: '#D2D2CE',
+    value: '250',
+  },
+  {
+    color: '#9BAC7C',
+    value: '500',
+  },
+  {
+    color: '#709010',
+    value: '750',
+  },
+  {
+    color: '#4E6605',
+    value: '1000',
   },
 ];

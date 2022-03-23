@@ -31,7 +31,7 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16">
           <div className="flex flex-col">
-            <div className="inline-block w-1/2 pr-2">
+            <div className="inline-block w-1/2 pr-2 mb-4">
               <MapSlider
                 values={SCENARIOS}
                 value={scenario}
@@ -42,14 +42,10 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
               <Select
                 id="crops-selection"
                 initialSelected={CROPS[0].value}
-                // maxHeight={300}
                 onChange={handleCropChange}
-                // onSelect={function noRefCheck() {}}
                 options={CROPS}
                 placeholder="Elige el cultivo"
-                // prefix="FILTER BY:"
                 size="base"
-                // status="none"
                 theme="light"
               />
             </div>
@@ -71,20 +67,10 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
         <div className="top-0 h-screen">
           <div className="font-serif text-2xl">Proyecciones de rendimiento de cereales</div>
           <div className="mt-12">
-            <p>
-              Además de estos cambios en la distribución geográfica de las zonas óptimas para
-              cultivo, se podría esperar un{' '}
-              <strong>descenso de la producción de hasta el 20%</strong> en la Península Ibérica
-              para los olivares de secano con un incremento de la temperatura de 2,5ºC.
-            </p>
-            <p>
-              <strong>
-                Aunque una gestión más eficiente de los recursos hídricos será necesaria para
-                abastecer los olivares, la implementación de medidas urgentes que reduzcan las
-                emisiones de gases efecto invernadero y/o aumenten la captación de carbono
-                atmosférico podrían evitar impactos irreversibles sobre estos cultivos.
-              </strong>
-            </p>
+            Se espera que el rendimiento del cultivo de trigo{' '}
+            <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>. Esta
+            pérdida de rendimiento en cultivos de cereales de invierno como el trigo podría ser
+            agravada por la reducción en precipitación y la severidad de la sequía primaveral.
           </div>
         </div>
       </div>
