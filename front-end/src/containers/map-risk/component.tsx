@@ -59,7 +59,6 @@ const MapRisk: FC<MapVisualizationType> = ({
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
-    console.log('baunds:', [bounds]);
     return {
       bbox: bounds === 'spain' ? BOUNDS_SPAIN : BOUNDS_ANDALUCIA,
       options: {
