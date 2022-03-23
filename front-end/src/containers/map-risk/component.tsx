@@ -200,6 +200,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             'rendimiento-olivo-fill-0',
             'rendimiento-cereal-fill-0',
             'zonas-optimas-vino-fill-0',
+            'sequias-dehesa-fill-0',
           ]} // TODO: get them from tiles
           bounds={mapBounds}
         >
@@ -249,10 +250,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             ></span>
             <div className="text-black">{tooltipData.title}</div>
             <div className="mt-1 text-black">
-              <strong>
-                {tooltipData.value}
-                {tooltipData.unit}
-              </strong>
+              <strong>{`${tooltipData.value} ${tooltipData.unit}`}</strong>
             </div>
           </Tooltip>
         )}

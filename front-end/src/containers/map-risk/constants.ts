@@ -233,7 +233,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/rejilla/{z}/{x}/{y}.vector.pbf',
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/dehesa_dry_spells/rejilla/{z}/{x}/{y}.vector.pbf',
       ],
       promoteId: '{{promoteId}}',
     },
@@ -241,11 +241,11 @@ export const LAYERS = [
       layers: [
         {
           type: 'fill',
-          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
+          'source-layer': 'dehesa_dry_spells',
           featureState: {
             id: 16,
             source: 'zonas-optimas-vino',
-            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
+            sourceLayer: 'dehesa_dry_spells',
           },
           layout: {
             visibility: '{{visibility}}',
@@ -270,11 +270,75 @@ export const LAYERS = [
         },
         {
           type: 'line',
-          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
+          'source-layer': 'dehesa_dry_spells',
           featureState: {
             id: 16,
             source: 'zonas-optimas-vino',
-            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
+            sourceLayer: 'dehesa_dry_spells',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'sequias-dehesa',
+    name: 'Zonas sequías dehesa',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Indicadores_dehesa/dehesa_dry_spells/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Indicadores_dehesa',
+          featureState: {
+            id: 16,
+            source: 'sequias-dehesa',
+            sourceLayer: 'Indicadores_dehesa',
+          },
+          // layout: {
+          //   visibility: '{{visibility}}',
+          // },
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0,
+              '#8bbdce',
+              15,
+              '#b9d09e',
+              30,
+              '#e6e36d',
+              45,
+              '#fdd74d',
+              60,
+              '#fead3d',
+              75,
+              '#ff822d',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Indicadores_dehesa',
+          featureState: {
+            id: 16,
+            source: 'sequias-dehesa',
+            sourceLayer: 'Indicadores_dehesa',
           },
           layout: {
             visibility: '{{visibility}}',
@@ -366,5 +430,37 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
   {
     color: '#4E6605',
     value: '1000',
+  },
+];
+
+export const LAYER_GRADIENT_SEQUIAS_DEHESA = [
+  {
+    color: '#8bbdce',
+    value: '0',
+  },
+  {
+    color: '#b9d09e',
+    value: '15',
+  },
+  {
+    color: '#e6e36d',
+    value: '30',
+  },
+  {
+    color: '#fdec55',
+    value: '',
+  },
+  {
+    color: '#fdd74d',
+    value: '45',
+  },
+  {
+    color: '#fead3d',
+    value: '60',
+  },
+
+  {
+    color: '#ff822d',
+    value: '75',
   },
 ];

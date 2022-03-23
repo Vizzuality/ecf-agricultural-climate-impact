@@ -9,6 +9,7 @@ import {
   LEGEND_ITEMS_RENDIMIENTO,
   LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO,
   LEGEND_ITEMS_ZONAS_OPTIMAS_VINO,
+  LAYER_GRADIENT_SEQUIAS_DEHESA,
 } from './constants';
 
 const Legend: FC<{ legendType: string }> = ({ legendType }) => {
@@ -19,7 +20,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-crops-1"
+              id="legend-cultivos-1"
               name="Superficie destinada a cultivos clave"
             >
               <LegendTypeBasic className="text-sm text-black" items={LEGEND_ITEMS_CULTIVOS} />
@@ -31,7 +32,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-crops-1"
+              id="legend-cultivo-olivo-1"
               name="Superficie destinada a cultivos clave"
             >
               <LegendTypeBasic className="text-sm text-black" items={[LEGEND_ITEMS_CULTIVOS[0]]} />
@@ -55,7 +56,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-rendimiento-cereales-1"
+              id="legend-rendimiento-cereal-1"
               name="Cambio en el rendimiento (%)"
             >
               <LegendTypeGradient className="text-sm text-black" items={LEGEND_ITEMS_RENDIMIENTO} />
@@ -67,7 +68,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-rendimiento-cereales-1"
+              id="legend-zonas-optimas-vino-1"
               name="Cambios en zonas óptimas para el cultivo de olivo"
             >
               <LegendTypeGradient
@@ -82,12 +83,27 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-rendimiento-cereales-1"
+              id="legend-zonas-optimas-olivo-1"
               name="Cambios en zonas óptimas para el cultivo de olivo"
             >
               <LegendTypeGradient
                 className="text-sm text-black"
                 items={LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO}
+              />
+            </LegendItem>
+          </div>
+        );
+      case 'sequias-dehesa':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-sequias-dehesa-1"
+              name="Cambios en zonas óptimas para el cultivo de olivo"
+            >
+              <LegendTypeGradient
+                className="text-sm text-black"
+                items={LAYER_GRADIENT_SEQUIAS_DEHESA}
               />
             </LegendItem>
           </div>
