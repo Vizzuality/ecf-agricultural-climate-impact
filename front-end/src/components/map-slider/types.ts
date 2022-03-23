@@ -8,4 +8,5 @@ export interface MapSliderType {
   value: MapSliderValueType;
   currentValue?: number;
   onChange: (e: any) => void;
+  disabled?: boolean;
 }
