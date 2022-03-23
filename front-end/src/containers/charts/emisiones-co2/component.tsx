@@ -1,8 +1,5 @@
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
-// utils
-// import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
-
 // components
 import Chart from './chart';
 
