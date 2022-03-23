@@ -14,7 +14,7 @@ import { localPoint } from '@visx/event';
 import { GlyphCircle } from '@visx/glyph';
 import { extent, bisector } from 'd3-array';
 
-import { DatasetItem, useTemperatureData } from 'hooks/charts';
+import { DatasetItem, useProduccionesCultivos } from 'hooks/charts';
 
 // types
 import type { ChartProps } from '../types';
@@ -27,20 +27,21 @@ const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).le
 // Format date for axis
 const formatDate = (year: number) => year.toString();
 
-const margin = { top: 40, right: 100, bottom: 50, left: 85 };
-
-const LABELS_BY_SCENARIO = {
-  rcp45: 'RCP45',
-  rcp85: 'RCP85',
+const LABELS_BY_INDICATOR = {
+  'Producción de cereales grano': 'Cereal',
+  'Producción de aceituna': 'Aceituna',
+  'Producción de uva': 'Uva',
 };
 
+const margin = { top: 40, right: 100, bottom: 50, left: 85 };
+
 export const Chart: React.FC<ChartProps> = ({ width, height }) => {
-  const [temperatureRCP45, temperatureRCP85] = useTemperatureData();
-  const isFetching = temperatureRCP45.isFetching || temperatureRCP85.isFetching;
+  const [cerealData, aceitunaData, uvaData] = useProduccionesCultivos();
+  const isFetching = cerealData.isFetching || aceitunaData.isFetching || uvaData.isFetching;
 
   const lastPoints = useMemo(
-    () => [temperatureRCP45.data, temperatureRCP85.data].map((data) => data[data.length - 1]),
-    [temperatureRCP45.data, temperatureRCP85.data],
+    () => [cerealData.data, aceitunaData.data, uvaData.data].map((data) => data[data.length - 1]),
+    [cerealData.data, aceitunaData.data, uvaData.data],
   );
 
   // size adjustments
@@ -49,8 +50,8 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
 
   // Whole data
   const concatData = useMemo(
-    () => temperatureRCP45.data.concat(temperatureRCP85.data),
-    [temperatureRCP45.data, temperatureRCP85.data],
+    () => cerealData.data.concat(aceitunaData.data).concat(uvaData.data),
+    [cerealData.data, uvaData.data, aceitunaData.data],
   );
 
   const getDataByYear = useCallback(
@@ -133,7 +134,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             fill="white"
             className="font-bold"
           >
-            Temperature ºC
+            Tonnes
           </text>
           <AxisLeft
             hideAxisLine={true}
@@ -165,7 +166,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           <LinePath
             stroke="white"
             strokeWidth={2}
-            data={temperatureRCP45.data}
+            data={cerealData.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
@@ -173,7 +174,15 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             key={'line-wew'}
             stroke="white"
             strokeWidth={2}
-            data={temperatureRCP85.data}
+            data={aceitunaData.data}
+            x={(d) => timeScale(getYear(d)) ?? 0}
+            y={(d) => valueScale(getValue(d)) ?? 0}
+          />
+          <LinePath
+            key={'line-waw'}
+            stroke="white"
+            strokeWidth={2}
+            data={uvaData.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
@@ -198,7 +207,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
                   fill="#EDF2F7"
                   fontSize="12"
                 >
-                  <tspan>{LABELS_BY_SCENARIO[d?.scenario]}</tspan>
+                  <tspan>{LABELS_BY_INDICATOR[d?.indicator]}</tspan>
                 </text>
               </g>
             );
@@ -265,7 +274,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           }} /> */}
           {tooltipData.map((d) => (
             <div className="font-bold" key={`tooltip-item-${Math.random()}`}>
-              <span>{LABELS_BY_SCENARIO[d.scenario]}</span>: {d.value} {d.unit}
+              {LABELS_BY_INDICATOR[d.indicator]}: {d.value} {d.unit}
             </div>
           ))}
         </TooltipWithBounds>
