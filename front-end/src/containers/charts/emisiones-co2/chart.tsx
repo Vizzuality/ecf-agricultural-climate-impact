@@ -20,9 +20,9 @@ import { DatasetItem, useClimateRiskData } from 'hooks/charts';
 import type { ChartProps } from '../types';
 
 // Defining selector functions
-const getValue = (d: DatasetItem) => d.value;
-const getYear = (d: DatasetItem) => new Date(d.year);
-const bisectDate = bisector((d: DatasetItem) => new Date(d.year)).left;
+const getValue = (d: DatasetItem) => d?.value;
+const getYear = (d: DatasetItem) => new Date(d?.year);
+const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).left;
 
 // Format date for axis
 const formatDate = (year) => year.toString();
