@@ -163,6 +163,69 @@ export const LAYERS = [
       ],
     },
   },
+  {
+    id: 'rendimiento-cereal',
+    name: 'Rendimiento Cereales',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Proyecciones_rendimiento_cereal/comunidades_autonomas/{z}/{x}/{y}.vector.pbf ',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Proyecciones_rendimiento_cereal',
+          featureState: {
+            id: 16,
+            source: 'rendimiento-cereal',
+            sourceLayer: 'Proyecciones_rendimiento_cereal',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'fill-color': [
+              'case',
+              ['has', 'value_{{scenario}}_{{crop}}'],
+              [
+                'interpolate',
+                ['linear'],
+                ['get', 'value_{{scenario}}_{{crop}}'],
+                -25,
+                'red',
+                -6,
+                'blue',
+                12,
+                'green',
+              ],
+              'transparent',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Proyecciones_rendimiento_cereal',
+          featureState: {
+            id: 16,
+            source: 'rendimiento-cereal',
+            sourceLayer: 'Proyecciones_rendimiento_cereal',
+          },
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export const LEGEND_ITEMS_CULTIVOS = [

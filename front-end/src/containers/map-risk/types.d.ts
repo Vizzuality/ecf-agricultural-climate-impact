@@ -8,6 +8,10 @@ export interface YearType {
   value: string;
   label: string;
 }
+export interface CropType {
+  value: string;
+  label: string;
+}
 export interface MunicipalityType {
   id: number;
   name: string;
@@ -22,6 +26,7 @@ export interface MapVisualizationType {
   allowZoom?: boolean;
   bounds?: string;
   legend?: string;
+  crop?: CropType;
 }
 export interface ViewPortTypes {
   zoom?: number;

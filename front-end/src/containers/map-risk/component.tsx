@@ -28,6 +28,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   allowZoom,
   bounds = 'spain',
   legend,
+  crop,
   // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
@@ -46,6 +47,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           year: year?.value.split(' - ').join('-') || '2010-2020',
           scenario: scenario?.value || 'rcp45',
           geoType: geoType || 'municipios',
+          crop: crop?.value || '',
           visibility: l.id === activeLayerId ? 'visible' : 'none',
           promoteId,
         },
@@ -53,7 +55,7 @@ const MapRisk: FC<MapVisualizationType> = ({
     }));
 
     return newLayers;
-  }, [activeLayerId, geoType, promoteId, year, scenario]);
+  }, [activeLayerId, geoType, promoteId, year, scenario, crop]);
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
@@ -96,8 +98,9 @@ const MapRisk: FC<MapVisualizationType> = ({
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
 
-      const thisDirtyValue =
-        properties?.[`value_${scenario.value}_${year.value.replace(/ /g, '')}`];
+      const secondValue = year ? year.value.replace(/ /g, '') : crop.value;
+
+      const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
       const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
       const data = {
@@ -193,7 +196,11 @@ const MapRisk: FC<MapVisualizationType> = ({
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={['crops-fill-0', 'rendimiento-olivo-fill-0']} // TODO: get them from tiles
+          interactiveLayerIds={[
+            'crops-fill-0',
+            'rendimiento-olivo-fill-0',
+            'rendimiento-cereal-fill-0',
+          ]} // TODO: get them from tiles
           bounds={mapBounds}
         >
           {(map) => (
