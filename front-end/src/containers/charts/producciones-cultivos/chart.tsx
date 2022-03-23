@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { Line, LinePath } from '@visx/shape';
+import { Line, AreaStack, Area, AreaClosed } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
@@ -12,7 +12,7 @@ import {
 } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { GlyphCircle } from '@visx/glyph';
-import { extent, bisector } from 'd3-array';
+import { extent, bisector, group } from 'd3-array';
 
 import { DatasetItem, useProduccionesCultivos } from 'hooks/charts';
 
@@ -32,6 +32,8 @@ const LABELS_BY_INDICATOR = {
   'Producción de aceituna': 'Aceituna',
   'Producción de uva': 'Uva',
 };
+
+const COLORS = ['red', 'green', 'yellow'];
 
 const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
@@ -53,6 +55,23 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
     () => cerealData.data.concat(aceitunaData.data).concat(uvaData.data),
     [cerealData.data, uvaData.data, aceitunaData.data],
   );
+
+  const stackedData = useMemo(() => {
+    const result = Array.from(
+      group(concatData, (d) => d.year),
+      ([key, value]) => {
+        const data = value
+          .map(({ indicator, value }) => ({ [indicator]: value }))
+          .reduce((a, b) => ({ ...(a || {}), ...b }));
+        return {
+          year: key,
+          ...data,
+        };
+      },
+    );
+    console.log(result);
+    return result;
+  }, [concatData]);
 
   const getDataByYear = useCallback(
     (data: DatasetItem) => concatData.filter((d) => d.year === data.year),
@@ -163,7 +182,57 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
               opacity: '0.5',
             })}
           />
-          <LinePath
+          <Area
+            data={stackedData}
+            x={(d) => timeScale(d.year) ?? 0}
+            y0={(d) => valueScale(d['Producción de cereales grano']) ?? 0}
+            y1={(d) =>
+              valueScale(
+                d['Producción de cereales grano'] -
+                  d['Producción de uva'] -
+                  d['Producción de aceituna'],
+              ) ?? 0
+            }
+            fill={COLORS[0]}
+            opacity={0.6}
+          />
+          <Area
+            data={stackedData}
+            x={(d) => timeScale(d.year) ?? 0}
+            y0={(d) => valueScale(d['Producción de uva']) ?? 0}
+            y1={(d) => valueScale(d['Producción de uva'] + d['Producción de aceituna']) ?? 0}
+            fill={COLORS[1]}
+            opacity={0.6}
+          />
+          <Area
+            data={stackedData}
+            x={(d) => timeScale(d.year) ?? 0}
+            y0={(d) => valueScale(d['Producción de uva']) ?? 0}
+            y1={(d) => valueScale(d['Producción de uva'] + d['Producción de aceituna']) ?? 0}
+            fill={COLORS[1]}
+            opacity={0.6}
+          />
+
+          {/* <AreaStack
+            data={stackedData}
+            keys={Object.keys(stackedData[0] || []).filter((key) => key !== 'year')}
+            order="ascending"
+            x={(d) => timeScale(getYear(d.data)) ?? 0}
+            y0={(d) => valueScale(d[0]) ?? 0}
+            y1={(d) => valueScale(d[1]) ?? 0}
+          >
+            {({ stacks, path }) =>
+              stacks.map((stack, index) => (
+                <path
+                  key={`stack-${stack.key}`}
+                  d={path(stack) || ''}
+                  stroke="transparent"
+                  fill={COLORS[index]}
+                />
+              ))
+            }
+          </AreaStack> */}
+          {/* <LinePath
             stroke="white"
             strokeWidth={2}
             data={cerealData.data}
@@ -185,7 +254,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             data={uvaData.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
-          />
+          /> */}
           {lastPoints.map((d, i) => {
             const w = 8;
             const x = timeScale(getYear(d)) - w / 2 ?? 0;
@@ -235,7 +304,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
                 />
               </g>
             ))}
-          <rect
+          {/* <rect
             width={innerWidth}
             height={innerHeight}
             x={0}
@@ -244,7 +313,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             onMouseMove={handleTooltip}
             onMouseLeave={hideTooltip}
             fill="transparent"
-          />
+          /> */}
         </Group>
       </svg>
       {/* Tooltip: pop-up */}
