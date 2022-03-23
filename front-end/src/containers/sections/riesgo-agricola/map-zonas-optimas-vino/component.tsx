@@ -6,17 +6,13 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import {
-  YEARS_PROYECCIONES_WINE_BASELINE,
-  YEARS_PROYECCIONES_WINE_SCENARIOS,
-  SCENARIOS,
-} from './constants';
+import { YEARS, SCENARIOS } from './constants';
 
 export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'optimal_zones_wine',
   allowZoom = false,
 }) => {
-  const yearsProyeccionesWineBaseline = YEARS_PROYECCIONES_WINE_BASELINE.map((y) => {
+  const yearsProyeccionesWine = YEARS.map((y) => {
     const splitValues = y.value.split('-');
     const label = Math.floor(
       parseInt(splitValues[0]) + (parseInt(splitValues[1]) - parseInt(splitValues[0])) / 2,
@@ -27,35 +23,26 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
     return y;
   });
 
-  const yearsProyeccionesWineScenarios = YEARS_PROYECCIONES_WINE_SCENARIOS.map((y) => {
-    const splitValues = y.value.split('-');
-    const label = Math.floor(
-      parseInt(splitValues[0]) + (parseInt(splitValues[1]) - parseInt(splitValues[0])) / 2,
-    );
-
-    y.label = '' + label;
-
-    return y;
-  });
-
-  const [year, setYear] = useState(yearsProyeccionesWineBaseline[0]);
+  const [year, setYear] = useState(yearsProyeccionesWine[0]);
   const [scenario, setScenario] = useState(SCENARIOS[0]);
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {
-    const currentYear = yearsProyeccionesWineBaseline[e];
+    const currentYear = yearsProyeccionesWine[e];
     setYear(currentYear);
-    setSliderValue(yearsProyeccionesWineBaseline.indexOf(currentYear));
+    setSliderValue(yearsProyeccionesWine.indexOf(currentYear));
+    setScenario(
+      currentYear.value === '2021-2050'
+        ? SCENARIOS[0]
+        : {
+            value: 'baseline',
+            label: '0°C',
+          },
+    );
   };
 
   const handleScenarioSliderChange = (e) => {
     setScenario(SCENARIOS[e]);
-    const currentYear =
-      SCENARIOS[e].value === 'baseline'
-        ? yearsProyeccionesWineBaseline[0]
-        : yearsProyeccionesWineScenarios[0];
-    setYear(currentYear);
-    setSliderValue(yearsProyeccionesWineBaseline.indexOf(currentYear));
   };
 
   return (
@@ -65,19 +52,21 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
-              <MapSlider
-                values={SCENARIOS}
-                value={scenario}
-                onChange={handleScenarioSliderChange}
-              />
+              {year.value === '2021-2050' && (
+                <MapSlider
+                  values={SCENARIOS}
+                  value={scenario}
+                  onChange={handleScenarioSliderChange}
+                  disabled={!(year.value === '2021-2050')}
+                />
+              )}
             </div>
             <div className="inline-block w-1/2 pl-2">
               <MapSlider
-                values={yearsProyeccionesWineBaseline}
+                values={yearsProyeccionesWine}
                 value={year}
                 currentValue={sliderValue}
                 onChange={handleYearSliderChange}
-                disabled={true}
               />
             </div>
           </div>
@@ -88,7 +77,7 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
             allowZoom={allowZoom}
             scenario={scenario}
             year={year}
-            bounds="andalucia"
+            bounds="spain"
             legend="zonas-optimas-vino"
           />
         </div>

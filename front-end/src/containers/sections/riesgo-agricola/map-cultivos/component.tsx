@@ -4,8 +4,8 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-export const MapCropsMap: FC<ElRiesgoClimaticoMapTypes> = ({
-  defaultActiveLayerId = 'crops',
+export const MapCultivosMap: FC<ElRiesgoClimaticoMapTypes> = ({
+  defaultActiveLayerId = 'cultivos',
   allowZoom = false,
 }) => {
   return (
@@ -36,4 +36,4 @@ export const MapCropsMap: FC<ElRiesgoClimaticoMapTypes> = ({
   );
 };
 
-export default MapCropsMap;
+export default MapCultivosMap;

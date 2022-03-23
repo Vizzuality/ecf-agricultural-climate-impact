@@ -1,9 +1,5 @@
 export const SCENARIOS = [
   {
-    value: 'baseline',
-    label: '0°C',
-  },
-  {
     value: 'rcp45',
     label: '1.5°C',
   },
@@ -13,9 +9,13 @@ export const SCENARIOS = [
   },
 ];
 
-export const YEARS_PROYECCIONES_WINE_BASELINE = [
+export const YEARS = [
   {
     value: '1971-2000',
+    label: '',
+  },
+  {
+    value: '2021-2050',
     label: '',
   },
 ];
