@@ -24,7 +24,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   activeLayerId,
   geoType = 'municipio',
   scenario = { value: 'rcp45', label: '1.5°C' },
-  year = { value: '2010-2020', label: '' },
+  year = { value: 'none', label: '' },
   allowZoom,
   bounds = 'spain',
   legend,
@@ -46,7 +46,6 @@ const MapRisk: FC<MapVisualizationType> = ({
       : geoType === 'provincias'
       ? 'CO_PROVINC'
       : 'CO_CCAA';
-  console.log('promote:', promoteId);
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
@@ -106,9 +105,9 @@ const MapRisk: FC<MapVisualizationType> = ({
       const id = properties?.[promoteId] || properties?.ID || properties?.CODIGOINE;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
-      console.log('features:', features);
 
-      const secondValue = year ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
+      const secondValue =
+        year.value !== 'none' ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
 
       const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
       const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
@@ -161,15 +160,11 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
-    if (e.features.length) {
-      console.log('hover:', e);
-    }
     const { center } = e;
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
 
-    console.log('data', data);
     if (data.value) {
       showTooltip({
         tooltipData: data,
