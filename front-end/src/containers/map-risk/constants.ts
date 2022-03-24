@@ -5,7 +5,7 @@ export const DEFAULT_VIEWPORT = {
   pitch: 0,
   bearing: 0,
   transitionDuration: 250,
-  maxZoom: 15,
+  maxZoom: 10,
   minZoom: 5,
 };
 
