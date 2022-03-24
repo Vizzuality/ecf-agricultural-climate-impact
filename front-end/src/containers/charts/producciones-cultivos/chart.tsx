@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { Line, AreaStack, Area, AreaClosed } from '@visx/shape';
+import { Line, AreaStack, Area, AreaClosed, Stack } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
@@ -12,7 +12,7 @@ import {
 } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { GlyphCircle } from '@visx/glyph';
-import { extent, bisector, group } from 'd3-array';
+import { extent, bisector, group, max } from 'd3-array';
 
 import { DatasetItem, useProduccionesCultivos } from 'hooks/charts';
 
@@ -61,11 +61,15 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
       group(concatData, (d) => d.year),
       ([key, value]) => {
         const data = value
+          .sort((a, b) => a.value - b.value)
           .map(({ indicator, value }) => ({ [indicator]: value }))
           .reduce((a, b) => ({ ...(a || {}), ...b }));
+        const total = value.map(({ value }) => value).reduce((a, b) => a + b);
         return {
           year: key,
           ...data,
+          data: value.sort((a, b) => -(a.value - b.value)),
+          total,
         };
       },
     );
@@ -84,10 +88,9 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
     () =>
       scaleLinear({
         range: [0, innerWidth],
-        domain: extent(concatData, getYear),
-        clamp: true,
+        domain: extent(stackedData, (d) => d.year),
       }),
-    [concatData, innerWidth],
+    [innerWidth, stackedData],
   );
 
   // vertical, y scale
@@ -95,10 +98,9 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
     () =>
       scaleLinear({
         range: [innerHeight, 0],
-        domain: extent(concatData, getValue),
-        clamp: true,
+        domain: [0, max(stackedData, (d) => d.total)],
       }),
-    [concatData, innerHeight],
+    [innerHeight, stackedData],
   );
 
   // tooltip
@@ -182,6 +184,34 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
               opacity: '0.5',
             })}
           />
+          {/* <Stack
+            data={stackedData}
+            keys={Object.keys(stackedData[0] || []).filter(
+              (key) => key !== 'year' && key !== 'total' && key !== 'data',
+            )}
+            offset="wiggle"
+            order="none"
+            // color={colorScale}
+            x={(d) => timeScale(d.data.year) ?? 0}
+            // x={(_, i) => timeScale(i) ?? 0}
+            y0={(d) => valueScale(d[0]) ?? 0}
+            y1={(d) => valueScale(d[1]) ?? 0}
+          >
+            {({ stacks, path }) => console.log(stacks) ||
+              stacks.map((stack, i) => {
+                // Alternatively use renderprops <Spring to={{ d }}>{tweened => ...}</Spring>
+                // const pathString = path(stack) || '';
+                // const tweened = animate ? useSpring({ pathString }) : { pathString };
+                // const color = colorScale(stack.key);
+                // const pattern = patternScale(stack.key);
+                return (
+                  <g key={`series-${stack.key}`}>
+                    <path d={path(stack) || ''} stroke="transparent" fill={COLORS[i]} />
+                  </g>
+                );
+              })
+            }
+          </Stack> */}
           <Area
             data={stackedData}
             x={(d) => timeScale(d.year) ?? 0}
@@ -196,19 +226,27 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             fill={COLORS[0]}
             opacity={0.6}
           />
+
           <Area
             data={stackedData}
             x={(d) => timeScale(d.year) ?? 0}
-            y0={(d) => valueScale(d['Producción de uva']) ?? 0}
+            y0={(d) =>
+              valueScale(
+                d['Producción de cereales grano'] -
+                  d['Producción de uva'] -
+                  d['Producción de aceituna'],
+              ) ?? 0
+            }
             y1={(d) => valueScale(d['Producción de uva'] + d['Producción de aceituna']) ?? 0}
-            fill={COLORS[1]}
+            fill={COLORS[2]}
             opacity={0.6}
           />
+
           <Area
             data={stackedData}
             x={(d) => timeScale(d.year) ?? 0}
             y0={(d) => valueScale(d['Producción de uva']) ?? 0}
-            y1={(d) => valueScale(d['Producción de uva'] + d['Producción de aceituna']) ?? 0}
+            y1={(d) => valueScale(d['Producción de uva'] - d['Producción de aceituna']) ?? 0}
             fill={COLORS[1]}
             opacity={0.6}
           />
