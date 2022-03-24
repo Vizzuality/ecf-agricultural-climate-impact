@@ -18,7 +18,7 @@ export default {
     },
   },
   light: {
-    container: 'text-black bg-transparent ring-1 ring-black',
+    container: 'text-black bg-lightest-grey ring-1 ring-black',
     open: 'ring-2 ring-black bg-white text-black',
     closed: 'text-black',
     prefix: {
@@ -30,8 +30,8 @@ export default {
       disabled: 'text-gray-400',
     },
     item: {
-      base: 'text-sm text-gray-400',
-      highlighted: 'text-sm bg-gray-100 text-gray-800',
+      base: 'text-sm text-gray-600',
+      highlighted: 'text-sm bg-gray-100 text-black',
       disabled: 'text-sm opacity-50 pointer-events-none',
     },
   },

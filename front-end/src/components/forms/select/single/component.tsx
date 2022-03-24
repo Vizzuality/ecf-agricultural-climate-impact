@@ -194,19 +194,6 @@ export const SingleSelect: FC<SelectProps> = ({
               opened={isOpen}
               attributes={attributes}
             >
-              <Toggle
-                options={options}
-                theme={theme}
-                size={size}
-                status={status}
-                prefix={prefix}
-                disabled={disabled}
-                opened={isOpen}
-                selectedItems={selectedItems}
-                placeholder={placeholder}
-                getToggleButtonProps={getToggleButtonProps}
-              />
-
               <ul
                 {...getMenuProps({ onFocus, onBlur })}
                 className={cx({
