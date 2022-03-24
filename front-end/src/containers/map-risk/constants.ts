@@ -181,9 +181,9 @@ export const LAYERS = [
                 ['get', 'value_{{scenario}}_{{crop}}'],
                 -25,
                 '#F52D00',
-                -6,
+                -5,
                 '#FFFFF5',
-                12,
+                15,
                 '#018571',
               ],
               'transparent',
@@ -511,15 +511,15 @@ export const LEGEND_ITEMS_CULTIVOS = [
 export const LEGEND_ITEMS_RENDIMIENTO = [
   {
     color: '#F52D00',
-    value: 'MIN',
+    value: '-25%',
   },
   {
     color: '#FFFFF5',
-    value: 'MIDDLE',
+    value: '-5%',
   },
   {
     color: '#018571',
-    value: 'MAX',
+    value: '15%',
   },
 ];
 
