@@ -14,7 +14,7 @@ import {
 export const ElRiesgoClimaticoMapCalentamiento: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'calentamiento',
   showAreaButtons = false,
-  allowZoom = false,
+  allowZoom = true,
 }) => {
   const yearsCalentamiento = YEARS_CALENTAMIENTO.map((y) => {
     const splitValues = y.value.split(' - ');
@@ -77,34 +77,34 @@ export const ElRiesgoClimaticoMapCalentamiento: FC<ElRiesgoClimaticoMapTypes> = 
       <div className="sticky top-0 left-0 z-20 w-full h-screen">
         <div className="w-2/5 ">
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
-          {showAreaButtons && (
-            <div className="flex justify-center">
-              <Button
-                theme="primary"
-                size="base"
-                className="flex-shrink-0 sm:mr-5"
-                onClick={() => handleGeoTypeChange('municipios')}
-              >
-                municipios
-              </Button>
-              <Button
-                theme="primary"
-                size="base"
-                className="flex-shrink-0 sm:mr-5"
-                onClick={() => handleGeoTypeChange('provincias')}
-              >
-                provincias
-              </Button>
-              <Button
-                theme="primary"
-                size="base"
-                className="flex-shrink-0 sm:mr-5"
-                onClick={() => handleGeoTypeChange('comunidades_autonomas')}
-              >
-                comunidades
-              </Button>
-            </div>
-          )}
+          {/* {showAreaButtons && ( */}
+          <div className="flex justify-center">
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('municipios')}
+            >
+              municipios
+            </Button>
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('provincias')}
+            >
+              provincias
+            </Button>
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('comunidades_autonomas')}
+            >
+              comunidades
+            </Button>
+          </div>
+          {/* )} */}
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16">
           <div className="inline-block w-1/2 pr-2">
@@ -131,18 +131,12 @@ export const ElRiesgoClimaticoMapCalentamiento: FC<ElRiesgoClimaticoMapTypes> = 
       </div>
       <div className="absolute top-0 w-2/5 p-16 pt-40">
         <div className="top-0 h-screen">
-          <div className="font-serif text-2xl">Duración de las sequías a lo largo del año</div>
+          <div className="font-serif text-2xl">Proyecciones de calentamiento en España</div>
           <div className="mt-12">
-            <p>
-              Se espera un{' '}
-              <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,
-              seguidas por periodos de lluvias más cortos pero intensos durante los meses de Octubre
-              y Noviembre.
-            </p>
-            <p>
-              Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y regadío si
-              se mantienen las condiciones de cultivo actuales.
-            </p>
+            Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
+            <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
+            asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
+            incidencia de incendios forestales y erosión del suelo.
           </div>
         </div>
       </div>

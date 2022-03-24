@@ -14,7 +14,7 @@ import {
 export const ElRiesgoClimaticoMapSequias: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'sequias',
   showAreaButtons = false,
-  allowZoom = false,
+  allowZoom = true,
 }) => {
   const yearsCalentamiento = YEARS_CALENTAMIENTO.map((y) => {
     const splitValues = y.value.split(' - ');
@@ -77,34 +77,34 @@ export const ElRiesgoClimaticoMapSequias: FC<ElRiesgoClimaticoMapTypes> = ({
       <div className="sticky top-0 left-0 z-20 w-full h-screen">
         <div className="w-2/5 ">
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
-          {showAreaButtons && (
-            <div className="flex justify-center">
-              <Button
-                theme="primary"
-                size="base"
-                className="flex-shrink-0 sm:mr-5"
-                onClick={() => handleGeoTypeChange('municipios')}
-              >
-                municipios
-              </Button>
-              <Button
-                theme="primary"
-                size="base"
-                className="flex-shrink-0 sm:mr-5"
-                onClick={() => handleGeoTypeChange('provincias')}
-              >
-                provincias
-              </Button>
-              <Button
-                theme="primary"
-                size="base"
-                className="flex-shrink-0 sm:mr-5"
-                onClick={() => handleGeoTypeChange('comunidades_autonomas')}
-              >
-                comunidades
-              </Button>
-            </div>
-          )}
+          {/* {showAreaButtons && ( */}
+          <div className="flex justify-center">
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('municipios')}
+            >
+              municipios
+            </Button>
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('provincias')}
+            >
+              provincias
+            </Button>
+            <Button
+              theme="primary"
+              size="base"
+              className="flex-shrink-0 sm:mr-5"
+              onClick={() => handleGeoTypeChange('comunidades_autonomas')}
+            >
+              comunidades
+            </Button>
+          </div>
+          {/* )} */}
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16">
           <div className="inline-block w-1/2 pr-2">
