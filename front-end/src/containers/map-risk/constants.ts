@@ -287,16 +287,21 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Indicadores_dehesa',
-          featureState: {
-            id: 16,
-            source: 'sequias-dehesa',
-            sourceLayer: 'Indicadores_dehesa',
-          },
           layout: {
             visibility: '{{visibility}}',
           },
           paint: {
-            'fill-color': ['interpolate', ['linear'], ['get', 'value_{{scenario}}_{{year}}']],
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0,
+              '#057FFA',
+              50,
+              '#FECC4D',
+              100,
+              '#790B0B',
+            ],
             'fill-opacity': 0.7,
           },
         },
@@ -571,11 +576,11 @@ export const LAYER_GRADIENT_SEQUIAS_DEHESA = [
   },
   {
     color: '#FECC4D',
-    value: '45',
+    value: '50',
   },
   {
     color: '#790B0B',
-    value: '90',
+    value: '100',
   },
 ];
 

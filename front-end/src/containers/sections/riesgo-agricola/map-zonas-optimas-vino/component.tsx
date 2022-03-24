@@ -24,7 +24,7 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
   });
 
   const [year, setYear] = useState(yearsProyeccionesWine[0]);
-  const [scenario, setScenario] = useState(SCENARIOS[0]);
+  const [scenario, setScenario] = useState({ value: 'baseline', label: '' });
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {

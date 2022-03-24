@@ -39,11 +39,14 @@ const MapRisk: FC<MapVisualizationType> = ({
   const promoteId =
     activeLayerId === 'cultivos'
       ? 'value'
+      : activeLayerId === 'sequias-dehesa'
+      ? 'ID'
       : geoType === 'municipios'
       ? 'CODIGOINE'
       : geoType === 'provincias'
       ? 'CO_PROVINC'
       : 'CO_CCAA';
+  console.log('promote:', promoteId);
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
@@ -96,7 +99,6 @@ const MapRisk: FC<MapVisualizationType> = ({
   };
 
   const getRegionData = (e) => {
-    console.log('caca:', e);
     const { features } = e;
 
     if (e && features) {
@@ -106,8 +108,6 @@ const MapRisk: FC<MapVisualizationType> = ({
       const sourceLayer = features[0]?.sourceLayer;
       console.log('features:', features);
 
-      console.log('year:', year);
-      console.log('crop:', crop);
       const secondValue = year ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
 
       const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
@@ -129,7 +129,6 @@ const MapRisk: FC<MapVisualizationType> = ({
   };
 
   const setHighlightedRegion = (data, eventType) => {
-    console.log('datadata:', data);
     const { id, source, sourceLayer } = data;
     const EVENT = eventType === 'click' ? CLICK : HOVER;
 
@@ -162,7 +161,6 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
-    console.log('bobidi:', e);
     if (e.features.length) {
       console.log('hover:', e);
     }
@@ -171,6 +169,7 @@ const MapRisk: FC<MapVisualizationType> = ({
 
     setHighlightedRegion(data, 'hover');
 
+    console.log('data', data);
     if (data.value) {
       showTooltip({
         tooltipData: data,
@@ -213,7 +212,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             'rendimiento-olivo-fill-0',
             'rendimiento-cereal-fill-0',
             'zonas-optimas-vino-fill-0',
-            // 'sequias-dehesa-fill-0',
+            'sequias-dehesa-fill-0',
             'incendios-dehesa-fill-0',
             'aridez-fill-0',
             'precipitacion-fill-0',

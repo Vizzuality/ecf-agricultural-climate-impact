@@ -14,7 +14,7 @@ export const MapPrecipitacionMap: FC<ElRiesgoClimaticoMapTypes> = ({
   allowZoom = false,
 }) => {
   const yearsPrecipitacion = YEARS_PRECIPITACION.map((y) => {
-    const splitValues = y.value.split('-');
+    const splitValues = y.value.split(' - ');
     const label = Math.floor(
       parseInt(splitValues[0]) + (parseInt(splitValues[1]) - parseInt(splitValues[0])) / 2,
     );
