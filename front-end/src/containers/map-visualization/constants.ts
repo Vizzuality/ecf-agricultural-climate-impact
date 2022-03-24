@@ -79,7 +79,7 @@ export const LAYERS = [
   },
   {
     id: 'sequias',
-    name: 'Duración de las sequías a lo largo del ano',
+    name: 'Duración de las sequías a lo largo del año',
     type: 'vector',
     source: {
       type: 'vector',

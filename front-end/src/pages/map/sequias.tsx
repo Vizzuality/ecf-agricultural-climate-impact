@@ -131,7 +131,7 @@ export const ElRiesgoClimaticoMapSequias: FC<ElRiesgoClimaticoMapTypes> = ({
       </div>
       <div className="absolute top-0 w-2/5 p-16 pt-40">
         <div className="top-0 h-screen">
-          <div className="font-serif text-2xl">Duración de las sequías a lo largo del ano</div>
+          <div className="font-serif text-2xl">Duración de las sequías a lo largo del año</div>
           <div className="mt-12">
             <p>
               Se espera un{' '}
