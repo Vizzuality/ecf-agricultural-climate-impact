@@ -13,6 +13,7 @@ import {
   LAYER_GRADIENT_SEQUIAS_DEHESA,
   LAYER_GRADIENT_INCENDIOS_DEHESA,
   LAYER_GRADIENT_ARIDEZ,
+  LEGEND_ITEMS_PRECIPITACION,
 } from './constants';
 
 const Legend: FC<{ legendType: string }> = ({ legendType }) => {
@@ -123,6 +124,17 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem icon={null} id="legend-aridez-1" name="Grado de aridez">
               <LegendTypeGradient className="text-sm text-black" items={LAYER_GRADIENT_ARIDEZ} />
+            </LegendItem>
+          </div>
+        );
+      case 'precipitacion':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem icon={null} id="legend-precipitacion-1" name="Precipitación (mm/mes)">
+              <LegendTypeGradient
+                className="text-sm text-black"
+                items={LEGEND_ITEMS_PRECIPITACION}
+              />
             </LegendItem>
           </div>
         );

@@ -463,12 +463,16 @@ export const LAYERS = [
               'interpolate',
               ['linear'],
               ['get', 'value_{{scenario}}_{{year}}'],
-              0.1,
-              '#057FFA',
-              0.3,
-              '#FECC4D',
-              0.6,
-              '#790B0B',
+              0,
+              '#F2F0F4',
+              0.000000025,
+              '#BDC9E0',
+              0.00000005,
+              '#74A9CF',
+              0.000000075,
+              '#226F96',
+              0.0000001,
+              '#034063',
             ],
             'fill-opacity': 0.7,
           },
@@ -530,19 +534,19 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO = [
   },
   {
     color: '#D2D2CE',
-    value: '250',
+    value: '3',
   },
   {
     color: '#9BAC7C',
-    value: '500',
+    value: '6',
   },
   {
     color: '#709010',
-    value: '750',
+    value: '9',
   },
   {
     color: '#4E6605',
-    value: '1000',
+    value: '12',
   },
 ];
 
@@ -619,5 +623,28 @@ export const LAYER_GRADIENT_ARIDEZ = [
   {
     color: '#790B0B',
     value: '0.6',
+  },
+];
+
+export const LEGEND_ITEMS_PRECIPITACION = [
+  {
+    color: '#F2F0F4',
+    value: '0',
+  },
+  {
+    color: '#BDC9E0',
+    value: '250',
+  },
+  {
+    color: '#74A9CF',
+    value: '500',
+  },
+  {
+    color: '#226F96',
+    value: '750',
+  },
+  {
+    color: '#034063',
+    value: '1000',
   },
 ];

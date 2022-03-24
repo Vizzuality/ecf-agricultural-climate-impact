@@ -110,7 +110,10 @@ const MapRisk: FC<MapVisualizationType> = ({
         year.value !== 'none' ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
 
       const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
-      const thisValue = Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
+      const thisValue =
+        activeLayerId === 'precipitacion'
+          ? (thisDirtyValue * 3600 * 24 * 91.3 * 1000).toFixed(1)
+          : Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
       const data = {
         id,
@@ -165,7 +168,7 @@ const MapRisk: FC<MapVisualizationType> = ({
 
     setHighlightedRegion(data, 'hover');
 
-    if (data.value) {
+    if (data.value && data.value !== 'NaN') {
       showTooltip({
         tooltipData: data,
         tooltipLeft: center.x,
