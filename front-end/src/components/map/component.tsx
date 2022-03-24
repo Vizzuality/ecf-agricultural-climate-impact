@@ -140,10 +140,11 @@ export const Map: FC<MapProps> = ({
   }, [onMapReady]);
 
   useEffect(() => {
-    if (!isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every((b) => !!b)) {
-      handleFitBounds();
+    if (ready && !isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every((b) => !!b)) {
+      // HACK
+      setTimeout(() => handleFitBounds(), 250);
     }
-  }, [bounds, handleFitBounds]);
+  }, [ready, bounds, handleFitBounds]);
 
   useEffect(() => {
     setViewport((prevViewportState) => ({
@@ -174,6 +175,7 @@ export const Map: FC<MapProps> = ({
         width={width}
         height={height}
         // INTERACTIVITY
+
         dragPan={!flying && dragPan}
         dragRotate={!flying && dragRotate}
         scrollZoom={!flying && scrollZoom}
