@@ -56,11 +56,13 @@ export const ZoomControl: FC<ZoomControlProps> = ({
         disabled={zoom === maxZoom}
         onClick={increaseZoom}
       >
-        <Icon icon={ZOOM_IN_SVG} />
+        {/* TODO: Fix icons */}
+        {/* <Icon icon={ZOOM_IN_SVG} /> */}
+        <strong>+</strong>
       </button>
       <button
         className={cx({
-          'p-0.5 rounded-b-3xl text-white bg-black': true,
+          'p-0.5 rounded-b-3xl text-white bg-black w-6': true,
           'hover:bg-gray-700 active:bg-gray-600': zoom !== minZoom,
           'opacity-50 cursor-default': zoom === minZoom,
         })}
@@ -69,7 +71,9 @@ export const ZoomControl: FC<ZoomControlProps> = ({
         disabled={zoom === minZoom}
         onClick={decreaseZoom}
       >
-        <Icon icon={ZOOM_OUT_SVG} />
+        {/* TODO: Fix icons */}
+        {/* <Icon icon={ZOOM_OUT_SVG} /> */}
+        <strong>-</strong>
       </button>
     </div>
   );
