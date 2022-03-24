@@ -10,14 +10,14 @@ export const SCENARIOS = [
 ];
 
 export const YEARS_SEQUIAS_DEHESA = [
-  {
-    value: '1971 - 1990',
-    label: '',
-  },
-  {
-    value: '1981 - 2000',
-    label: '',
-  },
+  // {
+  //   value: '1971 - 1990',
+  //   label: '',
+  // },
+  // {
+  //   value: '1981 - 2000',
+  //   label: '',
+  // },
   {
     value: '2001 - 2020',
     label: '',
