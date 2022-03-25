@@ -13,6 +13,7 @@ import {
 import { localPoint } from '@visx/event';
 import { GlyphCircle } from '@visx/glyph';
 import { extent, bisector } from 'd3-array';
+import { format } from 'd3-format';
 
 import { DatasetItem, useProduccionesCultivos } from 'hooks/charts';
 
@@ -26,6 +27,7 @@ const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).le
 
 // Format date for axis
 const formatDate = (year: number) => year.toString();
+const formatValue = format(',.2s');
 
 const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
@@ -136,12 +138,13 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             fill="white"
             className="font-bold"
           >
-            Temperature ºC
+            Tonnes
           </text>
           <AxisLeft
             hideAxisLine={true}
             hideTicks={true}
             scale={valueScale}
+            tickFormat={formatValue}
             tickLabelProps={() => ({
               fill: '#EDF2F7',
               fontSize: 10,
@@ -276,7 +279,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           }} /> */}
           {tooltipData.map((d) => (
             <div className="font-bold" key={`tooltip-item-${Math.random()}`}>
-              <span>{LABELS_BY_INDICATOR[d.indicator]}</span>: {d.value} {d.unit}
+              <span>{LABELS_BY_INDICATOR[d.indicator]}</span>: {formatValue(d.value)} {d.unit}
             </div>
           ))}
         </TooltipWithBounds>

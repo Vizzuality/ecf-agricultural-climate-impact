@@ -13,6 +13,7 @@ import {
 import { localPoint } from '@visx/event';
 import { GlyphCircle } from '@visx/glyph';
 import { extent, bisector } from 'd3-array';
+import { format } from 'd3-format';
 
 import { DatasetItem, useClimateRiskData } from 'hooks/charts';
 
@@ -26,6 +27,7 @@ const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).le
 
 // Format date for axis
 const formatDate = (year: number) => year.toString();
+const formatValue = format(',.2s');
 
 const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
@@ -298,7 +300,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           }} /> */}
           {tooltipData.map((d) => (
             <div className="font-bold" key={`tooltip-item-${Math.random()}`}>
-              {d.value} {d.unit}
+              {formatValue(d.value)} {d.unit}
             </div>
           ))}
         </TooltipWithBounds>
