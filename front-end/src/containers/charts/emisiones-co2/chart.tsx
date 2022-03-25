@@ -165,8 +165,8 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             stroke="white"
             strokeWidth={2}
             data={historicData.data}
-            x={(d) => timeScale(getYear(d)) ?? 0}
-            y={(d) => valueScale(getValue(d)) ?? 0}
+            x={(d: DatasetItem) => timeScale(getYear(d)) ?? 0}
+            y={(d: DatasetItem) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
             key={'line-wew'}
