@@ -105,6 +105,7 @@ const MapRisk: FC<MapVisualizationType> = ({
       const id = properties?.[promoteId] || properties?.ID || properties?.CODIGOINE;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
+      const unit = properties?.unit === 'm s-1' ? 'mm/mes' : properties?.unit;
 
       const secondValue =
         year.value !== 'none' ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
@@ -122,7 +123,7 @@ const MapRisk: FC<MapVisualizationType> = ({
         source,
         sourceLayer,
         title: properties?.NAMEUNIT || properties?.DS_PROVINC || properties?.DS_CCAA,
-        unit: properties?.unit,
+        unit: unit,
         value: properties?.value || thisValue,
       };
 
@@ -165,11 +166,15 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
+    if (e.features.length) {
+      console.log('hover:', e);
+    }
     const { center } = e;
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
 
+    console.log('data.value:', data.value);
     if (data.value && data.value !== 'NaN') {
       showTooltip({
         tooltipData: data,
