@@ -62,7 +62,7 @@ export const LAYERS = [
     },
   },
   {
-    id: 'optimal_zones',
+    id: 'zonas-optimas-olivo',
     name: 'Cambios en zonas óptimas',
     type: 'raster',
     source: {
@@ -226,11 +226,6 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Zonas_alto_potencial_climático_viñedo',
-          featureState: {
-            id: 16,
-            source: 'zonas-optimas-vino',
-            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
-          },
           layout: {
             visibility: '{{visibility}}',
           },
@@ -255,11 +250,6 @@ export const LAYERS = [
         {
           type: 'line',
           'source-layer': 'Zonas_alto_potencial_climático_viñedo',
-          featureState: {
-            id: 16,
-            source: 'zonas-optimas-vino',
-            sourceLayer: 'Zonas_alto_potencial_climático_viñedo',
-          },
           layout: {
             visibility: '{{visibility}}',
           },
@@ -362,9 +352,9 @@ export const LAYERS = [
               '#F03B20',
               'Muy Alto',
               '#BD0026',
-              'Extermo',
+              'Extremo',
               'black',
-              'transparent', // otherwise (= "Extremo")
+              'transparent', // hide if no value
             ],
             'fill-opacity': 0.7,
           },
@@ -536,29 +526,6 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO = [
   },
   {
     color: '#D2D2CE',
-    value: '3',
-  },
-  {
-    color: '#9BAC7C',
-    value: '6',
-  },
-  {
-    color: '#709010',
-    value: '9',
-  },
-  {
-    color: '#4E6605',
-    value: '12',
-  },
-];
-
-export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
-  {
-    color: '#E6E4E1',
-    value: '0',
-  },
-  {
-    color: '#D2D2CE',
     value: '250',
   },
   {
@@ -572,6 +539,29 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
   {
     color: '#4E6605',
     value: '1000',
+  },
+];
+
+export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
+  {
+    color: '#E6E4E1',
+    value: '0',
+  },
+  {
+    color: '#D2D2CE',
+    value: '3',
+  },
+  {
+    color: '#9BAC7C',
+    value: '6',
+  },
+  {
+    color: '#709010',
+    value: '9',
+  },
+  {
+    color: '#4E6605',
+    value: '12',
   },
 ];
 

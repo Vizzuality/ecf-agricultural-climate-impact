@@ -1,3 +1,10 @@
+export const SCENARIOS = [
+  {
+    value: 'rcp85',
+    label: '2°C',
+  },
+];
+
 export const YEARS_PROYECCIONES_OLIVO = [
   {
     value: '1961_2000',

@@ -2,7 +2,7 @@ import MapOptimalZonesOliveMap from 'containers/sections/riesgo-agricola/map-zon
 
 const OptimalZonesOlive: React.FC = () => (
   <div>
-    <MapOptimalZonesOliveMap defaultActiveLayerId={'optimal_zones'} allowZoom={true} />
+    <MapOptimalZonesOliveMap defaultActiveLayerId={'zonas-optimas-olivo'} allowZoom={true} />
   </div>
 );
 

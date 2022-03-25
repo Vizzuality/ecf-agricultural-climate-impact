@@ -9,7 +9,7 @@ import type { ElRiesgoClimaticoMapTypes } from './types';
 import { YEARS, SCENARIOS } from './constants';
 
 export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
-  defaultActiveLayerId = 'optimal_zones_wine',
+  defaultActiveLayerId = 'zonas-optimas-olivo_wine',
   allowZoom = false,
 }) => {
   const yearsProyeccionesWine = YEARS.map((y) => {
