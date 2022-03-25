@@ -8,3 +8,10 @@ export const SCENARIOS = [
     label: '2°C',
   },
 ];
+
+export const YEARS = [
+  {
+    value: '2041–2070',
+    label: '2056',
+  },
+];

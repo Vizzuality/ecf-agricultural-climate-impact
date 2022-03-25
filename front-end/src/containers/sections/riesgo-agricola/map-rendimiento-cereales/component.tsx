@@ -6,7 +6,7 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { SCENARIOS, CROPS } from './constants';
+import { SCENARIOS, CROPS, YEARS } from './constants';
 
 export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'rendimiento-olivo',
@@ -14,6 +14,7 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
 }) => {
   const [crop, setCrop] = useState(CROPS[0]);
   const [scenario, setScenario] = useState(SCENARIOS[0]);
+  const [year] = useState(YEARS[0]);
 
   const handleCropChange = useCallback((thisCrop) => {
     setCrop(CROPS.find((c) => c.value === thisCrop));
@@ -31,23 +32,30 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16">
           <div className="flex flex-col">
-            <div className="inline-block w-1/2 pr-2 mb-4">
-              <MapSlider
-                values={SCENARIOS}
-                value={scenario}
-                onChange={handleScenarioSliderChange}
-              />
+            <div className="mb-4">
+              <div className="inline-block w-1/2 pr-2">
+                <MapSlider
+                  values={SCENARIOS}
+                  value={scenario}
+                  onChange={handleScenarioSliderChange}
+                />
+              </div>
+              <div className="inline-block w-1/2 pl-2">
+                <MapSlider values={YEARS} value={year} onChange={null} disabled={true} />
+              </div>
             </div>
             <div>
-              <Select
-                id="crops-selection"
-                initialSelected={CROPS[0].value}
-                onChange={handleCropChange}
-                options={CROPS}
-                placeholder="Elige el cultivo"
-                size="base"
-                theme="light"
-              />
+              <div>
+                <Select
+                  id="crops-selection"
+                  initialSelected={CROPS[0].value}
+                  onChange={handleCropChange}
+                  options={CROPS}
+                  placeholder="Elige el cultivo"
+                  size="base"
+                  theme="light"
+                />
+              </div>
             </div>
           </div>
         </div>

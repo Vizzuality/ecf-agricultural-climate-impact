@@ -27,3 +27,10 @@ export const CROPS = [
     label: 'Trigo',
   },
 ];
+
+export const YEARS = [
+  {
+    value: '2000_2020',
+    label: '2040',
+  },
+];

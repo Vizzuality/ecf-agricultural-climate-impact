@@ -6,7 +6,7 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { SCENARIOS } from './constants';
+import { SCENARIOS, YEARS } from './constants';
 
 export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'rendimiento-olivo',
@@ -14,6 +14,7 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
 }) => {
   const [geoType, setGeoType] = useState('municipios');
   const [scenario, setScenario] = useState(SCENARIOS[0]);
+  const [year] = useState(YEARS[0]);
 
   const handleGeoTypeChange = (type) => {
     setGeoType(type);
@@ -59,6 +60,9 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="inline-block w-1/2 pr-2">
             <MapSlider values={SCENARIOS} value={scenario} onChange={handleScenarioSliderChange} />
           </div>
+          <div className="inline-block w-1/2 pl-2">
+            <MapSlider values={YEARS} value={year} onChange={null} disabled={true} />
+          </div>
         </div>
         <div className="absolute top-0 right-0 w-3/5 h-screen mapa-sequias">
           <MapRisk
@@ -66,7 +70,7 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             allowZoom={allowZoom}
             geoType={geoType}
             scenario={scenario}
-            year={{ value: '2041–2070', label: '' }}
+            year={YEARS[0]}
             legend="rendimiento-olivo"
           />
         </div>
