@@ -176,7 +176,6 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-wew'}
             stroke={COLORS[1]}
             strokeWidth={2}
             data={aceituna.data}
@@ -184,7 +183,6 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-wew'}
             stroke={COLORS[2]}
             strokeWidth={2}
             data={uva.data}

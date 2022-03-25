@@ -169,7 +169,6 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             y={(d: DatasetItem) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-wew'}
             stroke="white"
             strokeDasharray={'2,2'}
             strokeWidth={2}

@@ -172,7 +172,6 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-wew'}
             stroke="white"
             strokeWidth={2}
             data={temperatureRCP85.data}
