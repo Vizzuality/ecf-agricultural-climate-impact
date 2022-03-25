@@ -18,16 +18,15 @@ export const MapSlider: FC<MapSliderType> = ({
         className={cx({
           'h-px my-5': true,
           'cursor-grab bg-black': !disabled,
-          'cursor-default bg-gray-500': !!disabled,
+          'cursor-default bg-transparent': !!disabled,
         })}
         min={0}
         max={values.length - 1}
         // thumbClassName="w-10 h-10 flex items-center justify-center rounded-full outline-none bg-white border border-black text-sm top-px transform -translate-y-1/2"
         thumbClassName={cx({
-          'w-10 h-10 flex items-center justify-center rounded-full outline-none bg-white border text-sm top-px transform -translate-y-1/2':
+          'w-10 h-10 flex items-center justify-center rounded-full outline-none bg-white border text-sm top-px transform -translate-y-1/2 border-black':
             true,
-          'border-black': !disabled,
-          'border-gray-400 text-gray-400 ': !!disabled,
+          'select-none': !!disabled,
         })}
         onChange={onChange}
         value={currentValue}
