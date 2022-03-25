@@ -111,7 +111,9 @@ const MapRisk: FC<MapVisualizationType> = ({
 
       const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
       const thisValue =
-        activeLayerId === 'precipitacion'
+        activeLayerId === 'incendios-dehesa'
+          ? properties?.[`value_${scenario.value}_${secondValue}`]
+          : activeLayerId === 'precipitacion'
           ? (thisDirtyValue * 3600 * 24 * 91.3 * 1000).toFixed(1)
           : Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
