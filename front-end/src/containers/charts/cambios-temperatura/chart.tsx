@@ -183,25 +183,27 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             const x = timeScale(getYear(d)) - w / 2 ?? 0;
             const y = valueScale(getValue(d)) - w / 2 ?? 0;
             return (
-              <g key={Math.random()}>
-                <rect
-                  id={`line-cap-${i}`}
-                  key={`line-cap-${i}`}
-                  width={w}
-                  height={w}
-                  x={x}
-                  y={y}
-                  fill="white"
-                />
-                <text
-                  x={timeScale(getYear(d)) + 10 ?? 0}
-                  y={valueScale(getValue(d)) ?? 0}
-                  fill="#EDF2F7"
-                  fontSize="12"
-                >
-                  <tspan>{LABELS_BY_SCENARIO[d?.scenario]}</tspan>
-                </text>
-              </g>
+              x && (
+                <g key={Math.random()}>
+                  <rect
+                    id={`line-cap-${i}`}
+                    key={`line-cap-${i}`}
+                    width={w}
+                    height={w}
+                    x={x}
+                    y={y}
+                    fill="white"
+                  />
+                  <text
+                    x={timeScale(getYear(d)) + 10 ?? 0}
+                    y={valueScale(getValue(d)) ?? 0}
+                    fill="#EDF2F7"
+                    fontSize="12"
+                  >
+                    <tspan>{LABELS_BY_SCENARIO[d?.scenario]}</tspan>
+                  </text>
+                </g>
+              )
             );
           })}
 
