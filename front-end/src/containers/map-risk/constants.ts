@@ -116,11 +116,11 @@ export const LAYERS = [
                 'interpolate',
                 ['linear'],
                 ['get', 'value_{{scenario}}_{{year}}'],
-                -35,
+                -20,
                 '#F52D00',
-                -10,
+                -0,
                 '#FFFFF5',
-                15,
+                20,
                 '#018571',
               ],
               'transparent',
@@ -179,11 +179,11 @@ export const LAYERS = [
                 'interpolate',
                 ['linear'],
                 ['get', 'value_{{scenario}}_{{crop}}'],
-                -25,
+                -20,
                 '#F52D00',
-                -5,
+                -0,
                 '#FFFFF5',
-                15,
+                20,
                 '#018571',
               ],
               'transparent',
@@ -515,15 +515,15 @@ export const LEGEND_ITEMS_CULTIVOS = [
 export const LEGEND_ITEMS_RENDIMIENTO = [
   {
     color: '#F52D00',
-    value: '-25%',
+    value: '-20%',
   },
   {
     color: '#FFFFF5',
-    value: '-5%',
+    value: '-10%',
   },
   {
     color: '#018571',
-    value: '15%',
+    value: '20%',
   },
 ];
 
