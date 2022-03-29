@@ -192,8 +192,8 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
                 key={`line-cap-${i}`}
                 width={w}
                 height={w}
-                x={x}
-                y={y}
+                x={x || 0}
+                y={y || 0}
                 // transform="rotate(2)"
                 fill="white"
               />
@@ -207,8 +207,8 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
           >
             <tspan>Calentamiento</tspan>
             <tspan
-              x={timeScale(getYear(lastWewPoint) + 3) ?? 0}
-              y={valueScale(getValue(lastWewPoint)) + 12 ?? 0}
+              x={(timeScale(getYear(lastWewPoint) + 3) ?? 0) || 0}
+              y={(valueScale(getValue(lastWewPoint)) + 12 ?? 0) || 0}
             >
               de 2ºC
             </tspan>
@@ -221,8 +221,8 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
           >
             <tspan>Calentamiento</tspan>
             <tspan
-              x={timeScale(getYear(lastWawPoint) + 3) ?? 0}
-              y={valueScale(getValue(lastWawPoint)) + 12 ?? 0}
+              x={(timeScale(getYear(lastWawPoint) + 3) ?? 0) || 0}
+              y={(valueScale(getValue(lastWawPoint)) + 12 ?? 0) || 0}
             >
               de 1.5ºC
             </tspan>
