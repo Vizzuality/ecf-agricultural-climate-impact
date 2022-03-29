@@ -345,15 +345,15 @@ export const LAYERS = [
               'Muy bajo',
               '#FFFFB2',
               'Bajo',
-              '#FECC5C',
+              '#FED976',
               'Medio',
-              '#FD8D3C',
+              '#FEB24C',
               'Alto',
+              '#FD8D3C',
+              'Muy alto',
               '#F03B20',
-              'Muy Alto',
-              '#BD0026',
               'Extremo',
-              'black',
+              '#BD0026',
               'transparent', // hide if no value
             ],
             'fill-opacity': 0.7,
@@ -586,20 +586,24 @@ export const LAYER_GRADIENT_INCENDIOS_DEHESA = [
     value: 'Muy bajo',
   },
   {
-    color: '#FECC5C',
+    color: '#FED976',
     value: 'Bajo',
   },
   {
-    color: '#FD8D3C',
+    color: '#FEB24C',
     value: 'Medio',
   },
   {
-    color: '#F03B20',
+    color: '#FD8D3C',
     value: 'Alto',
   },
   {
+    color: '#F03B20',
+    value: 'Muy alto',
+  },
+  {
     color: '#BD0026',
-    value: 'Muy Alto',
+    value: 'Extremo ',
   },
 ];
 
