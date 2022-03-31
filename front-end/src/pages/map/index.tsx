@@ -21,6 +21,32 @@ const PAGES = [
   { href: 'map/precipitacion/', label: 'Precipitación trimestre más húmedo' },
 ];
 
+// const PAGES = [
+//   { href: 'map/calentamiento.html', label: 'Proyecciones de calentamiento en España' },
+//   { href: 'map/sequias.html', label: 'Duración de las sequías a lo largo del año' },
+//   { href: 'map/cultivos.html', label: 'Superficie destinada a los cultivos' },
+//   {
+//     href: 'map/zonas-optimas-olivo.html',
+//     label: 'Cambio en zonas óptimas para el cultivo de olivo',
+//   },
+//   { href: 'map/rendimiento-olivo.html', label: 'Proyecciones de rendimiento del olivo' },
+//   {
+//     href: 'map/rendimiento-cereales.html',
+//     label: 'Proyecciones de rendimiento del cultivo del cereal',
+//   },
+//   {
+//     href: 'map/zonas-optimas-vino.html',
+//     label: 'Cambios en zonas óptimas para la producción de vino de calidad',
+//   },
+//   {
+//     href: 'map/sequias-dehesa.html',
+//     label: 'Duración de las sequías a lo largo del año en zonas de dehesa',
+//   },
+//   { href: 'map/incendios-dehesa.html', label: 'Riesgo de incendios en zonas de dehesa' },
+//   { href: 'map/aridez.html', label: 'Aridez' },
+//   { href: 'map/precipitacion.html', label: 'Precipitación trimestre más húmedo' },
+// ];
+
 const Index: React.FC = () => (
   <div className="p-12">
     <>

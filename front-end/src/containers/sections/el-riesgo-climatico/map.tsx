@@ -68,7 +68,6 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   };
 
   const onStepEnter = (e) => {
-    console.log('e:', e);
     handleActiveLayerChange(e.data.layerId);
   };
 

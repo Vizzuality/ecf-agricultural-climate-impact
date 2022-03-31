@@ -54,22 +54,10 @@ const MapRisk: FC<MapVisualizationType> = ({
       : activeLayerId === 'zonas-optimas-olivo'
       ? `${activeLayerId}_${year?.value}`
       : activeLayerId;
-  console.log('visibleLayerId:', visibleLayerId);
   const zonasOptimasMaskVisibility = activeLayerId === 'zonas-optimas-vino' ? 0.5 : 0;
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
-    // console.log('l.id === visibleLayerId:', l.id === visibleLayerId)
-    // LAYERS.map((l) => {
-    //   console.log(
-    //     'visibleLayerId:',
-    //     visibleLayerId,
-    //     ' --- l.id:',
-    //     l.id,
-    //     ' --- l.id === visibleLayerId:',
-    //     l.id === visibleLayerId,
-    //   );
-    // });
     const newLayers = LAYERS.map((l) => ({
       ...l,
       ...(true && {
@@ -92,7 +80,6 @@ const MapRisk: FC<MapVisualizationType> = ({
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
-    console.log('bounds:', bounds);
     return {
       bbox: BOUNDS[bounds],
       options: {
@@ -193,15 +180,11 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
-    if (e.features.length) {
-      console.log('hover:', e);
-    }
     const { center } = e;
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
 
-    console.log('data.value:', data.value);
     if (data.value && data.value !== 'NaN') {
       showTooltip({
         tooltipData: data,
@@ -212,17 +195,6 @@ const MapRisk: FC<MapVisualizationType> = ({
       hideTooltip();
     }
   };
-
-  // useEffect(() => {
-  //   setHighlightedRegion(
-  //     {
-  //       id: municipality.id,
-  //       source: 'calentamiento',
-  //       sourceLayer: 'Aumento_temperaturas',
-  //     },
-  //     'click',
-  //   );
-  // }, [municipality]);
 
   return (
     <div className="relative flex flex-col h-full">

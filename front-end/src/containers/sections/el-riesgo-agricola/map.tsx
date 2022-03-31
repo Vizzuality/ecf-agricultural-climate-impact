@@ -80,7 +80,6 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           : y.value.indexOf('-') >= 0
           ? y.value.split('-')
           : y.value.split('_');
-      // console.log('splitValues:', splitValues);
       const label = Math.floor(
         parseInt(splitValues[0]) + (parseInt(splitValues[1]) - parseInt(splitValues[0])) / 2,
       );
@@ -168,7 +167,6 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   );
 
   const onStepEnter = (e) => {
-    console.log('e:', e);
     handleActiveLayerChange(e.data);
   };
 
@@ -183,11 +181,6 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
     setCrop(getCrops(activeLayerId)?.[0]);
     setIndicators(getIndicators(activeLayerId));
     setIndicator(getIndicators(activeLayerId)?.[0]);
-
-    // console.log('activeLayerId:', activeLayerId);
-    // console.log('getScenarios(activeLayerId):', getScenarios(activeLayerId));
-    // console.log('getYears(activeLayerId):', getYears(activeLayerId));
-    // console.log('getIndicators(activeLayerId):', getIndicators(activeLayerId));
 
     if (activeLayerId === 'rendimiento-cereal') {
       setGeoType('comunidades');
