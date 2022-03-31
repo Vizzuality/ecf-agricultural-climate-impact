@@ -1,131 +1,139 @@
-/* eslint-disable prettier/prettier */
-import { FC, useState, useEffect, useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Line, LinePath } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
-import { useTooltip, useTooltipInPortal, Tooltip, defaultStyles } from '@visx/tooltip';
+import {
+  useTooltip,
+  useTooltipInPortal,
+  Tooltip,
+  defaultStyles,
+  TooltipWithBounds,
+} from '@visx/tooltip';
 import { localPoint } from '@visx/event';
+import { GlyphCircle } from '@visx/glyph';
 import { extent, bisector } from 'd3-array';
+import { format } from 'd3-format';
+
+import { DatasetItem, useClimateRiskData } from 'hooks/charts';
 
 // types
-import { ChartProps, TooltipData } from '../types';
+import type { ChartProps } from '../types';
 
-// constants
-// import { STEPS, WORDS } from './constants';
-// import { values } from 'lodash';
+// Defining selector functions
+const getValue = (d: DatasetItem) => d?.value;
+const getYear = (d: DatasetItem) => new Date(d?.year);
+const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).left;
 
-export const Chart: FC<ChartProps> = ({ width, height }) => {
-  const [historicData, setHistoricData] = useState([]);
-  const [wewData, setWewData] = useState([]);
-  const [wawData, setWawData] = useState([]);
-  const [lastWewPoint, setLastWewPoint] = useState([]);
-  const [lastWawPoint, setLastWawPoint] = useState([]);
+// Format date for axis
+const formatDate = (year: number) => year.toString();
+const formatValue = format(',.2s');
 
-  useEffect(() => {
-    fetch(
-      'https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/historic_GHG_emissions_spain.json',
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        setHistoricData(json);
-      });
-    fetch(
-      'https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/projected_WeW_GHG_emissions_spain.json',
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        setWewData(json);
-        setLastWewPoint(json[json.length - 1]);
-      });
-    fetch(
-      'https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/projected_WaW_GHG_emissions_spain.json',
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-        setWawData(json);
-        setLastWawPoint(json[json.length - 1]);
-      });
-  }, []);
+const margin = { top: 40, right: 100, bottom: 50, left: 85 };
+
+export const Chart: React.FC<ChartProps> = ({ width, height }) => {
+  const [historicData, wewData, wawData] = useClimateRiskData();
+  const isFetching = historicData.isFetching || wewData.isFetching || wawData.isFetching;
+
+  const lastHistoricPoint = useMemo(
+    () => historicData.data[historicData.data.length - 1],
+    [historicData],
+  );
+  const lastWewPoint = useMemo(() => wewData.data[wewData.data.length - 1], [wewData]);
+  const lastWawPoint = useMemo(() => wawData.data[wawData.data.length - 1], [wawData]);
 
   // size adjustments
-  const margin = { top: 20, right: 100, bottom: 20, left: 70 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  // Defining selector functions
-  const getValue = (d) => d.value;
-  const getYear = (d) => d.year;
-  const bisectDate = bisector((d) => new Date(d.year)).left;
+  // Whole data
+  const concatData = useMemo(
+    () => historicData.data.concat(wewData.data).concat(wawData.data),
+    [historicData.data, wawData.data, wewData.data],
+  );
 
-  // Format date for axis
-  const formatDate = (year) => year.toString();
-
-  const concatData = historicData.concat(wewData);
+  const getDataByYear = useCallback(
+    (data: DatasetItem) => concatData.filter((d) => d.year === data.year),
+    [concatData],
+  );
 
   // Defining scales
   // horizontal, x scale
-  const timeScale = scaleLinear({
-    range: [0, innerWidth],
-    domain: extent(concatData, getYear),
-    nice: true,
-  });
+  const timeScale = useMemo(
+    () =>
+      scaleLinear({
+        range: [0, innerWidth],
+        domain: extent(concatData, getYear),
+        clamp: true,
+      }),
+    [concatData, innerWidth],
+  );
 
   // vertical, y scale
-  const valueScale = scaleLinear({
-    range: [innerHeight, 0],
-    domain: extent(historicData, getValue),
-    nice: true,
-  });
+  const valueScale = useMemo(
+    () =>
+      scaleLinear({
+        range: [innerHeight, 0],
+        domain: extent(concatData, getValue),
+        clamp: true,
+      }),
+    [concatData, innerHeight],
+  );
 
   // tooltip
-  const { tooltipData, tooltipLeft, tooltipTop, tooltipOpen, showTooltip, hideTooltip } =
-    useTooltip<TooltipData>();
+  const { tooltipData, tooltipLeft, tooltipTop, showTooltip, hideTooltip } =
+    useTooltip<DatasetItem[]>();
 
   const { containerRef } = useTooltipInPortal({
     // use TooltipWithBounds
     detectBounds: true,
-    // when tooltip containers are scrolled, this will correctly update the Tooltip position
+    // when tooltip containers are scrolled,
+    // this will correctly update the Tooltip position
     scroll: true,
   });
 
   // tooltip handler
   const handleTooltip = useCallback(
     (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
+      if (isFetching) return null;
+
       const { x } = localPoint(event) || { x: 0 };
       const x0 = timeScale.invert(x - margin.left);
       const index = bisectDate(concatData, x0, 1);
       const d0 = concatData[index - 1];
       const d1 = concatData[index];
       let d = d0;
+
       if (d1 && getYear(d1)) {
         d = x0.valueOf() - getYear(d0).valueOf() > getYear(d1).valueOf() - x0.valueOf() ? d1 : d0;
       }
 
-      if (x0 > historicData[0].year && x0 < historicData[historicData.length - 1].year) {
-        showTooltip({
-          tooltipData: d,
-          tooltipLeft: x - margin.left,
-          tooltipTop: valueScale(getValue(d)),
-        });
-      }
+      const currentData = getDataByYear(d);
+      const values = currentData.map((d) => d.value);
+
+      showTooltip({
+        tooltipData: currentData,
+        tooltipLeft: x - margin.left,
+        tooltipTop: valueScale(Math.max(...values)),
+      });
     },
-    [timeScale, margin.left, bisectDate, concatData, historicData, showTooltip, valueScale],
+    [isFetching, timeScale, concatData, showTooltip, getDataByYear, valueScale],
   );
 
   return (
     <div className="relative">
       <svg ref={containerRef} width={width} height={height + margin.top}>
-        <Group
-          left={margin.left}
-          top={margin.top}
-        >
+        <Group left={margin.left} top={margin.top}>
+          <text
+            x={-margin.left}
+            y={innerHeight / 2}
+            transform={`rotate(-90, -${margin.left - 20}, ${margin.top + margin.bottom})`}
+            fontSize={10}
+            fill="white"
+            className="font-bold"
+          >
+            Tonnes of CO2
+          </text>
           <AxisLeft
             hideAxisLine={true}
             hideTicks={true}
@@ -154,21 +162,18 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
             })}
           />
           <LinePath
-            key={'line-historic'}
             stroke="white"
             strokeWidth={2}
-            strokeLinejoin="round"
-            data={historicData}
-            x={(d) => timeScale(getYear(d)) ?? 0}
-            y={(d) => valueScale(getValue(d)) ?? 0}
+            data={historicData.data}
+            x={(d: DatasetItem) => timeScale(getYear(d)) ?? 0}
+            y={(d: DatasetItem) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-wew'}
             stroke="white"
             strokeDasharray={'2,2'}
             strokeWidth={2}
             strokeLinecap="butt"
-            data={wewData}
+            data={[lastHistoricPoint, ...wewData.data]}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
@@ -178,7 +183,7 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
             strokeDasharray={'2,2'}
             strokeWidth={2}
             strokeLinecap="butt"
-            data={wawData}
+            data={[lastHistoricPoint, ...wawData.data]}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
@@ -187,106 +192,102 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
             const x = timeScale(getYear(d)) - w / 2 ?? 0;
             const y = valueScale(getValue(d)) - w / 2 ?? 0;
             return (
-              <rect
-                id={`line-cap-${i}`}
-                key={`line-cap-${i}`}
-                width={w}
-                height={w}
-                x={x || 0}
-                y={y || 0}
-                // transform="rotate(2)"
-                fill="white"
-              />
+              x && (
+                <g key={Math.random()}>
+                  <rect
+                    id={`line-cap-${i}`}
+                    key={`line-cap-${i}`}
+                    width={w}
+                    height={w}
+                    x={x}
+                    y={y}
+                    fill="white"
+                  />
+                </g>
+              )
             );
           })}
-          <text
-            x={timeScale(getYear(lastWewPoint) + 3) ?? 0}
-            y={valueScale(getValue(lastWewPoint)) ?? 0}
-            fill="#EDF2F7"
-            fontSize="12"
-          >
-            <tspan>Calentamiento</tspan>
-            <tspan
-              x={(timeScale(getYear(lastWewPoint) + 3) ?? 0) || 0}
-              y={(valueScale(getValue(lastWewPoint)) + 12 ?? 0) || 0}
+          {lastWewPoint && (
+            <text
+              x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
+              y={valueScale(getValue(lastWewPoint)) ?? 0}
+              fill="#EDF2F7"
+              fontSize="12"
             >
-              de 2ºC
-            </tspan>
-          </text>
-          <text
-            x={timeScale(getYear(lastWawPoint) + 3) ?? 0}
-            y={valueScale(getValue(lastWawPoint)) ?? 0}
-            fill="#EDF2F7"
-            fontSize="12"
-          >
-            <tspan>Calentamiento</tspan>
-            <tspan
-              x={(timeScale(getYear(lastWawPoint) + 3) ?? 0) || 0}
-              y={(valueScale(getValue(lastWawPoint)) + 12 ?? 0) || 0}
+              <tspan>Calentamiento</tspan>
+              <tspan
+                x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
+                y={valueScale(getValue(lastWewPoint)) + 12 ?? 0}
+              >
+                de 2ºC
+              </tspan>
+            </text>
+          )}
+          {lastWawPoint && (
+            <text
+              x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
+              y={valueScale(getValue(lastWawPoint)) ?? 0}
+              fill="#EDF2F7"
+              fontSize="12"
             >
-              de 1.5ºC
-            </tspan>
-          </text>
+              <tspan>Calentamiento</tspan>
+              <tspan
+                x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
+                y={valueScale(getValue(lastWawPoint)) + 12 ?? 0}
+              >
+                de 1.5ºC
+              </tspan>
+            </text>
+          )}
+
+          {/* Tooltip: line and circle */}
+          {tooltipData &&
+            tooltipData.map((d) => (
+              <g key={Math.random()}>
+                <Line
+                  from={{ x: tooltipLeft, y: valueScale(d.value) }}
+                  to={{ x: tooltipLeft, y: innerHeight + margin.top - 20 }}
+                  stroke="white"
+                  strokeWidth={2}
+                  pointerEvents="none"
+                  strokeDasharray="5,2"
+                />
+                <GlyphCircle
+                  left={tooltipLeft + 1}
+                  top={valueScale(d.value) + 1}
+                  size={110}
+                  fill="#B23E3E"
+                  stroke="white"
+                  strokeWidth={2}
+                />
+              </g>
+            ))}
           <rect
-            id="bg"
-            key="bg"
-            width="100%"
-            height="100%"
-            x="0"
-            y="0"
+            width={innerWidth}
+            height={innerHeight}
+            x={0}
+            y={0}
+            onTouchMove={handleTooltip}
             onMouseMove={handleTooltip}
-            onMouseOut={hideTooltip}
-            // transform="rotate(2)"
+            onMouseLeave={hideTooltip}
             fill="transparent"
           />
-          {tooltipData && (
-            <g>
-              <Line
-                from={{ x: tooltipLeft, y: tooltipTop }}
-                to={{ x: tooltipLeft, y: innerHeight + margin.top - 20 }}
-                stroke="white"
-                strokeWidth={2}
-                pointerEvents="none"
-                strokeDasharray="5,2"
-              />
-              <circle
-                cx={tooltipLeft}
-                cy={tooltipTop + 1}
-                r={4}
-                fill="black"
-                fillOpacity={0.1}
-                stroke="black"
-                strokeOpacity={0.1}
-                strokeWidth={2}
-                pointerEvents="none"
-              />
-              <circle
-                cx={tooltipLeft}
-                cy={tooltipTop}
-                r={4}
-                fill="#A93C3C"
-                stroke="white"
-                strokeWidth={2}
-                pointerEvents="none"
-              />
-            </g>
-          )}
         </Group>
       </svg>
-      {tooltipOpen && (
-        <Tooltip
+      {/* Tooltip: pop-up */}
+      {tooltipData && (
+        <TooltipWithBounds
           key={Math.random()}
-          top={tooltipTop - 38}
-          left={tooltipLeft + margin.left - 10}
+          top={tooltipTop}
+          left={tooltipLeft}
           style={{
             ...defaultStyles,
-            transform: 'translateX(-50%)',
             borderRadius: '0',
-            boxShadow: 'none',
-            padding: '10px',
           }}
+          offsetLeft={0}
+          offsetTop={-10}
         >
-          <span style={{
+          {/* <span style={{
             position: 'absolute',
             content: '',
             top: '100%',
@@ -297,16 +298,18 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
             borderRight: '5px solid transparent',
             borderTop: '5px solid white',
             transform: 'translateX(-50%)',
-          }}></span>
-          <strong>
-            {tooltipData.value} {tooltipData.unit}
-          </strong>
-        </Tooltip>
+          }} /> */}
+          {tooltipData.map((d) => (
+            <div className="font-bold" key={`tooltip-item-${Math.random()}`}>
+              {formatValue(d.value)} {d.unit}
+            </div>
+          ))}
+        </TooltipWithBounds>
       )}
-      {tooltipOpen && (
+      {tooltipData && (
         <Tooltip
           key={Math.random()}
-          top={innerHeight + 18.5}
+          top={innerHeight + margin.top - 1}
           left={tooltipLeft + margin.left - 10}
           style={{
             ...defaultStyles,
@@ -319,7 +322,7 @@ export const Chart: FC<ChartProps> = ({ width, height }) => {
             fontSize: '10px',
           }}
         >
-          <strong>{tooltipData.year}</strong>
+          <strong>{tooltipData[0].year}</strong>
         </Tooltip>
       )}
     </div>

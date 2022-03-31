@@ -8,6 +8,8 @@ import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 import { TITLE } from './constants';
 
 import ChartEmisionesCo2 from 'containers/charts/emisiones-co2';
+import ChartCambiosTempperatura from 'containers/charts/cambios-temperatura';
+import ChartProduccionesCultivos from 'containers/charts/producciones-cultivos';
 import ElRiesgoClimaticoMap from './map';
 
 export const ElRiesgoClimatico: FC = () => {
@@ -43,6 +45,12 @@ export const ElRiesgoClimatico: FC = () => {
             <div className="flex flex-col items-start w-full max-w-screen-xl pb-32 mx-auto">
               <div className="w-full">
                 <ChartEmisionesCo2 />
+              </div>
+              <div className="w-full">
+                <ChartCambiosTempperatura />
+              </div>
+              <div className="w-full">
+                <ChartProduccionesCultivos />
               </div>
             </div>
             <div className="flex w-full pt-16">
