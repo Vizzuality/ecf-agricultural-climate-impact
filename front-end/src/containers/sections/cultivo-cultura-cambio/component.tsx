@@ -21,7 +21,6 @@ export const CultivoCulturaCambio: FC = () => {
 
   const onStepEnter = (data) => {
     setCurrentStep(data.data);
-    console.log('enter', data.data);
   };
 
   const onStepProgress = (data) => {

@@ -268,7 +268,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
             id="legend-temperature-1"
             name={
               activeLayerId === 'calentamiento'
-                ? 'Grados de aumento en °C'
+                ? 'Grados de aumento en (°C)'
                 : 'Duración de las sequías (días)'
             }
           >

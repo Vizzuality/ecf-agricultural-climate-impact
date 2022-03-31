@@ -1,3 +1,5 @@
+export const MAP_SECTION_HEIGHT = '200vh';
+
 export const TITLE = 'El riesgo climático';
 
 export const SCENARIOS = [

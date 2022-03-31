@@ -1,3 +1,5 @@
+import { StringNullableChain } from 'lodash';
+
 export interface ScenarioType {
   value: string;
   label: string;
@@ -6,9 +8,17 @@ export interface YearType {
   value: string;
   label: string;
 }
+export interface CropType {
+  value: string;
+  label: string;
+}
 export interface MunicipalityType {
   id: number;
   name: string;
+}
+export interface IndicatorType {
+  value: string;
+  label: string;
 }
 
 export interface MapVisualizationType {
@@ -18,6 +28,10 @@ export interface MapVisualizationType {
   year?: YearType;
   municipality?: MunicipalityType;
   allowZoom?: boolean;
+  bounds?: string;
+  legend?: string;
+  crop?: CropType;
+  indicator?: IndicatorType;
 }
 export interface ViewPortTypes {
   zoom?: number;

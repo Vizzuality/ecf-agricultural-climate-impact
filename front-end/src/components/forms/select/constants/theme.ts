@@ -18,9 +18,9 @@ export default {
     },
   },
   light: {
-    container: 'text-gray-600 bg-transparent ring-1 ring-gray-400 rounded-3xl',
-    open: 'ring-2 ring-blue-400 bg-white text-gray-600 rounded-2xl',
-    closed: 'text-gray-400',
+    container: 'text-black bg-lightest-grey ring-1 ring-black',
+    open: 'ring-2 ring-black bg-white text-black',
+    closed: 'text-black',
     prefix: {
       base: 'text-gray-800',
     },
@@ -30,8 +30,8 @@ export default {
       disabled: 'text-gray-400',
     },
     item: {
-      base: 'text-sm text-gray-400',
-      highlighted: 'text-sm bg-gray-100 text-gray-800',
+      base: 'text-sm text-gray-600',
+      highlighted: 'text-sm bg-gray-100 text-black',
       disabled: 'text-sm opacity-50 pointer-events-none',
     },
   },

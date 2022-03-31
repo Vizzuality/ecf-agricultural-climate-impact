@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState, useRef } from 'react';
+import { FC, useCallback, useMemo, useState, useRef, useEffect } from 'react';
 
 import Map from 'components/map';
 import ZoomControls from 'components/map/controls/zoom';
@@ -7,10 +7,10 @@ import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 
 import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
 import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
-import LegendItem from 'components/map/legend/item';
-import LegendTypeBasic from 'components/map/legend/types/basic';
 
-import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, LEGEND_ITEMS } from './constants';
+import Legend from './legend';
+
+import { DEFAULT_VIEWPORT, LAYERS, BOUNDS } from './constants';
 
 import type {
   MapTypes,
@@ -20,12 +20,16 @@ import type {
   MapVisualizationType,
 } from './types';
 
-const MapVisualization: FC<MapVisualizationType> = ({
+const MapRisk: FC<MapVisualizationType> = ({
   activeLayerId,
-  geoType,
-  scenario,
-  year,
+  geoType = 'municipio',
+  scenario = { value: 'rcp45', label: '1.5°C' },
+  year = { value: 'none', label: '' },
   allowZoom,
+  bounds = 'spain',
+  legend,
+  crop,
+  indicator,
   // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
@@ -33,36 +37,71 @@ const MapVisualization: FC<MapVisualizationType> = ({
   const CLICK = useRef<EventTypes>({});
   const MAP = useRef<MapTypes>();
 
-  const promoteId = 'value';
+  const promoteId =
+    activeLayerId === 'cultivos'
+      ? 'value'
+      : activeLayerId === 'sequias-dehesa'
+      ? 'ID'
+      : geoType === 'municipios'
+      ? 'CODIGOINE'
+      : geoType === 'provincias'
+      ? 'CO_PROVINC'
+      : 'CO_CCAA';
+
+  const visibleLayerId =
+    activeLayerId === 'zonas-optimas-vino'
+      ? `${activeLayerId}_${indicator?.value}`
+      : activeLayerId === 'zonas-optimas-olivo'
+      ? `${activeLayerId}_${year?.value}`
+      : activeLayerId;
+  console.log('visibleLayerId:', visibleLayerId);
+  const zonasOptimasMaskVisibility = activeLayerId === 'zonas-optimas-vino' ? 0.5 : 0;
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
+    // console.log('l.id === visibleLayerId:', l.id === visibleLayerId)
+    // LAYERS.map((l) => {
+    //   console.log(
+    //     'visibleLayerId:',
+    //     visibleLayerId,
+    //     ' --- l.id:',
+    //     l.id,
+    //     ' --- l.id === visibleLayerId:',
+    //     l.id === visibleLayerId,
+    //   );
+    // });
     const newLayers = LAYERS.map((l) => ({
       ...l,
       ...(true && {
         params: {
-          year: year?.value.split(' - ').join('-') || '2010-2020',
-          scenario: scenario?.value || 'rcp45',
-          geoType: geoType || 'municipios',
-          visibility: l.id === activeLayerId ? 'visible' : 'none',
+          year: year?.value.split(' - ').join('-'),
+          scenario: scenario?.value,
+          geoType: geoType,
+          crop: crop?.value || '',
+          indicator: indicator?.value || '',
+          rasterVisibility: l.id === visibleLayerId ? 'visible' : 'none',
+          visibility: l.id === visibleLayerId ? 0.7 : 0,
+          zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
           promoteId,
-          // municipality,
         },
       }),
     }));
 
     return newLayers;
-  }, [activeLayerId, geoType, promoteId, year, scenario]);
+  }, [geoType, promoteId, year, scenario, crop, indicator, visibleLayerId]);
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
+    console.log('bounds:', bounds);
     return {
-      bbox: BOUNDS_SPAIN,
+      bbox: BOUNDS[bounds],
       options: {
         padding: 20,
       },
     };
-  }, []);
+  }, [bounds]);
+
+  const legendType = indicator?.value.length ? `${legend}_${indicator?.value}` : legend;
 
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
@@ -70,7 +109,6 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // Map zoom
   const handleZoom = useCallback((zoom) => {
-    console.log('zoom:', zoom);
     setViewport((prevViewport) => ({
       ...prevViewport,
       zoom,
@@ -91,17 +129,29 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
     if (e && features) {
       const properties = features.find((f) => f.source === activeLayerId)?.properties;
-      const id = properties?.ID;
+      const id = properties?.[promoteId] || properties?.ID || properties?.CODIGOINE;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
+      const unit = properties?.unit === 'm s-1' ? 'mm/mes' : properties?.unit;
+
+      const secondValue =
+        year.value !== 'none' ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
+
+      const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
+      const thisValue =
+        activeLayerId === 'incendios-dehesa'
+          ? properties?.[`value_${scenario.value}_${secondValue}`]
+          : activeLayerId === 'precipitacion'
+          ? thisDirtyValue?.toFixed(1)
+          : Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
 
       const data = {
         id,
         source,
         sourceLayer,
         title: properties?.NAMEUNIT || properties?.DS_PROVINC || properties?.DS_CCAA,
-        unit: properties?.unit,
-        value: properties?.value,
+        unit: unit,
+        value: properties?.value || thisValue,
       };
 
       return data;
@@ -143,14 +193,16 @@ const MapVisualization: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
-    console.log('hover:', e);
+    if (e.features.length) {
+      console.log('hover:', e);
+    }
     const { center } = e;
     const data = getRegionData(e);
 
     setHighlightedRegion(data, 'hover');
 
-    console.log('data.id:', data);
-    if (data.value) {
+    console.log('data.value:', data.value);
+    if (data.value && data.value !== 'NaN') {
       showTooltip({
         tooltipData: data,
         tooltipLeft: center.x,
@@ -180,14 +232,16 @@ const MapVisualization: FC<MapVisualizationType> = ({
           mapStyle="mapbox://styles/aslribeiro/ckvtoz37f27zd14uj0hsxy6j8"
           viewport={viewport}
           onMapViewportChange={handleViewport}
-          // scrollZoom={false}
-          // dragPan={false}
+          scrollZoom={allowZoom}
+          dragPan={allowZoom}
           dragRotate={false}
           onHover={handleHover}
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={['crops-fill-0']} // TODO: get them from tiles
+          interactiveLayerIds={
+            activeLayerId === 'zonas-optimas-vino' ? [] : [`${visibleLayerId}-fill-0`]
+          }
           bounds={mapBounds}
         >
           {(map) => (
@@ -236,18 +290,18 @@ const MapVisualization: FC<MapVisualizationType> = ({
             ></span>
             <div className="text-black">{tooltipData.title}</div>
             <div className="mt-1 text-black">
-              <strong>{tooltipData.value}</strong>
+              <strong>
+                {`${tooltipData.value}${tooltipData.unit ? ' ' + tooltipData.unit : ''}`}
+              </strong>
             </div>
           </Tooltip>
         )}
         <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
-          <LegendItem icon={null} id="legend-crops-1" name="Superficie destinada a cultivos clave">
-            <LegendTypeBasic className="text-sm text-black" items={LEGEND_ITEMS} />
-          </LegendItem>
+          <Legend legendType={legendType} />
         </div>
       </div>
     </div>
   );
 };
 
-export default MapVisualization;
+export default MapRisk;

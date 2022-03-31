@@ -61,11 +61,11 @@ export const LAYERS = [
         {
           type: 'line',
           'source-layer': 'Aumento_temperaturas',
-          featureState: {
-            id: 16,
-            source: 'calentamiento',
-            sourceLayer: 'Aumento_temperaturas',
-          },
+          // featureState: {
+          //   id: 16,
+          //   source: 'calentamiento',
+          //   sourceLayer: 'Aumento_temperaturas',
+          // },
           layout: {
             visibility: '{{visibility}}',
           },
@@ -79,7 +79,7 @@ export const LAYERS = [
   },
   {
     id: 'sequias',
-    name: 'Duración de las sequías a lo largo del ano',
+    name: 'Duración de las sequías a lo largo del año',
     type: 'vector',
     source: {
       type: 'vector',
@@ -103,17 +103,11 @@ export const LAYERS = [
               ['linear'],
               ['get', 'value_{{scenario}}_{{year}}'],
               0,
-              '#8bbdce',
-              15,
-              '#b9d09e',
-              30,
-              '#e6e36d',
-              45,
-              '#fdd74d',
-              60,
-              '#fead3d',
-              75,
-              '#ff822d',
+              '#057FFA',
+              50,
+              '#FECC4D',
+              100,
+              '#790B0B',
             ],
             'fill-opacity': 0.7,
           },
@@ -156,32 +150,15 @@ export const LAYER_GRADIENT_CALENTAMIENTO = [
 
 export const LAYER_GRADIENT_SEQUIAS = [
   {
-    color: '#8bbdce',
+    color: '#057FFA',
     value: '0',
   },
   {
-    color: '#b9d09e',
-    value: '15',
+    color: '#FECC4D',
+    value: '50',
   },
   {
-    color: '#e6e36d',
-    value: '30',
-  },
-  {
-    color: '#fdec55',
-    value: '',
-  },
-  {
-    color: '#fdd74d',
-    value: '45',
-  },
-  {
-    color: '#fead3d',
-    value: '60',
-  },
-
-  {
-    color: '#ff822d',
-    value: '75',
+    color: '#790B0B',
+    value: '100',
   },
 ];
