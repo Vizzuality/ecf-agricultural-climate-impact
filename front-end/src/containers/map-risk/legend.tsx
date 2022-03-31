@@ -34,15 +34,51 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
           </div>
         );
-      case 'cultivo-olivo':
+      case 'cultivos-olivar':
         return (
           <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-cultivo-olivo-1"
-              name="Superficie destinada a cultivos clave"
+              id="legend-cultivo-olivar-1"
+              name="Superficie destinada a cultivo del olivo"
             >
               <LegendTypeBasic className="text-sm text-black" items={[LEGEND_ITEMS_CULTIVOS[0]]} />
+            </LegendItem>
+          </div>
+        );
+      case 'cultivos-dehesa':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-cultivo-dehesa-1"
+              name="Superficie destinada a cultivo de dehesa"
+            >
+              <LegendTypeBasic className="text-sm text-black" items={[LEGEND_ITEMS_CULTIVOS[3]]} />
+            </LegendItem>
+          </div>
+        );
+      case 'cultivos-vinedo':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-cultivo-dehesa-1"
+              name="Superficie destinada a cultivo de viñedo"
+            >
+              <LegendTypeBasic className="text-sm text-black" items={[LEGEND_ITEMS_CULTIVOS[1]]} />
+            </LegendItem>
+          </div>
+        );
+      case 'cultivos-cereal':
+        return (
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-cultivo-cereals-1"
+              name="Superficie destinada a cultivo de cereales"
+            >
+              <LegendTypeBasic className="text-sm text-black" items={[LEGEND_ITEMS_CULTIVOS[2]]} />
             </LegendItem>
           </div>
         );

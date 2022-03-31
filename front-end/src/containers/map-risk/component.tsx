@@ -101,6 +101,8 @@ const MapRisk: FC<MapVisualizationType> = ({
     };
   }, [bounds]);
 
+  const legendType = indicator?.value.length ? `${legend}_${indicator?.value}` : legend;
+
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
   }, []);
@@ -295,7 +297,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           </Tooltip>
         )}
         <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
-          <Legend legendType={`${legend}_${indicator?.value}`} />
+          <Legend legendType={legendType} />
         </div>
       </div>
     </div>
