@@ -106,6 +106,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   };
 
   const [activeLayerId, setActiveLayerId] = useState(defaultActiveLayerId);
+  const [bounds, setBounds] = useState('spain');
   const [geoType, setGeoType] = useState('municipios');
   const [scenario, setScenario] = useState(getScenarios(defaultActiveLayerId)?.[0]);
   const [scenarios, setScenarios] = useState(getScenarios(defaultActiveLayerId));
@@ -118,9 +119,9 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   const [yearSliderValue, setYearSliderValue] = useState(0);
   const [scenarioSliderValue, setScenarioSliderValue] = useState(0);
 
-  const handleActiveLayerChange = useCallback((dataset) => {
-    // console.log('changing:', dataset);
-    setActiveLayerId(dataset);
+  const handleActiveLayerChange = useCallback((data) => {
+    setActiveLayerId(data.layerId);
+    setBounds(data.area);
   }, []);
 
   const handleScenarioSliderChange = useCallback(
@@ -168,7 +169,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
 
   const onStepEnter = (e) => {
     console.log('e:', e);
-    handleActiveLayerChange(e.data.layerId);
+    handleActiveLayerChange(e.data);
   };
 
   useEffect(() => {
@@ -277,11 +278,12 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             crop={crop}
             indicator={indicator}
             allowZoom={false}
+            bounds={bounds}
           />
         </div>
       </div>
       <Scrollama onStepEnter={onStepEnter} offset={0.5}>
-        <Step data={{ layerId: 'cultivos' }}>
+        <Step data={{ layerId: 'cultivos', area: 'spain' }}>
           <div className="relative w-2/5 p-16 pt-40" style={{ marginTop: '-100vh' }}>
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -298,24 +300,51 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos' }}>
+        <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia' }}>
           <div className="relative w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
-                <div className="font-serif text-2xl">Superficie destinada a los cultivos</div>
+                <div className="font-serif text-2xl">Olivar</div>
                 <div className="mt-12">
-                  El diseño e implementación de estrategias de prevención debe responder a la
-                  diversidad de ambientes y condiciones climáticas en las que prosperan nuestros
-                  cultivos (y sus distintas variedades), y también a la variabilidad geográfica de
-                  las consecuencias del cambio climático. A continuación, exploramos los efectos del
-                  cambio climático en cuatro tipos de zonas agrícolas de interés:{' '}
-                  <strong>olivares, viñedos, cereales, y dehesas</strong>.
+                  <p>
+                    Cultivado desde el tiempo de los fenicios y los romanos, la producción oleícola
+                    ha convertido a España en el principal productor y exportador mundial de aceite
+                    de oliva.
+                  </p>
+                  <p>
+                    <strong>
+                      En Andalucía está concentrando un 60% del área destinada a este cultivo del
+                      país.
+                    </strong>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'zonas-optimas-olivo' }}>
+        <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia' }}>
+          <div className="relative w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="mt-12">
+                  <p>
+                    Sin embargo, <strong>Andalucía</strong> –al igual que todo el sureste
+                    peninsular– también es una de las regiones que van a sufrir mayor{' '}
+                    <strong>riesgo de aridificación</strong> debido a la disminución generalizada de
+                    precipitaciones y el aumento de la duración y severidad de las sequías.
+                  </p>
+                  <p>
+                    Estos cambios en la precipitación afectarán a{' '}
+                    <strong>olivares tanto irrigados como de secano</strong>, disminuyendo su
+                    rendimiento en al menos un 3.5% y 7% si se superan los 1,5 ºC en más de 11% y
+                    23% respectivamente a partir de los 3 ºC de calentamiento.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step data={{ layerId: 'zonas-optimas-olivo', area: 'andalucia' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -324,7 +353,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 </div>
                 <div className="mt-12">
                   Las alteraciones en la temporalidad y abundancia de la precipitación van a
-                  provocar
+                  provocar{' '}
                   <strong>
                     cambios en las zonas geográficas óptimas para el cultivo de la aceituna
                   </strong>{' '}
@@ -338,7 +367,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'rendimiento-olivo' }}>
+        <Step data={{ layerId: 'rendimiento-olivo', area: 'andalucia' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -364,7 +393,50 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'rendimiento-cereal' }}>
+        <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon' }}>
+          <div className="relative w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="font-serif text-2xl">Cereales</div>
+                <div className="mt-12">
+                  <p>
+                    La producción de cereales es la más extendida de todos los cultivos en España
+                    (6MHa). El 90% de la producción se destina a cereales de invierno, trigo y
+                    cebada principalmente, casi en su totalidad (90%) de secano, y la mayoría se
+                    destina a piensos.
+                  </p>
+                  <p>
+                    <strong>
+                      En Castilla y León, donde la superficie destinada al cultivo de cereales es de
+                      aproximadamente 2MHa
+                    </strong>
+                    , se predice que las temperaturas podrían aumentar entre 1,6 y 2ºC en los
+                    próximos 30 años.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon' }}>
+          <div className="relative w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="font-serif text-2xl">
+                  Superficie destinada al cultivo de cereales
+                </div>
+                <div className="mt-12">
+                  Se espera que el rendimiento del cultivo de trigo{' '}
+                  <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong> Esta
+                  pérdida de rendimiento en cultivos de cereales de invierno como el trigo podría
+                  ser agravada por la reducción en precipitación y la severidad de la sequía
+                  primaveral.
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step data={{ layerId: 'rendimiento-cereal', area: 'castilla_leon' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -380,7 +452,40 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'zonas-optimas-vino' }}>
+        <Step data={{ layerId: 'rendimiento-cereal', area: 'castilla_leon' }}>
+          <div className="w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="font-serif text-2xl">Proyecciones de rendimiento de cereales</div>
+                <div className="mt-12">
+                  Las condiciones derivadas del cambio climático obligarían a tomar medidas de
+                  adaptación al cultivo de cereales como cambios en las variedades de cultivos,
+                  diferentes fechas de siembra y cosecha, cambios en el grado de mecanización o
+                  diferentes tipos de nutrientes y fertilizantes. Por lo que se espera que el Cambio
+                  Climático aumente la vulnerabilidad del sector si no existe una disminución real
+                  de la emisión de gases de efecto invernadero
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step data={{ layerId: 'cultivos-vinedo', area: 'castilla_la_mancha' }}>
+          <div className="relative w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="font-serif text-2xl">Viñedo</div>
+                <div className="mt-12">
+                  La calidad de las multiples variedades del vino español está reconocida
+                  globalmente. Esta diversidad en variedades de uva y la calidad final del vino
+                  responde a las distintas condiciones ambientales del territorio español: suelos,
+                  regímenes de precipitación, variaciones térmicas diurnas y estacionales,
+                  frecuencia e intensidad de heladas...
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step data={{ layerId: 'zonas-optimas-vino', area: 'castilla_la_mancha' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -388,21 +493,51 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                   Cambios en zonas óptimas para la producción de vino de calidad
                 </div>
                 <div className="mt-12">
-                  En Castilla la Mancha, las variedades que más se podrían ver afectadas por el
-                  cambio climático son variedades más tempranas como tempranillo o chardonnay ; que
-                  particularmente se cultivan en el noreste de la comunidad. Además, los cambios en
-                  Aunque el viñedo es una planta fuertemente adaptada a las condiciones
-                  mediterráneas y que necesita déficits hídricos moderados para potenciar su
-                  calidad, el aumento eventos climáticos extremos como olas de calor, períodos de
-                  sequía más extremos, descenso de la precipitación pero cada vez más concentrada en
-                  lluvias torrenciales tendría efectos negativos en calidad y rendimiento, además de
-                  aumentar la erosión de los suelos.
+                  <p>
+                    En Castilla la Mancha, las variedades que más se podrían ver afectadas por el
+                    cambio climático son variedades más tempranas como tempranillo o chardonnay; que
+                    particularmente se cultivan en el noreste de la comunidad. Además, los cambios
+                    en
+                  </p>
+                  <p>
+                    Aunque el viñedo es una planta fuertemente adaptada a las condiciones
+                    mediterráneas y que necesita déficits hídricos moderados para potenciar su
+                    calidad, el aumento eventos climáticos extremos como olas de calor, períodos de
+                    sequía más extremos, descenso de la precipitación pero cada vez más concentrada
+                    en lluvias torrenciales tendría efectos negativos en calidad y rendimiento,
+                    además de aumentar la erosión de los suelos.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'sequias-dehesa' }}>
+        <Step data={{ layerId: 'cultivos-dehesa', area: 'extremadura' }}>
+          <div className="relative w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="font-serif text-2xl">Dehesa</div>
+                <div className="mt-12">
+                  <p>
+                    La dehesa es un ejemplo ideal de gestión sostenible de un ecosistema
+                    mediterráneo con una <strong>extensión de 2.5 mHa</strong> particularmente
+                    centradas en el suroeste de la península donde conviven la actividad agrícola,
+                    ganadera, y forestal.
+                  </p>
+                  <p>
+                    La dehesa es un ejemplo ideal de gestión sostenible de un ecosistema
+                    mediterráneo con una extensión de ## mHa particularmente centradas en el
+                    suroeste de la península donde conviven la actividad agrícola, ganadera, y
+                    forestal. Dominada por pastos y con encinas, alcornoques, hayas, y pinos
+                    dispersos, la dehesa constituye el medio para el desarrollo de explotaciones de
+                    cerdos, ovejas, caballos y toros de gran valor a nivel nacional.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step data={{ layerId: 'sequias-dehesa', area: 'extremadura' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -410,20 +545,24 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                   Duración de las sequías a lo largo del año en zonas de dehesa.
                 </div>
                 <div className="mt-12">
-                  Extremadura concentra gran parte de la dehesa española, con 1.2 mHa que van a
-                  estar expuestas (como otros ecosistemas mediterráneos) al calentamiento y las
-                  sequías que serán consecuencia del cambio climático. El aumento de la temperatura
-                  o la reducción de las precipitaciones podría derivar por una parte en una menor
-                  producción vegetal, y por otra parte en el agostamiento de la vegetación herbácea.
-                  Como consecuencia, esto podría reducir la capacidad de carga animal por unidad de
-                  superficie y un posible déficit en la calidad de la dieta animal – menor
-                  digestibilidad, menor contenido en proteínas.
+                  <p>
+                    Extremadura concentra gran parte de la dehesa española, con 1.2 mHa que van a
+                    estar expuestas (como otros ecosistemas mediterráneos) al calentamiento y las
+                    sequías que serán consecuencia del cambio climático.
+                  </p>
+                  <p>
+                    El aumento de la temperatura o la reducción de las precipitaciones podría
+                    derivar por una parte en una menor producción vegetal, y por otra parte en el
+                    agostamiento de la vegetación herbácea. Como consecuencia, esto podría reducir
+                    la capacidad de carga animal por unidad de superficie y un posible déficit en la
+                    calidad de la dieta animal – menor digestibilidad, menor contenido en proteínas.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'incendios-dehesa' }}>
+        <Step data={{ layerId: 'incendios-dehesa', area: 'extremadura' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">

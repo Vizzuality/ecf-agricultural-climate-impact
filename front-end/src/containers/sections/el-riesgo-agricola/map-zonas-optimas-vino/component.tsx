@@ -1,12 +1,21 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useCallback, useState } from 'react';
 
+import Select from 'components/forms/select';
 import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { YEARS_PROYECCIONES_VINO, SCENARIOS_PROYECCIONES_VINO } from './constants';
+import {
+  YEARS_PROYECCIONES_VINO,
+  SCENARIOS_PROYECCIONES_VINO,
+  INDICATORS_PROYECCIONES_VINO,
+} from './constants';
+
+const INDICATORS = {
+  'zonas-optimas-vino': INDICATORS_PROYECCIONES_VINO,
+};
 
 export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'zonas-optimas-vino',
@@ -23,9 +32,22 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
     return y;
   });
 
+  const getIndicators = (layer) => {
+    return INDICATORS[layer];
+  };
+
   const [year, setYear] = useState(yearsProyeccionesWine[0]);
   const [scenario, setScenario] = useState({ value: 'baseline', label: '' });
+  const [indicator, setIndicator] = useState(getIndicators(defaultActiveLayerId)?.[0]);
+  const [indicators, setIndicators] = useState(getIndicators(defaultActiveLayerId));
   const [sliderValue, setSliderValue] = useState(0);
+
+  const handleIndicatorChange = useCallback(
+    (thisIndicator) => {
+      setIndicator(indicators.find((c) => c.value === thisIndicator));
+    },
+    [indicators],
+  );
 
   const handleYearSliderChange = (e) => {
     const currentYear = yearsProyeccionesWine[e];
@@ -44,6 +66,11 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
   const handleScenarioSliderChange = (e) => {
     setScenario(SCENARIOS_PROYECCIONES_VINO[e]);
   };
+
+  useEffect(() => {
+    setIndicators(getIndicators('zonas-optimas-vino'));
+    setIndicator(getIndicators('zonas-optimas-vino')?.[0]);
+  }, []);
 
   return (
     <div className="relative w-full overflow-hidden bg-lightest-grey">
@@ -69,6 +96,19 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
                 onChange={handleYearSliderChange}
               />
             </div>
+            <div>
+              <div>
+                <Select
+                  id="indicator-selection"
+                  initialSelected={indicator.value}
+                  onChange={handleIndicatorChange}
+                  options={indicators}
+                  placeholder="Elige el indicador"
+                  size="base"
+                  theme="light"
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className="absolute top-0 right-0 w-3/5 h-screen mapa-sequias">
@@ -77,6 +117,7 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
             allowZoom={allowZoom}
             scenario={scenario}
             year={year}
+            indicator={indicator}
             bounds="spain"
             legend="zonas-optimas-vino"
           />

@@ -9,13 +9,22 @@ export const DEFAULT_VIEWPORT = {
   minZoom: 5,
 };
 
-export const BOUNDS_SPAIN = [-9.38232421875, 35.92464453144099, 4.39453125, 43.89789239125797];
-export const BOUNDS_ANDALUCIA = [
-  -7.6025390625, 35.96022296929667, -1.5380859375, 38.81403111409755,
-];
-// export const BBOX_SPAIN = [
-//   [-9.38232421875, 35.92464453144099],
-//   [4.39453125, 43.89789239125797],
+export const BOUNDS = {
+  spain: [-9.38232421875, 35.92464453144099, 4.39453125, 43.89789239125797],
+  andalucia: [-7.6025390625, 35.96022296929667, -1.5380859375, 38.81403111409755],
+  castilla_leon: [-7.2125244140625, 40.04864272291728, -1.6644287109375, 43.29320031385282],
+  castilla_la_mancha: [
+    -5.482177734374983, 37.974514992024616, -0.8239746093749835, 41.36031866306708,
+  ],
+  extremadura: [-7.62451171875, 37.92686760148135, -4.592285156249999, 40.534676780615406],
+};
+
+// export const BOUNDS_SPAIN = [-9.38232421875, 35.92464453144099, 4.39453125, 43.89789239125797];
+// export const BOUNDS_ANDALUCIA = [
+//   -7.6025390625, 35.96022296929667, -1.5380859375, 38.81403111409755,
+// ];
+// export const BOUNDS_CASTILLA_LEON = [
+//   -7.2125244140625, 40.04864272291728, -1.6644287109375, 43.29320031385282,
 // ];
 
 export const LAYERS = [
@@ -53,6 +62,122 @@ export const LAYERS = [
               '#AE240F',
               '#90A070', // otherwise (= "Olivar")
             ],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'cultivos-dehesa',
+    name: 'Mapa de Cultivos',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Mapa_cultivos',
+          featureState: {
+            id: 16,
+            source: 'cultivos',
+            sourceLayer: 'Mapa_cultivos',
+          },
+          paint: {
+            'fill-color': ['match', ['get', 'value'], 'Dehesa', '#38A6A5', 'transparent'],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'cultivos-cereal',
+    name: 'Mapa de Cultivos',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Mapa_cultivos',
+          featureState: {
+            id: 16,
+            source: 'cultivos',
+            sourceLayer: 'Mapa_cultivos',
+          },
+          paint: {
+            'fill-color': ['match', ['get', 'value'], 'Cereal', '#EDAD08', 'transparent'],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'cultivos-vinedo',
+    name: 'Mapa de Cultivos',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Mapa_cultivos',
+          featureState: {
+            id: 16,
+            source: 'cultivos',
+            sourceLayer: 'Mapa_cultivos',
+          },
+          paint: {
+            'fill-color': ['match', ['get', 'value'], 'Viñedo', '#AE240F', 'transparent'],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'cultivos-olivar',
+    name: 'Mapa de Cultivos',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Mapa_cultivos',
+          featureState: {
+            id: 16,
+            source: 'cultivos',
+            sourceLayer: 'Mapa_cultivos',
+          },
+          paint: {
+            'fill-color': ['match', ['get', 'value'], 'Olivar', '#90A070', 'transparent'],
             'fill-opacity': '{{visibility}}',
           },
         },
@@ -275,6 +400,38 @@ export const LAYERS = [
   },
   // zonas-optimas-vino
   {
+    id: 'zonas-optimas-vino_zonas_alto_potencial_climático',
+    name: 'Zonas óptimas vino',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/zonas_alto_potencial_climático/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'zonas_alto_potencial_climático',
+          paint: {
+            'fill-color': [
+              'match',
+              ['get', 'value_{{scenario}}_{{year}}'],
+              '0.0',
+              'black',
+              '1.0',
+              'transparent',
+              'black',
+            ],
+            'fill-opacity': '{{zonasOptimasMaskVisibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
     id: 'zonas-optimas-vino_indice_frescor_nocturno',
     name: 'Zonas óptimas vino',
     type: 'vector',
@@ -386,46 +543,7 @@ export const LAYERS = [
       ],
     },
   },
-  // {
-  //   id: 'zonas-optimas-vino_zonas_alto_potencial_climático',
-  //   name: 'Zonas óptimas vino',
-  //   type: 'vector',
-  //   source: {
-  //     type: 'vector',
-  //     tiles: [
-  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/zonas_alto_potencial_climático/{z}/{x}/{y}.vector.pbf',
-  //     ],
-  //     promoteId: '{{promoteId}}',
-  //   },
-  //   render: {
-  //     layers: [
-  //       {
-  //         type: 'fill',
-  //         'source-layer': 'zonas_alto_potencial_climático',
-  //         paint: {
-  //           // 'fill-color': [
-  //           //   'match',
-  //           //   ['get', 'value_{{scenario}}_{{year}}'],
-  //           //   'Muy Fresco',
-  //           //   '#2C7BB6',
-  //           //   'Fresco',
-  //           //   '#ABD9E9',
-  //           //   'Templado cálido',
-  //           //   '#FFFFBF',
-  //           //   'Cálido',
-  //           //   '#FDAE61',
-  //           //   'Muy cálido',
-  //           //   '#D7191C',
-  //           //   'transparent',
-  //           // ],
-  //           'fill-color': 'red',
-  //           // 'fill-opacity': '{{visibility}}',
-  //           'fill-opacity': '1',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // },
+  // sequias-dehesa
   {
     id: 'sequias-dehesa',
     name: 'Zonas sequías dehesa',
@@ -700,6 +818,71 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO = [
   {
     color: '#4E6605',
     value: '12',
+  },
+];
+
+export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_FRESCOR_NOCTURNO = [
+  {
+    color: '#2C7BB6',
+    value: 'Muy fresco',
+  },
+  {
+    color: '#ABD9E9',
+    value: 'Fresco',
+  },
+  {
+    color: '#FFFFBF',
+    value: 'Templado',
+  },
+  {
+    color: '#FDAE61',
+    value: 'Cálido',
+  },
+];
+
+export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_HUGLIN = [
+  {
+    color: '#2C7BB6',
+    value: 'Muy fresco',
+  },
+  {
+    color: '#ABD9E9',
+    value: 'Fresco',
+  },
+  {
+    color: '#FFFFBF',
+    value: 'Templado cálido',
+  },
+  {
+    color: '#FDAE61',
+    value: 'Cálido',
+  },
+  {
+    color: '#D7191C',
+    value: 'Muy cálido',
+  },
+];
+
+export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_SEQUIA = [
+  {
+    color: '#7D100D',
+    value: 'Muy seco',
+  },
+  {
+    color: '#D18B37',
+    value: 'Seco',
+  },
+  {
+    color: '#FACB50',
+    value: 'Moderadamente seco',
+  },
+  {
+    color: '#679DB6',
+    value: 'Sub húmedo',
+  },
+  {
+    color: '#0980F8',
+    value: 'Húmedo',
   },
 ];
 

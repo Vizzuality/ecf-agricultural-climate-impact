@@ -9,7 +9,10 @@ import {
   LEGEND_ITEMS_CULTIVOS,
   LEGEND_ITEMS_RENDIMIENTO,
   LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO,
-  LEGEND_ITEMS_ZONAS_OPTIMAS_VINO,
+  // LEGEND_ITEMS_ZONAS_OPTIMAS_VINO,
+  LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_FRESCOR_NOCTURNO,
+  LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_HUGLIN,
+  LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_SEQUIA,
   LAYER_GRADIENT_SEQUIAS_DEHESA,
   LAYER_GRADIENT_INCENDIOS_DEHESA,
   LAYER_GRADIENT_ARIDEZ,
@@ -67,17 +70,39 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
           </div>
         );
-      case 'zonas-optimas-vino':
+      case 'zonas-optimas-vino_indice_frescor_nocturno':
         return (
-          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
             <LegendItem
               icon={null}
-              id="legend-zonas-optimas-vino-1"
-              name="Cambios en zonas óptimas para el cultivo de olivo"
+              id="legend-zonas-optimas-vino-frescor-nocturno-1"
+              name="Índice de frescor nocturno"
             >
-              <LegendTypeGradient
+              <LegendTypeChoropleth
                 className="text-sm text-black"
-                items={LEGEND_ITEMS_ZONAS_OPTIMAS_VINO}
+                items={LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_FRESCOR_NOCTURNO}
+              />
+            </LegendItem>
+          </div>
+        );
+      case 'zonas-optimas-vino_indice_huglin':
+        return (
+          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+            <LegendItem icon={null} id="legend-zonas-optimas-vino-huglin-1" name="Índice de huglin">
+              <LegendTypeChoropleth
+                className="text-sm text-black"
+                items={LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_HUGLIN}
+              />
+            </LegendItem>
+          </div>
+        );
+      case 'zonas-optimas-vino_indice_sequia':
+        return (
+          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+            <LegendItem icon={null} id="legend-zonas-optimas-vino-sequia-1" name="Índice de sequía">
+              <LegendTypeChoropleth
+                className="text-sm text-black break-all"
+                items={LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_SEQUIA}
               />
             </LegendItem>
           </div>

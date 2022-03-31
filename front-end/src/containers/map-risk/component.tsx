@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState, useRef } from 'react';
+import { FC, useCallback, useMemo, useState, useRef, useEffect } from 'react';
 
 import Map from 'components/map';
 import ZoomControls from 'components/map/controls/zoom';
@@ -10,7 +10,7 @@ import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 
 import Legend from './legend';
 
-import { DEFAULT_VIEWPORT, LAYERS, BOUNDS_SPAIN, BOUNDS_ANDALUCIA } from './constants';
+import { DEFAULT_VIEWPORT, LAYERS, BOUNDS } from './constants';
 
 import type {
   MapTypes,
@@ -55,6 +55,7 @@ const MapRisk: FC<MapVisualizationType> = ({
       ? `${activeLayerId}_${year?.value}`
       : activeLayerId;
   console.log('visibleLayerId:', visibleLayerId);
+  const zonasOptimasMaskVisibility = activeLayerId === 'zonas-optimas-vino' ? 0.5 : 0;
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
@@ -80,6 +81,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           indicator: indicator?.value || '',
           rasterVisibility: l.id === visibleLayerId ? 'visible' : 'none',
           visibility: l.id === visibleLayerId ? 0.7 : 0,
+          zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
           promoteId,
         },
       }),
@@ -90,8 +92,9 @@ const MapRisk: FC<MapVisualizationType> = ({
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
+    console.log('bounds:', bounds);
     return {
-      bbox: bounds === 'spain' ? BOUNDS_SPAIN : BOUNDS_ANDALUCIA,
+      bbox: BOUNDS[bounds],
       options: {
         padding: 20,
       },
@@ -292,7 +295,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           </Tooltip>
         )}
         <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
-          <Legend legendType={legend} />
+          <Legend legendType={`${legend}_${indicator?.value}`} />
         </div>
       </div>
     </div>
