@@ -15,7 +15,7 @@ import { GlyphCircle } from '@visx/glyph';
 import { extent, bisector } from 'd3-array';
 import { format } from 'd3-format';
 
-import { DatasetItem, useClimateRiskData } from 'hooks/charts';
+import { DatasetItem, useProduccionesCultivos } from 'hooks/charts';
 
 // types
 import type { ChartProps } from '../types';
@@ -31,16 +31,22 @@ const formatValue = format(',.2s');
 
 const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
-export const Chart: React.FC<ChartProps> = ({ width, height }) => {
-  const [historicData, wewData, wawData] = useClimateRiskData();
-  const isFetching = historicData.isFetching || wewData.isFetching || wawData.isFetching;
+const LABELS_BY_INDICATOR = {
+  'Producción de cereales grano': 'Cereal',
+  'Producción de aceituna': 'Aceituna',
+  'Producción de uva': 'Uva',
+};
 
-  const lastHistoricPoint = useMemo(
-    () => historicData.data[historicData.data.length - 1],
-    [historicData],
+const COLORS = ['#B23E3E', '#A1B57D', '#F9F5DB'];
+
+export const Chart: React.FC<ChartProps> = ({ width, height }) => {
+  const [cereales, aceituna, uva] = useProduccionesCultivos();
+  const isFetching = cereales.isFetching || aceituna.isFetching || uva.isFetching;
+
+  const lastPoints = useMemo(
+    () => [cereales.data, aceituna.data, uva.data].map((data) => data[data.length - 1]),
+    [cereales.data, aceituna.data, uva.data],
   );
-  const lastWewPoint = useMemo(() => wewData.data[wewData.data.length - 1], [wewData]);
-  const lastWawPoint = useMemo(() => wawData.data[wawData.data.length - 1], [wawData]);
 
   // size adjustments
   const innerWidth = width - margin.left - margin.right;
@@ -48,8 +54,8 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
 
   // Whole data
   const concatData = useMemo(
-    () => historicData.data.concat(wewData.data).concat(wawData.data),
-    [historicData.data, wawData.data, wewData.data],
+    () => cereales.data.concat(aceituna.data).concat(uva.data),
+    [cereales.data, aceituna.data, uva.data],
   );
 
   const getDataByYear = useCallback(
@@ -132,12 +138,13 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             fill="white"
             className="font-bold"
           >
-            Tonnes of CO2
+            Tonnes
           </text>
           <AxisLeft
             hideAxisLine={true}
             hideTicks={true}
             scale={valueScale}
+            tickFormat={formatValue}
             tickLabelProps={() => ({
               fill: '#EDF2F7',
               fontSize: 10,
@@ -162,32 +169,27 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             })}
           />
           <LinePath
-            stroke="white"
+            stroke={COLORS[0]}
             strokeWidth={2}
-            data={historicData.data}
-            x={(d: DatasetItem) => timeScale(getYear(d)) ?? 0}
-            y={(d: DatasetItem) => valueScale(getValue(d)) ?? 0}
-          />
-          <LinePath
-            stroke="white"
-            strokeDasharray={'2,2'}
-            strokeWidth={2}
-            strokeLinecap="butt"
-            data={[lastHistoricPoint, ...wewData.data]}
+            data={cereales.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-waw'}
-            stroke="white"
-            strokeDasharray={'2,2'}
+            stroke={COLORS[1]}
             strokeWidth={2}
-            strokeLinecap="butt"
-            data={[lastHistoricPoint, ...wawData.data]}
+            data={aceituna.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
-          {[lastWewPoint, lastWawPoint].map((d, i) => {
+          <LinePath
+            stroke={COLORS[2]}
+            strokeWidth={2}
+            data={uva.data}
+            x={(d) => timeScale(getYear(d)) ?? 0}
+            y={(d) => valueScale(getValue(d)) ?? 0}
+          />
+          {lastPoints.map((d, i) => {
             const w = 8;
             const x = timeScale(getYear(d)) - w / 2 ?? 0;
             const y = valueScale(getValue(d)) - w / 2 ?? 0;
@@ -203,42 +205,18 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
                     y={y}
                     fill="white"
                   />
+                  <text
+                    x={timeScale(getYear(d)) + 10 ?? 0}
+                    y={valueScale(getValue(d)) ?? 0}
+                    fill="#EDF2F7"
+                    fontSize="12"
+                  >
+                    <tspan>{LABELS_BY_INDICATOR[d?.indicator]}</tspan>
+                  </text>
                 </g>
               )
             );
           })}
-          {lastWewPoint && (
-            <text
-              x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
-              y={valueScale(getValue(lastWewPoint)) ?? 0}
-              fill="#EDF2F7"
-              fontSize="12"
-            >
-              <tspan>Calentamiento</tspan>
-              <tspan
-                x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
-                y={valueScale(getValue(lastWewPoint)) + 12 ?? 0}
-              >
-                de 2ºC
-              </tspan>
-            </text>
-          )}
-          {lastWawPoint && (
-            <text
-              x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
-              y={valueScale(getValue(lastWawPoint)) ?? 0}
-              fill="#EDF2F7"
-              fontSize="12"
-            >
-              <tspan>Calentamiento</tspan>
-              <tspan
-                x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
-                y={valueScale(getValue(lastWawPoint)) + 12 ?? 0}
-              >
-                de 1.5ºC
-              </tspan>
-            </text>
-          )}
 
           {/* Tooltip: line and circle */}
           {tooltipData &&
@@ -301,7 +279,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           }} /> */}
           {tooltipData.map((d) => (
             <div className="font-bold" key={`tooltip-item-${Math.random()}`}>
-              {formatValue(d.value)} {d.unit}
+              <span>{LABELS_BY_INDICATOR[d.indicator]}</span>: {formatValue(d.value)} {d.unit}
             </div>
           ))}
         </TooltipWithBounds>

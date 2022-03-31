@@ -15,7 +15,7 @@ import { GlyphCircle } from '@visx/glyph';
 import { extent, bisector } from 'd3-array';
 import { format } from 'd3-format';
 
-import { DatasetItem, useClimateRiskData } from 'hooks/charts';
+import { DatasetItem, useTemperatureData } from 'hooks/charts';
 
 // types
 import type { ChartProps } from '../types';
@@ -27,20 +27,23 @@ const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).le
 
 // Format date for axis
 const formatDate = (year: number) => year.toString();
-const formatValue = format(',.2s');
+const formatValue = format(',.2f');
 
 const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
-export const Chart: React.FC<ChartProps> = ({ width, height }) => {
-  const [historicData, wewData, wawData] = useClimateRiskData();
-  const isFetching = historicData.isFetching || wewData.isFetching || wawData.isFetching;
+const LABELS_BY_SCENARIO = {
+  rcp45: 'RCP45',
+  rcp85: 'RCP85',
+};
 
-  const lastHistoricPoint = useMemo(
-    () => historicData.data[historicData.data.length - 1],
-    [historicData],
+export const Chart: React.FC<ChartProps> = ({ width, height }) => {
+  const [temperatureRCP45, temperatureRCP85] = useTemperatureData();
+  const isFetching = temperatureRCP45.isFetching || temperatureRCP85.isFetching;
+
+  const lastPoints = useMemo(
+    () => [temperatureRCP45.data, temperatureRCP85.data].map((data) => data[data.length - 1]),
+    [temperatureRCP45.data, temperatureRCP85.data],
   );
-  const lastWewPoint = useMemo(() => wewData.data[wewData.data.length - 1], [wewData]);
-  const lastWawPoint = useMemo(() => wawData.data[wawData.data.length - 1], [wawData]);
 
   // size adjustments
   const innerWidth = width - margin.left - margin.right;
@@ -48,8 +51,8 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
 
   // Whole data
   const concatData = useMemo(
-    () => historicData.data.concat(wewData.data).concat(wawData.data),
-    [historicData.data, wawData.data, wewData.data],
+    () => temperatureRCP45.data.concat(temperatureRCP85.data),
+    [temperatureRCP45.data, temperatureRCP85.data],
   );
 
   const getDataByYear = useCallback(
@@ -132,7 +135,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
             fill="white"
             className="font-bold"
           >
-            Tonnes of CO2
+            Temperature ºC
           </text>
           <AxisLeft
             hideAxisLine={true}
@@ -164,30 +167,18 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           <LinePath
             stroke="white"
             strokeWidth={2}
-            data={historicData.data}
-            x={(d: DatasetItem) => timeScale(getYear(d)) ?? 0}
-            y={(d: DatasetItem) => valueScale(getValue(d)) ?? 0}
-          />
-          <LinePath
-            stroke="white"
-            strokeDasharray={'2,2'}
-            strokeWidth={2}
-            strokeLinecap="butt"
-            data={[lastHistoricPoint, ...wewData.data]}
+            data={temperatureRCP45.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
           <LinePath
-            key={'line-waw'}
             stroke="white"
-            strokeDasharray={'2,2'}
             strokeWidth={2}
-            strokeLinecap="butt"
-            data={[lastHistoricPoint, ...wawData.data]}
+            data={temperatureRCP85.data}
             x={(d) => timeScale(getYear(d)) ?? 0}
             y={(d) => valueScale(getValue(d)) ?? 0}
           />
-          {[lastWewPoint, lastWawPoint].map((d, i) => {
+          {lastPoints.map((d, i) => {
             const w = 8;
             const x = timeScale(getYear(d)) - w / 2 ?? 0;
             const y = valueScale(getValue(d)) - w / 2 ?? 0;
@@ -203,42 +194,18 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
                     y={y}
                     fill="white"
                   />
+                  <text
+                    x={timeScale(getYear(d)) + 10 ?? 0}
+                    y={valueScale(getValue(d)) ?? 0}
+                    fill="#EDF2F7"
+                    fontSize="12"
+                  >
+                    <tspan>{LABELS_BY_SCENARIO[d?.scenario]}</tspan>
+                  </text>
                 </g>
               )
             );
           })}
-          {lastWewPoint && (
-            <text
-              x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
-              y={valueScale(getValue(lastWewPoint)) ?? 0}
-              fill="#EDF2F7"
-              fontSize="12"
-            >
-              <tspan>Calentamiento</tspan>
-              <tspan
-                x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
-                y={valueScale(getValue(lastWewPoint)) + 12 ?? 0}
-              >
-                de 2ºC
-              </tspan>
-            </text>
-          )}
-          {lastWawPoint && (
-            <text
-              x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
-              y={valueScale(getValue(lastWawPoint)) ?? 0}
-              fill="#EDF2F7"
-              fontSize="12"
-            >
-              <tspan>Calentamiento</tspan>
-              <tspan
-                x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
-                y={valueScale(getValue(lastWawPoint)) + 12 ?? 0}
-              >
-                de 1.5ºC
-              </tspan>
-            </text>
-          )}
 
           {/* Tooltip: line and circle */}
           {tooltipData &&
@@ -301,7 +268,7 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
           }} /> */}
           {tooltipData.map((d) => (
             <div className="font-bold" key={`tooltip-item-${Math.random()}`}>
-              {formatValue(d.value)} {d.unit}
+              <span>{LABELS_BY_SCENARIO[d.scenario]}</span>: {formatValue(d.value)} {d.unit}
             </div>
           ))}
         </TooltipWithBounds>
