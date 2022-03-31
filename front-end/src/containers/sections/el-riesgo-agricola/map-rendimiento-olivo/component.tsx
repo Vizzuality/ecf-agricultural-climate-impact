@@ -6,22 +6,22 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { SCENARIOS, YEARS } from './constants';
+import { SCENARIOS_RENDIMIENTO_OLIVO, YEARS_RENDIMIENTO_OLIVO } from './constants';
 
 export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'rendimiento-olivo',
   allowZoom = false,
 }) => {
   const [geoType, setGeoType] = useState('municipios');
-  const [scenario, setScenario] = useState(SCENARIOS[0]);
-  const [year] = useState(YEARS[0]);
+  const [scenario, setScenario] = useState(SCENARIOS_RENDIMIENTO_OLIVO[0]);
+  const [year] = useState(YEARS_RENDIMIENTO_OLIVO[0]);
 
   const handleGeoTypeChange = (type) => {
     setGeoType(type);
   };
 
   const handleScenarioSliderChange = (e) => {
-    setScenario(SCENARIOS[e]);
+    setScenario(SCENARIOS_RENDIMIENTO_OLIVO[e]);
   };
 
   return (
@@ -58,10 +58,19 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16">
           <div className="inline-block w-1/2 pr-2">
-            <MapSlider values={SCENARIOS} value={scenario} onChange={handleScenarioSliderChange} />
+            <MapSlider
+              values={SCENARIOS_RENDIMIENTO_OLIVO}
+              value={scenario}
+              onChange={handleScenarioSliderChange}
+            />
           </div>
           <div className="inline-block w-1/2 pl-2">
-            <MapSlider values={YEARS} value={year} onChange={null} disabled={true} />
+            <MapSlider
+              values={YEARS_RENDIMIENTO_OLIVO}
+              value={year}
+              onChange={null}
+              disabled={true}
+            />
           </div>
         </div>
         <div className="absolute top-0 right-0 w-3/5 h-screen mapa-sequias">
@@ -70,7 +79,7 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             allowZoom={allowZoom}
             geoType={geoType}
             scenario={scenario}
-            year={YEARS[0]}
+            year={YEARS_RENDIMIENTO_OLIVO[0]}
             legend="rendimiento-olivo"
           />
         </div>

@@ -1,4 +1,4 @@
-import MapIncendiosDehesaMap from 'containers/sections/riesgo-agricola/map-aridez';
+import MapIncendiosDehesaMap from 'containers/sections/el-riesgo-agricola/map-aridez';
 
 const IncendiosDehesa: React.FC = () => (
   <div>

@@ -7,7 +7,7 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { YEARS_PRECIPITACION, SCENARIOS } from './constants';
+import { YEARS_PRECIPITACION, SCENARIOS_PRECIPITACION } from './constants';
 
 export const MapPrecipitacionMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'precipitacion',
@@ -26,7 +26,7 @@ export const MapPrecipitacionMap: FC<ElRiesgoClimaticoMapTypes> = ({
 
   const [geoType, setGeoType] = useState('municipios');
   const [year, setYear] = useState(yearsPrecipitacion[0]);
-  const [scenario, setScenario] = useState(SCENARIOS[0]);
+  const [scenario, setScenario] = useState(SCENARIOS_PRECIPITACION[0]);
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {
@@ -40,7 +40,7 @@ export const MapPrecipitacionMap: FC<ElRiesgoClimaticoMapTypes> = ({
   };
 
   const handleScenarioSliderChange = (e) => {
-    setScenario(SCENARIOS[e]);
+    setScenario(SCENARIOS_PRECIPITACION[e]);
   };
 
   return (
@@ -77,7 +77,7 @@ export const MapPrecipitacionMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
               <MapSlider
-                values={SCENARIOS}
+                values={SCENARIOS_PRECIPITACION}
                 value={scenario}
                 onChange={handleScenarioSliderChange}
               />

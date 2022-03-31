@@ -1,4 +1,4 @@
-export const SCENARIOS = [
+export const SCENARIOS_PROYECCIONES_OLIVO = [
   {
     value: 'rcp85',
     label: '2°C',

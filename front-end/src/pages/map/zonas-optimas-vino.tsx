@@ -1,4 +1,4 @@
-import MapOptimalZonesWineMap from 'containers/sections/riesgo-agricola/map-zonas-optimas-vino';
+import MapOptimalZonesWineMap from 'containers/sections/el-riesgo-agricola/map-zonas-optimas-vino';
 
 const OptimalZonesWine: React.FC = () => (
   <div>

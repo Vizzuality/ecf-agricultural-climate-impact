@@ -1,4 +1,4 @@
-import MapCultivosMap from 'containers/sections/riesgo-agricola/map-cultivos';
+import MapCultivosMap from 'containers/sections/el-riesgo-agricola/map-cultivos';
 
 const Cultivos: React.FC = () => (
   <div>

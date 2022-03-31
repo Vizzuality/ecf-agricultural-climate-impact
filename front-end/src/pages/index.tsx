@@ -7,6 +7,7 @@ import Hero from 'containers/sections/hero';
 // import MapVisualization from 'containers/map-visualization';
 import CultivoCulturaCambio from 'containers/sections/cultivo-cultura-cambio';
 import ElRiesgoClimatico from 'containers/sections/el-riesgo-climatico';
+import ElRiesgoAgricola from 'containers/sections/el-riesgo-agricola';
 // import DesafioGlobalHeadline from 'containers/sections/desafio-global/headline';
 // import DesafioGlobalNarrative from 'containers/sections/desafio-global/narrative';
 // import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/headline';
@@ -27,6 +28,9 @@ const Welcome: React.FC = () => {
         </Section>
         <Section id={SectionIDs.ElRiesgoClimatico} title="El Riesgo Climático">
           <ElRiesgoClimatico />
+        </Section>
+        <Section id={SectionIDs.ElRiesgoAgricola} title="El Riesgo Agricola">
+          <ElRiesgoAgricola />
         </Section>
         {/* <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
             <EconomiaEnRiesgoHeadline />

@@ -19,6 +19,7 @@ export const BOUNDS_ANDALUCIA = [
 // ];
 
 export const LAYERS = [
+  // cultivos
   {
     id: 'cultivos',
     name: 'Mapa de Cultivos',
@@ -40,9 +41,6 @@ export const LAYERS = [
             source: 'cultivos',
             sourceLayer: 'Mapa_cultivos',
           },
-          layout: {
-            visibility: '{{visibility}}',
-          },
           paint: {
             'fill-color': [
               'match',
@@ -55,20 +53,21 @@ export const LAYERS = [
               '#AE240F',
               '#90A070', // otherwise (= "Olivar")
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
         },
       ],
     },
   },
+  // zonas-optimas-olivo
   {
-    id: 'zonas-optimas-olivo',
+    id: 'zonas-optimas-olivo_1961_2000',
     name: 'Cambios en zonas óptimas',
     type: 'raster',
     source: {
       type: 'raster',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/{year}/{z}/{x}/{y}.png',
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/1961_2000/{z}/{x}/{y}.png',
       ],
       minzoom: 3,
       maxzoom: 12,
@@ -78,12 +77,83 @@ export const LAYERS = [
         {
           type: 'raster',
           layout: {
-            visibility: '{{visibility}}',
+            // opacity: 1,
+            visibility: '{{rasterVisibility}}',
           },
         },
       ],
     },
   },
+  {
+    id: 'zonas-optimas-olivo_2011_2040',
+    name: 'Cambios en zonas óptimas',
+    type: 'raster',
+    source: {
+      type: 'raster',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2011_2040/{z}/{x}/{y}.png',
+      ],
+      minzoom: 3,
+      maxzoom: 12,
+    },
+    render: {
+      layers: [
+        {
+          type: 'raster',
+          layout: {
+            visibility: '{{rasterVisibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'zonas-optimas-olivo_2041_2070',
+    name: 'Cambios en zonas óptimas',
+    type: 'raster',
+    source: {
+      type: 'raster',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2041_2070/{z}/{x}/{y}.png',
+      ],
+      minzoom: 3,
+      maxzoom: 12,
+    },
+    render: {
+      layers: [
+        {
+          type: 'raster',
+          layout: {
+            visibility: '{{rasterVisibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'zonas-optimas-olivo_2071_2100',
+    name: 'Cambios en zonas óptimas',
+    type: 'raster',
+    source: {
+      type: 'raster',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2071_2100/{z}/{x}/{y}.png',
+      ],
+      minzoom: 3,
+      maxzoom: 12,
+    },
+    render: {
+      layers: [
+        {
+          type: 'raster',
+          layout: {
+            visibility: '{{rasterVisibility}}',
+          },
+        },
+      ],
+    },
+  },
+  // rendimiento-olivo
   {
     id: 'rendimiento-olivo',
     name: 'Rendimiento Olivo',
@@ -100,14 +170,14 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Proyecciones_rendimiento_olivar',
-          featureState: {
-            id: 16,
-            source: 'rendimiento-olivo',
-            sourceLayer: 'Proyecciones_rendimiento_olivar',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
+          // featureState: {
+          //   id: 16,
+          //   source: 'rendimiento-olivo',
+          //   sourceLayer: 'Proyecciones_rendimiento_olivar',
+          // },
+          // layout: {
+          //   visibility: '{{visibility}}',
+          // },
           paint: {
             'fill-color': [
               'case',
@@ -125,20 +195,12 @@ export const LAYERS = [
               ],
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
         },
         {
           type: 'line',
           'source-layer': 'Proyecciones_rendimiento_olivar',
-          featureState: {
-            id: 16,
-            source: 'rendimiento-olivo',
-            sourceLayer: 'Proyecciones_rendimiento_olivar',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
@@ -147,6 +209,7 @@ export const LAYERS = [
       ],
     },
   },
+  // rendimiento-cereal
   {
     id: 'rendimiento-cereal',
     name: 'Rendimiento Cereales',
@@ -163,14 +226,14 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Proyecciones_rendimiento_cereal',
-          featureState: {
-            id: 16,
-            source: 'rendimiento-cereal',
-            sourceLayer: 'Proyecciones_rendimiento_cereal',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
+          // featureState: {
+          //   id: 16,
+          //   source: 'rendimiento-cereal',
+          //   sourceLayer: 'Proyecciones_rendimiento_cereal',
+          // },
+          // layout: {
+          //   visibility: '{{visibility}}',
+          // },
           paint: {
             'fill-color': [
               'case',
@@ -188,20 +251,20 @@ export const LAYERS = [
               ],
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
         },
         {
           type: 'line',
           'source-layer': 'Proyecciones_rendimiento_cereal',
-          featureState: {
-            id: 16,
-            source: 'rendimiento-cereal',
-            sourceLayer: 'Proyecciones_rendimiento_cereal',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
+          // featureState: {
+          //   id: 16,
+          //   source: 'rendimiento-cereal',
+          //   sourceLayer: 'Proyecciones_rendimiento_cereal',
+          // },
+          // layout: {
+          //   visibility: '{{visibility}}',
+          // },
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
@@ -210,14 +273,15 @@ export const LAYERS = [
       ],
     },
   },
+  // zonas-optimas-vino
   {
-    id: 'zonas-optimas-vino',
+    id: 'zonas-optimas-vino_indice_frescor_nocturno',
     name: 'Zonas óptimas vino',
     type: 'vector',
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/rejilla/{z}/{x}/{y}.vector.pbf',
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_frescor_nocturno/{z}/{x}/{y}.vector.pbf',
       ],
       promoteId: '{{promoteId}}',
     },
@@ -225,42 +289,143 @@ export const LAYERS = [
       layers: [
         {
           type: 'fill',
-          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
-          layout: {
-            visibility: '{{visibility}}',
-          },
+          'source-layer': 'indice_frescor_nocturno',
           paint: {
             'fill-color': [
-              'case',
-              ['has', 'value_{{scenario}}_{{year}}'],
-              [
-                'interpolate',
-                ['linear'],
-                ['get', 'value_{{scenario}}_{{year}}'],
-                1,
-                '#E6E4E1',
-                12,
-                '#4E6605',
-              ],
+              'match',
+              ['get', 'value_{{scenario}}_{{year}}'],
+              'Muy fresco',
+              '#2C7BB6',
+              'Fresco',
+              '#ABD9E9',
+              'Templado',
+              '#FFFFBF',
+              'Cálido',
+              '#FDAE61',
               'transparent',
             ],
-            'fill-opacity': 0.7,
-          },
-        },
-        {
-          type: 'line',
-          'source-layer': 'Zonas_alto_potencial_climático_viñedo',
-          layout: {
-            visibility: '{{visibility}}',
-          },
-          paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-            'line-color': '#000',
+            'fill-opacity': '{{visibility}}',
           },
         },
       ],
     },
   },
+  {
+    id: 'zonas-optimas-vino_indice_sequia',
+    name: 'Zonas óptimas vino',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_sequia/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'indice_sequia',
+          paint: {
+            'fill-color': [
+              'match',
+              ['get', 'value_{{scenario}}_{{year}}'],
+              'Muy seco',
+              '#7D100D',
+              'Seco',
+              '#D18B37',
+              'Moderadamente seco',
+              '#FACB50',
+              'Sub húmedo',
+              '#679DB6',
+              'Húmedo',
+              '#0980F8',
+              'transparent',
+            ],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'zonas-optimas-vino_indice_huglin',
+    name: 'Zonas óptimas vino',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_huglin/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'indice_huglin',
+          paint: {
+            'fill-color': [
+              'match',
+              ['get', 'value_{{scenario}}_{{year}}'],
+              'Muy Fresco',
+              '#2C7BB6',
+              'Fresco',
+              '#ABD9E9',
+              'Templado cálido',
+              '#FFFFBF',
+              'Cálido',
+              '#FDAE61',
+              'Muy cálido',
+              '#D7191C',
+              'transparent',
+            ],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+      ],
+    },
+  },
+  // {
+  //   id: 'zonas-optimas-vino_zonas_alto_potencial_climático',
+  //   name: 'Zonas óptimas vino',
+  //   type: 'vector',
+  //   source: {
+  //     type: 'vector',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/zonas_alto_potencial_climático/{z}/{x}/{y}.vector.pbf',
+  //     ],
+  //     promoteId: '{{promoteId}}',
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'fill',
+  //         'source-layer': 'zonas_alto_potencial_climático',
+  //         paint: {
+  //           // 'fill-color': [
+  //           //   'match',
+  //           //   ['get', 'value_{{scenario}}_{{year}}'],
+  //           //   'Muy Fresco',
+  //           //   '#2C7BB6',
+  //           //   'Fresco',
+  //           //   '#ABD9E9',
+  //           //   'Templado cálido',
+  //           //   '#FFFFBF',
+  //           //   'Cálido',
+  //           //   '#FDAE61',
+  //           //   'Muy cálido',
+  //           //   '#D7191C',
+  //           //   'transparent',
+  //           // ],
+  //           'fill-color': 'red',
+  //           // 'fill-opacity': '{{visibility}}',
+  //           'fill-opacity': '1',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
   {
     id: 'sequias-dehesa',
     name: 'Zonas sequías dehesa',
@@ -277,9 +442,6 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Indicadores_dehesa',
-          layout: {
-            visibility: '{{visibility}}',
-          },
           paint: {
             'fill-color': [
               'interpolate',
@@ -292,20 +454,12 @@ export const LAYERS = [
               100,
               '#790B0B',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
         },
         {
           type: 'line',
           'source-layer': 'Indicadores_dehesa',
-          featureState: {
-            id: 16,
-            source: 'sequias-dehesa',
-            sourceLayer: 'Indicadores_dehesa',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
@@ -330,14 +484,6 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Indicadores_dehesa',
-          featureState: {
-            id: 16,
-            source: 'incendios-dehesa',
-            sourceLayer: 'Indicadores_dehesa',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
           paint: {
             'fill-color': [
               'match',
@@ -356,20 +502,12 @@ export const LAYERS = [
               '#BD0026',
               'transparent', // hide if no value
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
         },
         {
           type: 'line',
           'source-layer': 'Indicadores_dehesa',
-          featureState: {
-            id: 16,
-            source: 'incendios-dehesa',
-            sourceLayer: 'Indicadores_dehesa',
-          },
-          layout: {
-            visibility: '{{visibility}}',
-          },
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
@@ -378,111 +516,111 @@ export const LAYERS = [
       ],
     },
   },
-  {
-    id: 'aridez',
-    name: 'Aridez',
-    type: 'vector',
-    source: {
-      type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
-      promoteId: '{{promoteId}}',
-    },
-    render: {
-      layers: [
-        {
-          type: 'fill',
-          'source-layer': 'Aridez',
-          layout: {
-            visibility: '{{visibility}}',
-          },
-          paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', 'value_{{scenario}}_{{year}}'],
-              0.1,
-              '#057FFA',
-              0.3,
-              '#FECC4D',
-              0.6,
-              '#790B0B',
-            ],
-            'fill-opacity': 0.7,
-          },
-        },
-        {
-          type: 'line',
-          'source-layer': 'Aridez',
-          // source: 'aridez',
-          // featureState: {
-          //   id: 16,
-          //   sourceLayer: 'Aridez',
-          // },
-          layout: {
-            visibility: '{{visibility}}',
-          },
-          paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-            'line-color': '#000',
-          },
-        },
-      ],
-    },
-  },
-  {
-    id: 'precipitacion',
-    name: 'Precipitacion',
-    type: 'vector',
-    source: {
-      type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
-      promoteId: '{{promoteId}}',
-    },
-    render: {
-      layers: [
-        {
-          type: 'fill',
-          'source-layer': 'Precipitacion_trimestre_mas_humedo',
-          layout: {
-            visibility: '{{visibility}}',
-          },
-          paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', 'value_{{scenario}}_{{year}}'],
-              0,
-              '#F2F0F4',
-              250,
-              '#BDC9E0',
-              500,
-              '#74A9CF',
-              750,
-              '#226F96',
-              1000,
-              '#034063',
-            ],
-            'fill-opacity': 0.7,
-          },
-        },
-        {
-          type: 'line',
-          'source-layer': 'Precipitacion_trimestre_mas_humedo',
-          layout: {
-            visibility: '{{visibility}}',
-          },
-          paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-            'line-color': '#000',
-          },
-        },
-      ],
-    },
-  },
+  // {
+  //   id: 'aridez',
+  //   name: 'Aridez',
+  //   type: 'vector',
+  //   source: {
+  //     type: 'vector',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+  //     ],
+  //     promoteId: '{{promoteId}}',
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'fill',
+  //         'source-layer': 'Aridez',
+  //         layout: {
+  //           visibility: '{{visibility}}',
+  //         },
+  //         paint: {
+  //           'fill-color': [
+  //             'interpolate',
+  //             ['linear'],
+  //             ['get', 'value_{{scenario}}_{{year}}'],
+  //             0.1,
+  //             '#057FFA',
+  //             0.3,
+  //             '#FECC4D',
+  //             0.6,
+  //             '#790B0B',
+  //           ],
+  //           'fill-opacity': 0.7,
+  //         },
+  //       },
+  //       {
+  //         type: 'line',
+  //         'source-layer': 'Aridez',
+  //         // source: 'aridez',
+  //         // featureState: {
+  //         //   id: 16,
+  //         //   sourceLayer: 'Aridez',
+  //         // },
+  //         layout: {
+  //           visibility: '{{visibility}}',
+  //         },
+  //         paint: {
+  //           'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+  //           'line-color': '#000',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
+  // {
+  //   id: 'precipitacion',
+  //   name: 'Precipitacion',
+  //   type: 'vector',
+  //   source: {
+  //     type: 'vector',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+  //     ],
+  //     promoteId: '{{promoteId}}',
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'fill',
+  //         'source-layer': 'Precipitacion_trimestre_mas_humedo',
+  //         layout: {
+  //           visibility: '{{visibility}}',
+  //         },
+  //         paint: {
+  //           'fill-color': [
+  //             'interpolate',
+  //             ['linear'],
+  //             ['get', 'value_{{scenario}}_{{year}}'],
+  //             0,
+  //             '#F2F0F4',
+  //             250,
+  //             '#BDC9E0',
+  //             500,
+  //             '#74A9CF',
+  //             750,
+  //             '#226F96',
+  //             1000,
+  //             '#034063',
+  //           ],
+  //           'fill-opacity': 0.7,
+  //         },
+  //       },
+  //       {
+  //         type: 'line',
+  //         'source-layer': 'Precipitacion_trimestre_mas_humedo',
+  //         layout: {
+  //           visibility: '{{visibility}}',
+  //         },
+  //         paint: {
+  //           'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+  //           'line-color': '#000',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
 ];
 
 export const LEGEND_ITEMS_CULTIVOS = [

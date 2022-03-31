@@ -1,4 +1,4 @@
-import MapRendimientoCerealesMap from 'containers/sections/riesgo-agricola/map-rendimiento-cereales';
+import MapRendimientoCerealesMap from 'containers/sections/el-riesgo-agricola/map-rendimiento-cereales';
 
 const RendimientoCereales: React.FC = () => (
   <div>

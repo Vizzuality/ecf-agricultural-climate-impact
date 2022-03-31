@@ -6,7 +6,7 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { YEARS_INCENDIOS_DEHESA, SCENARIOS } from './constants';
+import { YEARS_INCENDIOS_DEHESA, SCENARIOS_INCENDIOS_DEHESA } from './constants';
 
 export const MapIncendiosDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'incendios-dehesa',
@@ -24,7 +24,7 @@ export const MapIncendiosDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
   });
 
   const [year, setYear] = useState(yearsIncendiosDehesa[0]);
-  const [scenario, setScenario] = useState(SCENARIOS[0]);
+  const [scenario, setScenario] = useState(SCENARIOS_INCENDIOS_DEHESA[0]);
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {
@@ -34,7 +34,7 @@ export const MapIncendiosDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
   };
 
   const handleScenarioSliderChange = (e) => {
-    setScenario(SCENARIOS[e]);
+    setScenario(SCENARIOS_INCENDIOS_DEHESA[e]);
   };
 
   return (
@@ -45,7 +45,7 @@ export const MapIncendiosDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
               <MapSlider
-                values={SCENARIOS}
+                values={SCENARIOS_INCENDIOS_DEHESA}
                 value={scenario}
                 onChange={handleScenarioSliderChange}
               />

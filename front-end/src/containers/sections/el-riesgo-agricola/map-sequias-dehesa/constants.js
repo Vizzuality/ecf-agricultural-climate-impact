@@ -1,4 +1,4 @@
-export const SCENARIOS = [
+export const SCENARIOS_SEQUIAS_DEHESA = [
   {
     value: 'rcp45',
     label: '1.5°C',
@@ -9,7 +9,7 @@ export const SCENARIOS = [
   },
 ];
 
-export const YEARS_PRECIPITACION = [
+export const YEARS_SEQUIAS_DEHESA = [
   // {
   //   value: '1971 - 1990',
   //   label: '',

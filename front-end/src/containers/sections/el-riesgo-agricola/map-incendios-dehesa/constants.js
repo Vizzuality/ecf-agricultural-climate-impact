@@ -1,4 +1,4 @@
-export const SCENARIOS = [
+export const SCENARIOS_INCENDIOS_DEHESA = [
   {
     value: 'rcp45',
     label: '1.5°C',

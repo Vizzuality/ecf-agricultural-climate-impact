@@ -1,4 +1,4 @@
-import MapPrecipitacionMap from 'containers/sections/riesgo-agricola/map-precipitacion';
+import MapPrecipitacionMap from 'containers/sections/el-riesgo-agricola/map-precipitacion';
 
 const Precipitacion: React.FC = () => (
   <div>

@@ -6,7 +6,7 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { YEARS_SEQUIAS_DEHESA, SCENARIOS } from './constants';
+import { YEARS_SEQUIAS_DEHESA, SCENARIOS_SEQUIAS_DEHESA } from './constants';
 
 export const MapSequiasDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'sequias-dehesa',
@@ -24,7 +24,7 @@ export const MapSequiasDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
   });
 
   const [year, setYear] = useState(yearsProyeccionesSequiasDehesa[0]);
-  const [scenario, setScenario] = useState(SCENARIOS[0]);
+  const [scenario, setScenario] = useState(SCENARIOS_SEQUIAS_DEHESA[0]);
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {
@@ -34,7 +34,7 @@ export const MapSequiasDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
   };
 
   const handleScenarioSliderChange = (e) => {
-    setScenario(SCENARIOS[e]);
+    setScenario(SCENARIOS_SEQUIAS_DEHESA[e]);
     // const currentYear = yearsProyeccionesSequiasDehesa[0];
     // setSliderValue(yearsProyeccionesSequiasDehesa.indexOf(currentYear));
   };
@@ -47,7 +47,7 @@ export const MapSequiasDehesaMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
               <MapSlider
-                values={SCENARIOS}
+                values={SCENARIOS_SEQUIAS_DEHESA}
                 value={scenario}
                 onChange={handleScenarioSliderChange}
               />

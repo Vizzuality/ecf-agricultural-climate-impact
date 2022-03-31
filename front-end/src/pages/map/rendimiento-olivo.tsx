@@ -1,4 +1,4 @@
-import MapRendimientoOlivoMap from 'containers/sections/riesgo-agricola/map-rendimiento-olivo';
+import MapRendimientoOlivoMap from 'containers/sections/el-riesgo-agricola/map-rendimiento-olivo';
 
 const Cultivos: React.FC = () => (
   <div>

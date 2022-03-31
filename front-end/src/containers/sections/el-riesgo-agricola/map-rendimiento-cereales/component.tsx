@@ -6,22 +6,26 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { SCENARIOS, CROPS, YEARS } from './constants';
+import {
+  SCENARIOS_RENDIMIENTO_CEREALES,
+  CROPS_RENDIMIENTO_CEREALES,
+  YEARS_RENDIMIENTO_CEREALES,
+} from './constants';
 
 export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
-  defaultActiveLayerId = 'rendimiento-olivo',
+  defaultActiveLayerId = 'rendimiento-cereales',
   allowZoom = false,
 }) => {
-  const [crop, setCrop] = useState(CROPS[0]);
-  const [scenario, setScenario] = useState(SCENARIOS[0]);
-  const [year] = useState(YEARS[0]);
+  const [crop, setCrop] = useState(CROPS_RENDIMIENTO_CEREALES[0]);
+  const [scenario, setScenario] = useState(SCENARIOS_RENDIMIENTO_CEREALES[0]);
+  const [year] = useState(YEARS_RENDIMIENTO_CEREALES[0]);
 
   const handleCropChange = useCallback((thisCrop) => {
-    setCrop(CROPS.find((c) => c.value === thisCrop));
+    setCrop(CROPS_RENDIMIENTO_CEREALES.find((c) => c.value === thisCrop));
   }, []);
 
   const handleScenarioSliderChange = (e) => {
-    setScenario(SCENARIOS[e]);
+    setScenario(SCENARIOS_RENDIMIENTO_CEREALES[e]);
   };
 
   return (
@@ -35,22 +39,27 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
             <div className="mb-4">
               <div className="inline-block w-1/2 pr-2">
                 <MapSlider
-                  values={SCENARIOS}
+                  values={SCENARIOS_RENDIMIENTO_CEREALES}
                   value={scenario}
                   onChange={handleScenarioSliderChange}
                 />
               </div>
               <div className="inline-block w-1/2 pl-2">
-                <MapSlider values={YEARS} value={year} onChange={null} disabled={true} />
+                <MapSlider
+                  values={YEARS_RENDIMIENTO_CEREALES}
+                  value={year}
+                  onChange={null}
+                  disabled={true}
+                />
               </div>
             </div>
             <div>
               <div>
                 <Select
                   id="crops-selection"
-                  initialSelected={CROPS[0].value}
+                  initialSelected={CROPS_RENDIMIENTO_CEREALES[0].value}
                   onChange={handleCropChange}
-                  options={CROPS}
+                  options={CROPS_RENDIMIENTO_CEREALES}
                   placeholder="Elige el cultivo"
                   size="base"
                   theme="light"

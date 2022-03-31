@@ -1,4 +1,4 @@
-export const SCENARIOS = [
+export const SCENARIOS_RENDIMIENTO_OLIVO = [
   {
     value: 'rcp45',
     label: '1.5°C',
@@ -9,7 +9,7 @@ export const SCENARIOS = [
   },
 ];
 
-export const YEARS = [
+export const YEARS_RENDIMIENTO_OLIVO = [
   {
     value: '2041–2070',
     label: '2056',

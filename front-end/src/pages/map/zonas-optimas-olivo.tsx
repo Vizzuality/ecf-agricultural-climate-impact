@@ -1,4 +1,4 @@
-import MapOptimalZonesOliveMap from 'containers/sections/riesgo-agricola/map-zonas-optimas-olivo';
+import MapOptimalZonesOliveMap from 'containers/sections/el-riesgo-agricola/map-zonas-optimas-olivo';
 
 const OptimalZonesOlive: React.FC = () => (
   <div>

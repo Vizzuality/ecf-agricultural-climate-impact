@@ -16,6 +16,10 @@ export interface MunicipalityType {
   id: number;
   name: string;
 }
+export interface IndicatorType {
+  value: string;
+  label: string;
+}
 
 export interface MapVisualizationType {
   activeLayerId?: string;
@@ -27,6 +31,7 @@ export interface MapVisualizationType {
   bounds?: string;
   legend?: string;
   crop?: CropType;
+  indicator?: IndicatorType;
 }
 export interface ViewPortTypes {
   zoom?: number;

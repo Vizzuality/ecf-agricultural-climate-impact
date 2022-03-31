@@ -6,7 +6,7 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { YEARS_PROYECCIONES_OLIVO, SCENARIOS } from './constants';
+import { YEARS_PROYECCIONES_OLIVO, SCENARIOS_PROYECCIONES_OLIVO } from './constants';
 export const MapOptimalZonesOliveMap: FC<ElRiesgoClimaticoMapTypes> = ({
   defaultActiveLayerId = 'zonas-optimas-olivo',
   allowZoom = false,
@@ -23,7 +23,7 @@ export const MapOptimalZonesOliveMap: FC<ElRiesgoClimaticoMapTypes> = ({
   });
 
   const [year, setYear] = useState(yearsProyeccionesOlivo[0]);
-  const [scenario] = useState(SCENARIOS[0]);
+  const [scenario] = useState(SCENARIOS_PROYECCIONES_OLIVO[0]);
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {
@@ -39,7 +39,12 @@ export const MapOptimalZonesOliveMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
-              <MapSlider values={SCENARIOS} value={scenario} onChange={null} disabled={true} />
+              <MapSlider
+                values={SCENARIOS_PROYECCIONES_OLIVO}
+                value={scenario}
+                onChange={null}
+                disabled={true}
+              />
             </div>
             <div className="inline-block w-1/2 pl-2">
               <MapSlider

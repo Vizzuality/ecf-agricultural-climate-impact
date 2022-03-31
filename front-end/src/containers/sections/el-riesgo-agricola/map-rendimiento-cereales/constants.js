@@ -1,4 +1,4 @@
-export const SCENARIOS = [
+export const SCENARIOS_RENDIMIENTO_CEREALES = [
   {
     value: 'rcp45',
     label: '1.5°C',
@@ -9,7 +9,7 @@ export const SCENARIOS = [
   },
 ];
 
-export const CROPS = [
+export const CROPS_RENDIMIENTO_CEREALES = [
   {
     value: 'Cebada',
     label: 'Cebada',
@@ -28,9 +28,9 @@ export const CROPS = [
   },
 ];
 
-export const YEARS = [
+export const YEARS_RENDIMIENTO_CEREALES = [
   {
-    value: '2000_2020',
-    label: '2040',
+    value: '2030_2050',
+    label: '',
   },
 ];

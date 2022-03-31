@@ -1,4 +1,4 @@
-import MapSequiasDehesaMap from 'containers/sections/riesgo-agricola/map-sequias-dehesa';
+import MapSequiasDehesaMap from 'containers/sections/el-riesgo-agricola/map-sequias-dehesa';
 
 const SequiasDehesa: React.FC = () => (
   <div>

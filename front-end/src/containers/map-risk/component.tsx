@@ -29,6 +29,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   bounds = 'spain',
   legend,
   crop,
+  indicator,
   // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
@@ -47,8 +48,27 @@ const MapRisk: FC<MapVisualizationType> = ({
       ? 'CO_PROVINC'
       : 'CO_CCAA';
 
+  const visibleLayerId =
+    activeLayerId === 'zonas-optimas-vino'
+      ? `${activeLayerId}_${indicator?.value}`
+      : activeLayerId === 'zonas-optimas-olivo'
+      ? `${activeLayerId}_${year?.value}`
+      : activeLayerId;
+  console.log('visibleLayerId:', visibleLayerId);
+
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
+    // console.log('l.id === visibleLayerId:', l.id === visibleLayerId)
+    // LAYERS.map((l) => {
+    //   console.log(
+    //     'visibleLayerId:',
+    //     visibleLayerId,
+    //     ' --- l.id:',
+    //     l.id,
+    //     ' --- l.id === visibleLayerId:',
+    //     l.id === visibleLayerId,
+    //   );
+    // });
     const newLayers = LAYERS.map((l) => ({
       ...l,
       ...(true && {
@@ -57,14 +77,16 @@ const MapRisk: FC<MapVisualizationType> = ({
           scenario: scenario?.value,
           geoType: geoType,
           crop: crop?.value || '',
-          visibility: l.id === activeLayerId ? 'visible' : 'none',
+          indicator: indicator?.value || '',
+          rasterVisibility: l.id === visibleLayerId ? 'visible' : 'none',
+          visibility: l.id === visibleLayerId ? 0.7 : 0,
           promoteId,
         },
       }),
     }));
 
     return newLayers;
-  }, [activeLayerId, geoType, promoteId, year, scenario, crop]);
+  }, [geoType, promoteId, year, scenario, crop, indicator, visibleLayerId]);
   // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
@@ -212,16 +234,9 @@ const MapRisk: FC<MapVisualizationType> = ({
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={[
-            'cultivos-fill-0',
-            'rendimiento-olivo-fill-0',
-            'rendimiento-cereal-fill-0',
-            'zonas-optimas-vino-fill-0',
-            'sequias-dehesa-fill-0',
-            'incendios-dehesa-fill-0',
-            'aridez-fill-0',
-            'precipitacion-fill-0',
-          ]} // TODO: get them from tiles
+          interactiveLayerIds={
+            activeLayerId === 'zonas-optimas-vino' ? [] : [`${visibleLayerId}-fill-0`]
+          }
           bounds={mapBounds}
         >
           {(map) => (
