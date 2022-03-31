@@ -634,111 +634,93 @@ export const LAYERS = [
       ],
     },
   },
-  // {
-  //   id: 'aridez',
-  //   name: 'Aridez',
-  //   type: 'vector',
-  //   source: {
-  //     type: 'vector',
-  //     tiles: [
-  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-  //     ],
-  //     promoteId: '{{promoteId}}',
-  //   },
-  //   render: {
-  //     layers: [
-  //       {
-  //         type: 'fill',
-  //         'source-layer': 'Aridez',
-  //         layout: {
-  //           visibility: '{{visibility}}',
-  //         },
-  //         paint: {
-  //           'fill-color': [
-  //             'interpolate',
-  //             ['linear'],
-  //             ['get', 'value_{{scenario}}_{{year}}'],
-  //             0.1,
-  //             '#057FFA',
-  //             0.3,
-  //             '#FECC4D',
-  //             0.6,
-  //             '#790B0B',
-  //           ],
-  //           'fill-opacity': 0.7,
-  //         },
-  //       },
-  //       {
-  //         type: 'line',
-  //         'source-layer': 'Aridez',
-  //         // source: 'aridez',
-  //         // featureState: {
-  //         //   id: 16,
-  //         //   sourceLayer: 'Aridez',
-  //         // },
-  //         layout: {
-  //           visibility: '{{visibility}}',
-  //         },
-  //         paint: {
-  //           'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-  //           'line-color': '#000',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 'precipitacion',
-  //   name: 'Precipitacion',
-  //   type: 'vector',
-  //   source: {
-  //     type: 'vector',
-  //     tiles: [
-  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-  //     ],
-  //     promoteId: '{{promoteId}}',
-  //   },
-  //   render: {
-  //     layers: [
-  //       {
-  //         type: 'fill',
-  //         'source-layer': 'Precipitacion_trimestre_mas_humedo',
-  //         layout: {
-  //           visibility: '{{visibility}}',
-  //         },
-  //         paint: {
-  //           'fill-color': [
-  //             'interpolate',
-  //             ['linear'],
-  //             ['get', 'value_{{scenario}}_{{year}}'],
-  //             0,
-  //             '#F2F0F4',
-  //             250,
-  //             '#BDC9E0',
-  //             500,
-  //             '#74A9CF',
-  //             750,
-  //             '#226F96',
-  //             1000,
-  //             '#034063',
-  //           ],
-  //           'fill-opacity': 0.7,
-  //         },
-  //       },
-  //       {
-  //         type: 'line',
-  //         'source-layer': 'Precipitacion_trimestre_mas_humedo',
-  //         layout: {
-  //           visibility: '{{visibility}}',
-  //         },
-  //         paint: {
-  //           'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-  //           'line-color': '#000',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // },
+  {
+    id: 'aridez',
+    name: 'Aridez',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Aridez',
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0.1,
+              '#057FFA',
+              0.3,
+              '#FECC4D',
+              0.6,
+              '#790B0B',
+            ],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+        {
+          type: 'line',
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'precipitacion',
+    name: 'Precipitacion',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Precipitacion_trimestre_mas_humedo',
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0,
+              '#F2F0F4',
+              250,
+              '#BDC9E0',
+              500,
+              '#74A9CF',
+              750,
+              '#226F96',
+              1000,
+              '#034063',
+            ],
+            'fill-opacity': '{{visibility}}',
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Precipitacion_trimestre_mas_humedo',
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export const LEGEND_ITEMS_CULTIVOS = [
