@@ -1,11 +1,13 @@
+export const PRETITLE = 'Impactos del cambio climático  en la agricultura española';
+
 export const TITLE = [
   {
     id: 0,
-    content: 'Impactos del cambio climático',
+    content: 'Empieza la',
   },
   {
     id: 1,
-    content: 'en la agricultura española',
+    content: 'cuenta atrás',
   },
 ];
 

@@ -1,55 +1,57 @@
 import { FC, useState } from 'react';
-import { Scrollama, Step } from 'react-scrollama';
-import { motion, AnimatePresence, useViewportScroll } from 'framer-motion';
-import cx from 'classnames';
+import { motion } from 'framer-motion';
+// import cx from 'classnames';
 
 // utils
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 
 // constants
-import { TITLE, SUBTITLE, BUTTON_TEXT } from './constants';
-import { workerData } from 'worker_threads';
-import { title } from 'process';
+import { PRETITLE, TITLE, SUBTITLE, BUTTON_TEXT } from './constants';
+// import { workerData } from 'worker_threads';
+// import { title } from 'process';
 
 import Button from 'components/button';
 
 export const Hero: FC = () => {
-  const [currentOpacity, setCurrentOpacity] = useState(0);
+  // const [currentOpacity, setCurrentOpacity] = useState(0);
 
-  const onStepProgress = (data) => {
-    setCurrentOpacity((1 - data.progress) * 2);
-  };
+  // const onStepProgress = (data) => {
+  //   setCurrentOpacity((1 - data.progress) * 2);
+  // };
 
   return (
     <section>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          {/* <Scrollama onStepProgress={onStepProgress} progress={true} offset={1}> */}
-          {/* <Step> */}
           <div
             className="relative w-full h-screen"
             style={{
-              // height: '200vh',
-              zIndex: currentOpacity === 0 ? -1 : 20,
+              // zIndex: currentOpacity === 0 ? -1 : 20,
               background: 'url(images/intro-bg1.jpg)',
               backgroundSize: 'cover',
-              backgroundPosition: 'bottom',
-              // backgroundAttachment: 'fixed',
+              backgroundPosition: 'top',
+              top: '-64px',
             }}
           >
             <div
               className="flex flex-col items-center justify-center w-full h-screen"
-              style={{
-                // opacity: currentOpacity,
-                userSelect: currentOpacity === 0 ? 'none' : 'auto',
-              }}
+              // style={{
+              //   userSelect: currentOpacity === 0 ? 'none' : 'auto',
+              // }}
             >
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+                className="relative max-w-xl mx-auto mb-4 font-bold tracking-wide text-center uppercase opacity-0 text-md top-8"
+              >
+                <div>{PRETITLE}</div>
+              </motion.div>
               <motion.div
                 animate={{ y: '-2rem', opacity: 1 }}
                 transition={{ duration: 0.3 }}
                 className="relative opacity-0 top-8"
               >
-                <div className="flex flex-col items-center gap-2 px-1 font-serif text-6xl">
+                <div className="flex flex-col items-center gap-2 px-1 font-serif text-8xl">
                   {TITLE.map((item) => (
                     <span
                       key={`title-${item.id}`}
@@ -78,8 +80,6 @@ export const Hero: FC = () => {
               </motion.div>
             </div>
           </div>
-          {/* </Step> */}
-          {/* </Scrollama> */}
         </Desktop>
         <Mobile>
           <div>Mobile</div>

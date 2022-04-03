@@ -70,3 +70,7 @@
 .vizzuality__fixed-important {
   position: fixed !important;
 }
+
+.headroom--pinned {
+  background: white;
+}

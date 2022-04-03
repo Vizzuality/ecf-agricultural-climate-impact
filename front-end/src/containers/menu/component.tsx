@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react';
-import { motion } from 'framer-motion';
 import cx from 'classnames';
 import Link from 'next/link';
+import Headroom from 'react-headroom';
 
 // utils
 import { MediaContextProvider, Desktop, Mobile } from 'utils/responsive';
@@ -15,7 +15,6 @@ import { useAppContext } from 'hooks/use-app-context';
 import { SECTIONS } from './constants';
 
 export const Menu: FC = () => {
-  // const [open, setOpen] = useState<boolean>(false);
   const { currentSection, setCurrentSection } = useAppContext();
   // const variants = {
   //   open: { left: 0 },
@@ -31,11 +30,8 @@ export const Menu: FC = () => {
     <div>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <motion.nav
-            className="fixed top-0 left-0 z-30 flex w-full h-16 text-black bg-white"
-            // transition={{ duration: 1 }}
-          >
-            <div className="relative flex justify-between w-full max-w-screen-xl mx-auto">
+          <Headroom>
+            <div className="flex justify-between w-full max-w-screen-xl mx-auto">
               <div className="flex items-center">
                 <img className="w-24" src="images/logo-coag.png" alt="COAG" />
               </div>
@@ -62,7 +58,7 @@ export const Menu: FC = () => {
                 </ul>
               </div>
             </div>
-          </motion.nav>
+          </Headroom>
         </Desktop>
         <Mobile>
           <div></div>
