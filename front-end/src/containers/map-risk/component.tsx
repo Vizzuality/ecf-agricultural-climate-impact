@@ -201,7 +201,7 @@ const MapRisk: FC<MapVisualizationType> = ({
       <div className="absolute top-0 left-0 right-0 h-full">
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-          mapStyle="mapbox://styles/aslribeiro/cl1kvmt3j002z14o61sjdw74x"
+          mapStyle="mapbox://styles/aslribeiro/cl1l03yhp000514pi3penba92"
           viewport={viewport}
           onMapViewportChange={handleViewport}
           scrollZoom={allowZoom}
