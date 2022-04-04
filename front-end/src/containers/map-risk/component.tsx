@@ -63,7 +63,7 @@ const MapRisk: FC<MapVisualizationType> = ({
 
     // console.log('visibleLayerId:', visibleLayerId, 'indicator?.value', indicator?.value);
     if (visibleLayer) {
-      visibleLayer.params = {
+      visibleLayer['params'] = {
         year: year?.value.split(' - ').join('-'),
         scenario: scenario?.value,
         geoType: geoType,
