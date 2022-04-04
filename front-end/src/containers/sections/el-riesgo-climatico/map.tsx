@@ -140,9 +140,11 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
-                <div className="mt-12">
-                  Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
-                  <strong>aridificación</strong>.
+                <div className="mt-12 text-lg">
+                  Asociado al calentamiento, la Península Ibérica se verá afectada por la
+                  <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
+                  asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
+                  incidencia de incendios forestales y erosión del suelo.
                 </div>
               </div>
             </div>
@@ -152,10 +154,8 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
-                <div className="font-serif text-2xl">
-                  Duración de las sequías a lo largo del año
-                </div>
-                <div className="mt-12">
+                <div className="font-serif text-2xl">Proyecciones de sequías</div>
+                <div className="mt-12 text-lg">
                   <p>
                     Se espera un{' '}
                     <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,

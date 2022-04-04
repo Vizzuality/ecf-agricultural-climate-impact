@@ -28,7 +28,7 @@ export const ElRiesgoClimatico: FC = () => {
                   className="absolute top-0 left-0 z-0 h-full bg-white"
                 />
               </h1>
-              <div className="py-16 text-white" style={{ columns: '2' }}>
+              <div className="py-16 text-lg text-white" style={{ columns: '2' }}>
                 <p>
                   El aumento de las emisiones de gases de efecto invernadero a nivel global está
                   provocando cambios en los patrones de temperatura, precipitaciones, y la
@@ -62,7 +62,7 @@ export const ElRiesgoClimatico: FC = () => {
             </div>
           </div>
           <div className="w-full bg-white">
-            <div className="flex flex-col items-start w-full max-w-screen-xl pt-16 mx-auto">
+            <div className="flex flex-col items-start w-full max-w-screen-xl pt-16 mx-auto text-lg">
               <div className="py-4" style={{ paddingLeft: '50%' }}>
                 Los impactos del aumento de la temperatura serían visibles no solo en la agricultura
                 sino también sobre la población, biodiversidad, océanos, y ecosistemas terrestres a

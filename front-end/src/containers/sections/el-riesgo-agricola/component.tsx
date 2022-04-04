@@ -26,7 +26,7 @@ export const ElRiesgoAgricola: FC = () => {
                   className="absolute top-0 left-0 z-0 h-full bg-white"
                 />
               </h1>
-              <div className="py-16 text-white" style={{ columns: '2' }}>
+              <div className="py-16 text-lg text-white" style={{ columns: '2' }}>
                 <p>
                   La dieta mediterránea es más que una fuente de salud para la población española;
                   también es gastronomía y cultura que exportamos a países alrededor del mundo. No
@@ -48,7 +48,7 @@ export const ElRiesgoAgricola: FC = () => {
               </div>
             </div>
             <div className="flex flex-col items-start w-full max-w-screen-lg mx-auto">
-              <div className="pt-8 pb-16 text-white" style={{ paddingLeft: '50%' }}>
+              <div className="pt-8 pb-16 text-lg text-white" style={{ paddingLeft: '50%' }}>
                 A raíz de las consecuencias del cambio climático, la producción agrícola podría
                 estar en riesgo, y consecuentemente afectar al valor nutricional, la experiencia de
                 consumo, y la recepción de los productos tanto a nivel nacional como internacional.

@@ -23,7 +23,7 @@ export const CultivoCulturaResiliencia: FC = () => {
                   </div>
                 </div>
                 <div className="py-16 text-white" style={{ columns: '2' }}>
-                  <p className="my-4">
+                  <p className="mb-4">
                     No hay duda de que el cambio climático va a afectar al paisaje agrícola español.
                     Las grandes extensiones que ocupan los olivares andaluces se podrían ver
                     reducidas; los campos de cereales castellanoleoneses podrían ver su producción

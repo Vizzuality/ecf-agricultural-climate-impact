@@ -201,11 +201,12 @@ const MapRisk: FC<MapVisualizationType> = ({
       <div className="absolute top-0 left-0 right-0 h-full">
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-          mapStyle="mapbox://styles/aslribeiro/ckvtoz37f27zd14uj0hsxy6j8"
+          mapStyle="mapbox://styles/aslribeiro/cl1kqes07000h15pmzxcid8us"
           viewport={viewport}
           onMapViewportChange={handleViewport}
           scrollZoom={allowZoom}
-          dragPan={allowZoom}
+          dragPan={true}
+          doubleClickZoom={true}
           dragRotate={false}
           onHover={handleHover}
           // onClick={handleClick} // TODO: add this? Remeber the problems
@@ -226,11 +227,9 @@ const MapRisk: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        {allowZoom && (
-          <div className="absolute z-10 top-10 right-5">
-            <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
-          </div>
-        )}
+        <div className="absolute z-10 top-10 right-5">
+          <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
+        </div>
         {tooltipOpen && (
           <Tooltip
             key={Math.random()}

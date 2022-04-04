@@ -276,13 +276,14 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           />
         </div>
       </div>
+
       <Scrollama onStepEnter={onStepEnter} offset={0.5}>
         <Step data={{ layerId: 'cultivos', area: 'spain' }}>
           <div className="relative w-2/5 p-16 pt-40" style={{ marginTop: '-100vh' }}>
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Superficie destinada a los cultivos</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   El diseño e implementación de estrategias de prevención debe responder a la
                   diversidad de ambientes y condiciones climáticas en las que prosperan nuestros
                   cultivos (y sus distintas variedades), y también a la variabilidad geográfica de
@@ -299,7 +300,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Olivar</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     Cultivado desde el tiempo de los fenicios y los romanos, la producción oleícola
                     ha convertido a España en el principal productor y exportador mundial de aceite
@@ -320,7 +321,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           <div className="relative w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     Sin embargo, <strong>Andalucía</strong> –al igual que todo el sureste
                     peninsular– también es una de las regiones que van a sufrir mayor{' '}
@@ -345,7 +346,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 <div className="font-serif text-2xl">
                   Cambio en zonas óptimas para el cultivo de olivo
                 </div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   Las alteraciones en la temporalidad y abundancia de la precipitación van a
                   provocar{' '}
                   <strong>
@@ -366,7 +367,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de rendimiento del olivo</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     Además de estos cambios en la distribución geográfica de las zonas óptimas para
                     cultivo, se podría esperar un{' '}
@@ -392,7 +393,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Cereales</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     La producción de cereales es la más extendida de todos los cultivos en España
                     (6MHa). El 90% de la producción se destina a cereales de invierno, trigo y
@@ -419,7 +420,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 <div className="font-serif text-2xl">
                   Superficie destinada al cultivo de cereales
                 </div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   Se espera que el rendimiento del cultivo de trigo{' '}
                   <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong> Esta
                   pérdida de rendimiento en cultivos de cereales de invierno como el trigo podría
@@ -435,7 +436,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de rendimiento de cereales</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   Se espera que el rendimiento del cultivo de trigo{' '}
                   <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>. Esta
                   pérdida de rendimiento en cultivos de cereales de invierno como el trigo podría
@@ -451,7 +452,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de rendimiento de cereales</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   Las condiciones derivadas del cambio climático obligarían a tomar medidas de
                   adaptación al cultivo de cereales como cambios en las variedades de cultivos,
                   diferentes fechas de siembra y cosecha, cambios en el grado de mecanización o
@@ -468,7 +469,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Viñedo</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   La calidad de las multiples variedades del vino español está reconocida
                   globalmente. Esta diversidad en variedades de uva y la calidad final del vino
                   responde a las distintas condiciones ambientales del territorio español: suelos,
@@ -486,7 +487,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 <div className="font-serif text-2xl">
                   Cambios en zonas óptimas para la producción de vino de calidad
                 </div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     En Castilla la Mancha, las variedades que más se podrían ver afectadas por el
                     cambio climático son variedades más tempranas como tempranillo o chardonnay; que
@@ -511,7 +512,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Dehesa</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     La dehesa es un ejemplo ideal de gestión sostenible de un ecosistema
                     mediterráneo con una <strong>extensión de 2.5 mHa</strong> particularmente
@@ -538,7 +539,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 <div className="font-serif text-2xl">
                   Duración de las sequías a lo largo del año en zonas de dehesa.
                 </div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     Extremadura concentra gran parte de la dehesa española, con 1.2 mHa que van a
                     estar expuestas (como otros ecosistemas mediterráneos) al calentamiento y las
@@ -561,7 +562,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Riesgo de incendios en zonas de dehesa</div>
-                <div className="mt-12">
+                <div className="mt-12 text-lg">
                   <p>
                     La pérdida de biodiversidad vegetal causada por la aridez se podría ver
                     empeorada por un mayor riesgo de incendios, que favorecería el crecimiento de

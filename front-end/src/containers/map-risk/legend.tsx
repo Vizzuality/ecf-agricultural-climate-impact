@@ -108,7 +108,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-vino_indice_frescor_nocturno':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem
               icon={null}
               id="legend-zonas-optimas-vino-frescor-nocturno-1"
@@ -123,7 +123,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-vino_indice_huglin':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem icon={null} id="legend-zonas-optimas-vino-huglin-1" name="Índice de huglin">
               <LegendTypeChoropleth
                 className="text-sm text-black"
@@ -134,7 +134,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-vino_indice_sequia':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
             <LegendItem icon={null} id="legend-zonas-optimas-vino-sequia-1" name="Índice de sequía">
               <LegendTypeChoropleth
                 className="text-sm text-black break-all"
