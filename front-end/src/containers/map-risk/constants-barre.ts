@@ -45,6 +45,11 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Mapa_cultivos',
+          featureState: {
+            id: 16,
+            source: 'cultivos',
+            sourceLayer: 'Mapa_cultivos',
+          },
           paint: {
             'fill-color': [
               'match',
@@ -57,10 +62,10 @@ export const LAYERS = [
               '#AE240F',
               '#90A070', // otherwise (= "Olivar")
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -89,10 +94,10 @@ export const LAYERS = [
           },
           paint: {
             'fill-color': ['match', ['get', 'value'], 'Dehesa', '#38A6A5', 'transparent'],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -121,10 +126,10 @@ export const LAYERS = [
           },
           paint: {
             'fill-color': ['match', ['get', 'value'], 'Cereal', '#EDAD08', 'transparent'],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -153,10 +158,10 @@ export const LAYERS = [
           },
           paint: {
             'fill-color': ['match', ['get', 'value'], 'Viñedo', '#AE240F', 'transparent'],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -185,10 +190,10 @@ export const LAYERS = [
           },
           paint: {
             'fill-color': ['match', ['get', 'value'], 'Olivar', '#90A070', 'transparent'],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -215,79 +220,82 @@ export const LAYERS = [
             // opacity: 1,
             visibility: '{{rasterVisibility}}',
           },
-        },
-      ],
-    },
-  },
-  {
-    id: 'zonas-optimas-olivo_2011_2040',
-    name: 'Cambios en zonas óptimas',
-    type: 'raster',
-    source: {
-      type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2011_2040/{z}/{x}/{y}.png',
-      ],
-      minzoom: 3,
-      maxzoom: 12,
-    },
-    render: {
-      layers: [
-        {
-          type: 'raster',
           layout: {
-            visibility: '{{rasterVisibility}}',
+            visibility: 'none',
           },
         },
       ],
     },
   },
-  {
-    id: 'zonas-optimas-olivo_2041_2070',
-    name: 'Cambios en zonas óptimas',
-    type: 'raster',
-    source: {
-      type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2041_2070/{z}/{x}/{y}.png',
-      ],
-      minzoom: 3,
-      maxzoom: 12,
-    },
-    render: {
-      layers: [
-        {
-          type: 'raster',
-          layout: {
-            visibility: '{{rasterVisibility}}',
-          },
-        },
-      ],
-    },
-  },
-  {
-    id: 'zonas-optimas-olivo_2071_2100',
-    name: 'Cambios en zonas óptimas',
-    type: 'raster',
-    source: {
-      type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2071_2100/{z}/{x}/{y}.png',
-      ],
-      minzoom: 3,
-      maxzoom: 12,
-    },
-    render: {
-      layers: [
-        {
-          type: 'raster',
-          layout: {
-            visibility: '{{rasterVisibility}}',
-          },
-        },
-      ],
-    },
-  },
+  // {
+  //   id: 'zonas-optimas-olivo_2011_2040',
+  //   name: 'Cambios en zonas óptimas',
+  //   type: 'raster',
+  //   source: {
+  //     type: 'raster',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2011_2040/{z}/{x}/{y}.png',
+  //     ],
+  //     minzoom: 3,
+  //     maxzoom: 12,
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'raster',
+  //         layout: {
+  //           visibility: '{{rasterVisibility}}',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
+  // {
+  //   id: 'zonas-optimas-olivo_2041_2070',
+  //   name: 'Cambios en zonas óptimas',
+  //   type: 'raster',
+  //   source: {
+  //     type: 'raster',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2041_2070/{z}/{x}/{y}.png',
+  //     ],
+  //     minzoom: 3,
+  //     maxzoom: 12,
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'raster',
+  //         layout: {
+  //           visibility: '{{rasterVisibility}}',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
+  // {
+  //   id: 'zonas-optimas-olivo_2071_2100',
+  //   name: 'Cambios en zonas óptimas',
+  //   type: 'raster',
+  //   source: {
+  //     type: 'raster',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2071_2100/{z}/{x}/{y}.png',
+  //     ],
+  //     minzoom: 3,
+  //     maxzoom: 12,
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'raster',
+  //         layout: {
+  //           visibility: '{{rasterVisibility}}',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
   // rendimiento-olivo
   {
     id: 'rendimiento-olivo',
@@ -305,6 +313,14 @@ export const LAYERS = [
         {
           type: 'fill',
           'source-layer': 'Proyecciones_rendimiento_olivar',
+          // featureState: {
+          //   id: 16,
+          //   source: 'rendimiento-olivo',
+          //   sourceLayer: 'Proyecciones_rendimiento_olivar',
+          // },
+          // layout: {
+          //   visibility: '{{visibility}}',
+          // },
           paint: {
             'fill-color': [
               'case',
@@ -322,10 +338,10 @@ export const LAYERS = [
               ],
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
         {
@@ -334,9 +350,6 @@ export const LAYERS = [
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -384,10 +397,10 @@ export const LAYERS = [
               ],
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
         {
@@ -406,7 +419,7 @@ export const LAYERS = [
             'line-color': '#000',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -442,7 +455,7 @@ export const LAYERS = [
             'fill-opacity': '{{zonasOptimasMaskVisibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -478,10 +491,10 @@ export const LAYERS = [
               '#FDAE61',
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -519,10 +532,10 @@ export const LAYERS = [
               '#0980F8',
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -560,10 +573,10 @@ export const LAYERS = [
               '#D7191C',
               'transparent',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -598,10 +611,10 @@ export const LAYERS = [
               100,
               '#790B0B',
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
         {
@@ -612,7 +625,7 @@ export const LAYERS = [
             'line-color': '#000',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
@@ -652,10 +665,10 @@ export const LAYERS = [
               '#BD0026',
               'transparent', // hide if no value
             ],
-            'fill-opacity': 0.7,
+            'fill-opacity': '{{visibility}}',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
         {
@@ -666,102 +679,99 @@ export const LAYERS = [
             'line-color': '#000',
           },
           layout: {
-            visibility: '{{layerVisibility}}',
+            visibility: 'none',
           },
         },
       ],
     },
   },
-  {
-    id: 'aridez',
-    name: 'Aridez',
-    type: 'vector',
-    source: {
-      type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
-      promoteId: '{{promoteId}}',
-    },
-    render: {
-      layers: [
-        {
-          type: 'fill',
-          'source-layer': 'Aridez',
-          paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', 'value_{{scenario}}_{{year}}'],
-              0.1,
-              '#057FFA',
-              0.3,
-              '#FECC4D',
-              0.6,
-              '#790B0B',
-            ],
-            'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
-        },
-        {
-          type: 'line',
-          paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-            'line-color': '#000',
-          },
-        },
-      ],
-    },
-  },
-  {
-    id: 'precipitacion',
-    name: 'Precipitacion',
-    type: 'vector',
-    source: {
-      type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
-      promoteId: '{{promoteId}}',
-    },
-    render: {
-      layers: [
-        {
-          type: 'fill',
-          'source-layer': 'Precipitacion_trimestre_mas_humedo',
-          paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['get', 'value_{{scenario}}_{{year}}'],
-              0,
-              '#F2F0F4',
-              250,
-              '#BDC9E0',
-              500,
-              '#74A9CF',
-              750,
-              '#226F96',
-              1000,
-              '#034063',
-            ],
-            'fill-opacity': 0.7,
-          },
-        },
-        {
-          type: 'line',
-          'source-layer': 'Precipitacion_trimestre_mas_humedo',
-          paint: {
-            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
-            'line-color': '#000',
-          },
-        },
-      ],
-    },
-  },
+  // {
+  //   id: 'aridez',
+  //   name: 'Aridez',
+  //   type: 'vector',
+  //   source: {
+  //     type: 'vector',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+  //     ],
+  //     promoteId: '{{promoteId}}',
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'fill',
+  //         'source-layer': 'Aridez',
+  //         paint: {
+  //           'fill-color': [
+  //             'interpolate',
+  //             ['linear'],
+  //             ['get', 'value_{{scenario}}_{{year}}'],
+  //             0.1,
+  //             '#057FFA',
+  //             0.3,
+  //             '#FECC4D',
+  //             0.6,
+  //             '#790B0B',
+  //           ],
+  //           'fill-opacity': '{{visibility}}',
+  //         },
+  //       },
+  //       {
+  //         type: 'line',
+  //         paint: {
+  //           'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+  //           'line-color': '#000',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
+  // {
+  //   id: 'precipitacion',
+  //   name: 'Precipitacion',
+  //   type: 'vector',
+  //   source: {
+  //     type: 'vector',
+  //     tiles: [
+  //       'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+  //     ],
+  //     promoteId: '{{promoteId}}',
+  //   },
+  //   render: {
+  //     layers: [
+  //       {
+  //         type: 'fill',
+  //         'source-layer': 'Precipitacion_trimestre_mas_humedo',
+  //         paint: {
+  //           'fill-color': [
+  //             'interpolate',
+  //             ['linear'],
+  //             ['get', 'value_{{scenario}}_{{year}}'],
+  //             0,
+  //             '#F2F0F4',
+  //             250,
+  //             '#BDC9E0',
+  //             500,
+  //             '#74A9CF',
+  //             750,
+  //             '#226F96',
+  //             1000,
+  //             '#034063',
+  //           ],
+  //           'fill-opacity': '{{visibility}}',
+  //         },
+  //       },
+  //       {
+  //         type: 'line',
+  //         'source-layer': 'Precipitacion_trimestre_mas_humedo',
+  //         paint: {
+  //           'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+  //           'line-color': '#000',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
 ];
 
 export const LEGEND_ITEMS_CULTIVOS = [
