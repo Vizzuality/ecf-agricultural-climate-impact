@@ -48,7 +48,7 @@ export const ElRiesgoClimatico: FC = () => {
               </div>
             </div>
             <div className="flex flex-col items-start w-full max-w-screen-lg mx-auto bg-primary-red">
-              <div className="py-4 text-white" style={{ paddingLeft: '50%' }}>
+              <div className="pt-8 pb-16 text-white" style={{ paddingLeft: '50%' }}>
                 Décadas de emisiones de gases de efecto invernadero han hecho que los efectos del
                 cambio climático sean ya visibles. De hecho, se prevé que la temperatura media
                 global aumente entre 2 y 2,5ºC para mediados de siglo, y frenar este proceso
@@ -59,9 +59,6 @@ export const ElRiesgoClimatico: FC = () => {
               <div className="w-full">
                 <ChartCambiosTempperatura />
               </div>
-              {/* <div className="w-full">
-                <ChartProduccionesCultivos />
-              </div> */}
             </div>
           </div>
           <div className="w-full bg-white">
@@ -104,6 +101,14 @@ export const ElRiesgoClimatico: FC = () => {
             </div>
             <div className="flex w-full pt-16">
               <ElRiesgoClimaticoMap />
+            </div>
+          </div>
+          <div className="w-full text-2xl text-center text-white bg-primary-red">
+            <div className="w-7/12 py-24 mx-auto">
+              De aquí que tomar medidas de prevención sea una prioridad para asegurar la calidad y
+              cantidad de la producción agrícola. Al mismo tiempo, la implementación de medidas de
+              prevención hará que se reduzca la necesidad de medidas de adaptación a largo plazo,
+              que requieran más recursos económicos y sean menos efectivas.
             </div>
           </div>
         </Desktop>

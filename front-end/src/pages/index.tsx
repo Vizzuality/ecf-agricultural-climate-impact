@@ -3,16 +3,11 @@
 // containers
 import Section from 'containers/section';
 import Hero from 'containers/sections/hero';
-// import Headline from 'containers/headline';
-// import MapVisualization from 'containers/map-visualization';
+import Footer from 'containers/sections/footer';
 import CultivoCulturaCambio from 'containers/sections/cultivo-cultura-cambio';
 import ElRiesgoClimatico from 'containers/sections/el-riesgo-climatico';
 import ElRiesgoAgricola from 'containers/sections/el-riesgo-agricola';
-// import DesafioGlobalHeadline from 'containers/sections/desafio-global/headline';
-// import DesafioGlobalNarrative from 'containers/sections/desafio-global/narrative';
-// import EconomiaEnRiesgoHeadline from 'containers/sections/economia-en-riesgo/headline';
-// import EfectosSobreCultivosHeadline from 'containers/sections/efectos-sobre-cultivos/headline';
-// import ConclusionesHeadline from 'containers/sections/conclusiones/headline';
+import CultivoCulturaResiliencia from 'containers/sections/cultivo-cultura-resiliencia';
 import Menu from 'containers/menu';
 import { SectionIDs } from 'types';
 
@@ -21,7 +16,6 @@ const Welcome: React.FC = () => {
     <div>
       <div>
         <Menu />
-        {/* <Headline /> */}
         <Hero />
         <Section id={SectionIDs.CultivoCulturaCambio} title="Cultivo, cultura, cambio">
           <CultivoCulturaCambio />
@@ -32,15 +26,10 @@ const Welcome: React.FC = () => {
         <Section id={SectionIDs.ElRiesgoAgricola} title="El Riesgo Agricola">
           <ElRiesgoAgricola />
         </Section>
-        {/* <Section id={SectionIDs.EconomiaRiesgo} title="Section 2">
-            <EconomiaEnRiesgoHeadline />
-          </Section>
-          <Section id={SectionIDs.EfectosCultivos} title="Section 3">
-            <EfectosSobreCultivosHeadline />
-          </Section>
-          <Section id={SectionIDs.Conclusiones} title="Section 4">
-            <ConclusionesHeadline />
-          </Section> */}
+        <Section id={SectionIDs.CultivoCulturaResiliencia} title="Cultivo, Cultura, Resiliencia">
+          <CultivoCulturaResiliencia />
+        </Section>
+        <Footer />
       </div>
     </div>
   );
