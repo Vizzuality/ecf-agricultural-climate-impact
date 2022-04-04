@@ -30,7 +30,7 @@ export const Hero: FC = () => {
               background: 'url(images/intro-bg1.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'top',
-              top: '-64px',
+              marginTop: '-64px',
             }}
           >
             <div

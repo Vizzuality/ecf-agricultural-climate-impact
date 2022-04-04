@@ -71,6 +71,11 @@
   position: fixed !important;
 }
 
+.headroom-wrapper {
+  position: relative;
+  z-index: 999;
+}
+
 .headroom--pinned {
   background: white;
 }
