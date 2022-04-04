@@ -42,15 +42,64 @@ export const ElRiesgoClimatico: FC = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-start w-full max-w-screen-xl pb-32 mx-auto">
+            <div className="flex flex-col items-start w-full max-w-screen-xl pb-8 mx-auto">
               <div className="w-full">
                 <ChartEmisionesCo2 />
               </div>
+            </div>
+            <div className="flex flex-col items-start w-full max-w-screen-lg mx-auto bg-primary-red">
+              <div className="py-4 text-white" style={{ paddingLeft: '50%' }}>
+                Décadas de emisiones de gases de efecto invernadero han hecho que los efectos del
+                cambio climático sean ya visibles. De hecho, se prevé que la temperatura media
+                global aumente entre 2 y 2,5ºC para mediados de siglo, y frenar este proceso
+                evitaría mayores impactos.
+              </div>
+            </div>
+            <div className="flex flex-col items-start w-full max-w-screen-xl pb-32 mx-auto">
               <div className="w-full">
                 <ChartCambiosTempperatura />
               </div>
-              <div className="w-full">
+              {/* <div className="w-full">
                 <ChartProduccionesCultivos />
+              </div> */}
+            </div>
+          </div>
+          <div className="w-full bg-white">
+            <div className="flex flex-col items-start w-full max-w-screen-xl pt-16 mx-auto">
+              <div className="py-4" style={{ paddingLeft: '50%' }}>
+                Los impactos del aumento de la temperatura serían visibles no solo en la agricultura
+                sino también sobre la población, biodiversidad, océanos, y ecosistemas terrestres a
+                nivel global.
+              </div>
+              <div className="font-serif text-black opacity-5" style={{ fontSize: '260px' }}>
+                1,5 a 2ºC
+              </div>
+              <div className="relative font-serif leading-snug text-7xl -top-40">
+                Medio grado de calentamiento podría provocar
+              </div>
+              <div className="flex">
+                <div className="flex-1">
+                  <div className="pb-2 font-serif text-5xl font-bold text-primary-red">
+                    2 veces más
+                  </div>
+                  <div>
+                    de la población global en
+                    <br />
+                    riesgo de olas de calor
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="pb-2 font-serif text-5xl font-bold text-primary-red">
+                    400 milliones
+                  </div>
+                  <div>de población global en riesgo hídrico</div>
+                </div>
+                <div className="flex-1">
+                  <div className="pb-2 font-serif text-5xl font-bold text-primary-red">
+                    pérdidas del 7%
+                  </div>
+                  <div>rendimiento de cultivos como el maíz</div>
+                </div>
               </div>
             </div>
             <div className="flex w-full pt-16">
