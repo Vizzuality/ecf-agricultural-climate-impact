@@ -213,7 +213,7 @@ export const LAYERS = [
           type: 'raster',
           layout: {
             // opacity: 1,
-            visibility: '{{rasterVisibility}}',
+            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -236,7 +236,7 @@ export const LAYERS = [
         {
           type: 'raster',
           layout: {
-            visibility: '{{rasterVisibility}}',
+            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -259,7 +259,7 @@ export const LAYERS = [
         {
           type: 'raster',
           layout: {
-            visibility: '{{rasterVisibility}}',
+            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -282,7 +282,7 @@ export const LAYERS = [
         {
           type: 'raster',
           layout: {
-            visibility: '{{rasterVisibility}}',
+            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -320,7 +320,7 @@ export const LAYERS = [
                 20,
                 '#018571',
               ],
-              'transparent',
+              'blue',
             ],
             'fill-opacity': 0.7,
           },
@@ -439,7 +439,7 @@ export const LAYERS = [
               'transparent',
               'black',
             ],
-            'fill-opacity': '{{zonasOptimasMaskVisibility}}',
+            'fill-opacity': 0.7,
           },
           layout: {
             visibility: '{{layerVisibility}}',

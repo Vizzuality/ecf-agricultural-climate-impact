@@ -58,10 +58,8 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
-    // if (activeLayerId === 'zonas-optimas-vino' && indicator?.value) return null
     const visibleLayer = LAYERS.find((l) => l.id === visibleLayerId);
 
-    // console.log('visibleLayerId:', visibleLayerId, 'indicator?.value', indicator?.value);
     if (visibleLayer) {
       visibleLayer['params'] = {
         year: year?.value.split(' - ').join('-'),
@@ -70,39 +68,11 @@ const MapRisk: FC<MapVisualizationType> = ({
         crop: crop?.value || '',
         indicator: indicator?.value || '',
         layerVisibility: 'visible',
-        rasterVisibility: 'visible',
-        visibility: 0.7,
-        zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
-        // layerVisibility: l.id === visibleLayerId ? 'visible' : 'none',
-        // rasterVisibility: l.id === visibleLayerId ? 'visible' : 'none',
-        // visibility: l.id === visibleLayerId ? 0.7 : 0,
-        // zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
         promoteId,
       };
 
-      // const newLayers = LAYERS.map((l) => {
-      //   if (l.id === visibleLayerId) {
-      //     return {
-      //       ...l,
-      //       params: {
-      //         year: year?.value.split(' - ').join('-'),
-      //         scenario: scenario?.value,
-      //         geoType: geoType,
-      //         crop: crop?.value || '',
-      //         indicator: indicator?.value || '',
-      //         layerVisibility: l.id === visibleLayerId ? 'visible' : 'none',
-      //         rasterVisibility: l.id === visibleLayerId ? 'visible' : 'none',
-      //         visibility: l.id === visibleLayerId ? 0.7 : 0,
-      //         zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
-      //         promoteId,
-      //       },
-      //     };
-      //   }
-      // });
-
       const newLayers = [visibleLayer];
 
-      console.log('newLayers:', newLayers);
       return newLayers;
     }
   }, [
@@ -115,7 +85,6 @@ const MapRisk: FC<MapVisualizationType> = ({
     visibleLayerId,
     zonasOptimasMaskVisibility,
   ]);
-  // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
     return {
@@ -156,21 +125,28 @@ const MapRisk: FC<MapVisualizationType> = ({
     const { features } = e;
 
     if (e && features) {
-      console.log('features[0]?.source', features[0]?.source, 'activeLayerId', activeLayerId);
-      if (features[0]?.source !== activeLayerId) return null;
-      const properties = features.find((f) => f.source === activeLayerId)?.properties;
+      const properties =
+        activeLayerId === 'zonas-optimas-vino'
+          ? features.find((f) => f.source === `${activeLayerId}_${indicator.value}`)?.properties
+          : features.find((f) => f.source === activeLayerId)?.properties;
       const id = properties?.[promoteId] || properties?.ID || properties?.CODIGOINE;
       const source = features[0]?.source;
       const sourceLayer = features[0]?.sourceLayer;
       const unit = properties?.unit === 'm s-1' ? 'mm/mes' : properties?.unit;
 
       const secondValue =
-        year.value !== 'none' ? year.value.replace(/ /g, '') : crop ? crop.value : 0;
+        activeLayerId === 'rendimiento-cereal'
+          ? crop.value
+          : year.value !== 'none'
+          ? year.value.replace(/ /g, '')
+          : crop
+          ? crop.value
+          : 0;
 
       const thisDirtyValue = properties?.[`value_${scenario.value}_${secondValue}`];
       const thisValue =
-        activeLayerId === 'incendios-dehesa'
-          ? properties?.[`value_${scenario.value}_${secondValue}`]
+        activeLayerId === 'incendios-dehesa' || activeLayerId === 'zonas-optimas-vino'
+          ? thisDirtyValue
           : activeLayerId === 'precipitacion'
           ? thisDirtyValue?.toFixed(1)
           : Math.round((thisDirtyValue + Number.EPSILON) * 10) / 10;
@@ -226,26 +202,22 @@ const MapRisk: FC<MapVisualizationType> = ({
     const { center } = e;
     const data = getRegionData(e);
 
-    if (
-      data &&
-      data.source === activeLayerId &&
-      data.value &&
-      data.value !== 'NaN'
-      // (activeLayerId !== 'cultivos-dehesa' ||
-      //   (activeLayerId === 'cultivos-dehesa' && data.value === 'Dehesa')) &&
-      // (activeLayerId !== 'cultivos-olivar' ||
-      //   (activeLayerId === 'cultivos-olivar' && data.value === 'Olivar')) &&
-      // (activeLayerId !== 'cultivos-vinedo' ||
-      //   (activeLayerId === 'cultivos-vinedo' && data.value === 'Viñedo')) &&
-      // (activeLayerId !== 'cultivos-cereales' ||
-      //   (activeLayerId === 'cultivos-cereales' && data.value === 'Cereales'))
-    ) {
-      setHighlightedRegion(data, 'hover');
-      showTooltip({
-        tooltipData: data,
-        tooltipLeft: center.x,
-        tooltipTop: center.y,
-      });
+    if (data && data.value && data.value !== 'NaN') {
+      if (
+        (activeLayerId === 'cultivos-dehesa' && data.value !== 'Dehesa') ||
+        (activeLayerId === 'cultivos-olivar' && data.value !== 'Olivar') ||
+        (activeLayerId === 'cultivos-vinedo' && data.value !== 'Viñedo') ||
+        (activeLayerId === 'cultivos-cereal' && data.value !== 'Cereales')
+      ) {
+        hideTooltip();
+      } else {
+        setHighlightedRegion(data, 'hover');
+        showTooltip({
+          tooltipData: data,
+          tooltipLeft: center.x,
+          tooltipTop: center.y,
+        });
+      }
     } else {
       hideTooltip();
     }
@@ -267,9 +239,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           // onClick={handleClick} // TODO: add this? Remeber the problems
           onMouseOut={hideTooltip}
           onMapLoad={handleLoad}
-          interactiveLayerIds={
-            activeLayerId === 'zonas-optimas-vino' ? [] : [`${visibleLayerId}-fill-0`]
-          }
+          interactiveLayerIds={[`${visibleLayerId}-fill-0`]}
           bounds={mapBounds}
         >
           {(map) => (

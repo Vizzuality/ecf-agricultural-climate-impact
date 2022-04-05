@@ -270,7 +270,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             year={year}
             crop={crop}
             indicator={indicator}
-            allowZoom={false}
+            allowZoom={true}
             bounds={bounds}
             legend={activeLayerId}
           />
