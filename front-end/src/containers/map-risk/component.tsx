@@ -58,13 +58,10 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
-    // if (activeLayerId === 'zonas-optimas-vino' && indicator?.value) return null
-    const visibleLayer = LAYERS.find((l) => l.id === visibleLayerId);
-
-    // console.log('visibleLayerId:', visibleLayerId, 'indicator?.value', indicator?.value);
-    if (visibleLayer) {
-      visibleLayer['params'] = {
-        year: year?.value.split(' - ').join('-'),
+    return LAYERS.filter((l) => l.id === visibleLayerId).map((layer) => ({
+      ...layer,
+      params: {
+        ...(year && { year: year.value.split(' - ').join('-') }),
         scenario: scenario?.value,
         geoType: geoType,
         crop: crop?.value || '',
@@ -78,32 +75,8 @@ const MapRisk: FC<MapVisualizationType> = ({
         // visibility: l.id === visibleLayerId ? 0.7 : 0,
         // zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
         promoteId,
-      };
-
-      // const newLayers = LAYERS.map((l) => {
-      //   if (l.id === visibleLayerId) {
-      //     return {
-      //       ...l,
-      //       params: {
-      //         year: year?.value.split(' - ').join('-'),
-      //         scenario: scenario?.value,
-      //         geoType: geoType,
-      //         crop: crop?.value || '',
-      //         indicator: indicator?.value || '',
-      //         layerVisibility: l.id === visibleLayerId ? 'visible' : 'none',
-      //         rasterVisibility: l.id === visibleLayerId ? 'visible' : 'none',
-      //         visibility: l.id === visibleLayerId ? 0.7 : 0,
-      //         zonasOptimasMaskVisibility: zonasOptimasMaskVisibility,
-      //         promoteId,
-      //       },
-      //     };
-      //   }
-      // });
-
-      const newLayers = [visibleLayer];
-
-      return newLayers;
-    }
+      },
+    }));
   }, [
     geoType,
     promoteId,
@@ -114,7 +87,6 @@ const MapRisk: FC<MapVisualizationType> = ({
     visibleLayerId,
     zonasOptimasMaskVisibility,
   ]);
-  // }, [activeLayerId, geoType, municipality, promoteId, year, scenario]);
 
   const mapBounds = useMemo(() => {
     return {

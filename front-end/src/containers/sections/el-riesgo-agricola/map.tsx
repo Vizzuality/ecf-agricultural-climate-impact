@@ -119,8 +119,38 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   const [scenarioSliderValue, setScenarioSliderValue] = useState(0);
 
   const handleActiveLayerChange = useCallback((data) => {
-    setActiveLayerId(data.layerId);
+    setYearSliderValue(0);
     setBounds(data.area);
+    setScenarioSliderValue(0);
+    setYears(getYears(data.layerId));
+    setYear(getYears(data.layerId)?.[0]);
+    setScenarios(getScenarios(data.layerId));
+    setScenario(getScenarios(data.layerId)?.[0]);
+    setCrops(getCrops(data.layerId));
+    setCrop(getCrops(data.layerId)?.[0]);
+    setIndicators(getIndicators(data.layerId));
+    setIndicator(getIndicators(data.layerId)?.[0]);
+    setActiveLayerId(data.layerId);
+
+    if (data.layerId === 'rendimiento-cereal') {
+      setGeoType('comunidades');
+    } else {
+      setGeoType('municipios');
+    }
+
+    if (data.layerId === 'zonas-optimas-vino') {
+      setScenario(
+        getYears(data.layerId)?.[0] && getYears(data.layerId)?.[0].value === '2021-2050'
+          ? getScenarios(data.layerId)?.[0]
+          : {
+              value: 'baseline',
+              label: '0°C2',
+            },
+      );
+    } else {
+      setScenarios(getScenarios(data.layerId));
+      setScenario(getScenarios(data.layerId)?.[0]);
+    }
   }, []);
 
   const handleScenarioSliderChange = useCallback(
@@ -169,41 +199,6 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   const onStepEnter = (e) => {
     handleActiveLayerChange(e.data);
   };
-
-  useEffect(() => {
-    setYearSliderValue(0);
-    setScenarioSliderValue(0);
-    setYears(getYears(activeLayerId));
-    setYear(getYears(activeLayerId)?.[0]);
-    setScenarios(getScenarios(activeLayerId));
-    setScenario(getScenarios(activeLayerId)?.[0]);
-    setCrops(getCrops(activeLayerId));
-    setCrop(getCrops(activeLayerId)?.[0]);
-    setIndicators(getIndicators(activeLayerId));
-    setIndicator(getIndicators(activeLayerId)?.[0]);
-
-    if (activeLayerId === 'rendimiento-cereal') {
-      setGeoType('comunidades');
-    } else {
-      setGeoType('municipios');
-    }
-
-    if (activeLayerId === 'zonas-optimas-vino') {
-      setScenario(
-        getYears(activeLayerId)?.[0] && getYears(activeLayerId)?.[0].value === '2021-2050'
-          ? getScenarios(activeLayerId)?.[0]
-          : {
-              value: 'baseline',
-              label: '0°C2',
-            },
-      );
-    } else {
-      setScenarios(getScenarios(activeLayerId));
-      setScenario(getScenarios(activeLayerId)?.[0]);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeLayerId]);
 
   return (
     <div className="relative w-full bg-lightest-grey">
