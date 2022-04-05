@@ -26,7 +26,7 @@ export const CultivoCulturaCambio: FC = () => {
 
   const onStepProgress = (data) => {
     console.log('progress:', data);
-    setCurrentProgress(data.progress * 2);
+    setCurrentProgress(data.progress);
   };
 
   return (
