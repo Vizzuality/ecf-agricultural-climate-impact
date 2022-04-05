@@ -284,7 +284,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        <div className="absolute z-10 top-10 right-5">
+        <div className="absolute z-10 top-20 right-5">
           <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
         </div>
         {tooltipOpen && (
