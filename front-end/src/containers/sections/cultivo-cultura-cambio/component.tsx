@@ -42,7 +42,8 @@ export const CultivoCulturaCambio: FC = () => {
                   src="images/cultivoCulturaCambio-bg1.jpg"
                   alt="background"
                   role="decoration"
-                  style={{ filter: `grayscale(${(currentStep.id - 1) / (STEPS.length - 1)})` }}
+                  // style={{ filter: `grayscale(${(currentStep.id - 1) / (STEPS.length - 1)})` }}
+                  style={{ filter: `grayscale(${(currentStep.id - 1 + currentProgress) / 3})` }}
                 />
               </div>
               <div
@@ -59,7 +60,7 @@ export const CultivoCulturaCambio: FC = () => {
                   {STEPS.map((step, i) => (
                     <div
                       key={i}
-                      className="absolute left-0 w-full max-w-screen-lg top-56"
+                      className="absolute left-0 w-full max-w-screen-lg top-52"
                       // className="h-screen -translate-x-1/2 left-1/2"
                       style={{
                         // paddingLeft: 'calc((100vw - 1024px) / 2)',
@@ -78,8 +79,8 @@ export const CultivoCulturaCambio: FC = () => {
                           opacity:
                             step.id === currentStep.id
                               ? currentProgress <= 0.5
-                                ? currentProgress * 2
-                                : (1 - currentProgress) * 2
+                                ? currentProgress * 10
+                                : (1 - currentProgress) * 10
                               : '0',
                           // transition: 'opacity 0.5s ease-out',
                           // width: '50vw',
@@ -97,7 +98,7 @@ export const CultivoCulturaCambio: FC = () => {
               </div>
               <div className="w-full h-screen max-w-screen-lg mx-auto text-lg">
                 {/* WORDS */}
-                <div className="flex flex-col items-start gap-3" style={{ paddingTop: '10vh' }}>
+                <div className="flex flex-col items-start gap-5" style={{ paddingTop: '10vh' }}>
                   {WORDS.map((word) => (
                     <div
                       key={`word-${word.id}`}
