@@ -58,23 +58,18 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
-    const visibleLayer = LAYERS.find((l) => l.id === visibleLayerId);
-
-    if (visibleLayer) {
-      visibleLayer['params'] = {
-        year: year?.value.split(' - ').join('-'),
+    return LAYERS.filter((l) => l.id === visibleLayerId).map((layer) => ({
+      ...layer,
+      params: {
+        ...(year && { year: year.value.split(' - ').join('-') }),
         scenario: scenario?.value,
         geoType: geoType,
         crop: crop?.value || '',
         indicator: indicator?.value || '',
         layerVisibility: 'visible',
         promoteId,
-      };
-
-      const newLayers = [visibleLayer];
-
-      return newLayers;
-    }
+      },
+    }));
   }, [
     geoType,
     promoteId,
@@ -91,6 +86,9 @@ const MapRisk: FC<MapVisualizationType> = ({
       bbox: BOUNDS[bounds],
       options: {
         padding: 20,
+      },
+      viewportOptions: {
+        transitionDuration: 1000,
       },
     };
   }, [bounds]);
@@ -120,11 +118,12 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   const getRegionData = (e) => {
     if (e.features.length) {
-      console.log('hover:', e);
+      // console.log('hover:', e);
     }
     const { features } = e;
 
     if (e && features) {
+      if (features[0]?.source !== activeLayerId) return null;
       const properties =
         activeLayerId === 'zonas-optimas-vino'
           ? features.find((f) => f.source === `${activeLayerId}_${indicator.value}`)?.properties
@@ -252,7 +251,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        <div className="absolute z-10 top-10 right-5">
+        <div className="absolute z-10 top-20 right-5">
           <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
         </div>
         {tooltipOpen && (

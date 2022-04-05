@@ -72,7 +72,10 @@ const MapVisualization: FC<MapVisualizationType> = ({
   }, []);
 
   const handleViewport = useCallback((_viewport) => {
-    setViewport(_viewport);
+    setViewport((prevViewport) => ({
+      ...prevViewport,
+      ..._viewport,
+    }));
   }, []);
 
   // Map zoom
@@ -215,7 +218,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        <div className="absolute z-10 top-10 right-5">
+        <div className="absolute z-10 top-20 right-5">
           <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
         </div>
         {tooltipOpen && (
