@@ -17,7 +17,7 @@ export const ElRiesgoClimatico: FC = () => {
     <section className="relative">
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <div className="w-full bg-primary-red">
+          <div className="w-full bg-primary-red" id="section-el-riesgo-climatico">
             <div className="flex flex-col items-start w-full max-w-screen-lg pt-32 mx-auto bg-primary-red">
               <h1 className="relative px-3 py-2 font-serif text-6xl transition-opacity duration-500 text-primary-red">
                 <span className="relative z-10">{TITLE}</span>
@@ -51,8 +51,9 @@ export const ElRiesgoClimatico: FC = () => {
               <div className="pt-8 pb-16 text-white" style={{ paddingLeft: '50%' }}>
                 Décadas de emisiones de gases de efecto invernadero han hecho que los efectos del
                 cambio climático sean ya visibles. De hecho, se prevé que la temperatura media
-                global aumente entre 2 y 2,5ºC para mediados de siglo, y frenar este proceso
-                evitaría mayores impactos.
+                global aumente entre 1,5 y 2ºC para mediados de siglo, de acuerdo con los dos
+                escenarios climáticos futuros, trayectoria de concentración representativa (RCP, por
+                sus siglas en inglés) 4.5 y RCP 8.5, respectivamente.
               </div>
             </div>
             <div className="flex flex-col items-start w-full max-w-screen-xl pb-32 mx-auto">
@@ -62,19 +63,22 @@ export const ElRiesgoClimatico: FC = () => {
             </div>
           </div>
           <div className="w-full bg-white">
-            <div className="flex flex-col items-start w-full max-w-screen-xl pt-16 mx-auto text-lg">
+            <div className="flex flex-col items-start w-full h-screen max-w-screen-xl pt-16 mx-auto text-lg">
               <div className="py-4" style={{ paddingLeft: '50%' }}>
                 Los impactos del aumento de la temperatura serían visibles no solo en la agricultura
                 sino también sobre la población, biodiversidad, océanos, y ecosistemas terrestres a
                 nivel global.
               </div>
-              <div className="font-serif text-black opacity-5" style={{ fontSize: '260px' }}>
+              <div
+                className="font-serif text-black opacity-5"
+                style={{ fontSize: '260px', lineHeight: '260px' }}
+              >
                 1,5 a 2ºC
               </div>
-              <div className="relative font-serif leading-snug text-7xl -top-40">
+              <div className="relative mb-16 -mt-40 font-serif leading-snug text-7xl">
                 Medio grado de calentamiento podría provocar
               </div>
-              <div className="flex">
+              <div className="flex w-full">
                 <div className="flex-1">
                   <div className="pb-2 font-serif text-5xl font-bold text-primary-red">
                     2 veces más

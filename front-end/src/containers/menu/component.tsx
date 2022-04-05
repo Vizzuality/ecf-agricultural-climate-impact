@@ -33,7 +33,9 @@ export const Menu: FC = () => {
           <Headroom>
             <div className="flex justify-between w-full max-w-screen-xl mx-auto">
               <div className="flex items-center">
-                <img className="w-24" src="images/logo-coag.png" alt="COAG" />
+                <a href="#section-hero">
+                  <img className="w-24" src="images/logo-coag.png" alt="COAG" />
+                </a>
               </div>
               <div className="relative flex items-center h-16 font-sans font-normal flex-end">
                 <ul className="flex gap-6">

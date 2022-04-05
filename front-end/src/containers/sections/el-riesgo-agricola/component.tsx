@@ -15,7 +15,10 @@ export const ElRiesgoAgricola: FC = () => {
     <section className="relative">
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <div className="flex flex-col items-start w-full bg-primary-black">
+          <div
+            className="flex flex-col items-start w-full bg-primary-black"
+            id="section-el-riesgo-agricola"
+          >
             <div className="flex flex-col items-start w-full max-w-screen-lg pt-32 mx-auto">
               <h1 className="relative px-3 py-2 font-serif text-6xl transition-opacity duration-500 text-primary-black">
                 <span className="relative z-10">El riesgo agrícola</span>

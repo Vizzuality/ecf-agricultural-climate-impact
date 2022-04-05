@@ -1,4 +1,4 @@
-export const PRETITLE = 'Impactos del cambio climático  en la agricultura española';
+export const PRETITLE = 'Impactos del cambio climático en la agricultura española';
 
 export const TITLE = [
   {
@@ -11,7 +11,7 @@ export const TITLE = [
   },
 ];
 
-export const SUBTITLE =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar consequat pulvinar nulla tempus vel pretium id ullamcorper lectus.';
+// export const SUBTITLE =
+//   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pulvinar consequat pulvinar nulla tempus vel pretium id ullamcorper lectus.';
 
 export const BUTTON_TEXT = 'Descubrir';

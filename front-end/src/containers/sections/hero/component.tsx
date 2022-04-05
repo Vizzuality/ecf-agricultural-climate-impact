@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { motion } from 'framer-motion';
 // import cx from 'classnames';
 
@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 
 // constants
-import { PRETITLE, TITLE, SUBTITLE, BUTTON_TEXT } from './constants';
+import { PRETITLE, TITLE, BUTTON_TEXT } from './constants';
 // import { workerData } from 'worker_threads';
 // import { title } from 'process';
 
@@ -24,6 +24,7 @@ export const Hero: FC = () => {
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <div
+            id="section-hero"
             className="relative w-full h-screen"
             style={{
               // zIndex: currentOpacity === 0 ? -1 : 20,
@@ -51,7 +52,7 @@ export const Hero: FC = () => {
                 transition={{ duration: 0.3 }}
                 className="relative opacity-0 top-8"
               >
-                <div className="flex flex-col items-center gap-2 px-1 font-serif text-8xl">
+                <div className="flex flex-col items-center gap-2 px-1 font-serif text-7xl">
                   {TITLE.map((item) => (
                     <span
                       key={`title-${item.id}`}
@@ -62,19 +63,19 @@ export const Hero: FC = () => {
                   ))}
                 </div>
               </motion.div>
-              <motion.div
+              {/* <motion.div
                 animate={{ y: '-2rem', opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.15 }}
                 className="relative max-w-xl mx-auto mt-8 text-lg text-center opacity-0 top-8"
               >
                 <div>{SUBTITLE}</div>
-              </motion.div>
+              </motion.div> */}
               <motion.div
                 animate={{ y: '-2rem', opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.15 }}
                 className="relative mt-16 opacity-0 top-8"
               >
-                <Button theme="primary" size="l">
+                <Button theme="primary" size="l" href="#section-cultivo-cultura-cambio">
                   {BUTTON_TEXT}
                 </Button>
               </motion.div>

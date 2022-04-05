@@ -548,10 +548,12 @@ export const LAYERS = [
             'fill-color': [
               'match',
               ['get', 'value_{{scenario}}_{{year}}'],
-              'Muy Fresco',
+              'Muy Fresco ',
               '#2C7BB6',
               'Fresco',
               '#ABD9E9',
+              'Templado',
+              '#D2EEAE',
               'Templado cálido',
               '#FFFFBF',
               'Cálido',
@@ -693,11 +695,11 @@ export const LAYERS = [
               'interpolate',
               ['linear'],
               ['get', 'value_{{scenario}}_{{year}}'],
-              0.1,
+              0,
               '#057FFA',
-              0.3,
+              0.5,
               '#FECC4D',
-              0.6,
+              1,
               '#790B0B',
             ],
             'fill-opacity': 0.7,
@@ -739,13 +741,13 @@ export const LAYERS = [
               ['get', 'value_{{scenario}}_{{year}}'],
               0,
               '#F2F0F4',
-              250,
+              100,
               '#BDC9E0',
-              500,
+              200,
               '#74A9CF',
-              750,
+              300,
               '#226F96',
-              1000,
+              400,
               '#034063',
             ],
             'fill-opacity': 0.7,
@@ -866,11 +868,15 @@ export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_FRESCOR_NOCTURNO = [
 export const LEGEND_ITEMS_ZONAS_OPTIMAS_VINO_INDICE_HUGLIN = [
   {
     color: '#2C7BB6',
-    value: 'Muy fresco',
+    value: 'Muy Fresco',
   },
   {
     color: '#ABD9E9',
     value: 'Fresco',
+  },
+  {
+    color: '#D2EEAE',
+    value: 'Templado',
   },
   {
     color: '#FFFFBF',
@@ -954,15 +960,15 @@ export const LAYER_GRADIENT_INCENDIOS_DEHESA = [
 export const LAYER_GRADIENT_ARIDEZ = [
   {
     color: '#057FFA',
-    value: '0.1',
+    value: '0',
   },
   {
     color: '#FECC4D',
-    value: '0.3',
+    value: '0.5',
   },
   {
     color: '#790B0B',
-    value: '0.6',
+    value: '1',
   },
 ];
 
@@ -973,18 +979,18 @@ export const LEGEND_ITEMS_PRECIPITACION = [
   },
   {
     color: '#BDC9E0',
-    value: '250',
+    value: '100',
   },
   {
     color: '#74A9CF',
-    value: '500',
+    value: '200',
   },
   {
     color: '#226F96',
-    value: '750',
+    value: '300',
   },
   {
     color: '#034063',
-    value: '1000',
+    value: '400',
   },
 ];

@@ -12,7 +12,7 @@ export const CultivoCulturaResiliencia: FC = () => {
     <section>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <div className="relative w-full bg-primary-red">
+          <div className="relative w-full bg-primary-red" id="section-cultivo-cultura-resiliencia">
             <div className="sticky top-0">
               <div className="w-full max-w-screen-lg py-24 mx-auto text-lg">
                 <div className="flex gap-3">

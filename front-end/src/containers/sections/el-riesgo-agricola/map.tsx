@@ -208,6 +208,22 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   return (
     <div className="relative w-full bg-lightest-grey">
       <div className="sticky top-0 left-0 z-20 w-full h-screen">
+        <div className="absolute z-20 w-2/5 top-20">
+          <ul className="flex pl-12 ml-1">
+            <li className="px-3">
+              <a href="#section-olivar">Olivar</a>
+            </li>
+            <li className="px-3">
+              <a href="#section-cereal">Cereales</a>
+            </li>
+            <li className="px-3">
+              <a href="#section-vinedo">Viñedo</a>
+            </li>
+            <li className="px-3">
+              <a href="#section-dehesa">Dehesa</a>
+            </li>
+          </ul>
+        </div>
         <div className="w-2/5 ">
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
         </div>
@@ -215,24 +231,30 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           <div className="inline-block w-1/2 pr-2">
             {(year && activeLayerId === 'zonas-optimas-vino' && year.value !== '2021-2050') ||
               (scenarios && scenario && (
-                <MapSlider
-                  values={scenarios}
-                  value={scenario}
-                  currentValue={scenarioSliderValue}
-                  onChange={handleScenarioSliderChange}
-                  disabled={scenarios.length === 1}
-                />
+                <>
+                  <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
+                  <MapSlider
+                    values={scenarios}
+                    value={scenario}
+                    currentValue={scenarioSliderValue}
+                    onChange={handleScenarioSliderChange}
+                    disabled={scenarios.length === 1}
+                  />
+                </>
               ))}
           </div>
           <div className="inline-block w-1/2 pl-2">
             {years && year && (
-              <MapSlider
-                values={years}
-                value={year}
-                currentValue={yearSliderValue}
-                onChange={handleYearSliderChange}
-                disabled={years.length === 1}
-              />
+              <>
+                <div className="pb-2 text-sm text-gray-400">Año</div>
+                <MapSlider
+                  values={years}
+                  value={year}
+                  currentValue={yearSliderValue}
+                  onChange={handleYearSliderChange}
+                  disabled={years.length === 1}
+                />
+              </>
             )}
           </div>
           <div>
@@ -296,7 +318,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           </div>
         </Step>
         <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia' }}>
-          <div className="relative w-2/5 p-16 pt-40">
+          <div className="relative w-2/5 p-16 pt-40" id="section-olivar">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Olivar</div>
@@ -389,7 +411,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           </div>
         </Step>
         <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon' }}>
-          <div className="relative w-2/5 p-16 pt-40">
+          <div className="relative w-2/5 p-16 pt-40" id="section-cereal">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Cereales</div>
@@ -465,7 +487,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           </div>
         </Step>
         <Step data={{ layerId: 'cultivos-vinedo', area: 'castilla_la_mancha' }}>
-          <div className="relative w-2/5 p-16 pt-40">
+          <div className="relative w-2/5 p-16 pt-40" id="section-vinedo">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Viñedo</div>
@@ -508,7 +530,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           </div>
         </Step>
         <Step data={{ layerId: 'cultivos-dehesa', area: 'extremadura' }}>
-          <div className="relative w-2/5 p-16 pt-40">
+          <div className="relative w-2/5 p-16 pt-40" id="section-dehesa">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Dehesa</div>

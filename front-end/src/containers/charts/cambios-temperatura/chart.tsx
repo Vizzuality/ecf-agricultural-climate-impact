@@ -32,8 +32,8 @@ const formatValue = format(',.2f');
 const margin = { top: 40, right: 100, bottom: 50, left: 85 };
 
 const LABELS_BY_SCENARIO = {
-  rcp45: 'RCP45',
-  rcp85: 'RCP85',
+  rcp45: 'Calentamiento de 1.5ºC',
+  rcp85: 'Calentamiento de 2ºC',
 };
 
 export const Chart: React.FC<ChartProps> = ({ width, height }) => {
@@ -200,7 +200,15 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
                     fill="#EDF2F7"
                     fontSize="12"
                   >
-                    <tspan>{LABELS_BY_SCENARIO[d?.scenario]}</tspan>
+                    <tspan>Calentamiento</tspan>
+                  </text>
+                  <text
+                    x={timeScale(getYear(d)) + 10 ?? 0}
+                    y={valueScale(getValue(d)) + 16 ?? 0}
+                    fill="#EDF2F7"
+                    fontSize="12"
+                  >
+                    <tspan>de {d?.scenario === 'rcp45' ? '1.5ºC' : '2ºC'}</tspan>
                   </text>
                 </g>
               )

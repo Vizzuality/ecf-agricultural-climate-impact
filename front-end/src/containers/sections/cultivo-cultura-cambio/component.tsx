@@ -33,7 +33,7 @@ export const CultivoCulturaCambio: FC = () => {
     <section>
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
-          <div className="relative w-full">
+          <div className="relative w-full" id="section-cultivo-cultura-cambio">
             <div className="sticky top-0">
               {/* BG */}
               <div className="absolute top-0 left-0 flex w-full h-screen filter bg-image">

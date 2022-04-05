@@ -18,7 +18,7 @@ export const MapSlider: FC<MapSliderType> = ({
         className={cx({
           'h-px my-5': true,
           'cursor-grab bg-black': !disabled,
-          'cursor-default bg-transparent': !!disabled,
+          'cursor-default bg-gray-400': !!disabled,
         })}
         min={0}
         max={values.length - 1}
@@ -26,7 +26,7 @@ export const MapSlider: FC<MapSliderType> = ({
         thumbClassName={cx({
           'w-10 h-10 flex items-center justify-center rounded-full outline-none bg-white border text-sm top-px transform -translate-y-1/2 border-black':
             true,
-          'select-none': !!disabled,
+          'select-none bg-gray-100 border-gray-400 text-gray-500': !!disabled,
         })}
         onChange={onChange}
         value={currentValue}
