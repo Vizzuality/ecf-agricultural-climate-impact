@@ -42,7 +42,7 @@ export const CultivoCulturaCambio: FC = () => {
                   src="images/cultivoCulturaCambio-bg1.jpg"
                   alt="background"
                   role="decoration"
-                  style={{ filter: `grayscale(${(1 * currentStep.id - 1) / (STEPS.length - 1)})` }}
+                  style={{ filter: `grayscale(${(currentStep.id - 1) / (STEPS.length - 1)})` }}
                 />
               </div>
               <div
@@ -105,7 +105,10 @@ export const CultivoCulturaCambio: FC = () => {
                         'relative px-1 py-3 bg-primary-red text-white font-serif text-7xl transition-opacity duration-500':
                           true,
                         'left-16': word.id === 1,
-                        'opacity-50': currentStep.id <= word.id,
+                        'opacity-50': true,
+                        'opacity-100':
+                          word.id + 1 < currentStep.id ||
+                          (currentStep.id - 1 == word.id && currentProgress >= 0.5),
                       })}
                     >
                       {word.content}
