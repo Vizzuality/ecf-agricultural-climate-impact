@@ -17,7 +17,7 @@ import { getFlyToDuration } from '@math.gl/web-mercator';
 
 export const CultivoCulturaCambio: FC = () => {
   const [currentStep, setCurrentStep] = useState(STEPS[0]);
-  const [currentOpacity, setCurrentOpacity] = useState(0);
+  const [currentProgress, setCurrentProgress] = useState(0);
 
   const onStepEnter = (data) => {
     console.log('enter', data);
@@ -25,7 +25,8 @@ export const CultivoCulturaCambio: FC = () => {
   };
 
   const onStepProgress = (data) => {
-    console.log('progress', data);
+    console.log('progress:', data);
+    setCurrentProgress(data.progress * 2);
   };
 
   return (
@@ -43,6 +44,56 @@ export const CultivoCulturaCambio: FC = () => {
                   role="decoration"
                   style={{ filter: `grayscale(${(1 * currentStep.id - 1) / (STEPS.length - 1)})` }}
                 />
+              </div>
+              <div
+                className="absolute top-0 left-0 w-full h-screen"
+                // style={{ background: 'rgba(0, 0, 0, 0.3)' }}
+              >
+                <div
+                  className="relative w-full h-screen max-w-screen-lg"
+                  style={{
+                    left: 'calc((100vw - 1024px) / 2)',
+                  }}
+                >
+                  {/* <div className="relative w-1/2 left-1/2"> */}
+                  {STEPS.map((step, i) => (
+                    <div
+                      key={i}
+                      className="absolute left-0 w-full max-w-screen-lg top-56"
+                      // className="h-screen -translate-x-1/2 left-1/2"
+                      style={{
+                        // paddingLeft: 'calc((100vw - 1024px) / 2)',
+                        // paddingRight: 'calc((100vw - 1024px) / 2)',
+                        // marginTop: i === 0 ? '-50vh' : '',
+                        paddingBottom: i === STEPS.length - 1 ? '50vh' : '',
+                        // background: 'rgba(0, 0, 0, 0.3)',
+                      }}
+                    >
+                      <div
+                        className="relative flex w-1/2 text-lg left-1/2"
+                        // className="flex items-center py-16 text-lg transform -translate-y-1/2 top-1/2"
+                        style={{
+                          position: 'relative',
+                          top: -(currentProgress * 100),
+                          opacity:
+                            step.id === currentStep.id
+                              ? currentProgress <= 0.5
+                                ? currentProgress * 2
+                                : (1 - currentProgress) * 2
+                              : '0',
+                          // transition: 'opacity 0.5s ease-out',
+                          // width: '50vw',
+                          height: '50vh',
+                          // height: 'calc(50vh - 16rem)',
+                          marginBottom: '5rem',
+                        }}
+                      >
+                        <div className="absolute top-0 left-0">{step.content}</div>
+                      </div>
+                    </div>
+                  ))}
+                  {/* </div> */}
+                </div>
               </div>
               <div className="w-full h-screen max-w-screen-lg mx-auto text-lg">
                 {/* WORDS */}
@@ -63,30 +114,41 @@ export const CultivoCulturaCambio: FC = () => {
                 </div>
               </div>
             </div>
-            <Scrollama onStepEnter={onStepEnter} onStepProgress={onStepProgress} offset={0.2}>
+            <Scrollama
+              progress
+              // debug
+              onStepEnter={onStepEnter}
+              onStepProgress={onStepProgress}
+              offset={0.6}
+            >
               {STEPS.map((step, i) => (
                 <Step key={step.id} data={step}>
                   <div
                     className="w-full"
                     // className="h-screen -translate-x-1/2 left-1/2"
                     style={{
+                      opacity: 0,
                       paddingLeft: 'calc((100vw - 1024px) / 2)',
                       paddingRight: 'calc((100vw - 1024px) / 2)',
-                      marginTop: i === 0 ? '-100vh' : '',
+                      marginTop: i === 0 ? '-50vh' : '',
                       paddingBottom: i === STEPS.length - 1 ? '50vh' : '',
                     }}
                   >
                     <div
-                      className="relative flex items-center w-1/2 text-lg left-1/2"
+                      className="relative flex w-1/2 text-lg left-1/2"
                       // className="flex items-center py-16 text-lg transform -translate-y-1/2 top-1/2"
                       style={{
-                        // opacity: step.id === currentStep.id ? currentOpacity : '0',
+                        position: 'relative',
+                        // top: currentProgress * 100,
+                        // opacity: step.id === currentStep.id ? currentProgress : '0',
+                        // transition: 'opacity 0.5s ease-out',
                         // width: '50vw',
-                        // height: '60vh',
-                        height: 'calc(100vh - 16rem)',
+                        height: '150vh',
+                        // height: 'calc(50vh - 16rem)',
+                        marginBottom: '5rem',
                       }}
                     >
-                      {step.content}
+                      <div className="absolute top-0 left-0">{step.content}</div>
                     </div>
                   </div>
                 </Step>
