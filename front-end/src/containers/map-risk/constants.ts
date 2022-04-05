@@ -320,7 +320,7 @@ export const LAYERS = [
                 20,
                 '#018571',
               ],
-              'blue',
+              'transparent',
             ],
             'fill-opacity': 0.7,
           },
