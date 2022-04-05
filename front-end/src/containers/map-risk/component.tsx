@@ -102,7 +102,6 @@ const MapRisk: FC<MapVisualizationType> = ({
 
       const newLayers = [visibleLayer];
 
-      console.log('newLayers:', newLayers);
       return newLayers;
     }
   }, [
@@ -122,6 +121,9 @@ const MapRisk: FC<MapVisualizationType> = ({
       bbox: BOUNDS[bounds],
       options: {
         padding: 20,
+      },
+      viewportOptions: {
+        transitionDuration: 1000,
       },
     };
   }, [bounds]);
@@ -151,12 +153,12 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   const getRegionData = (e) => {
     if (e.features.length) {
-      console.log('hover:', e);
+      // console.log('hover:', e);
     }
     const { features } = e;
 
     if (e && features) {
-      console.log('features[0]?.source', features[0]?.source, 'activeLayerId', activeLayerId);
+      // console.log('features[0]?.source', features[0]?.source, 'activeLayerId', activeLayerId);
       if (features[0]?.source !== activeLayerId) return null;
       const properties = features.find((f) => f.source === activeLayerId)?.properties;
       const id = properties?.[promoteId] || properties?.ID || properties?.CODIGOINE;
