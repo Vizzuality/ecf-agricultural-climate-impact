@@ -56,9 +56,7 @@ export const ZoomControl: FC<ZoomControlProps> = ({
         disabled={zoom === maxZoom}
         onClick={increaseZoom}
       >
-        {/* TODO: Fix icons */}
-        {/* <Icon icon={ZOOM_IN_SVG} /> */}
-        <strong>+</strong>
+        <Icon icon={ZOOM_IN_SVG} />
       </button>
       <button
         className={cx({
@@ -71,9 +69,7 @@ export const ZoomControl: FC<ZoomControlProps> = ({
         disabled={zoom === minZoom}
         onClick={decreaseZoom}
       >
-        {/* TODO: Fix icons */}
-        {/* <Icon icon={ZOOM_OUT_SVG} /> */}
-        <strong>-</strong>
+        <Icon icon={ZOOM_OUT_SVG} />
       </button>
     </div>
   );
