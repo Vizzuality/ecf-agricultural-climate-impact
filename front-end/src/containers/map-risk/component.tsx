@@ -95,12 +95,12 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   const getRegionData = (e) => {
     if (e.features.length) {
-      // console.log('hover:', e);
+      console.log('hover:', e);
     }
     const { features } = e;
 
     if (e && features) {
-      if (features[0]?.source !== activeLayerId) return null;
+      // if (features[0]?.source !== activeLayerId) return null; // andres: porque?
       const properties =
         activeLayerId === 'zonas-optimas-vino'
           ? features.find((f) => f.source === `${activeLayerId}_${indicator.value}`)?.properties
@@ -178,12 +178,13 @@ const MapRisk: FC<MapVisualizationType> = ({
     const { center } = e;
     const data = getRegionData(e);
 
+    console.log('data.value:', '/' + data.value + '/');
     if (data && data.value && data.value !== 'NaN') {
       if (
         (activeLayerId === 'cultivos-dehesa' && data.value !== 'Dehesa') ||
         (activeLayerId === 'cultivos-olivar' && data.value !== 'Olivar') ||
         (activeLayerId === 'cultivos-vinedo' && data.value !== 'Viñedo') ||
-        (activeLayerId === 'cultivos-cereal' && data.value !== 'Cereales')
+        (activeLayerId === 'cultivos-cereal' && data.value !== 'Cereal')
       ) {
         hideTooltip();
       } else {

@@ -20,12 +20,10 @@ export const CultivoCulturaCambio: FC = () => {
   const [currentProgress, setCurrentProgress] = useState(0);
 
   const onStepEnter = (data) => {
-    console.log('enter', data);
     setCurrentStep(data.data);
   };
 
   const onStepProgress = (data) => {
-    console.log('progress:', data);
     setCurrentProgress(data.progress);
   };
 

@@ -62,6 +62,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   const [years, setYears] = useState(getYears(defaultActiveLayerId));
   const [yearSliderValue, setYearSliderValue] = useState(0);
   const [scenarioSliderValue, setScenarioSliderValue] = useState(0);
+  const [currentProgress, setCurrentProgress] = useState(0);
 
   const handleActiveLayerChange = useCallback((data) => {
     setYearSliderValue(0);
@@ -97,8 +98,11 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   );
 
   const onStepEnter = (e) => {
-    console.log('hola:', e.data);
     handleActiveLayerChange(e.data);
+  };
+
+  const onStepProgress = (data) => {
+    setCurrentProgress(data.progress);
   };
 
   return (
@@ -148,11 +152,63 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             legend={activeLayerId}
           />
         </div>
+        <div>
+          <div
+            className="absolute w-2/5 p-16 pt-40 mt-2"
+            style={{
+              top: -(currentProgress * 10),
+              opacity:
+                activeLayerId === 'calentamiento'
+                  ? currentProgress <= 0.5
+                    ? currentProgress * 10
+                    : (1 - currentProgress) * 10
+                  : '0',
+            }}
+          >
+            <div>
+              <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
+              <div className="mt-12 text-lg">
+                Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
+                <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
+                asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
+                incidencia de incendios forestales y erosión del suelo.
+              </div>
+            </div>
+          </div>
+          <div
+            className="absolute w-2/5 p-16 pt-40 mt-2"
+            style={{
+              top: -(currentProgress * 10),
+              opacity:
+                activeLayerId === 'sequias'
+                  ? currentProgress <= 0.5
+                    ? currentProgress * 10
+                    : (1 - currentProgress) * 10
+                  : '0',
+            }}
+          >
+            <div>
+              <div className="font-serif text-2xl">Proyecciones de sequías</div>
+              <div className="mt-12 text-lg">
+                <p>
+                  Se espera un{' '}
+                  <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,
+                  seguidas por periodos de lluvias más cortos pero intensos durante los meses de
+                  Octubre y Noviembre.
+                </p>
+                <p>
+                  Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
+                  regadío si se mantienen las condiciones de cultivo actuales.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <Scrollama onStepEnter={onStepEnter} offset={0.5}>
-        <Step data={{ layerId: 'calentamiento' }}>
-          <div className="relative w-2/5 p-16 pt-40" style={{ marginTop: '-100vh' }}>
+      <Scrollama onStepEnter={onStepEnter} progress onStepProgress={onStepProgress} offset={0}>
+        <Step data={{ layerId: 'calentamiento', id: 0 }}>
+          <div className="relative w-2/5 p-16 pt-40 opacity-0" style={{ marginTop: '-100vh' }}>
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
@@ -166,8 +222,8 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'sequias' }}>
-          <div className="w-2/5 p-16 pt-40">
+        <Step data={{ layerId: 'sequias', id: 1 }}>
+          <div className="w-2/5 p-16 pt-40 opacity-0">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de sequías</div>
