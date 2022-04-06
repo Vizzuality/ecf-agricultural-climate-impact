@@ -579,6 +579,22 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     particularmente se cultivan en el noreste de la comunidad. Además, los cambios
                     en
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Step>
+        <Step
+          data={{
+            layerId: 'zonas-optimas-vino',
+            area: 'castilla_la_mancha',
+            cropSection: 'vinedo',
+          }}
+        >
+          <div className="w-2/5 p-16 pt-40">
+            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+              <div className="sticky top-40">
+                <div className="mt-12 text-lg">
                   <p>
                     Aunque el viñedo es una planta fuertemente adaptada a las condiciones
                     mediterráneas y que necesita déficits hídricos moderados para potenciar su
@@ -605,12 +621,9 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     ganadera, y forestal.
                   </p>
                   <p>
-                    La dehesa es un ejemplo ideal de gestión sostenible de un ecosistema
-                    mediterráneo con una extensión de ## mHa particularmente centradas en el
-                    suroeste de la península donde conviven la actividad agrícola, ganadera, y
-                    forestal. Dominada por pastos y con encinas, alcornoques, hayas, y pinos
-                    dispersos, la dehesa constituye el medio para el desarrollo de explotaciones de
-                    cerdos, ovejas, caballos y toros de gran valor a nivel nacional.
+                    Dominada por pastos y con encinas, alcornoques, hayas, y pinos dispersos, la
+                    dehesa constituye el medio para el desarrollo de explotaciones de cerdos,
+                    ovejas, caballos y toros de gran valor a nivel nacional.
                   </p>
                 </div>
               </div>

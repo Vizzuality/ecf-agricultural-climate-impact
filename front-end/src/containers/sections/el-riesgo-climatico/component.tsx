@@ -64,7 +64,7 @@ export const ElRiesgoClimatico: FC = () => {
           </div>
           <div className="w-full bg-white">
             <div className="flex flex-col items-start w-full h-screen max-w-screen-xl pt-16 mx-auto text-lg">
-              <div className="py-4" style={{ paddingLeft: '50%' }}>
+              <div className="py-4" style={{ marginLeft: '60%', width: '30%' }}>
                 Los impactos del aumento de la temperatura serían visibles no solo en la agricultura
                 sino también sobre la población, biodiversidad, océanos, y ecosistemas terrestres a
                 nivel global.
