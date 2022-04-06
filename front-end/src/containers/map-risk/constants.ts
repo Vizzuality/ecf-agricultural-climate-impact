@@ -27,6 +27,13 @@ export const BOUNDS = {
 //   -7.2125244140625, 40.04864272291728, -1.6644287109375, 43.29320031385282,
 // ];
 
+export const CCAA_DICTIONARY = {
+  andalucia: 'Andalucía',
+  castilla_leon: 'Castilla y León',
+  castilla_la_mancha: 'Castilla La Mancha',
+  extremadura: 'Extremadura',
+};
+
 export const LAYERS = [
   // cultivos
   {
@@ -59,9 +66,6 @@ export const LAYERS = [
             ],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
       ],
     },
@@ -90,9 +94,6 @@ export const LAYERS = [
           paint: {
             'fill-color': ['match', ['get', 'value'], 'Dehesa', '#38A6A5', 'transparent'],
             'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -123,9 +124,6 @@ export const LAYERS = [
             'fill-color': ['match', ['get', 'value'], 'Cereal', '#EDAD08', 'transparent'],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
       ],
     },
@@ -154,9 +152,6 @@ export const LAYERS = [
           paint: {
             'fill-color': ['match', ['get', 'value'], 'Viñedo', '#AE240F', 'transparent'],
             'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -187,9 +182,6 @@ export const LAYERS = [
             'fill-color': ['match', ['get', 'value'], 'Olivar', '#90A070', 'transparent'],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
       ],
     },
@@ -207,17 +199,6 @@ export const LAYERS = [
       minzoom: 3,
       maxzoom: 12,
     },
-    render: {
-      layers: [
-        {
-          type: 'raster',
-          layout: {
-            // opacity: 1,
-            visibility: '{{layerVisibility}}',
-          },
-        },
-      ],
-    },
   },
   {
     id: 'zonas-optimas-olivo_2011_2040',
@@ -230,16 +211,6 @@ export const LAYERS = [
       ],
       minzoom: 3,
       maxzoom: 12,
-    },
-    render: {
-      layers: [
-        {
-          type: 'raster',
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
-        },
-      ],
     },
   },
   {
@@ -254,16 +225,6 @@ export const LAYERS = [
       minzoom: 3,
       maxzoom: 12,
     },
-    render: {
-      layers: [
-        {
-          type: 'raster',
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
-        },
-      ],
-    },
   },
   {
     id: 'zonas-optimas-olivo_2071_2100',
@@ -276,16 +237,6 @@ export const LAYERS = [
       ],
       minzoom: 3,
       maxzoom: 12,
-    },
-    render: {
-      layers: [
-        {
-          type: 'raster',
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
-        },
-      ],
     },
   },
   // rendimiento-olivo
@@ -324,9 +275,6 @@ export const LAYERS = [
             ],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
         {
           type: 'line',
@@ -334,9 +282,6 @@ export const LAYERS = [
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -386,9 +331,6 @@ export const LAYERS = [
             ],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
         {
           type: 'line',
@@ -404,9 +346,6 @@ export const LAYERS = [
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -440,9 +379,6 @@ export const LAYERS = [
               'black',
             ],
             'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -479,9 +415,6 @@ export const LAYERS = [
               'transparent',
             ],
             'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -520,9 +453,6 @@ export const LAYERS = [
               'transparent',
             ],
             'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -564,9 +494,6 @@ export const LAYERS = [
             ],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
       ],
     },
@@ -602,9 +529,6 @@ export const LAYERS = [
             ],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
         {
           type: 'line',
@@ -612,9 +536,6 @@ export const LAYERS = [
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -656,9 +577,6 @@ export const LAYERS = [
             ],
             'fill-opacity': 0.7,
           },
-          layout: {
-            visibility: '{{layerVisibility}}',
-          },
         },
         {
           type: 'line',
@@ -666,9 +584,6 @@ export const LAYERS = [
           paint: {
             'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
             'line-color': '#000',
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
       ],
@@ -703,9 +618,6 @@ export const LAYERS = [
               '#790B0B',
             ],
             'fill-opacity': 0.7,
-          },
-          layout: {
-            visibility: '{{layerVisibility}}',
           },
         },
         {

@@ -1,16 +1,11 @@
-import { useEffect, useState, useCallback, FC } from 'react';
+import { useState, useCallback, FC } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-// import { Controller, Scene } from 'react-scrollmagic';
 
 import Select from 'components/forms/select';
 import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
 
-// constants
-// import { SCENARIOS, MAP_SECTION_HEIGHT } from './constants';
-
-// TODO
 const MAP_SECTION_HEIGHT = '200vh';
 
 import {
@@ -131,7 +126,6 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
     setCrop(getCrops(data.layerId)?.[0]);
     setIndicators(getIndicators(data.layerId));
     setIndicator(getIndicators(data.layerId)?.[0]);
-    setActiveLayerId(data.layerId);
 
     if (data.layerId === 'rendimiento-cereal') {
       setGeoType('comunidades');
@@ -152,6 +146,8 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
       setScenarios(getScenarios(data.layerId));
       setScenario(getScenarios(data.layerId)?.[0]);
     }
+
+    setActiveLayerId(data.layerId);
   }, []);
 
   const handleScenarioSliderChange = useCallback(
@@ -308,32 +304,32 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
               </>
             )}
           </div>
-          <div>
-            <div>
-              {crops && crop && (
-                <Select
-                  id="crops-selection"
-                  initialSelected={crop.value}
-                  onChange={handleCropChange}
-                  options={crops}
-                  placeholder="Elige el cultivo"
-                  size="base"
-                  theme="light"
-                />
-              )}
-              {indicators && indicator && (
-                <Select
-                  id="indicator-selection"
-                  initialSelected={indicator.value}
-                  onChange={handleIndicatorChange}
-                  options={indicators}
-                  placeholder="Elige el indicador"
-                  size="base"
-                  theme="light"
-                />
-              )}
+          {crops && crop && (
+            <div className="mt-4">
+              <Select
+                id="crops-selection"
+                initialSelected={crop.value}
+                onChange={handleCropChange}
+                options={crops}
+                placeholder="Elige el cultivo"
+                size="base"
+                theme="light"
+              />
             </div>
-          </div>
+          )}
+          {indicators && indicator && (
+            <div className="mt-4">
+              <Select
+                id="indicator-selection"
+                initialSelected={indicator.value}
+                onChange={handleIndicatorChange}
+                options={indicators}
+                placeholder="Elige el indicador"
+                size="base"
+                theme="light"
+              />
+            </div>
+          )}
         </div>
         <div className="absolute top-0 right-0 z-20 w-3/5 h-screen mapa-calentamiento">
           <MapRisk
@@ -343,7 +339,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             year={year}
             crop={crop}
             indicator={indicator}
-            allowZoom={true}
+            allowZoom
             bounds={bounds}
             legend={activeLayerId}
           />
