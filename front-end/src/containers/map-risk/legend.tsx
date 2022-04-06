@@ -46,7 +46,6 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                {/* <Icon icon={INFO_SVG} /> */}
                 <img src={INFO_SVG} alt="" />
               </button>
             </div>
@@ -64,7 +63,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -81,7 +80,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -98,7 +97,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -115,7 +114,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -132,7 +131,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -149,7 +148,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -169,7 +168,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -185,7 +184,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -201,7 +200,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -221,7 +220,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -237,7 +236,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -253,7 +252,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -266,7 +265,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
@@ -282,7 +281,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
