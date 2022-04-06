@@ -58,48 +58,6 @@ const MapRisk: FC<MapVisualizationType> = ({
       ? `${activeLayerId}_${year?.value}`
       : activeLayerId;
 
-  // Add dynamic stuff to layer params
-  const updatedLayers = useMemo(() => {
-    let layers = [];
-    const dataLayers = LAYERS.filter((l) => l.id === visibleLayerId).map((layer) => ({
-      ...layer,
-      params: {
-        ...(year && { year: year.value.split(' - ').join('-') }),
-        scenario: scenario?.value,
-        geoType: geoType,
-        crop: crop?.value || '',
-        indicator: indicator?.value || '',
-        promoteId,
-      },
-    }));
-
-    layers = dataLayers;
-
-    if (bounds !== 'spain') {
-      const geometry = CCAAGeometries.features.find(
-        (f) => f.properties.DS_CCAA === CCAA_DICTIONARY[bounds],
-      )?.geometry;
-
-      const geojson = {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            properties: {},
-            geometry,
-          },
-        ],
-      };
-
-      const highlightLayer = HIGHLIGHT_REGION_LAYER(bounds, geojson);
-
-      // highlighted layer always on top to avoid be hidden by other layers
-      layers = [highlightLayer, ...layers];
-    }
-
-    return layers;
-  }, [geoType, promoteId, year, scenario, crop, indicator, visibleLayerId, bounds]);
-
   const mapBounds = useMemo(() => {
     return {
       bbox: BOUNDS[bounds],
@@ -240,6 +198,48 @@ const MapRisk: FC<MapVisualizationType> = ({
       hideTooltip();
     }
   };
+
+  // Add dynamic stuff to layer params
+  const updatedLayers = useMemo(() => {
+    let layers = [];
+    const dataLayers = LAYERS.filter((l) => l.id === visibleLayerId).map((layer) => ({
+      ...layer,
+      params: {
+        ...(year && { year: year.value.split(' - ').join('-') }),
+        scenario: scenario?.value,
+        geoType: geoType,
+        crop: crop?.value || '',
+        indicator: indicator?.value || '',
+        promoteId,
+      },
+    }));
+
+    layers = dataLayers;
+
+    if (bounds !== 'spain') {
+      const geometry = CCAAGeometries.features.find(
+        (f) => f.properties.DS_CCAA === CCAA_DICTIONARY[bounds],
+      )?.geometry;
+
+      const geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry,
+          },
+        ],
+      };
+
+      const highlightLayer = HIGHLIGHT_REGION_LAYER(bounds, geojson);
+
+      // highlighted layer always on top to avoid be hidden by other layers
+      layers = [highlightLayer, ...layers];
+    }
+
+    return layers;
+  }, [geoType, promoteId, year, scenario, crop, indicator, visibleLayerId, bounds]);
 
   return (
     <div className="relative flex flex-col h-full">
