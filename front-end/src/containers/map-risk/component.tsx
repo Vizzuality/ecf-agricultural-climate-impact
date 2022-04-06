@@ -95,7 +95,7 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   const getRegionData = (e) => {
     if (e.features.length) {
-      console.log('hover:', e);
+      // console.log('hover:', e);
     }
     const { features } = e;
 
@@ -178,7 +178,6 @@ const MapRisk: FC<MapVisualizationType> = ({
     const { center } = e;
     const data = getRegionData(e);
 
-    console.log('data.value:', '/' + data.value + '/');
     if (data && data.value && data.value !== 'NaN') {
       if (
         (activeLayerId === 'cultivos-dehesa' && data.value !== 'Dehesa') ||
