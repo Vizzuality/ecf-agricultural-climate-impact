@@ -1,5 +1,3 @@
-// import queryString from 'query-string';
-
 // containers
 import Section from 'containers/section';
 import Hero from 'containers/sections/hero';

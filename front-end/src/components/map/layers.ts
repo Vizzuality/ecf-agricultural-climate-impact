@@ -1,4 +1,18 @@
-export default [
+import type { FeatureCollection } from 'geojson';
+import { Source } from '@vizzuality/layer-manager';
+
+export interface Render {
+  layers?: Record<string, string | number | boolean | unknown>[];
+}
+
+export interface GeoJSONLayer {
+  id: string;
+  type: 'geojson';
+  render?: Render;
+  source: Partial<Source>;
+}
+
+export const LAYERS = [
   // RASTER LAYER
   {
     id: 'gain',
@@ -130,3 +144,22 @@ export default [
     },
   },
 ];
+
+export const HIGHLIGHT_REGION_LAYER = (id: string, geojson): GeoJSONLayer => ({
+  id,
+  type: 'geojson',
+  source: {
+    type: 'geojson',
+    data: geojson,
+  },
+  render: {
+    layers: [
+      {
+        type: 'line',
+        paint: { 'line-color': '#969795', 'line-width': 2 },
+      },
+    ],
+  },
+});
+
+export default LAYERS;
