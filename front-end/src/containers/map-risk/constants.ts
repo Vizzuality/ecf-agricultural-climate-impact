@@ -35,6 +35,102 @@ export const CCAA_DICTIONARY = {
 };
 
 export const LAYERS = [
+  // calentamiento
+  {
+    id: 'calentamiento',
+    name: 'Proyecciones de calentamiento',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aumento_temperaturas/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Aumento_temperaturas',
+          paint: {
+            'fill-color': [
+              'case',
+              ['has', 'value_{{scenario}}_{{year}}'],
+              [
+                'interpolate',
+                ['linear'],
+                ['get', 'value_{{scenario}}_{{year}}'],
+                1,
+                '#0F031F',
+                2,
+                '#C6434A',
+                3,
+                '#F07D24',
+                4,
+                '#EEF07A',
+              ],
+              'transparent',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Aumento_temperaturas',
+          layout: {
+            visibility: '{{visibility}}',
+          },
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
+  // sequias
+  {
+    id: 'sequias',
+    name: 'Duración de las sequías a lo largo del año',
+    type: 'vector',
+    source: {
+      type: 'vector',
+      tiles: [
+        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Duracion_sequias/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+      ],
+      promoteId: '{{promoteId}}',
+    },
+    render: {
+      layers: [
+        {
+          type: 'fill',
+          'source-layer': 'Duracion_sequias',
+          paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['get', 'value_{{scenario}}_{{year}}'],
+              0,
+              '#057FFA',
+              50,
+              '#FECC4D',
+              100,
+              '#790B0B',
+            ],
+            'fill-opacity': 0.7,
+          },
+        },
+        {
+          type: 'line',
+          'source-layer': 'Duracion_sequias',
+          paint: {
+            'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+            'line-color': '#000',
+          },
+        },
+      ],
+    },
+  },
   // cultivos
   {
     id: 'cultivos',

@@ -60,7 +60,7 @@ const INDICATORS = {
 
 import type { ElRiesgoAgricolaMapTypes } from './types';
 
-export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
+export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
   defaultActiveLayerId = 'cultivos',
 }) => {
   const getYears = (layer) => {
@@ -679,4 +679,4 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
   );
 };
 
-export default ElRiesgoClimaticoMap;
+export default ElRiesgoAgricolaMap;
