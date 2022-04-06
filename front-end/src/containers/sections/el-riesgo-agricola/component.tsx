@@ -50,8 +50,8 @@ export const ElRiesgoAgricola: FC = () => {
                 <ChartProduccionesCultivos />
               </div>
             </div>
-            <div className="flex flex-col items-start w-full max-w-screen-lg mx-auto">
-              <div className="pt-8 pb-16 text-lg text-white" style={{ paddingLeft: '50%' }}>
+            <div className="flex justify-end w-full max-w-screen-lg mx-auto mt-8 mb-16">
+              <div className="w-1/2 text-lg text-white">
                 A raíz de las consecuencias del cambio climático, la producción agrícola podría
                 estar en riesgo, y consecuentemente afectar al valor nutricional, la experiencia de
                 consumo, y la recepción de los productos tanto a nivel nacional como internacional.

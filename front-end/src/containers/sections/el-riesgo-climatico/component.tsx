@@ -83,11 +83,7 @@ export const ElRiesgoClimatico: FC = () => {
                   <div className="pb-2 font-serif text-5xl font-bold text-primary-red">
                     2 veces más
                   </div>
-                  <div>
-                    de la población global en
-                    <br />
-                    riesgo de olas de calor
-                  </div>
+                  <div>de la población global en riesgo de olas de calor</div>
                 </div>
                 <div className="flex-1">
                   <div className="pb-2 font-serif text-5xl font-bold text-primary-red">
