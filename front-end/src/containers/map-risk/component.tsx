@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState, useRef, useEffect } from 'react';
+import { FC, useCallback, useMemo, useState, useRef } from 'react';
 
 import Map from 'components/map';
 import ZoomControls from 'components/map/controls/zoom';
@@ -10,7 +10,12 @@ import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 
 import Legend from './legend';
 
-import { DEFAULT_VIEWPORT, LAYERS, BOUNDS } from './constants';
+// constants
+import { HIGHLIGHT_REGION_LAYER } from 'components/map/layers';
+import { DEFAULT_VIEWPORT, LAYERS, BOUNDS, CCAA_DICTIONARY } from './constants';
+
+// data
+import CCAAGeometries from 'data/ccaa-geometries.json';
 
 import type {
   MapTypes,
@@ -25,12 +30,10 @@ const MapRisk: FC<MapVisualizationType> = ({
   geoType = 'municipio',
   scenario = { value: 'rcp45', label: '1.5°C' },
   year = { value: 'none', label: '' },
-  allowZoom,
   bounds = 'spain',
   legend,
   crop,
   indicator,
-  // municipality,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
   const HOVER = useRef<EventTypes>({});
@@ -54,11 +57,11 @@ const MapRisk: FC<MapVisualizationType> = ({
       : activeLayerId === 'zonas-optimas-olivo'
       ? `${activeLayerId}_${year?.value}`
       : activeLayerId;
-  const zonasOptimasMaskVisibility = activeLayerId === 'zonas-optimas-vino' ? 0.5 : 0;
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
-    return LAYERS.filter((l) => l.id === visibleLayerId).map((layer) => ({
+    let layers = [];
+    const dataLayers = LAYERS.filter((l) => l.id === visibleLayerId).map((layer) => ({
       ...layer,
       params: {
         ...(year && { year: year.value.split(' - ').join('-') }),
@@ -70,16 +73,33 @@ const MapRisk: FC<MapVisualizationType> = ({
         promoteId,
       },
     }));
-  }, [
-    geoType,
-    promoteId,
-    year,
-    scenario,
-    crop,
-    indicator,
-    visibleLayerId,
-    zonasOptimasMaskVisibility,
-  ]);
+
+    layers = dataLayers;
+
+    if (bounds !== 'spain') {
+      const geometry = CCAAGeometries.features.find(
+        (f) => f.properties.DS_CCAA === CCAA_DICTIONARY[bounds],
+      )?.geometry;
+
+      const geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry,
+          },
+        ],
+      };
+
+      const highlightLayer = HIGHLIGHT_REGION_LAYER(bounds, geojson);
+
+      // highlighted layer always on top to avoid be hidden by other layers
+      layers = [highlightLayer, ...layers];
+    }
+
+    return layers;
+  }, [geoType, promoteId, year, scenario, crop, indicator, visibleLayerId, bounds]);
 
   const mapBounds = useMemo(() => {
     return {

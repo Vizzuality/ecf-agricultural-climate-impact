@@ -1,16 +1,11 @@
-import { useEffect, useState, useCallback, FC } from 'react';
+import { useState, useCallback, FC } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-// import { Controller, Scene } from 'react-scrollmagic';
 
 import Select from 'components/forms/select';
 import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
 
-// constants
-// import { SCENARIOS, MAP_SECTION_HEIGHT } from './constants';
-
-// TODO
 const MAP_SECTION_HEIGHT = '200vh';
 
 import {
@@ -343,7 +338,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             year={year}
             crop={crop}
             indicator={indicator}
-            allowZoom={true}
+            allowZoom
             bounds={bounds}
             legend={activeLayerId}
           />

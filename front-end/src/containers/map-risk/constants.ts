@@ -27,6 +27,13 @@ export const BOUNDS = {
 //   -7.2125244140625, 40.04864272291728, -1.6644287109375, 43.29320031385282,
 // ];
 
+export const CCAA_DICTIONARY = {
+  andalucia: 'Andalucía',
+  castilla_leon: 'Castilla y León',
+  castilla_la_mancha: 'Castilla La Mancha',
+  extremadura: 'Extremadura',
+};
+
 export const LAYERS = [
   // cultivos
   {
