@@ -104,6 +104,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
     return INDICATORS[layer];
   };
 
+  const [cropSection, setCropSection] = useState(null);
   const [activeLayerId, setActiveLayerId] = useState(defaultActiveLayerId);
   const [bounds, setBounds] = useState('spain');
   const [geoType, setGeoType] = useState('municipios');
@@ -198,27 +199,82 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
 
   const onStepEnter = (e) => {
     handleActiveLayerChange(e.data);
+    setCropSection(e.data.cropSection);
   };
 
   return (
     <div className="relative w-full bg-lightest-grey">
       <div className="sticky top-0 left-0 z-20 w-full h-screen">
-        <div className="absolute z-20 w-2/5 top-20">
-          <ul className="flex pl-12 ml-1">
-            <li className="px-3">
-              <a href="#section-olivar">Olivar</a>
-            </li>
-            <li className="px-3">
-              <a href="#section-cereal">Cereales</a>
-            </li>
-            <li className="px-3">
-              <a href="#section-vinedo">Viñedo</a>
-            </li>
-            <li className="px-3">
-              <a href="#section-dehesa">Dehesa</a>
-            </li>
-          </ul>
-        </div>
+        {cropSection?.length && (
+          <div className="absolute z-20 w-2/5 top-20">
+            <ul className="flex pl-12 ml-1">
+              <li className={`relative px-3 ${cropSection === 'olivar' && 'font-bold'}`}>
+                <a href="#section-olivar">Olivar</a>
+                {cropSection === 'olivar' && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '-3px',
+                      left: '50%',
+                      width: '30px',
+                      height: '1px',
+                      background: 'black',
+                      transform: 'translateX(-50%)',
+                    }}
+                  ></div>
+                )}
+              </li>
+              <li className={`relative px-3 ${cropSection === 'cereal' && 'font-bold'}`}>
+                <a href="#section-cereal">Cereales</a>
+                {cropSection === 'cereal' && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '-3px',
+                      left: '50%',
+                      width: '30px',
+                      height: '1px',
+                      background: 'black',
+                      transform: 'translateX(-50%)',
+                    }}
+                  ></div>
+                )}
+              </li>
+              <li className={`relative px-3 ${cropSection === 'vinedo' && 'font-bold'}`}>
+                <a href="#section-vinedo">Viñedo</a>
+                {cropSection === 'vinedo' && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '-3px',
+                      left: '50%',
+                      width: '30px',
+                      height: '1px',
+                      background: 'black',
+                      transform: 'translateX(-50%)',
+                    }}
+                  ></div>
+                )}
+              </li>
+              <li className={`relative px-3 ${cropSection === 'dehesa' && 'font-bold'}`}>
+                <a href="#section-dehesa">Dehesa</a>
+                {cropSection === 'dehesa' && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '-3px',
+                      left: '50%',
+                      width: '30px',
+                      height: '1px',
+                      background: 'black',
+                      transform: 'translateX(-50%)',
+                    }}
+                  ></div>
+                )}
+              </li>
+            </ul>
+          </div>
+        )}
         <div className="w-2/5 ">
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
         </div>
@@ -312,7 +368,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia' }}>
+        <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia', cropSection: 'olivar' }}>
           <div className="relative w-2/5 p-16 pt-40" id="section-olivar">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -334,7 +390,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia' }}>
+        <Step data={{ layerId: 'cultivos-olivar', area: 'andalucia', cropSection: 'olivar' }}>
           <div className="relative w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -356,7 +412,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'zonas-optimas-olivo', area: 'andalucia' }}>
+        <Step data={{ layerId: 'zonas-optimas-olivo', area: 'andalucia', cropSection: 'olivar' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -379,7 +435,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'rendimiento-olivo', area: 'andalucia' }}>
+        <Step data={{ layerId: 'rendimiento-olivo', area: 'andalucia', cropSection: 'olivar' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -405,7 +461,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon' }}>
+        <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon', cropSection: 'cereal' }}>
           <div className="relative w-2/5 p-16 pt-40" id="section-cereal">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -430,7 +486,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon' }}>
+        <Step data={{ layerId: 'cultivos-cereal', area: 'castilla_leon', cropSection: 'cereal' }}>
           <div className="relative w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -448,7 +504,9 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'rendimiento-cereal', area: 'castilla_leon' }}>
+        <Step
+          data={{ layerId: 'rendimiento-cereal', area: 'castilla_leon', cropSection: 'cereal' }}
+        >
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -464,7 +522,9 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'rendimiento-cereal', area: 'castilla_leon' }}>
+        <Step
+          data={{ layerId: 'rendimiento-cereal', area: 'castilla_leon', cropSection: 'cereal' }}
+        >
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -481,7 +541,9 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos-vinedo', area: 'castilla_la_mancha' }}>
+        <Step
+          data={{ layerId: 'cultivos-vinedo', area: 'castilla_la_mancha', cropSection: 'vinedo' }}
+        >
           <div className="relative w-2/5 p-16 pt-40" id="section-vinedo">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -497,7 +559,13 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'zonas-optimas-vino', area: 'castilla_la_mancha' }}>
+        <Step
+          data={{
+            layerId: 'zonas-optimas-vino',
+            area: 'castilla_la_mancha',
+            cropSection: 'vinedo',
+          }}
+        >
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -524,7 +592,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'cultivos-dehesa', area: 'extremadura' }}>
+        <Step data={{ layerId: 'cultivos-dehesa', area: 'extremadura', cropSection: 'dehesa' }}>
           <div className="relative w-2/5 p-16 pt-40" id="section-dehesa">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -549,7 +617,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'sequias-dehesa', area: 'extremadura' }}>
+        <Step data={{ layerId: 'sequias-dehesa', area: 'extremadura', cropSection: 'dehesa' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
@@ -574,7 +642,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </div>
           </div>
         </Step>
-        <Step data={{ layerId: 'incendios-dehesa', area: 'extremadura' }}>
+        <Step data={{ layerId: 'incendios-dehesa', area: 'extremadura', cropSection: 'dehesa' }}>
           <div className="w-2/5 p-16 pt-40">
             <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
               <div className="sticky top-40">
