@@ -145,7 +145,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
           ? getScenarios(data.layerId)?.[0]
           : {
               value: 'baseline',
-              label: '0°C2',
+              label: '',
             },
       );
     } else {
@@ -175,7 +175,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
             ? getScenarios(activeLayerId)?.[0]
             : {
                 value: 'baseline',
-                label: '0°C1',
+                label: '',
               },
         );
       }
@@ -280,19 +280,18 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoAgricolaMapTypes> = ({
         </div>
         <div className="absolute bottom-0 z-20 w-2/5 p-16">
           <div className="inline-block w-1/2 pr-2">
-            {(year && activeLayerId === 'zonas-optimas-vino' && year.value !== '2021-2050') ||
-              (scenarios && scenario && (
-                <>
-                  <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
-                  <MapSlider
-                    values={scenarios}
-                    value={scenario}
-                    currentValue={scenarioSliderValue}
-                    onChange={handleScenarioSliderChange}
-                    disabled={scenarios.length === 1}
-                  />
-                </>
-              ))}
+            {scenarios && scenario && (
+              <>
+                <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
+                <MapSlider
+                  values={scenarios}
+                  value={scenario}
+                  currentValue={scenarioSliderValue}
+                  onChange={handleScenarioSliderChange}
+                  disabled={scenarios.length === 1 || scenario.value === 'baseline'}
+                />
+              </>
+            )}
           </div>
           <div className="inline-block w-1/2 pl-2">
             {years && year && (

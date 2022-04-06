@@ -141,7 +141,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
               <div className="sticky top-40">
                 <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
                 <div className="mt-12 text-lg">
-                  Asociado al calentamiento, la Península Ibérica se verá afectada por la
+                  Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
                   <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
                   asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
                   incidencia de incendios forestales y erosión del suelo.

@@ -58,7 +58,7 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
         ? SCENARIOS_PROYECCIONES_VINO[0]
         : {
             value: 'baseline',
-            label: '0°C',
+            label: '',
           },
     );
   };
@@ -79,14 +79,12 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
-              {year.value === '2021-2050' && (
-                <MapSlider
-                  values={SCENARIOS_PROYECCIONES_VINO}
-                  value={scenario}
-                  onChange={handleScenarioSliderChange}
-                  disabled={!(year.value === '2021-2050')}
-                />
-              )}
+              <MapSlider
+                values={SCENARIOS_PROYECCIONES_VINO}
+                value={scenario}
+                onChange={handleScenarioSliderChange}
+                disabled={!(year.value === '2021-2050')}
+              />
             </div>
             <div className="inline-block w-1/2 pl-2">
               <MapSlider

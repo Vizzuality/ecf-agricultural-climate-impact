@@ -1,10 +1,13 @@
 import { FC, useState } from 'react';
 
+import Icon from 'components/icon';
 import Modal from 'components/modal';
 import LegendItem from 'components/map/legend/item';
 import LegendTypeBasic from 'components/map/legend/types/basic';
 import LegendTypeGradient from 'components/map/legend/types/gradient';
 import LegendTypeChoropleth from 'components/map/legend/types/choropleth';
+
+import INFO_SVG from 'svgs/icon-info.svg';
 
 import {
   LEGEND_ITEMS_CULTIVOS,
@@ -43,7 +46,8 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             </LegendItem>
             <div className="absolute top-4 right-4">
               <button onClick={() => openModal('cultivos')}>
-                <span>i</span>
+                {/* <Icon icon={INFO_SVG} /> */}
+                <img src={INFO_SVG} alt="" />
               </button>
             </div>
           </div>
