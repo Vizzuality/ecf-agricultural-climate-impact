@@ -9,11 +9,6 @@ import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 
 // constants
 import { STEPS, WORDS } from './constants';
-import { workerData } from 'worker_threads';
-
-// components
-import Hero from '../hero';
-import { getFlyToDuration } from '@math.gl/web-mercator';
 
 export const CultivoCulturaCambio: FC = () => {
   const [currentStep, setCurrentStep] = useState(STEPS[0]);
