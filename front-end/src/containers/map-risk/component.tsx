@@ -69,7 +69,6 @@ const MapRisk: FC<MapVisualizationType> = ({
         geoType: geoType,
         crop: crop?.value || '',
         indicator: indicator?.value || '',
-        layerVisibility: 'visible',
         promoteId,
       },
     }));
