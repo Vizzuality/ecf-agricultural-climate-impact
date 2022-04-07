@@ -7,13 +7,13 @@ import MapRisk from 'containers/map-risk';
 
 import type { ElRiesgoClimaticoMapTypes } from './types';
 
-import { YEARS_ARIDEZ, SCENARIOS_ARIDEZ } from './constants';
+import { YEARS_SEQUIAS, SCENARIOS_SEQUIAS } from './constants';
 
-export const MapAridezMap: FC<ElRiesgoClimaticoMapTypes> = ({
-  defaultActiveLayerId = 'aridez',
+export const MapSequiasMap: FC<ElRiesgoClimaticoMapTypes> = ({
+  defaultActiveLayerId = 'sequias',
   allowZoom = false,
 }) => {
-  const yearsAridezDehesa = YEARS_ARIDEZ.map((y) => {
+  const yearsSequiasDehesa = YEARS_SEQUIAS.map((y) => {
     const splitValues = y.value.split('-');
     const label = Math.floor(
       parseInt(splitValues[0]) + (parseInt(splitValues[1]) - parseInt(splitValues[0])) / 2,
@@ -25,14 +25,14 @@ export const MapAridezMap: FC<ElRiesgoClimaticoMapTypes> = ({
   });
 
   const [geoType, setGeoType] = useState('municipios');
-  const [year, setYear] = useState(yearsAridezDehesa[0]);
-  const [scenario, setScenario] = useState(SCENARIOS_ARIDEZ[0]);
+  const [year, setYear] = useState(yearsSequiasDehesa[0]);
+  const [scenario, setScenario] = useState(SCENARIOS_SEQUIAS[0]);
   const [sliderValue, setSliderValue] = useState(0);
 
   const handleYearSliderChange = (e) => {
-    const currentYear = yearsAridezDehesa[e];
+    const currentYear = yearsSequiasDehesa[e];
     setYear(currentYear);
-    setSliderValue(yearsAridezDehesa.indexOf(currentYear));
+    setSliderValue(yearsSequiasDehesa.indexOf(currentYear));
   };
 
   const handleGeoTypeChange = (type) => {
@@ -40,7 +40,7 @@ export const MapAridezMap: FC<ElRiesgoClimaticoMapTypes> = ({
   };
 
   const handleScenarioSliderChange = (e) => {
-    setScenario(SCENARIOS_ARIDEZ[e]);
+    setScenario(SCENARIOS_SEQUIAS[e]);
   };
 
   return (
@@ -77,14 +77,14 @@ export const MapAridezMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="absolute bottom-0 z-20 w-2/5 p-16">
             <div className="inline-block w-1/2 pr-2">
               <MapSlider
-                values={SCENARIOS_ARIDEZ}
+                values={SCENARIOS_SEQUIAS}
                 value={scenario}
                 onChange={handleScenarioSliderChange}
               />
             </div>
             <div className="inline-block w-1/2 pl-2">
               <MapSlider
-                values={yearsAridezDehesa}
+                values={yearsSequiasDehesa}
                 value={year}
                 currentValue={sliderValue}
                 onChange={handleYearSliderChange}
@@ -100,16 +100,16 @@ export const MapAridezMap: FC<ElRiesgoClimaticoMapTypes> = ({
             scenario={scenario}
             year={year}
             bounds="spain"
-            legend="aridez"
+            legend="sequias"
           />
         </div>
       </div>
       <div className="relative w-2/5 h-screen p-16 pt-40" style={{ marginTop: '-100vh' }}>
         <div className="top-0 h-screen">
-          <div className="font-serif text-2xl">Aridez</div>
+          <div className="font-serif text-2xl">Sequias</div>
           {/* <div className="mt-12">
             <p>
-              La pérdida de biodiversidad vegetal causada por la aridez se podría ver empeorada por
+              La pérdida de biodiversidad vegetal causada por la sequias se podría ver empeorada por
               un mayor riesgo de incendios, que favorecería el crecimiento de especies pirófitas y
               menos nutritivas para el ganado y especies de interés cinegético.
             </p>
@@ -127,4 +127,4 @@ export const MapAridezMap: FC<ElRiesgoClimaticoMapTypes> = ({
   );
 };
 
-export default MapAridezMap;
+export default MapSequiasMap;

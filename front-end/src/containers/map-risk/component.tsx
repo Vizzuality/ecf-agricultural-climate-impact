@@ -100,7 +100,6 @@ const MapRisk: FC<MapVisualizationType> = ({
     const { features } = e;
 
     if (e && features) {
-      // if (features[0]?.source !== activeLayerId) return null; // andres: porque?
       const properties =
         activeLayerId === 'zonas-optimas-vino'
           ? features.find((f) => f.source === `${activeLayerId}_${indicator.value}`)?.properties
