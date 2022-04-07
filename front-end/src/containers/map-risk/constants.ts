@@ -774,6 +774,40 @@ export const LAYERS = [
   },
 ];
 
+export const LEGEND_ITEMS_CALENTAMIENTO = [
+  {
+    color: '#0F031F',
+    value: '1',
+  },
+  {
+    color: '#C6434A',
+    value: '2',
+  },
+  {
+    color: '#F07D24',
+    value: '3',
+  },
+  {
+    color: '#EEF07A',
+    value: '4',
+  },
+];
+
+export const LEGEND_ITEMS_SEQUIAS = [
+  {
+    color: '#057FFA',
+    value: '0',
+  },
+  {
+    color: '#FECC4D',
+    value: '50',
+  },
+  {
+    color: '#790B0B',
+    value: '100',
+  },
+];
+
 export const LEGEND_ITEMS_CULTIVOS = [
   {
     color: '#90A070',

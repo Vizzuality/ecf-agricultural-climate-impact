@@ -10,6 +10,8 @@ import LegendTypeChoropleth from 'components/map/legend/types/choropleth';
 import INFO_SVG from 'svgs/icon-info.svg';
 
 import {
+  LEGEND_ITEMS_CALENTAMIENTO,
+  LEGEND_ITEMS_SEQUIAS,
   LEGEND_ITEMS_CULTIVOS,
   LEGEND_ITEMS_RENDIMIENTO,
   LEGEND_ITEMS_ZONAS_OPTIMAS_OLIVO,
@@ -34,6 +36,39 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
 
   const thisLegend = (legendType) => {
     switch (legendType) {
+      case 'calentamiento':
+        return (
+          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+            <LegendItem icon={null} id="legend-alentamiento-1" name="Calentamiento (ºC)">
+              <LegendTypeGradient
+                className="text-sm text-black"
+                items={LEGEND_ITEMS_CALENTAMIENTO}
+              />
+            </LegendItem>
+            <div className="absolute top-4 right-4">
+              <button onClick={() => openModal('calentamiento')}>
+                <img src={INFO_SVG} alt="" />
+              </button>
+            </div>
+          </div>
+        );
+      case 'sequias':
+        return (
+          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+            <LegendItem
+              icon={null}
+              id="legend-sequias-1"
+              name="Duración máxima de las sequías (días)"
+            >
+              <LegendTypeGradient className="text-sm text-black" items={LEGEND_ITEMS_SEQUIAS} />
+            </LegendItem>
+            <div className="absolute top-4 right-4">
+              <button onClick={() => openModal('sequias')}>
+                <img src={INFO_SVG} alt="" />
+              </button>
+            </div>
+          </div>
+        );
       case 'cultivos':
         return (
           <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
@@ -293,6 +328,128 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
 
   const thisModal = (legendType) => {
     switch (legendType) {
+      case 'calentamiento':
+        return (
+          <Modal
+            size="wide"
+            dismissable
+            open={modalOpen}
+            onDismiss={() => setModalOpen(false)}
+            title="TITLE"
+          >
+            <div className="px-10">
+              <h1 className="mb-5 text-xl font-medium">Calentamiento (ºC)</h1>
+              <div className="text-lg">
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Descripción</div>
+                  <div className="flex-1">
+                    Este indicador se ha optenido a partir de un conjunto de datos que contiene
+                    estadísticas de la temperatura para Europa derivadas de las temperaturas medias,
+                    mínimas y máximas diarias del aire para todo el año. Estas estadísticas se
+                    obtuvieron dentro del servicio de salud europeo C3S y están disponibles para
+                    diferentes períodos de tiempo futuros y utilizando diferentes escenarios de
+                    cambio climático. Las estadísticas de temperatura se calculan en base a un
+                    conjunto de datos EURO-CORDEX ajustado por sesgo. Las estadísticas se promedian
+                    durante 30 años como un promedio suavizado de 1971 a 2100.
+                  </div>
+                </div>
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Referencia</div>
+                  <div className="flex-1">
+                    <a
+                      className="underline"
+                      href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-temperature-statistics?tab=overview"
+                    >
+                      https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-temperature-statistics?tab=overview
+                    </a>
+                  </div>
+                </div>
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Fuente</div>
+                  <div className="flex-1">
+                    <a
+                      className="underline"
+                      href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-temperature-statistics?tab=form"
+                    >
+                      https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-temperature-statistics?tab=form
+                    </a>
+                  </div>
+                </div>
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Licencia</div>
+                  <div className="flex-1">
+                    <a
+                      className="underline"
+                      href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf"
+                    >
+                      Licence to use Copernicus Products
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Modal>
+        );
+      case 'sequias':
+        return (
+          <Modal
+            size="wide"
+            dismissable
+            open={modalOpen}
+            onDismiss={() => setModalOpen(false)}
+            title="TITLE"
+          >
+            <div className="px-10">
+              <h1 className="mb-5 text-xl font-medium">Duración máxima de las sequías (días)</h1>
+              <div className="text-lg">
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Descripción</div>
+                  <div className="flex-1">
+                    Este indicador mustra el número máximo de días consecutivos de los períodos
+                    secos a lo largo del año. Este indicador bioclimático se ha calculan en base a
+                    las proyecciones climáticas diarias de CMIP5 de un modelo de circulación global
+                    para dos escenarios climáticos futuros, trayectoria de concentración
+                    representativa (RCP, por sus siglas en inglés) 4.5 y RCP 8.5.
+                  </div>
+                </div>
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Referencia</div>
+                  <div className="flex-1">
+                    DOI:{' '}
+                    <a
+                      className="underline"
+                      href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.0ab27596?tab=overview"
+                    >
+                      10.24381/cds.0ab27596
+                    </a>
+                  </div>
+                </div>
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Fuente</div>
+                  <div className="flex-1">
+                    <a
+                      className="underline"
+                      href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-temperature-statistics?tab=form"
+                    >
+                      https://cds.climate.copernicus.eu/cdsapp#!/dataset/sis-temperature-statistics?tab=form
+                    </a>
+                  </div>
+                </div>
+                <div className="flex my-4">
+                  <div className="flex-initial w-24 font-bold">Licencia</div>
+                  <div className="flex-1">
+                    <a
+                      className="underline"
+                      href="https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf"
+                    >
+                      Licence to use Copernicus Products
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Modal>
+        );
       case 'cultivos':
         return (
           <Modal
