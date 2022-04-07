@@ -140,7 +140,7 @@ export const ElRiesgoClimatico: FC = () => {
             </div>
             <div className="flex flex-col items-start w-full max-w-screen-xl pb-8 mx-auto">
               <div className="w-full">
-                <ChartEmisionesCo2 />
+                <ChartEmisionesCo2 mobile={true} />
               </div>
             </div>
             <div className="flex flex-col items-start w-full max-w-screen-lg mx-auto bg-primary-red">
@@ -154,34 +154,34 @@ export const ElRiesgoClimatico: FC = () => {
             </div>
             <div className="flex flex-col items-start w-full max-w-screen-xl pb-32 mx-auto">
               <div className="w-full">
-                <ChartCambiosTempperatura />
+                <ChartCambiosTempperatura mobile={true} />
               </div>
             </div>
           </div>
           <div className="w-full bg-white">
-            <div className="flex flex-col items-start w-full h-screen max-w-screen-xl pt-16 mx-auto text-lg">
+            <div className="flex flex-col items-start w-full max-w-screen-xl pt-8 mx-auto text-lg">
               <div className="px-2 py-4">
                 Los impactos del aumento de la temperatura serían visibles no solo en la agricultura
                 sino también sobre la población, biodiversidad, océanos, y ecosistemas terrestres a
                 nivel global.
               </div>
               <div
-                className="font-serif text-3xl text-black opacity-5"
-                // style={{ fontSize: '260px', lineHeight: '260px' }}
+                className="px-2 font-serif text-3xl text-black opacity-5"
+                style={{ fontSize: '23vw', lineHeight: '40vw' }}
               >
                 1,5 a 2ºC
               </div>
-              <div className="relative mb-16 -mt-16 font-serif text-3xl leading-snug">
+              <div className="relative pl-4 pr-8 mb-16 -mt-12 font-serif text-3xl leading-snug text-right">
                 Medio grado de calentamiento podría provocar
               </div>
-              <div className="flex w-full">
-                <div className="flex-1">
+              <div className="flex flex-col w-full px-4">
+                <div className="flex-1 mb-8">
                   <div className="pb-2 font-serif text-2xl font-bold text-primary-red">
                     2 veces más
                   </div>
                   <div>de la población global en riesgo de olas de calor</div>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 mb-8">
                   <div className="pb-2 font-serif text-2xl font-bold text-primary-red">
                     400 milliones
                   </div>
@@ -197,8 +197,8 @@ export const ElRiesgoClimatico: FC = () => {
             </div>
             <div className="flex w-full pt-16">{/* <ElRiesgoClimaticoMap /> */}</div>
           </div>
-          <div className="w-full text-2xl text-center text-white bg-primary-red">
-            <div className="w-7/12 py-24 mx-auto">
+          <div className="w-full text-xl text-center text-white bg-primary-red">
+            <div className="py-16 mx-4">
               De aquí que tomar medidas de prevención sea una prioridad para asegurar la calidad y
               cantidad de la producción agrícola. Al mismo tiempo, la implementación de medidas de
               prevención hará que se reduzca la necesidad de medidas de adaptación a largo plazo,
