@@ -9,7 +9,6 @@ import { TITLE } from './constants';
 
 import ChartEmisionesCo2 from 'containers/charts/emisiones-co2';
 import ChartCambiosTempperatura from 'containers/charts/cambios-temperatura';
-import ChartProduccionesCultivos from 'containers/charts/producciones-cultivos';
 import ElRiesgoClimaticoMap from './map';
 
 export const ElRiesgoClimatico: FC = () => {
@@ -195,7 +194,9 @@ export const ElRiesgoClimatico: FC = () => {
                 </div>
               </div>
             </div>
-            <div className="flex w-full pt-16">{/* <ElRiesgoClimaticoMap /> */}</div>
+            <div className="flex w-full pt-16">
+              <ElRiesgoClimaticoMap />
+            </div>
           </div>
           <div className="w-full text-xl text-center text-white bg-primary-red">
             <div className="py-16 mx-4">

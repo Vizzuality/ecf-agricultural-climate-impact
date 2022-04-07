@@ -1,4 +1,5 @@
 import { FC, useCallback, useMemo, useState, useRef } from 'react';
+import cx from 'classnames';
 
 import Map from 'components/map';
 import ZoomControls from 'components/map/controls/zoom';
@@ -34,6 +35,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   legend,
   crop,
   indicator,
+  mobile = false,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
   const HOVER = useRef<EventTypes>({});
@@ -309,7 +311,12 @@ const MapRisk: FC<MapVisualizationType> = ({
             </div>
           </Tooltip>
         )}
-        <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+        <div
+          className={cx({
+            'absolute w-64 py-1 bg-white bottom-4 right-4': !mobile,
+            'absolute w-full py-1 bg-red bottom-0 left-0': mobile,
+          })}
+        >
           <Legend legendType={legendType} />
         </div>
       </div>
