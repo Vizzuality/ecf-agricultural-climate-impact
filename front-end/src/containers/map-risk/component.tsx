@@ -309,7 +309,7 @@ const MapRisk: FC<MapVisualizationType> = ({
             </div>
           </Tooltip>
         )}
-        <div className="absolute w-64 py-1 bg-white bottom-4 right-4">
+        <div className="absolute py-1 bg-white w-96 bottom-8 right-4">
           <Legend legendType={legendType} />
         </div>
       </div>
