@@ -4,7 +4,7 @@ export const STEPS = [
     content: (
       <p>
         <span className="text-primary-red">
-          El cambio climático pondrá en riesgo la agricultura española
+          El cambio climático está poniendo en riesgo la agricultura española
         </span>
         , y con ella, e inevitablemente, la economía, salud, gestión del territorio, y cultura del
         país. Y es que históricamente, la agricultura en España ha sido más que una fuente de

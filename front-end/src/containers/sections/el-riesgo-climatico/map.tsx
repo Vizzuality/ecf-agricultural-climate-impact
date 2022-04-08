@@ -171,7 +171,8 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                 Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
                 <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
                 asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
-                incidencia de incendios forestales y erosión del suelo.
+                incidencia de <strong>incendios forestales</strong> y{' '}
+                <strong>erosión del suelo</strong>.
               </div>
             </div>
           </div>
@@ -216,7 +217,8 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                   Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
                   <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
                   asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
-                  incidencia de incendios forestales y erosión del suelo.
+                  incidencia de <strong>incendios forestales</strong> y{' '}
+                  <strong>erosión del suelo</strong>.
                 </div>
               </div>
             </div>
