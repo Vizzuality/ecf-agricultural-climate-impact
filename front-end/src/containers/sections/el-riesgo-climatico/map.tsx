@@ -5,7 +5,7 @@ import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
 
-const MAP_SECTION_HEIGHT = '200vh';
+const MAP_SECTION_HEIGHT = '100vh';
 
 import { SCENARIOS_CALENTAMIENTO, YEARS_CALENTAMIENTO } from './map-calentamiento/constants';
 import { SCENARIOS_SEQUIAS, YEARS_SEQUIAS } from './map-sequias/constants';

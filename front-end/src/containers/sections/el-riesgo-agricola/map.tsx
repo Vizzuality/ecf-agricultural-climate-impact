@@ -6,7 +6,7 @@ import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
 
-const MAP_SECTION_HEIGHT = '200vh';
+const MAP_SECTION_HEIGHT = '100vh';
 
 import {
   SCENARIOS_INCENDIOS_DEHESA,
