@@ -115,7 +115,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
           <div className="sticky top-0 left-0 z-20 w-full h-screen">
             <div className="w-2/5 ">
               <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">
-                En el gmapa:b
+                En el mapa
               </div>
             </div>
             <div className="absolute bottom-0 z-20 w-2/5 p-16">
@@ -258,12 +258,10 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
       <Mobile>
         <div className="relative w-full bg-lightest-grey">
           <div className="sticky top-0 left-0 z-20 w-full h-screen">
-            <div className="">
-              <div className="relative ml-16 text-lg font-bold text-gray-400 top-20">
-                En el mapa:a
-              </div>
+            <div className="relative z-50 ml-4 text-lg font-bold text-gray-400 top-20">
+              En el mapa:
             </div>
-            <div className="absolute bottom-0 z-20 w-2/5 p-16">
+            <div className="absolute z-50 w-full p-4 bottom-20">
               <div className="inline-block w-1/2 pr-2">
                 {scenarios && scenario && (
                   <>
@@ -293,7 +291,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                 )}
               </div>
             </div>
-            <div className="absolute top-0 right-0 z-20 w-3/5 h-screen mapa-calentamiento">
+            <div className="absolute top-0 right-0 z-20 w-full h-screen mapa-calentamiento">
               <MapRisk
                 activeLayerId={activeLayerId}
                 geoType={geoType}
@@ -307,20 +305,22 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             </div>
             <div>
               <div
-                className="absolute w-2/5 p-16 pt-40 mt-2"
+                className="absolute z-50 w-full p-4 pt-24 mt-4"
                 style={{
                   top: -(currentProgress * 10),
                   opacity:
                     activeLayerId === 'calentamiento'
-                      ? currentProgress <= 0.5
+                      ? currentProgress <= 0.25
                         ? currentProgress * 10
-                        : (1 - currentProgress) * 10
+                        : (1 - 0.5 - currentProgress) * 10
                       : '0',
+                  userSelect: 'none',
+                  pointerEvents: 'none',
                 }}
               >
                 <div>
-                  <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
-                  <div className="mt-12 text-lg">
+                  <div className="font-serif text-lg">Proyecciones de calentamiento</div>
+                  <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
                     Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
                     <strong>aridificación</strong>, que hará que el aumento de las temperaturas
                     venga asociado a sequías más intensas y duraderas con consecuencias asociadas a
@@ -329,20 +329,22 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                 </div>
               </div>
               <div
-                className="absolute w-2/5 p-16 pt-40 mt-2"
+                className="absolute z-50 w-full p-4 pt-24 mt-4"
                 style={{
                   top: -(currentProgress * 10),
                   opacity:
                     activeLayerId === 'sequias'
-                      ? currentProgress <= 0.5
+                      ? currentProgress <= 0.25
                         ? currentProgress * 10
-                        : (1 - currentProgress) * 10
+                        : (1 - 0.5 - currentProgress) * 10
                       : '0',
+                  userSelect: 'none',
+                  pointerEvents: 'none',
                 }}
               >
                 <div>
-                  <div className="font-serif text-2xl">Proyecciones de sequías</div>
-                  <div className="mt-12 text-lg">
+                  <div className="font-serif text-lg">Proyecciones de sequías</div>
+                  <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
                     <p>
                       Se espera un{' '}
                       <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,

@@ -38,7 +38,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
     switch (legendType) {
       case 'calentamiento':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-alentamiento-1" name="Calentamiento (ºC)">
               <LegendTypeGradient
                 className="text-sm text-black"
@@ -54,7 +54,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'sequias':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-sequias-1"
@@ -71,7 +71,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'cultivos':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-cultivos-1"
@@ -88,7 +88,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'cultivos-olivar':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-cultivo-olivar-1"
@@ -105,7 +105,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'cultivos-dehesa':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-cultivo-dehesa-1"
@@ -122,7 +122,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'cultivos-vinedo':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-cultivo-dehesa-1"
@@ -139,7 +139,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'cultivos-cereal':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-cultivo-cereals-1"
@@ -156,7 +156,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'rendimiento-olivo':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-rendimiento-olivo-1"
@@ -173,7 +173,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'rendimiento-cereal':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-rendimiento-cereal-1"
@@ -190,7 +190,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-vino_indice_frescor_nocturno':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-zonas-optimas-vino-frescor-nocturno-1"
@@ -210,7 +210,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-vino_indice_huglin':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-zonas-optimas-vino-huglin-1" name="Índice de huglin">
               <LegendTypeChoropleth
                 className="text-sm text-black"
@@ -226,7 +226,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-vino_indice_sequia':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-zonas-optimas-vino-sequia-1" name="Índice de sequía">
               <LegendTypeChoropleth
                 className="text-sm text-black break-all"
@@ -242,7 +242,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'zonas-optimas-olivo':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem
               icon={null}
               id="legend-zonas-optimas-olivo-1"
@@ -262,7 +262,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'sequias-dehesa':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-sequias-dehesa-1" name="Duración de sequías (días)">
               <LegendTypeGradient
                 className="text-sm text-black"
@@ -278,7 +278,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'incendios-dehesa':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-incendio-dehesa-1" name="Riesgo de incendio">
               <LegendTypeChoropleth
                 className="text-sm text-black"
@@ -294,7 +294,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'aridez':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-aridez-1" name="Grado de aridez">
               <LegendTypeGradient className="text-sm text-black" items={LAYER_GRADIENT_ARIDEZ} />
             </LegendItem>
@@ -307,7 +307,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
         );
       case 'precipitacion':
         return (
-          <div className="absolute py-1 bg-white w-96 bottom-4 right-4">
+          <div>
             <LegendItem icon={null} id="legend-precipitacion-1" name="Precipitación (mm/mes)">
               <LegendTypeGradient
                 className="text-sm text-black"

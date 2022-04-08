@@ -271,9 +271,11 @@ const MapRisk: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        <div className="absolute z-10 top-20 right-5">
-          <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
-        </div>
+        {!mobile && (
+          <div className="absolute z-10 top-20 right-5">
+            <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
+          </div>
+        )}
         {tooltipOpen && (
           <Tooltip
             key={Math.random()}
@@ -313,8 +315,8 @@ const MapRisk: FC<MapVisualizationType> = ({
         )}
         <div
           className={cx({
-            'absolute w-64 py-1 bg-white bottom-4 right-4': !mobile,
-            'absolute w-full py-1 bg-red bottom-0 left-0': mobile,
+            'absolute w-96 py-1 bg-white bottom-8 right-4': !mobile,
+            'absolute w-full py-1 bg-white bottom-0 left-0': mobile,
           })}
         >
           <Legend legendType={legendType} />
