@@ -14,12 +14,15 @@ export const ZoomControl: FC<ZoomControlProps> = ({
   viewport,
   onZoomChange,
 }: ZoomControlProps) => {
+  // console.log('viewport0:', viewport);
   const { zoom, maxZoom, minZoom } = viewport;
 
   const increaseZoom = useCallback(
     (e) => {
       e.stopPropagation();
 
+      // console.log('viewport: ', viewport, 'maxZoom: ', maxZoom);
+      // console.log('zoom: ', zoom, 'maxZoom: ', maxZoom);
       if (zoom + 1 <= maxZoom) {
         onZoomChange(zoom + 1);
       }

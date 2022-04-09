@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback, FC } from 'react';
 
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 
 import cx from 'classnames';
 
@@ -11,10 +11,10 @@ import { easeCubic } from 'd3-ease';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { DEFAULT_VIEWPORT } from './constants';
-import type { MapProps } from './types';
+import type { ReactMapProps } from './types';
 
-export const Map: FC<MapProps> = ({
-  mapboxApiAccessToken,
+export const Map: FC<ReactMapProps> = ({
+  mapboxAccessToken,
   children,
   className,
   viewport,
@@ -22,6 +22,7 @@ export const Map: FC<MapProps> = ({
   onMapReady,
   onMapLoad,
   onMapViewportChange,
+  onMouseLeave,
   dragPan,
   dragRotate,
   scrollZoom,
@@ -30,7 +31,8 @@ export const Map: FC<MapProps> = ({
   doubleClickZoom,
   width = '100%',
   height = '100%',
-  getCursor,
+  cursor,
+  // getCursor,
   ...mapboxProps
 }: MapProps) => {
   /**
@@ -64,7 +66,12 @@ export const Map: FC<MapProps> = ({
 
   const handleViewportChange = useCallback(
     (v) => {
-      setViewport(v);
+      console.log('zoom3:', v);
+      // setViewport(v);
+      setViewport((prevViewport) => ({
+        ...prevViewport,
+        ...v,
+      }));
       debouncedOnMapViewportChange(v);
     },
     [debouncedOnMapViewportChange],
@@ -77,6 +84,7 @@ export const Map: FC<MapProps> = ({
         ...v,
       };
 
+      console.log('zoom4:', newViewport);
       setViewport(newViewport);
       debouncedOnMapViewportChange(newViewport);
     },
@@ -108,8 +116,10 @@ export const Map: FC<MapProps> = ({
       longitude,
       latitude,
       zoom,
+      maxZoom: viewport.maxZoom,
+      minZoom: viewport.minZoom,
       transitionDuration,
-      transitionInterruption: TRANSITION_EVENTS.UPDATE,
+      // transitionInterruption: TRANSITION_EVENTS.UPDATE,
       ...viewportOptions,
     };
 
@@ -124,13 +134,6 @@ export const Map: FC<MapProps> = ({
       setFlight(false);
     }, +transitionDuration);
   }, [ready, bounds, debouncedOnMapViewportChange]);
-
-  const handleGetCursor = useCallback(({ isHovering, isDragging }) => {
-    if (isHovering) return 'pointer';
-    if (isDragging) return 'default';
-    return 'default';
-  }, []);
-
   /**
    * EFFECTS
    */
@@ -167,15 +170,17 @@ export const Map: FC<MapProps> = ({
             mapRef.current = _map.getMap();
           }
         }}
-        mapboxApiAccessToken={mapboxApiAccessToken}
+        mapboxAccessToken={mapboxAccessToken}
         // CUSTOM PROPS FROM REACT MAPBOX API
         {...mapboxProps}
         // VIEWPORT
         {...mapViewport}
-        width={width}
-        height={height}
+        // {...viewState}
+        style={{
+          width: width,
+          height: height,
+        }}
         // INTERACTIVITY
-
         dragPan={!flying && dragPan}
         dragRotate={!flying && dragRotate}
         scrollZoom={!flying && scrollZoom}
@@ -183,12 +188,12 @@ export const Map: FC<MapProps> = ({
         touchRotate={!flying && touchRotate}
         doubleClickZoom={!flying && doubleClickZoom}
         // DEFAULT FUNC IMPLEMENTATIONS
-        onViewportChange={handleViewportChange}
         onResize={handleResize}
+        onMove={(e) => handleViewportChange(e.viewState)}
         onLoad={handleLoad}
-        getCursor={getCursor || handleGetCursor}
-        transitionInterpolator={new FlyToInterpolator()}
-        transitionEasing={easeCubic}
+        cursor={cursor}
+        onMouseLeave={onMouseLeave}
+        // cooperativeGestures={true}
       >
         {ready &&
           loaded &&

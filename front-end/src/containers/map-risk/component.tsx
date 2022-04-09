@@ -38,6 +38,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   mobile = false,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
+  const [cursor, setCursor] = useState('auto');
   const HOVER = useRef<EventTypes>({});
   const CLICK = useRef<EventTypes>({});
   const MAP = useRef<MapTypes>();
@@ -75,6 +76,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   const legendType = indicator?.value.length ? `${legend}_${indicator?.value}` : legend;
 
   const handleViewport = useCallback((_viewport) => {
+    console.log('ola1:', _viewport);
     setViewport(_viewport);
   }, []);
 
@@ -176,7 +178,11 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   // toolip: show on hover
   const handleHover = (e) => {
-    const { center } = e;
+    setCursor('pointer');
+    const point = {
+      x: e.originalEvent.clientX,
+      y: e.originalEvent.clientY,
+    };
     const data = getRegionData(e);
 
     if (data && data.value && data.value !== 'NaN') {
@@ -191,14 +197,20 @@ const MapRisk: FC<MapVisualizationType> = ({
         setHighlightedRegion(data, 'hover');
         showTooltip({
           tooltipData: data,
-          tooltipLeft: center.x,
-          tooltipTop: center.y,
+          tooltipLeft: point.x,
+          tooltipTop: point.y,
         });
       }
     } else {
       hideTooltip();
     }
   };
+
+  const handleMouseLeave = useCallback(() => {
+    setCursor('default');
+    hideTooltip();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Add dynamic stuff to layer params
   const updatedLayers = useMemo(() => {
@@ -246,7 +258,7 @@ const MapRisk: FC<MapVisualizationType> = ({
     <div className="relative flex flex-col h-full">
       <div className="absolute top-0 left-0 right-0 h-full">
         <Map
-          mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           mapStyle="mapbox://styles/aslribeiro/cl1l03yhp000514pi3penba92"
           viewport={viewport}
           onMapViewportChange={handleViewport}
@@ -254,9 +266,9 @@ const MapRisk: FC<MapVisualizationType> = ({
           dragPan={true}
           doubleClickZoom={true}
           dragRotate={false}
-          onHover={handleHover}
-          // onClick={handleClick} // TODO: add this? Remeber the problems
-          onMouseOut={hideTooltip}
+          onMouseMove={handleHover}
+          onMouseLeave={handleMouseLeave}
+          cursor={cursor}
           onMapLoad={handleLoad}
           interactiveLayerIds={[`${visibleLayerId}-fill-0`]}
           bounds={mapBounds}
@@ -272,7 +284,7 @@ const MapRisk: FC<MapVisualizationType> = ({
           )}
         </Map>
         {!mobile && (
-          <div className="absolute z-10 top-20 right-5">
+          <div className="absolute z-10 top-20 left-5">
             <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
           </div>
         )}
