@@ -244,7 +244,12 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   return (
     <div className="relative flex flex-col h-full">
-      <div className="absolute top-0 left-0 right-0 h-full pointer-events-none">
+      <div
+        className={cx({
+          'absolute top-0 left-0 right-0 h-full': true,
+          'pointer-events-none': mobile,
+        })}
+      >
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           mapStyle="mapbox://styles/aslribeiro/cl1l03yhp000514pi3penba92"
