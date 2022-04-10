@@ -258,7 +258,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
       <Mobile>
         <div className="relative w-full bg-lightest-grey">
           <div className="sticky top-0 left-0 z-20 w-full h-screen">
-            <div className="relative z-50 ml-4 text-lg font-bold text-gray-400 top-20">
+            <div className="relative z-40 ml-4 text-lg font-bold text-gray-400 top-20">
               En el mapa:
             </div>
             <div className="absolute z-50 w-full p-4 bottom-20">

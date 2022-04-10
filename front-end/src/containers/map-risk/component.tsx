@@ -244,7 +244,7 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   return (
     <div className="relative flex flex-col h-full">
-      <div className="absolute top-0 left-0 right-0 h-full">
+      <div className="absolute top-0 left-0 right-0 h-full pointer-events-none">
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           mapStyle="mapbox://styles/aslribeiro/cl1l03yhp000514pi3penba92"
@@ -313,14 +313,15 @@ const MapRisk: FC<MapVisualizationType> = ({
             </div>
           </Tooltip>
         )}
-        <div
-          className={cx({
-            'absolute w-96 py-1 bg-white bottom-8 right-4': !mobile,
-            'absolute w-full py-1 bg-white bottom-0 left-0': mobile,
-          })}
-        >
-          <Legend legendType={legendType} />
-        </div>
+        {!mobile && (
+          <div
+            className={cx({
+              'absolute w-96 py-1 bg-white bottom-8 right-4': !mobile,
+            })}
+          >
+            <Legend legendType={legendType} />
+          </div>
+        )}
       </div>
     </div>
   );

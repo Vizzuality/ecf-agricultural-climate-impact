@@ -166,7 +166,7 @@ export const CultivoCulturaCambio: FC = () => {
                         className="relative flex text-lg"
                         style={{
                           position: 'relative',
-                          // top: -(currentProgress * 100),
+                          top: -(currentProgress * 10),
                           opacity:
                             step.id === currentStep.id
                               ? currentProgress <= 0.5
