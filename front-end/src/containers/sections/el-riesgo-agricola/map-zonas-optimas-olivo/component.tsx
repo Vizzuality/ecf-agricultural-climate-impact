@@ -77,10 +77,9 @@ export const MapOptimalZonesOliveMap: FC<ElRiesgoClimaticoMapTypes> = ({
             <strong>
               cambios en las zonas geográficas óptimas para el cultivo de la aceituna
             </strong>{' '}
-            (aunque afectará de forma distinta a cada variedad). Por ejemplo, la variedad Picual,
-            que actualmente ocupa 1.867.700 Ha (o el 60% de todo el olivar andaluz) vería su zona
-            óptima de cultivo reducida en un ##%, particularmente en las provincias de {'{'}
-            provincias{'}'}.
+            (aunque afectará de forma distinta a cada variedad). Las variedades locales como el
+            Lechín, Manzanilla y Picudo serán las más afectadas viendo su zona óptima de cultivo
+            reducida en más de un 90% para 2050.
           </div>
         </div>
       </div>

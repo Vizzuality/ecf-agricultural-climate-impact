@@ -35,7 +35,7 @@ export const ElRiesgoClimatico: FC = () => {
                 </p>
                 <p>
                   También desde España,{' '}
-                  <strong>las emisiones de estos gases se multiplicaron por #</strong> desde
+                  <strong>las emisiones de estos gases se multiplicaron por 10</strong> desde
                   principios del siglo XX, causadas por el sector energético, industrial,
                   transporte, y agrícola.
                 </p>
@@ -131,7 +131,7 @@ export const ElRiesgoClimatico: FC = () => {
                 </p>
                 <p>
                   También desde España,{' '}
-                  <strong>las emisiones de estos gases se multiplicaron por #</strong> desde
+                  <strong>las emisiones de estos gases se multiplicaron por 10</strong> desde
                   principios del siglo XX, causadas por el sector energético, industrial,
                   transporte, y agrícola.
                 </p>

@@ -480,11 +480,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     <strong>
                       cambios en las zonas geográficas óptimas para el cultivo de la aceituna
                     </strong>{' '}
-                    (aunque afectará de forma distinta a cada variedad). Por ejemplo, la variedad
-                    Picual, que actualmente ocupa 1.867.700 Ha (o el 60% de todo el olivar andaluz)
-                    vería su zona óptima de cultivo reducida en un ##%, particularmente en las
-                    provincias de {'{'}
-                    provincias{'}'}.
+                    (aunque afectará de forma distinta a cada variedad). Las variedades locales como
+                    el Lechín, Manzanilla y Picudo serán las más afectadas viendo su zona óptima de
+                    cultivo reducida en más de un 90% para 2050.
                   </div>
                 </div>
               </div>
@@ -507,9 +505,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     <p>
                       Además de estos cambios en la distribución geográfica de las zonas óptimas
                       para cultivo, se podría esperar un{' '}
-                      <strong>descenso de la producción de hasta el 20%</strong> en la Península
-                      Ibérica para los olivares de secano con un incremento de la temperatura de
-                      2,5ºC.
+                      <strong>descenso de la producción de hasta el 20%</strong> en las principales
+                      zonas productoras para los olivares de secano con un incremento de la
+                      temperatura de 2,5ºC.
                     </p>
                     <p>
                       <strong>
@@ -574,11 +572,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     Superficie destinada al cultivo de cereales
                   </div>
                   <div className="mt-12 text-lg">
-                    Se espera que el rendimiento del cultivo de trigo{' '}
-                    <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong>{' '}
-                    Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                    podría ser agravada por la reducción en precipitación y la severidad de la
-                    sequía primaveral.
+                    Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
+                    <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong> En
+                    España, el aumento de la sequía sería la principal causa de la pérdida de
+                    rendimiento, que podría ser agravada por otras causas como incremento de los
+                    daños por pedrisco o plagas.
                   </div>
                 </div>
               </div>
@@ -598,11 +596,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 <div>
                   <div className="font-serif text-2xl">Proyecciones de rendimiento de cereales</div>
                   <div className="mt-12 text-lg">
-                    Se espera que el rendimiento del cultivo de trigo{' '}
-                    <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>.
-                    Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                    podría ser agravada por la reducción en precipitación y la severidad de la
-                    sequía primaveral.
+                    Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
+                    <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>. En
+                    España, el aumento de la sequía sería la principal causa de la pérdida de
+                    rendimiento, que podría ser agravada por otras causas como incremento de los
+                    daños por pedrisco o plagas.
                   </div>
                 </div>
               </div>
@@ -649,9 +647,8 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                   </div>
                   <div className="mt-12 text-lg">
                     En Castilla la Mancha, las variedades que más se podrían ver afectadas por el
-                    cambio climático son variedades más tempranas como tempranillo o chardonnay; que
-                    particularmente se cultivan en el noreste de la comunidad. Además, los cambios
-                    en
+                    cambio climático son variedades más tempranas como tempranillo o chardonnay, que
+                    verían reducida la superficie óptima para vinos de calidad en un 50%.
                   </div>
                 </div>
               </div>
@@ -881,11 +878,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       <strong>
                         cambios en las zonas geográficas óptimas para el cultivo de la aceituna
                       </strong>{' '}
-                      (aunque afectará de forma distinta a cada variedad). Por ejemplo, la variedad
-                      Picual, que actualmente ocupa 1.867.700 Ha (o el 60% de todo el olivar
-                      andaluz) vería su zona óptima de cultivo reducida en un ##%, particularmente
-                      en las provincias de {'{'}
-                      provincias{'}'}.
+                      (aunque afectará de forma distinta a cada variedad). Las variedades locales
+                      como el Lechín, Manzanilla y Picudo serán las más afectadas viendo su zona
+                      óptima de cultivo reducida en más de un 90% para 2050.
                     </div>
                   </div>
                 </div>
@@ -907,9 +902,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       <p>
                         Además de estos cambios en la distribución geográfica de las zonas óptimas
                         para cultivo, se podría esperar un{' '}
-                        <strong>descenso de la producción de hasta el 20%</strong> en la Península
-                        Ibérica para los olivares de secano con un incremento de la temperatura de
-                        2,5ºC.
+                        <strong>descenso de la producción de hasta el 20%</strong> en las
+                        principales zonas productoras para los olivares de secano con un incremento
+                        de la temperatura de 2,5ºC.
                       </p>
                       <p>
                         <strong>
@@ -972,11 +967,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       Superficie destinada al cultivo de cereales
                     </div>
                     <div className="mt-12 text-lg">
-                      Se espera que el rendimiento del cultivo de trigo{' '}
+                      Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
                       <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong>{' '}
-                      Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                      podría ser agravada por la reducción en precipitación y la severidad de la
-                      sequía primaveral.
+                      En España, el aumento de la sequía sería la principal causa de la pérdida de
+                      rendimiento, que podría ser agravada por otras causas como incremento de los
+                      daños por pedrisco o plagas.
                     </div>
                   </div>
                 </div>
@@ -997,11 +992,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       Proyecciones de rendimiento de cereales
                     </div>
                     <div className="mt-12 text-lg">
-                      Se espera que el rendimiento del cultivo de trigo{' '}
+                      Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
                       <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>.
-                      Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                      podría ser agravada por la reducción en precipitación y la severidad de la
-                      sequía primaveral.
+                      En España, el aumento de la sequía sería la principal causa de la pérdida de
+                      rendimiento, que podría ser agravada por otras causas como incremento de los
+                      daños por pedrisco o plagas.
                     </div>
                   </div>
                 </div>
@@ -1074,8 +1069,8 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       <p>
                         En Castilla la Mancha, las variedades que más se podrían ver afectadas por
                         el cambio climático son variedades más tempranas como tempranillo o
-                        chardonnay; que particularmente se cultivan en el noreste de la comunidad.
-                        Además, los cambios en
+                        chardonnay, que verían reducida la superficie óptima para vinos de calidad
+                        en un 50%.
                       </p>
                     </div>
                   </div>
@@ -1493,11 +1488,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     <strong>
                       cambios en las zonas geográficas óptimas para el cultivo de la aceituna
                     </strong>{' '}
-                    (aunque afectará de forma distinta a cada variedad). Por ejemplo, la variedad
-                    Picual, que actualmente ocupa 1.867.700 Ha (o el 60% de todo el olivar andaluz)
-                    vería su zona óptima de cultivo reducida en un ##%, particularmente en las
-                    provincias de {'{'}
-                    provincias{'}'}.
+                    (aunque afectará de forma distinta a cada variedad). Las variedades locales como
+                    el Lechín, Manzanilla y Picudo serán las más afectadas viendo su zona óptima de
+                    cultivo reducida en más de un 90% para 2050.
                   </div>
                 </div>
               </div>
@@ -1520,9 +1513,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     <p>
                       Además de estos cambios en la distribución geográfica de las zonas óptimas
                       para cultivo, se podría esperar un{' '}
-                      <strong>descenso de la producción de hasta el 20%</strong> en la Península
-                      Ibérica para los olivares de secano con un incremento de la temperatura de
-                      2,5ºC.
+                      <strong>descenso de la producción de hasta el 20%</strong> en las principales
+                      zonas productoras para los olivares de secano con un incremento de la
+                      temperatura de 2,5ºC.
                     </p>
                     <p>
                       <strong>
@@ -1587,11 +1580,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     Superficie destinada al cultivo de cereales
                   </div>
                   <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
-                    Se espera que el rendimiento del cultivo de trigo{' '}
-                    <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong>{' '}
-                    Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                    podría ser agravada por la reducción en precipitación y la severidad de la
-                    sequía primaveral.
+                    Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
+                    <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong> En
+                    España, el aumento de la sequía sería la principal causa de la pérdida de
+                    rendimiento, que podría ser agravada por otras causas como incremento de los
+                    daños por pedrisco o plagas.
                   </div>
                 </div>
               </div>
@@ -1611,11 +1604,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 <div>
                   <div className="font-serif text-lg">Proyecciones de rendimiento de cereales</div>
                   <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
-                    Se espera que el rendimiento del cultivo de trigo{' '}
-                    <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>.
-                    Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                    podría ser agravada por la reducción en precipitación y la severidad de la
-                    sequía primaveral.
+                    Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
+                    <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>. En
+                    España, el aumento de la sequía sería la principal causa de la pérdida de
+                    rendimiento, que podría ser agravada por otras causas como incremento de los
+                    daños por pedrisco o plagas.
                   </div>
                 </div>
               </div>
@@ -1662,9 +1655,8 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                   </div>
                   <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
                     En Castilla la Mancha, las variedades que más se podrían ver afectadas por el
-                    cambio climático son variedades más tempranas como tempranillo o chardonnay; que
-                    particularmente se cultivan en el noreste de la comunidad. Además, los cambios
-                    en
+                    cambio climático son variedades más tempranas como tempranillo o chardonnay, que
+                    verían reducida la superficie óptima para vinos de calidad en un 50%.
                   </div>
                 </div>
               </div>
@@ -1889,11 +1881,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       <strong>
                         cambios en las zonas geográficas óptimas para el cultivo de la aceituna
                       </strong>{' '}
-                      (aunque afectará de forma distinta a cada variedad). Por ejemplo, la variedad
-                      Picual, que actualmente ocupa 1.867.700 Ha (o el 60% de todo el olivar
-                      andaluz) vería su zona óptima de cultivo reducida en un ##%, particularmente
-                      en las provincias de {'{'}
-                      provincias{'}'}.
+                      (aunque afectará de forma distinta a cada variedad). Las variedades locales
+                      como el Lechín, Manzanilla y Picudo serán las más afectadas viendo su zona
+                      óptima de cultivo reducida en más de un 90% para 2050.
                     </div>
                   </div>
                 </div>
@@ -1915,9 +1905,9 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       <p>
                         Además de estos cambios en la distribución geográfica de las zonas óptimas
                         para cultivo, se podría esperar un{' '}
-                        <strong>descenso de la producción de hasta el 20%</strong> en la Península
-                        Ibérica para los olivares de secano con un incremento de la temperatura de
-                        2,5ºC.
+                        <strong>descenso de la producción de hasta el 20%</strong> en las
+                        principales zonas productoras para los olivares de secano con un incremento
+                        de la temperatura de 2,5ºC.
                       </p>
                       <p>
                         <strong>
@@ -1980,11 +1970,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       Superficie destinada al cultivo de cereales
                     </div>
                     <div className="mt-12 text-lg">
-                      Se espera que el rendimiento del cultivo de trigo{' '}
+                      Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
                       <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong>{' '}
-                      Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                      podría ser agravada por la reducción en precipitación y la severidad de la
-                      sequía primaveral.
+                      En España, el aumento de la sequía sería la principal causa de la pérdida de
+                      rendimiento, que podría ser agravada por otras causas como incremento de los
+                      daños por pedrisco o plagas.
                     </div>
                   </div>
                 </div>
@@ -2005,11 +1995,11 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       Proyecciones de rendimiento de cereales
                     </div>
                     <div className="mt-12 text-lg">
-                      Se espera que el rendimiento del cultivo de trigo{' '}
+                      Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
                       <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>.
-                      Esta pérdida de rendimiento en cultivos de cereales de invierno como el trigo
-                      podría ser agravada por la reducción en precipitación y la severidad de la
-                      sequía primaveral.
+                      En España, el aumento de la sequía sería la principal causa de la pérdida de
+                      rendimiento, que podría ser agravada por otras causas como incremento de los
+                      daños por pedrisco o plagas.
                     </div>
                   </div>
                 </div>
@@ -2082,8 +2072,8 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                       <p>
                         En Castilla la Mancha, las variedades que más se podrían ver afectadas por
                         el cambio climático son variedades más tempranas como tempranillo o
-                        chardonnay; que particularmente se cultivan en el noreste de la comunidad.
-                        Además, los cambios en
+                        chardonnay, que verían reducida la superficie óptima para vinos de calidad
+                        en un 50%.
                       </p>
                     </div>
                   </div>

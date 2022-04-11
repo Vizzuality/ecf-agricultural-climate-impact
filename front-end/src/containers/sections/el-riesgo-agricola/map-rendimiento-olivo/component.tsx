@@ -91,8 +91,8 @@ export const MapRendimientoOlivoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             <p>
               Además de estos cambios en la distribución geográfica de las zonas óptimas para
               cultivo, se podría esperar un{' '}
-              <strong>descenso de la producción de hasta el 20%</strong> en la Península Ibérica
-              para los olivares de secano con un incremento de la temperatura de 2,5ºC.
+              <strong>descenso de la producción de hasta el 20%</strong> en las principales zonas
+              productoras para los olivares de secano con un incremento de la temperatura de 2,5ºC.
             </p>
             <p>
               <strong>

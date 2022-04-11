@@ -128,13 +128,8 @@ export const MapOptimalZonesWineMap: FC<ElRiesgoClimaticoMapTypes> = ({
           </div>
           <div className="mt-12">
             En Castilla la Mancha, las variedades que más se podrían ver afectadas por el cambio
-            climático son variedades más tempranas como tempranillo o chardonnay ; que
-            particularmente se cultivan en el noreste de la comunidad. Además, los cambios en Aunque
-            el viñedo es una planta fuertemente adaptada a las condiciones mediterráneas y que
-            necesita déficits hídricos moderados para potenciar su calidad, el aumento eventos
-            climáticos extremos como olas de calor, períodos de sequía más extremos, descenso de la
-            precipitación pero cada vez más concentrada en lluvias torrenciales tendría efectos
-            negativos en calidad y rendimiento, además de aumentar la erosión de los suelos.
+            climático son variedades más tempranas como tempranillo o chardonnay, que verían
+            reducida la superficie óptima para vinos de calidad en un 50%.
           </div>
         </div>
       </div>

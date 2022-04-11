@@ -84,10 +84,10 @@ export const MapRendimientoCerealesMap: FC<ElRiesgoClimaticoMapTypes> = ({
         <div className="top-0 h-screen">
           <div className="font-serif text-2xl">Proyecciones de rendimiento de cereales</div>
           <div className="mt-12">
-            Se espera que el rendimiento del cultivo de trigo{' '}
-            <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>. Esta
-            pérdida de rendimiento en cultivos de cereales de invierno como el trigo podría ser
-            agravada por la reducción en precipitación y la severidad de la sequía primaveral.
+            Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
+            <strong>disminuya en un 5% por cada grado de aumento de temperatura</strong>. En España,
+            el aumento de la sequía sería la principal causa de la pérdida de rendimiento, que
+            podría ser agravada por otras causas como incremento de los daños por pedrisco o plagas.
           </div>
         </div>
       </div>
