@@ -7,6 +7,7 @@ import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
 import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
+import Legend from 'containers/map-risk/legend';
 
 const MAP_SECTION_HEIGHT = '200vh';
 
@@ -261,8 +262,8 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
             <div className="relative z-40 ml-4 text-lg font-bold text-gray-400 top-20">
               En el mapa:
             </div>
-            <div className="absolute z-50 w-full p-4 bottom-20">
-              <div className="inline-block w-1/2 pr-2">
+            <div className="absolute bottom-0 z-30 w-full bg-white bg-opacity-70">
+              <div className="inline-block w-1/2 py-4 pl-4 pr-2">
                 {scenarios && scenario && (
                   <>
                     <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
@@ -276,7 +277,7 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                   </>
                 )}
               </div>
-              <div className="inline-block w-1/2 pl-2">
+              <div className="inline-block w-1/2 py-2 pl-2 pr-4">
                 {years && year && (
                   <>
                     <div className="pb-2 text-sm text-gray-400">Año</div>
@@ -289,6 +290,9 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
                     />
                   </>
                 )}
+              </div>
+              <div className="relative w-full bg-white">
+                <Legend legendType={activeLayerId} />
               </div>
             </div>
             <div className="absolute top-0 right-0 z-20 w-full h-screen mapa-calentamiento">

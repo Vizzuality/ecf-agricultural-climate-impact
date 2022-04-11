@@ -125,6 +125,10 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
   const [currentProgress, setCurrentProgress] = useState(0);
   const [controlsOpen, setControlsOpen] = useState(false);
 
+  const legendType = indicator?.value.length
+    ? `${activeLayerId}_${indicator?.value}`
+    : activeLayerId;
+
   const handleActiveLayerChange = useCallback((data) => {
     setYearSliderValue(0);
     setBounds(data.area);
@@ -1360,7 +1364,7 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                 </>
               )}
               <div className="relative w-full bg-white">
-                <Legend legendType={activeLayerId} />
+                <Legend legendType={legendType} />
               </div>
             </div>
             <div className="absolute top-0 right-0 z-20 w-full h-screen mapa-calentamiento">
