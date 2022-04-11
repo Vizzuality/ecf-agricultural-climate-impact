@@ -1282,7 +1282,10 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
             <div className="relative z-30 ml-4 text-lg font-bold text-gray-400 top-20">
               En el mapa:
             </div>
-            <div className="absolute bottom-0 z-30 w-full bg-white bg-opacity-70">
+            <div
+              className="absolute bottom-0 z-30 w-full bg-white bg-opacity-90"
+              style={{ zIndex: 999 }}
+            >
               {((scenarios && scenario) ||
                 (years && year) ||
                 (crops && crop) ||
@@ -1301,7 +1304,7 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     className={cx({
                       'px-4 overflow-hidden transition-all duration-500': true,
                       'max-h-0': !controlsOpen,
-                      'max-h-36 py-4 ': controlsOpen,
+                      'max-h-40 py-4 ': controlsOpen,
                     })}
                   >
                     <div className="inline-block w-1/2 pr-2">
