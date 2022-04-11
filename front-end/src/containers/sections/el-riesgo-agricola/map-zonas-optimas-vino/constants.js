@@ -29,15 +29,15 @@ export const YEARS_PROYECCIONES_VINO_SCENARIOS = [
 
 export const INDICATORS_PROYECCIONES_VINO = [
   {
-    value: 'indice_huglin',
-    label: 'Índice de huglin',
+    value: 'indice_sequia',
+    label: 'Índice de sequía',
   },
   {
     value: 'indice_frescor_nocturno',
     label: 'Índice de frescor nocturno',
   },
   {
-    value: 'indice_sequia',
-    label: 'Índice de sequía',
+    value: 'indice_huglin',
+    label: 'Índice de huglin',
   },
 ];
