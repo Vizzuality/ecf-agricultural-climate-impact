@@ -14,6 +14,8 @@ export const THEME = {
 
   danger:
     'text-red-700 bg-transparent hover:text-white hover:bg-red-700 active:bg-red-600 border border-red-700 hover:border-red-600 active:border-red-500',
+
+  none: '',
 };
 
 export const SIZE = {

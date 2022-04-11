@@ -5,25 +5,25 @@ export enum SectionIDs {
   CultivoCulturaResiliencia = 'cultivo-cultura-resiliencia',
 }
 
-// export enum SubsectionIDs {
-//   Vinedo = 'vinedo',
-//   Cereales = 'cereales',
-//   Olivar = 'olivar',
-//   Dehesa = 'dehesa',
-// }
+export enum SubsectionIDs {
+  Vinedo = 'section-vinedo',
+  Cereales = 'section-cereal',
+  Olivar = 'section-olivar',
+  Dehesa = 'section-dehesa',
+}
 
 export interface SectionObject {
   id: SectionIDs;
   label: string;
   url: string;
-  // subsections?: SubsectionObject[];
+  subsections?: SubsectionObject[];
 }
 
-// export interface SubsectionObject {
-//   id: SubsectionIDs;
-//   label: string;
-//   url: string;
-// }
+export interface SubsectionObject {
+  id: SubsectionIDs;
+  label: string;
+  url: string;
+}
 
 export interface AppContextType {
   currentSection: SectionIDs;
