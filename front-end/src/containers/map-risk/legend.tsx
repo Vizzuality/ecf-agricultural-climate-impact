@@ -337,10 +337,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Calentamiento (ºC)</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador se ha optenido a partir de un conjunto de datos que contiene
@@ -353,7 +353,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     durante 30 años como un promedio suavizado de 1971 a 2100.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -364,7 +364,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -375,7 +375,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Licencia</div>
                   <div className="flex-1">
                     <a
@@ -399,10 +399,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Duración máxima de las sequías (días)</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador mustra el número máximo de días consecutivos de los períodos
@@ -412,7 +412,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     representativa (RCP, por sus siglas en inglés) 4.5 y RCP 8.5.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     DOI:{' '}
@@ -424,7 +424,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -435,7 +435,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Licencia</div>
                   <div className="flex-1">
                     <a
@@ -459,10 +459,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Superficie destinada a cultivos clave</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Las superficies destinadas a los diferentes cultivos se han obtenido a partir
@@ -476,7 +476,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     del suelo y sus cambios para toda Europa.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -500,12 +500,12 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">
                 Superficie destinada al cultivo del olivo
               </h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Las superficies destinadas al cultivo del olivo se han obtenido a partir del
@@ -519,7 +519,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     del suelo y sus cambios para toda Europa.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -543,10 +543,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Superficie ocupada por dehesa</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Las superficies ocupada por la dehesa se han obtenido a partir del conjunto de
@@ -560,7 +560,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     para toda Europa.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -584,12 +584,12 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">
                 Superficie destinada al cultivo del viñedo
               </h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Las superficies destinadas al cultivo del viñedo se han obtenido a partir del
@@ -603,7 +603,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     del suelo y sus cambios para toda Europa.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -627,12 +627,12 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">
                 Superficie destinada al cultivo del cereal
               </h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Las superficies destinadas al cultivo del cereal se han obtenido a partir del
@@ -646,7 +646,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     del suelo y sus cambios para toda Europa.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -670,10 +670,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Cambio en rendimiento (%)</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador muestra la diferencia de la producción de la aceituna entre entre
@@ -684,7 +684,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     junto con con datos de suelo y terreno.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -695,7 +695,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a className="underline" href="https://doi.org/10.1002/joc.6237">
@@ -716,10 +716,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Cambio en rendimiento (%)</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a
@@ -730,7 +730,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -754,10 +754,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Índice de frescor nocturno</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     El índice de Frescor Nocturno pone de relieve la importancia de las diferencias
@@ -766,7 +766,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     favorezcan la maduración, y con noches frías.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     Resco P, Iglesias A, Bardají I, Sotés V (2015). Exploring adaptation choices for
@@ -787,10 +787,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Índice de huglin</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     El índice de Huglin muestra una buena relación entre las zonas con el potencial
@@ -799,7 +799,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     del vino como resultado de la influencia climática.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     Resco P, Iglesias A, Bardají I, Sotés V (2015). Exploring adaptation choices for
@@ -820,10 +820,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Índice de sequía</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     El índice de Sequía establece la importancia del nivel hídrico sobre nivel de
@@ -831,7 +831,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     déficit para alcanzar su máximo potencial.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     Resco P, Iglesias A, Bardají I, Sotés V (2015). Exploring adaptation choices for
@@ -852,10 +852,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Zonas óptimas para el cultivo del olivo</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador muestra el cuantil del 95% (&quot;áreas altamente
@@ -870,7 +870,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     olivo.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     <a className="underline" href="https://doi.org/10.1016/j.scitotenv.2019.136161">
@@ -878,7 +878,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a className="underline" href="https://doi.org/10.1016/j.scitotenv.2019.136161">
@@ -899,10 +899,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Duración máxima de las sequías (días)</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador mustra el número máximo de días consecutivos de los períodos
@@ -912,7 +912,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     representativa (RCP, por sus siglas en inglés) 4.5 y RCP 8.5.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     DOI:{' '}
@@ -924,7 +924,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -935,7 +935,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Licencia</div>
                   <div className="flex-1">
                     <a
@@ -959,10 +959,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Riesgo de incendio</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador presenta las proyecciones de peligro de incendios para España
@@ -988,7 +988,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     DOI:{' '}
@@ -1000,7 +1000,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -1011,7 +1011,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Licencia</div>
                   <div className="flex-1">
                     <a
@@ -1035,10 +1035,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Media anual de aridez</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador muestra la evaporación potencial mensual dividida por la
@@ -1049,7 +1049,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     y RCP 8.5.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     DOI:{' '}
@@ -1061,7 +1061,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -1072,7 +1072,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Licencia</div>
                   <div className="flex-1">
                     <a
@@ -1096,10 +1096,10 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
             onDismiss={() => setModalOpen(false)}
             title="TITLE"
           >
-            <div className="px-10">
+            <div className="px-6 sm:px-10">
               <h1 className="mb-5 text-xl font-medium">Precipitación (mm/mes)</h1>
               <div className="text-lg">
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Descripción</div>
                   <div className="flex-1">
                     Este indicador muestra la media de la precipitación media mensual durante el
@@ -1113,7 +1113,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     (RCP, por sus siglas en inglés) 4.5 y RCP 8.5.
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Referencia</div>
                   <div className="flex-1">
                     DOI:{' '}
@@ -1125,7 +1125,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Fuente</div>
                   <div className="flex-1">
                     <a
@@ -1136,7 +1136,7 @@ const Legend: FC<{ legendType: string }> = ({ legendType }) => {
                     </a>
                   </div>
                 </div>
-                <div className="flex my-4">
+                <div className="flex flex-col my-4 sm:flex-row">
                   <div className="flex-initial w-24 font-bold">Licencia</div>
                   <div className="flex-1">
                     <a

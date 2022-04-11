@@ -59,6 +59,9 @@ export const Modal: FC<ModalProps> = ({
               },
             }}
             className={cx({ [OVERLAY_CLASSES]: true })}
+            style={{
+              zIndex: 999,
+            }}
           >
             <FocusScope contain restoreFocus autoFocus>
               <div {...overlayProps} {...dialogProps} {...modalProps} ref={containerRef}>
@@ -94,7 +97,7 @@ export const Modal: FC<ModalProps> = ({
                       <button
                         type="button"
                         onClick={onDismiss}
-                        className="absolute flex items-center px-4 py-4 text-sm text-gray-300 right-4 -top-4 focus:text-black hover:text-black"
+                        className="absolute right-0 flex items-center px-4 py-4 text-sm text-gray-300 -top-6 sm:right-4 sm:-top-4 focus:text-black hover:text-black"
                       >
                         {/* <span className="text-xs">Close</span> */}
                         <Icon icon={CLOSE_SVG} className="inline-block w-3 h-3 ml-2 text-black" />

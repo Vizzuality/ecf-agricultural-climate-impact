@@ -1,4 +1,5 @@
 import { FC, useCallback, useMemo, useState, useRef } from 'react';
+import cx from 'classnames';
 
 import Map from 'components/map';
 import ZoomControls from 'components/map/controls/zoom';
@@ -34,6 +35,7 @@ const MapRisk: FC<MapVisualizationType> = ({
   legend,
   crop,
   indicator,
+  mobile = false,
 }) => {
   const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
   const HOVER = useRef<EventTypes>({});
@@ -242,7 +244,12 @@ const MapRisk: FC<MapVisualizationType> = ({
 
   return (
     <div className="relative flex flex-col h-full">
-      <div className="absolute top-0 left-0 right-0 h-full">
+      <div
+        className={cx({
+          'absolute top-0 left-0 right-0 h-full': true,
+          'pointer-events-none': mobile,
+        })}
+      >
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           mapStyle="mapbox://styles/aslribeiro/cl1l03yhp000514pi3penba92"
@@ -269,9 +276,11 @@ const MapRisk: FC<MapVisualizationType> = ({
             </>
           )}
         </Map>
-        <div className="absolute z-10 top-20 right-5">
-          <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
-        </div>
+        {!mobile && (
+          <div className="absolute z-10 top-20 right-5">
+            <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
+          </div>
+        )}
         {tooltipOpen && (
           <Tooltip
             key={Math.random()}
@@ -309,9 +318,15 @@ const MapRisk: FC<MapVisualizationType> = ({
             </div>
           </Tooltip>
         )}
-        <div className="absolute py-1 bg-white w-96 bottom-8 right-4">
-          <Legend legendType={legendType} />
-        </div>
+        {!mobile && (
+          <div
+            className={cx({
+              'absolute w-96 py-1 bg-white bottom-8 right-4': !mobile,
+            })}
+          >
+            <Legend legendType={legendType} />
+          </div>
+        )}
       </div>
     </div>
   );

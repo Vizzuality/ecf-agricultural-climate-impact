@@ -6,7 +6,7 @@ export const DEFAULT_VIEWPORT = {
   bearing: 0,
   transitionDuration: 250,
   maxZoom: 10,
-  minZoom: 5,
+  minZoom: 4,
 };
 
 export const BOUNDS = {

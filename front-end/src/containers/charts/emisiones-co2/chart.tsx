@@ -29,9 +29,8 @@ const bisectDate = bisector<DatasetItem, number>((d: DatasetItem) => d?.year).le
 const formatDate = (year: number) => year.toString();
 const formatValue = format(',.2s');
 
-const margin = { top: 40, right: 100, bottom: 50, left: 85 };
-
-export const Chart: React.FC<ChartProps> = ({ width, height }) => {
+export const Chart: React.FC<ChartProps> = ({ width, height, mobile = false }) => {
+  const margin = { top: 40, right: mobile ? 40 : 100, bottom: 50, left: mobile ? 50 : 85 };
   const [historicData, wewData, wawData] = useClimateRiskData();
   const isFetching = historicData.isFetching || wewData.isFetching || wawData.isFetching;
 
@@ -125,9 +124,11 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
       <svg ref={containerRef} width={width} height={height + margin.top}>
         <Group left={margin.left} top={margin.top}>
           <text
-            x={-margin.left}
+            x={mobile ? -margin.left + 20 : -margin.left}
             y={innerHeight / 2}
-            transform={`rotate(-90, -${margin.left - 20}, ${margin.top + margin.bottom})`}
+            transform={`rotate(-90, -${mobile ? margin.left - 30 : margin.left - 20}, ${
+              margin.top + margin.bottom
+            })`}
             fontSize={10}
             fill="white"
             className="font-bold"
@@ -214,13 +215,24 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
               fill="#EDF2F7"
               fontSize="12"
             >
-              <tspan>Calentamiento</tspan>
-              <tspan
-                x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
-                y={valueScale(getValue(lastWewPoint)) + 12 ?? 0}
-              >
-                de 2ºC
-              </tspan>
+              {mobile ? (
+                <tspan
+                  x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
+                  y={valueScale(getValue(lastWewPoint)) + 4 ?? 0}
+                >
+                  2ºC
+                </tspan>
+              ) : (
+                <>
+                  <tspan>Calentamiento</tspan>
+                  <tspan
+                    x={timeScale(getYear(lastWewPoint)) + 10 ?? 0}
+                    y={valueScale(getValue(lastWewPoint)) + 12 ?? 0}
+                  >
+                    de 2ºC
+                  </tspan>
+                </>
+              )}
             </text>
           )}
           {lastWawPoint && (
@@ -230,13 +242,24 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
               fill="#EDF2F7"
               fontSize="12"
             >
-              <tspan>Calentamiento</tspan>
-              <tspan
-                x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
-                y={valueScale(getValue(lastWawPoint)) + 12 ?? 0}
-              >
-                de 1.5ºC
-              </tspan>
+              {mobile ? (
+                <tspan
+                  x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
+                  y={valueScale(getValue(lastWawPoint)) + 4 ?? 0}
+                >
+                  1.5ºC
+                </tspan>
+              ) : (
+                <>
+                  <tspan>Calentamiento</tspan>
+                  <tspan
+                    x={timeScale(getYear(lastWawPoint)) + 10 ?? 0}
+                    y={valueScale(getValue(lastWawPoint)) + 12 ?? 0}
+                  >
+                    de 1.5ºC
+                  </tspan>
+                </>
+              )}
             </text>
           )}
 

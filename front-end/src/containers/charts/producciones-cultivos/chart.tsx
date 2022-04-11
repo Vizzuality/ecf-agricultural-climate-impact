@@ -39,7 +39,8 @@ const LABELS_BY_INDICATOR = {
 
 const COLORS = ['#B23E3E', '#A1B57D', '#F9F5DB'];
 
-export const Chart: React.FC<ChartProps> = ({ width, height }) => {
+export const Chart: React.FC<ChartProps> = ({ width, height, mobile = false }) => {
+  const margin = { top: 40, right: mobile ? 60 : 100, bottom: 50, left: mobile ? 50 : 85 };
   const [cereales, aceituna, uva] = useProduccionesCultivos();
   const isFetching = cereales.isFetching || aceituna.isFetching || uva.isFetching;
 
@@ -131,9 +132,11 @@ export const Chart: React.FC<ChartProps> = ({ width, height }) => {
       <svg ref={containerRef} width={width} height={height + margin.top}>
         <Group left={margin.left} top={margin.top}>
           <text
-            x={-margin.left}
+            x={mobile ? -margin.left + 20 : -margin.left}
             y={innerHeight / 2}
-            transform={`rotate(-90, -${margin.left - 20}, ${margin.top + margin.bottom})`}
+            transform={`rotate(-90, -${mobile ? margin.left - 30 : margin.left - 20}, ${
+              margin.top + margin.bottom
+            })`}
             fontSize={10}
             fill="white"
             className="font-bold"

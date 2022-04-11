@@ -32,6 +32,7 @@ export interface MapVisualizationType {
   legend?: string;
   crop?: CropType;
   indicator?: IndicatorType;
+  mobile?: boolean;
 }
 export interface ViewPortTypes {
   zoom?: number;

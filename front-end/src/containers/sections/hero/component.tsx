@@ -83,7 +83,51 @@ export const Hero: FC = () => {
           </div>
         </Desktop>
         <Mobile>
-          <div>Mobile</div>
+          <div
+            id="section-hero"
+            className="relative w-full h-screen"
+            style={{
+              background: 'url(images/intro-bg1.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'top',
+              marginTop: '-64px',
+            }}
+          >
+            <div className="flex flex-col items-center justify-center w-full h-screen">
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+                className="relative max-w-xl mx-auto mb-4 font-bold tracking-wide text-center uppercase opacity-0 text-md top-8"
+              >
+                <div>{PRETITLE}</div>
+              </motion.div>
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="relative opacity-0 top-8"
+              >
+                <div className="flex flex-col items-center gap-2 px-1 font-serif text-4xl">
+                  {TITLE.map((item) => (
+                    <span
+                      key={`title-${item.id}`}
+                      className="block px-2 py-3 text-white bg-primary-red"
+                    >
+                      {item.content}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+              <motion.div
+                animate={{ y: '-2rem', opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+                className="relative mt-16 opacity-0 top-8"
+              >
+                <Button theme="primary" size="l" href="#section-cultivo-cultura-cambio">
+                  {BUTTON_TEXT}
+                </Button>
+              </motion.div>
+            </div>
+          </div>
         </Mobile>
       </MediaContextProvider>
     </section>

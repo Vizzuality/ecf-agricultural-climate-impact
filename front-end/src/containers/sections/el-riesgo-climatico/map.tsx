@@ -1,9 +1,13 @@
 import { useState, useCallback, FC } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
 
+// utils
+import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
+
 import MapSlider from 'components/map-slider';
 
 import MapRisk from 'containers/map-risk';
+import Legend from 'containers/map-risk/legend';
 
 const MAP_SECTION_HEIGHT = '100vh';
 
@@ -106,147 +110,304 @@ export const ElRiesgoClimaticoMap: FC<ElRiesgoClimaticoMapTypes> = ({
   };
 
   return (
-    <div className="relative w-full bg-lightest-grey">
-      <div className="sticky top-0 left-0 z-20 w-full h-screen">
-        <div className="w-2/5 ">
-          <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">En el mapa:</div>
-        </div>
-        <div className="absolute bottom-0 z-20 w-2/5 p-16">
-          <div className="inline-block w-1/2 pr-2">
-            {scenarios && scenario && (
-              <>
-                <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
-                <MapSlider
-                  values={scenarios}
-                  value={scenario}
-                  currentValue={scenarioSliderValue}
-                  onChange={handleScenarioSliderChange}
-                  disabled={scenarios.length === 1 || scenario.value === 'baseline'}
-                />
-              </>
-            )}
-          </div>
-          <div className="inline-block w-1/2 pl-2">
-            {years && year && (
-              <>
-                <div className="pb-2 text-sm text-gray-400">Año</div>
-                <MapSlider
-                  values={years}
-                  value={year}
-                  currentValue={yearSliderValue}
-                  onChange={handleYearSliderChange}
-                  disabled={years.length === 1}
-                />
-              </>
-            )}
-          </div>
-        </div>
-        <div className="absolute top-0 right-0 z-20 w-3/5 h-screen mapa-calentamiento">
-          <MapRisk
-            activeLayerId={activeLayerId}
-            geoType={geoType}
-            scenario={scenario}
-            year={year}
-            allowZoom
-            bounds={bounds}
-            legend={activeLayerId}
-          />
-        </div>
-        <div>
-          <div
-            className="absolute w-2/5 p-16 pt-40 mt-2"
-            style={{
-              top: -(currentProgress * 10),
-              opacity:
-                activeLayerId === 'calentamiento'
-                  ? currentProgress <= 0.5
-                    ? currentProgress * 10
-                    : (1 - currentProgress) * 10
-                  : '0',
-            }}
-          >
+    <MediaContextProvider>
+      <Desktop includeBiggerScreens>
+        <div className="relative w-full bg-lightest-grey">
+          <div className="sticky top-0 left-0 z-20 w-full h-screen">
+            <div className="w-2/5 ">
+              <div className="relative ml-16 text-lg font-bold text-gray-400 top-32">
+                En el mapa
+              </div>
+            </div>
+            <div className="absolute bottom-0 z-20 w-2/5 p-16">
+              <div className="inline-block w-1/2 pr-2">
+                {scenarios && scenario && (
+                  <>
+                    <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
+                    <MapSlider
+                      values={scenarios}
+                      value={scenario}
+                      currentValue={scenarioSliderValue}
+                      onChange={handleScenarioSliderChange}
+                      disabled={scenarios.length === 1 || scenario.value === 'baseline'}
+                    />
+                  </>
+                )}
+              </div>
+              <div className="inline-block w-1/2 pl-2">
+                {years && year && (
+                  <>
+                    <div className="pb-2 text-sm text-gray-400">Año</div>
+                    <MapSlider
+                      values={years}
+                      value={year}
+                      currentValue={yearSliderValue}
+                      onChange={handleYearSliderChange}
+                      disabled={years.length === 1}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="absolute top-0 right-0 z-20 w-3/5 h-screen mapa-calentamiento">
+              <MapRisk
+                activeLayerId={activeLayerId}
+                geoType={geoType}
+                scenario={scenario}
+                year={year}
+                allowZoom
+                bounds={bounds}
+                legend={activeLayerId}
+              />
+            </div>
             <div>
-              <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
-              <div className="mt-12 text-lg">
-                Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
-                <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
-                asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
-                incidencia de <strong>incendios forestales</strong> y{' '}
-                <strong>erosión del suelo</strong>.
+              <div
+                className="absolute w-2/5 p-16 pt-40 mt-2"
+                style={{
+                  top: -(currentProgress * 10),
+                  opacity:
+                    activeLayerId === 'calentamiento'
+                      ? currentProgress <= 0.5
+                        ? currentProgress * 10
+                        : (1 - currentProgress) * 10
+                      : '0',
+                }}
+              >
+                <div>
+                  <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
+                  <div className="mt-12 text-lg">
+                    Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
+                    <strong>aridificación</strong>, que hará que el aumento de las temperaturas
+                    venga asociado a sequías más intensas y duraderas con consecuencias asociadas a
+                    la mayor incidencia de incendios forestales y erosión del suelo.
+                  </div>
+                </div>
+              </div>
+              <div
+                className="absolute w-2/5 p-16 pt-40 mt-2"
+                style={{
+                  top: -(currentProgress * 10),
+                  opacity:
+                    activeLayerId === 'sequias'
+                      ? currentProgress <= 0.5
+                        ? currentProgress * 10
+                        : (1 - currentProgress) * 10
+                      : '0',
+                }}
+              >
+                <div>
+                  <div className="font-serif text-2xl">Proyecciones de sequías</div>
+                  <div className="mt-12 text-lg">
+                    <p>
+                      Se espera un{' '}
+                      <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,
+                      seguidas por periodos de lluvias más cortos pero intensos durante los meses de
+                      Octubre y Noviembre.
+                    </p>
+                    <p>
+                      Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
+                      regadío si se mantienen las condiciones de cultivo actuales.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div
-            className="absolute w-2/5 p-16 pt-40 mt-2"
-            style={{
-              top: -(currentProgress * 10),
-              opacity:
-                activeLayerId === 'sequias'
-                  ? currentProgress <= 0.5
-                    ? currentProgress * 10
-                    : (1 - currentProgress) * 10
-                  : '0',
-            }}
-          >
-            <div>
-              <div className="font-serif text-2xl">Proyecciones de sequías</div>
-              <div className="mt-12 text-lg">
-                <p>
-                  Se espera un{' '}
-                  <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,
-                  seguidas por periodos de lluvias más cortos pero intensos durante los meses de
-                  Octubre y Noviembre.
-                </p>
-                <p>
-                  Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
-                  regadío si se mantienen las condiciones de cultivo actuales.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <Scrollama onStepEnter={onStepEnter} progress onStepProgress={onStepProgress} offset={0}>
-        <Step data={{ layerId: 'calentamiento', id: 0 }}>
-          <div className="relative w-2/5 p-16 pt-40 opacity-0" style={{ marginTop: '-100vh' }}>
-            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
-              <div className="sticky top-40">
-                <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
-                <div className="mt-12 text-lg">
-                  Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
-                  <strong>aridificación</strong>, que hará que el aumento de las temperaturas venga
-                  asociado a sequías más intensas y duraderas con consecuencias asociadas a la mayor
-                  incidencia de <strong>incendios forestales</strong> y{' '}
-                  <strong>erosión del suelo</strong>.
+          <Scrollama onStepEnter={onStepEnter} progress onStepProgress={onStepProgress} offset={0}>
+            <Step data={{ layerId: 'calentamiento', id: 0 }}>
+              <div className="relative w-2/5 p-16 pt-40 opacity-0" style={{ marginTop: '-100vh' }}>
+                <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+                  <div className="sticky top-40">
+                    <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
+                    <div className="mt-12 text-lg">
+                      Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
+                      <strong>aridificación</strong>, que hará que el aumento de las temperaturas
+                      venga asociado a sequías más intensas y duraderas con consecuencias asociadas
+                      a la mayor incidencia de incendios forestales y erosión del suelo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Step>
+            <Step data={{ layerId: 'sequias', id: 1 }}>
+              <div className="w-2/5 p-16 pt-40 opacity-0">
+                <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+                  <div className="sticky top-40">
+                    <div className="font-serif text-2xl">Proyecciones de sequías</div>
+                    <div className="mt-12 text-lg">
+                      <p>
+                        Se espera un{' '}
+                        <strong>
+                          aumento en la duración y severidad de las sequías veraniegas
+                        </strong>
+                        , seguidas por periodos de lluvias más cortos pero intensos durante los
+                        meses de Octubre y Noviembre.
+                      </p>
+                      <p>
+                        Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
+                        regadío si se mantienen las condiciones de cultivo actuales.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Step>
+          </Scrollama>
+        </div>
+      </Desktop>
+      <Mobile>
+        <div className="relative w-full bg-lightest-grey">
+          <div className="sticky top-0 left-0 z-20 w-full h-screen">
+            <div className="relative z-40 ml-4 text-lg font-bold text-gray-400 top-20">
+              En el mapa:
+            </div>
+            <div className="absolute bottom-0 z-30 w-full bg-white bg-opacity-70">
+              <div className="inline-block w-1/2 py-4 pl-4 pr-2">
+                {scenarios && scenario && (
+                  <>
+                    <div className="pb-2 text-sm text-gray-400">Escenario de calentamiento</div>
+                    <MapSlider
+                      values={scenarios}
+                      value={scenario}
+                      currentValue={scenarioSliderValue}
+                      onChange={handleScenarioSliderChange}
+                      disabled={scenarios.length === 1 || scenario.value === 'baseline'}
+                    />
+                  </>
+                )}
+              </div>
+              <div className="inline-block w-1/2 py-2 pl-2 pr-4">
+                {years && year && (
+                  <>
+                    <div className="pb-2 text-sm text-gray-400">Año</div>
+                    <MapSlider
+                      values={years}
+                      value={year}
+                      currentValue={yearSliderValue}
+                      onChange={handleYearSliderChange}
+                      disabled={years.length === 1}
+                    />
+                  </>
+                )}
+              </div>
+              <div className="relative w-full bg-white">
+                <Legend legendType={activeLayerId} />
+              </div>
+            </div>
+            <div className="absolute top-0 right-0 z-20 w-full h-screen mapa-calentamiento">
+              <MapRisk
+                activeLayerId={activeLayerId}
+                geoType={geoType}
+                scenario={scenario}
+                year={year}
+                allowZoom
+                bounds={bounds}
+                legend={activeLayerId}
+                mobile={true}
+              />
+            </div>
+            <div>
+              <div
+                className="absolute z-50 w-full p-4 pt-24 mt-4"
+                style={{
+                  top: -(currentProgress * 10),
+                  opacity:
+                    activeLayerId === 'calentamiento'
+                      ? currentProgress <= 0.25
+                        ? currentProgress * 10
+                        : (1 - 0.5 - currentProgress) * 10
+                      : '0',
+                  userSelect: 'none',
+                  pointerEvents: 'none',
+                }}
+              >
+                <div>
+                  <div className="font-serif text-lg">Proyecciones de calentamiento</div>
+                  <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
+                    Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
+                    <strong>aridificación</strong>, que hará que el aumento de las temperaturas
+                    venga asociado a sequías más intensas y duraderas con consecuencias asociadas a
+                    la mayor incidencia de incendios forestales y erosión del suelo.
+                  </div>
+                </div>
+              </div>
+              <div
+                className="absolute z-50 w-full p-4 pt-24 mt-4"
+                style={{
+                  top: -(currentProgress * 10),
+                  opacity:
+                    activeLayerId === 'sequias'
+                      ? currentProgress <= 0.25
+                        ? currentProgress * 10
+                        : (1 - 0.5 - currentProgress) * 10
+                      : '0',
+                  userSelect: 'none',
+                  pointerEvents: 'none',
+                }}
+              >
+                <div>
+                  <div className="font-serif text-lg">Proyecciones de sequías</div>
+                  <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
+                    <p>
+                      Se espera un{' '}
+                      <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,
+                      seguidas por periodos de lluvias más cortos pero intensos durante los meses de
+                      Octubre y Noviembre.
+                    </p>
+                    <p>
+                      Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
+                      regadío si se mantienen las condiciones de cultivo actuales.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </Step>
-        <Step data={{ layerId: 'sequias', id: 1 }}>
-          <div className="w-2/5 p-16 pt-40 opacity-0">
-            <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
-              <div className="sticky top-40">
-                <div className="font-serif text-2xl">Proyecciones de sequías</div>
-                <div className="mt-12 text-lg">
-                  <p>
-                    Se espera un{' '}
-                    <strong>aumento en la duración y severidad de las sequías veraniegas</strong>,
-                    seguidas por periodos de lluvias más cortos pero intensos durante los meses de
-                    Octubre y Noviembre.
-                  </p>
-                  <p>
-                    Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
-                    regadío si se mantienen las condiciones de cultivo actuales.
-                  </p>
+
+          <Scrollama onStepEnter={onStepEnter} progress onStepProgress={onStepProgress} offset={0}>
+            <Step data={{ layerId: 'calentamiento', id: 0 }}>
+              <div className="relative w-2/5 p-16 pt-40 opacity-0" style={{ marginTop: '-100vh' }}>
+                <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+                  <div className="sticky top-40">
+                    <div className="font-serif text-2xl">Proyecciones de calentamiento</div>
+                    <div className="mt-12 text-lg">
+                      Asociado al calentamiento, la Península Ibérica se verá afectada por la{' '}
+                      <strong>aridificación</strong>, que hará que el aumento de las temperaturas
+                      venga asociado a sequías más intensas y duraderas con consecuencias asociadas
+                      a la mayor incidencia de incendios forestales y erosión del suelo.
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </Step>
-      </Scrollama>
-    </div>
+            </Step>
+            <Step data={{ layerId: 'sequias', id: 1 }}>
+              <div className="w-2/5 p-16 pt-40 opacity-0">
+                <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
+                  <div className="sticky top-40">
+                    <div className="font-serif text-2xl">Proyecciones de sequías</div>
+                    <div className="mt-12 text-lg">
+                      <p>
+                        Se espera un{' '}
+                        <strong>
+                          aumento en la duración y severidad de las sequías veraniegas
+                        </strong>
+                        , seguidas por periodos de lluvias más cortos pero intensos durante los
+                        meses de Octubre y Noviembre.
+                      </p>
+                      <p>
+                        Estos cambios en los ciclos hídricos afectarán a la agricultura de secano y
+                        regadío si se mantienen las condiciones de cultivo actuales.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Step>
+          </Scrollama>
+        </div>
+      </Mobile>
+    </MediaContextProvider>
   );
 };
 
