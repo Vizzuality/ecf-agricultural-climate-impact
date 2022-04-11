@@ -11,8 +11,8 @@ export const SCENARIOS_RENDIMIENTO_CEREALES = [
 
 export const CROPS_RENDIMIENTO_CEREALES = [
   {
-    value: 'Cebada',
-    label: 'Cebada',
+    value: 'Trigo',
+    label: 'Trigo',
   },
   {
     value: 'Girasol',
@@ -23,8 +23,8 @@ export const CROPS_RENDIMIENTO_CEREALES = [
     label: 'Maíz',
   },
   {
-    value: 'Trigo',
-    label: 'Trigo',
+    value: 'Cebada',
+    label: 'Cebada',
   },
 ];
 
