@@ -27,9 +27,7 @@ export const CultivoCulturaResiliencia: FC = () => {
                     A pesar de que predecir la magnitud de los impactos del cambio climático en la
                     agricultura es complejo, no hay dudas en cuanto a que afectará al paisaje
                     agrícola español. La diversidad geográfica de nuestro país y la capacidad de
-                    mitigar las causas a través de reducción de las emisiones, así como la
-                    innovación para capturar carbono atmosférico, son factores que influirán sobre
-                    cuan precisas son las actuales proyecciones.
+                    mitigar las causas a través de reducción de las emisiones.
                   </p>
                   <p className="my-4">
                     Como muestra el conocimiento del que disponemos, las grandes extensiones que
