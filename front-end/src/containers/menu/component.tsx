@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, useState } from 'react';
 import cx from 'classnames';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { Link } from 'react-scroll';
 import Headroom from 'react-headroom';
 
 import Button from 'components/button';
@@ -36,7 +37,7 @@ export const Menu: FC = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white">
       <MediaContextProvider>
         <Desktop includeBiggerScreens>
           <Headroom>
@@ -50,7 +51,13 @@ export const Menu: FC = () => {
                 <ul className="flex gap-6">
                   {SECTIONS.map((section) => (
                     <li key={`menu-item-${section.id}`}>
-                      <Link href={section.url}>
+                      <Link
+                        href={`#${section.url}`}
+                        smooth={true}
+                        duration={1000}
+                        offset={50}
+                        to={section.url}
+                      >
                         <a
                           className={cx({
                             'opacity-100': currentSection === section.id,
@@ -111,7 +118,13 @@ export const Menu: FC = () => {
             <ul className="flex flex-col gap-6 px-2 pt-4">
               {SECTIONS.map((section) => (
                 <li key={`menu-item-${section.id}`}>
-                  <Link href={section.url}>
+                  <Link
+                    href={`#${section.url}`}
+                    smooth={true}
+                    duration={1000}
+                    offset={50}
+                    to={section.url}
+                  >
                     <a className="opacity-100">{section.label}</a>
                   </Link>
                   {section?.subsections?.length && (

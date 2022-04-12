@@ -77,5 +77,6 @@
 }
 
 .headroom--pinned {
-  /* background: white; */
+  background: white;
+  backdrop-filter: blur(4px);
 }

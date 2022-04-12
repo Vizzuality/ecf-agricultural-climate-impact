@@ -1,5 +1,6 @@
 import { useState, useCallback, FC } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
+import { Link } from 'react-scroll';
 import cx from 'classnames';
 
 import { Desktop, MediaContextProvider, Mobile } from 'utils/responsive';
@@ -231,7 +232,15 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
               <div className="absolute z-20 w-2/5 top-20">
                 <ul className="flex pl-12 ml-1">
                   <li className={`relative px-3 ${cropSection === 'olivar' && 'font-bold'}`}>
-                    <a href="#section-olivar">Olivar</a>
+                    <Link
+                      href="#section-olivar"
+                      smooth={true}
+                      duration={1000}
+                      offset={50}
+                      to="section-olivar"
+                    >
+                      Olivar
+                    </Link>
                     {cropSection === 'olivar' && (
                       <div
                         style={{
@@ -247,7 +256,15 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     )}
                   </li>
                   <li className={`relative px-3 ${cropSection === 'cereal' && 'font-bold'}`}>
-                    <a href="#section-cereal">Cereales</a>
+                    <Link
+                      href="#section-cereal"
+                      smooth={true}
+                      duration={1000}
+                      offset={50}
+                      to="section-cereal"
+                    >
+                      Cereales
+                    </Link>
                     {cropSection === 'cereal' && (
                       <div
                         style={{
@@ -263,7 +280,15 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     )}
                   </li>
                   <li className={`relative px-3 ${cropSection === 'vinedo' && 'font-bold'}`}>
-                    <a href="#section-vinedo">Viñedo</a>
+                    <Link
+                      href="#section-vinedo"
+                      smooth={true}
+                      duration={1000}
+                      offset={50}
+                      to="section-vinedo"
+                    >
+                      Viñedo
+                    </Link>
                     {cropSection === 'vinedo' && (
                       <div
                         style={{
@@ -279,7 +304,15 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     )}
                   </li>
                   <li className={`relative px-3 ${cropSection === 'dehesa' && 'font-bold'}`}>
-                    <a href="#section-dehesa">Dehesa</a>
+                    <Link
+                      href="#section-dehesa"
+                      smooth={true}
+                      duration={1000}
+                      offset={50}
+                      to="section-dehesa"
+                    >
+                      Dehesa
+                    </Link>
                     {cropSection === 'dehesa' && (
                       <div
                         style={{
@@ -557,32 +590,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
               <div
                 className="absolute w-2/5 p-16 pt-40 mt-2"
                 style={{
-                  zIndex: currentStep === 'cultivos-cereal-2' ? 10 : 1,
-                  top: -(currentProgress * 10),
-                  opacity:
-                    currentStep === 'cultivos-cereal-2'
-                      ? currentProgress <= 0.5
-                        ? currentProgress * 10
-                        : (1 - currentProgress) * 10
-                      : '0',
-                }}
-              >
-                <div>
-                  <div className="font-serif text-2xl">
-                    Superficie destinada al cultivo de cereales
-                  </div>
-                  <div className="mt-12 text-lg">
-                    Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
-                    <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong> En
-                    España, el aumento de la sequía sería la principal causa de la pérdida de
-                    rendimiento, que podría ser agravada por otras causas como incremento de los
-                    daños por pedrisco o plagas.
-                  </div>
-                </div>
-              </div>
-              <div
-                className="absolute w-2/5 p-16 pt-40 mt-2"
-                style={{
                   zIndex: currentStep === 'rendimiento-cereal-1' ? 10 : 1,
                   top: -(currentProgress * 10),
                   opacity:
@@ -601,6 +608,30 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     España, el aumento de la sequía sería la principal causa de la pérdida de
                     rendimiento, que podría ser agravada por otras causas como incremento de los
                     daños por pedrisco o plagas.
+                  </div>
+                </div>
+              </div>
+              <div
+                className="absolute w-2/5 p-16 pt-40 mt-2"
+                style={{
+                  zIndex: currentStep === 'rendimiento-cereal-2' ? 10 : 1,
+                  top: -(currentProgress * 10),
+                  opacity:
+                    currentStep === 'rendimiento-cereal-2'
+                      ? currentProgress <= 0.5
+                        ? currentProgress * 10
+                        : (1 - currentProgress) * 10
+                      : '0',
+                }}
+              >
+                <div>
+                  <div className="mt-12 text-lg">
+                    Las condiciones derivadas del cambio climático obligarían a tomar medidas de
+                    adaptación al cultivo de cereales como cambios en las variedades de cultivos,
+                    diferentes fechas de siembra y cosecha, cambios en el grado de mecanización o
+                    diferentes tipos de nutrientes y fertilizantes. Por lo que se espera que el
+                    Cambio Climático aumente la vulnerabilidad del sector si no existe una
+                    disminución real de la emisión de gases de efecto invernadero.
                   </div>
                 </div>
               </div>
@@ -954,31 +985,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </Step>
             <Step
               data={{
-                layerId: 'cultivos-cereal',
-                stepId: 'cultivos-cereal-2',
-                area: 'castilla_leon',
-                cropSection: 'cereal',
-              }}
-            >
-              <div className="relative w-2/5 p-16 pt-40 opacity-0">
-                <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
-                  <div className="sticky top-40">
-                    <div className="font-serif text-2xl">
-                      Superficie destinada al cultivo de cereales
-                    </div>
-                    <div className="mt-12 text-lg">
-                      Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
-                      <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong>{' '}
-                      En España, el aumento de la sequía sería la principal causa de la pérdida de
-                      rendimiento, que podría ser agravada por otras causas como incremento de los
-                      daños por pedrisco o plagas.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Step>
-            <Step
-              data={{
                 layerId: 'rendimiento-cereal',
                 stepId: 'rendimiento-cereal-1',
                 area: 'castilla_leon',
@@ -1013,9 +1019,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
               <div className="w-2/5 p-16 pt-40 opacity-0">
                 <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
                   <div className="sticky top-40">
-                    <div className="font-serif text-2xl">
-                      Proyecciones de rendimiento de cereales
-                    </div>
                     <div className="mt-12 text-lg">
                       Las condiciones derivadas del cambio climático obligarían a tomar medidas de
                       adaptación al cultivo de cereales como cambios en las variedades de cultivos,
@@ -1204,76 +1207,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
       <Mobile>
         <div className="relative w-full bg-lightest-grey">
           <div className="sticky top-0 left-0 z-20 w-full h-screen">
-            {/* {cropSection?.length && (
-              <div className="absolute z-20 w-2/5 top-20">
-                <ul className="flex pl-12 ml-1">
-                  <li className={`relative px-3 ${cropSection === 'olivar' && 'font-bold'}`}>
-                    <a href="#section-olivar">Olivar</a>
-                    {cropSection === 'olivar' && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          bottom: '-3px',
-                          left: '50%',
-                          width: '30px',
-                          height: '1px',
-                          background: 'black',
-                          transform: 'translateX(-50%)',
-                        }}
-                      ></div>
-                    )}
-                  </li>
-                  <li className={`relative px-3 ${cropSection === 'cereal' && 'font-bold'}`}>
-                    <a href="#section-cereal">Cereales</a>
-                    {cropSection === 'cereal' && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          bottom: '-3px',
-                          left: '50%',
-                          width: '30px',
-                          height: '1px',
-                          background: 'black',
-                          transform: 'translateX(-50%)',
-                        }}
-                      ></div>
-                    )}
-                  </li>
-                  <li className={`relative px-3 ${cropSection === 'vinedo' && 'font-bold'}`}>
-                    <a href="#section-vinedo">Viñedo</a>
-                    {cropSection === 'vinedo' && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          bottom: '-3px',
-                          left: '50%',
-                          width: '30px',
-                          height: '1px',
-                          background: 'black',
-                          transform: 'translateX(-50%)',
-                        }}
-                      ></div>
-                    )}
-                  </li>
-                  <li className={`relative px-3 ${cropSection === 'dehesa' && 'font-bold'}`}>
-                    <a href="#section-dehesa">Dehesa</a>
-                    {cropSection === 'dehesa' && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          bottom: '-3px',
-                          left: '50%',
-                          width: '30px',
-                          height: '1px',
-                          background: 'black',
-                          transform: 'translateX(-50%)',
-                        }}
-                      ></div>
-                    )}
-                  </li>
-                </ul>
-              </div>
-            )} */}
             <div className="relative z-30 ml-4 text-lg font-bold text-gray-400 top-20">
               En el mapa:
             </div>
@@ -1565,32 +1498,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
               <div
                 className="absolute z-50 w-full p-4 pt-24 mt-4"
                 style={{
-                  zIndex: currentStep === 'cultivos-cereal-2' ? 80 : 1,
-                  top: -(currentProgress * 10),
-                  opacity:
-                    currentStep === 'cultivos-cereal-2'
-                      ? currentProgress <= 0.25
-                        ? currentProgress * 10
-                        : (1 - 0.5 - currentProgress) * 10
-                      : '0',
-                }}
-              >
-                <div>
-                  <div className="font-serif text-lg">
-                    Superficie destinada al cultivo de cereales
-                  </div>
-                  <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
-                    Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
-                    <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong> En
-                    España, el aumento de la sequía sería la principal causa de la pérdida de
-                    rendimiento, que podría ser agravada por otras causas como incremento de los
-                    daños por pedrisco o plagas.
-                  </div>
-                </div>
-              </div>
-              <div
-                className="absolute z-50 w-full p-4 pt-24 mt-4"
-                style={{
                   zIndex: currentStep === 'rendimiento-cereal-1' ? 80 : 1,
                   top: -(currentProgress * 10),
                   opacity:
@@ -1609,6 +1516,30 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
                     España, el aumento de la sequía sería la principal causa de la pérdida de
                     rendimiento, que podría ser agravada por otras causas como incremento de los
                     daños por pedrisco o plagas.
+                  </div>
+                </div>
+              </div>
+              <div
+                className="absolute z-50 w-full p-4 pt-24 mt-4"
+                style={{
+                  zIndex: currentStep === 'rendimiento-cereal-2' ? 80 : 1,
+                  top: -(currentProgress * 10),
+                  opacity:
+                    currentStep === 'rendimiento-cereal-2'
+                      ? currentProgress <= 0.25
+                        ? currentProgress * 10
+                        : (1 - 0.5 - currentProgress) * 10
+                      : '0',
+                }}
+              >
+                <div>
+                  <div className="p-2 mt-12 text-sm bg-white bg-opacity-70">
+                    Las condiciones derivadas del cambio climático obligarían a tomar medidas de
+                    adaptación al cultivo de cereales como cambios en las variedades de cultivos,
+                    diferentes fechas de siembra y cosecha, cambios en el grado de mecanización o
+                    diferentes tipos de nutrientes y fertilizantes. Por lo que se espera que el
+                    Cambio Climático aumente la vulnerabilidad del sector si no existe una
+                    disminución real de la emisión de gases de efecto invernadero.
                   </div>
                 </div>
               </div>
@@ -1957,31 +1888,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
             </Step>
             <Step
               data={{
-                layerId: 'cultivos-cereal',
-                stepId: 'cultivos-cereal-2',
-                area: 'castilla_leon',
-                cropSection: 'cereal',
-              }}
-            >
-              <div className="relative w-2/5 p-16 pt-40 opacity-0">
-                <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
-                  <div className="sticky top-40">
-                    <div className="font-serif text-2xl">
-                      Superficie destinada al cultivo de cereales
-                    </div>
-                    <div className="mt-12 text-lg">
-                      Se espera que el rendimiento del cultivo de cereales en el mundo{' '}
-                      <strong>disminuya en un 5% por cada grado de aumento de temperatura.</strong>{' '}
-                      En España, el aumento de la sequía sería la principal causa de la pérdida de
-                      rendimiento, que podría ser agravada por otras causas como incremento de los
-                      daños por pedrisco o plagas.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Step>
-            <Step
-              data={{
                 layerId: 'rendimiento-cereal',
                 stepId: 'rendimiento-cereal-1',
                 area: 'castilla_leon',
@@ -2016,9 +1922,6 @@ export const ElRiesgoAgricolaMap: FC<ElRiesgoAgricolaMapTypes> = ({
               <div className="w-2/5 p-16 pt-40 opacity-0">
                 <div className="top-0" style={{ height: MAP_SECTION_HEIGHT }}>
                   <div className="sticky top-40">
-                    <div className="font-serif text-2xl">
-                      Proyecciones de rendimiento de cereales
-                    </div>
                     <div className="mt-12 text-lg">
                       Las condiciones derivadas del cambio climático obligarían a tomar medidas de
                       adaptación al cultivo de cereales como cambios en las variedades de cultivos,

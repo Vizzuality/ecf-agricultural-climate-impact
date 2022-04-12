@@ -4,43 +4,43 @@ export const SECTIONS: SectionObject[] = [
   {
     id: SectionIDs.CultivoCulturaCambio,
     label: 'Cultivo, cultura, cambio',
-    url: `#${SectionIDs.CultivoCulturaCambio}`,
+    url: `section-${SectionIDs.CultivoCulturaCambio}`,
   },
   {
     id: SectionIDs.ElRiesgoClimatico,
     label: 'El riesgo climático',
-    url: `#${SectionIDs.ElRiesgoClimatico}`,
+    url: `section-${SectionIDs.ElRiesgoClimatico}`,
   },
   {
     id: SectionIDs.ElRiesgoAgricola,
     label: 'El Riesgo Agrícola',
-    url: `#${SectionIDs.ElRiesgoAgricola}`,
+    url: `section-${SectionIDs.ElRiesgoAgricola}`,
     subsections: [
       {
         id: SubsectionIDs.Cereales,
         label: 'Cereales',
-        url: `#${SubsectionIDs.Cereales}`,
+        url: `section-${SubsectionIDs.Cereales}`,
       },
       {
         id: SubsectionIDs.Dehesa,
         label: 'Dehesa',
-        url: `#${SubsectionIDs.Dehesa}`,
+        url: `section-${SubsectionIDs.Dehesa}`,
       },
       {
         id: SubsectionIDs.Olivar,
         label: 'Olivar',
-        url: `#${SubsectionIDs.Olivar}`,
+        url: `section-${SubsectionIDs.Olivar}`,
       },
       {
         id: SubsectionIDs.Vinedo,
         label: 'Viñedo',
-        url: `#${SubsectionIDs.Vinedo}`,
+        url: `section-${SubsectionIDs.Vinedo}`,
       },
     ],
   },
   {
     id: SectionIDs.CultivoCulturaResiliencia,
     label: 'Cultivo, cultura, resiliencia',
-    url: `#${SectionIDs.CultivoCulturaResiliencia}`,
+    url: `section-${SectionIDs.CultivoCulturaResiliencia}`,
   },
 ];
