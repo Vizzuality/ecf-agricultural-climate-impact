@@ -75,7 +75,7 @@ export const ElRiesgoClimatico: FC = () => {
                 1,5 a 2ºC
               </div>
               <div className="relative mb-16 -mt-40 font-serif leading-snug text-7xl">
-                Medio grado de calentamiento podría provocar
+                Medio grado más de calentamiento podría provocar
               </div>
               <div className="flex w-full">
                 <div className="flex-1">
@@ -171,7 +171,7 @@ export const ElRiesgoClimatico: FC = () => {
                 1,5 a 2ºC
               </div>
               <div className="relative pl-4 pr-8 mb-16 -mt-12 font-serif text-3xl leading-snug text-right">
-                Medio grado de calentamiento podría provocar
+                Medio grado más de calentamiento podría provocar
               </div>
               <div className="flex flex-col w-full px-4">
                 <div className="flex-1 mb-8">
