@@ -17,40 +17,36 @@ export type DatasetItem = {
 const CROPS: Crop[] = ['cereal', 'aceituna', 'uva'];
 const SCENARIOS: Scenario[] = ['rcp45', 'rcp85'];
 
+const baseUrl = 'https://cambio-climatico.coag.com.es/storage';
+
 const fetchHistoricGHGData = () =>
-  fetch(
-    'https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/historic_GHG_emissions_spain.json',
-  ).then((response) => {
+  fetch(`${baseUrl}/TabularData/historic_GHG_emissions_spain.json`).then((response) => {
     return response.json();
   });
 
 const fetchWewGHGData = () =>
-  fetch(
-    'https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/projected_WeW_GHG_emissions_spain.json',
-  ).then((response) => {
+  fetch(`${baseUrl}/TabularData/projected_WeW_GHG_emissions_spain.json`).then((response) => {
     return response.json();
   });
 
 const fetchWawGHGData = () =>
-  fetch(
-    'https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/projected_WaW_GHG_emissions_spain.json',
-  ).then((response) => {
+  fetch(`${baseUrl}/TabularData/projected_WaW_GHG_emissions_spain.json`).then((response) => {
     return response.json();
   });
 
 const fetchTemperature = (scenario: Scenario) =>
-  fetch(
-    `https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/annual_average_temperature_${scenario}_spain.json`,
-  ).then((response) => {
-    return response.json();
-  });
+  fetch(`${baseUrl}/TabularData/annual_average_temperature_${scenario}_spain.json`).then(
+    (response) => {
+      return response.json();
+    },
+  );
 
 const fetchProduccionCultivo = (crop: Crop) =>
-  fetch(
-    `https://storage.googleapis.com/ecf-agricultural-climate-impact/TabularData/serie_historica_produccion_${crop}_espa%C3%B1ola.json`,
-  ).then((response) => {
-    return response.json();
-  });
+  fetch(`${baseUrl}/TabularData/serie_historica_produccion_${crop}_espa%C3%B1ola.json`).then(
+    (response) => {
+      return response.json();
+    },
+  );
 
 export const useClimateRiskData = (): UseQueryResult<DatasetItem[]>[] => {
   const queries = useQueries([

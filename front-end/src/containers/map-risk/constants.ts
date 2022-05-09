@@ -34,6 +34,8 @@ export const CCAA_DICTIONARY = {
   extremadura: 'Extremadura',
 };
 
+const baseUrl = 'https://cambio-climatico.coag.com.es/storage';
+
 export const LAYERS = [
   // calentamiento
   {
@@ -42,9 +44,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aumento_temperaturas/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Aumento_temperaturas/{{geoType}}/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -95,9 +95,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Duracion_sequias/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Duracion_sequias/{{geoType}}/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -138,9 +136,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -172,9 +168,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -201,9 +195,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -230,9 +222,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -259,9 +249,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Mapa_cultivos/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -289,9 +277,7 @@ export const LAYERS = [
     type: 'raster',
     source: {
       type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/1961_2000/{z}/{x}/{y}.png',
-      ],
+      tiles: [`${baseUrl}/RasterTiles/olivar/Arenas_Castro/1961_2000/{z}/{x}/{y}.png`],
       minzoom: 3,
       maxzoom: 12,
     },
@@ -302,9 +288,7 @@ export const LAYERS = [
     type: 'raster',
     source: {
       type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2011_2040/{z}/{x}/{y}.png',
-      ],
+      tiles: [`${baseUrl}/RasterTiles/olivar/Arenas_Castro/2011_2040/{z}/{x}/{y}.png`],
       minzoom: 3,
       maxzoom: 12,
     },
@@ -315,9 +299,7 @@ export const LAYERS = [
     type: 'raster',
     source: {
       type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2041_2070/{z}/{x}/{y}.png',
-      ],
+      tiles: [`${baseUrl}/RasterTiles/olivar/Arenas_Castro/2041_2070/{z}/{x}/{y}.png`],
       minzoom: 3,
       maxzoom: 12,
     },
@@ -328,9 +310,7 @@ export const LAYERS = [
     type: 'raster',
     source: {
       type: 'raster',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/RasterTiles/olivar/Arenas_Castro/2071_2100/{z}/{x}/{y}.png',
-      ],
+      tiles: [`${baseUrl}/RasterTiles/olivar/Arenas_Castro/2071_2100/{z}/{x}/{y}.png`],
       minzoom: 3,
       maxzoom: 12,
     },
@@ -343,7 +323,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Proyecciones_rendimiento_olivar/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+        `${baseUrl}/MBTiles/Proyecciones_rendimiento_olivar/{{geoType}}/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
@@ -391,7 +371,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Proyecciones_rendimiento_cereal/comunidades_autonomas/{z}/{x}/{y}.vector.pbf ',
+        `${baseUrl}/MBTiles/Proyecciones_rendimiento_cereal/comunidades_autonomas/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
@@ -455,7 +435,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/zonas_alto_potencial_climático/{z}/{x}/{y}.vector.pbf',
+        `${baseUrl}/MBTiles/Zonas_alto_potencial_climático_viñedo/zonas_alto_potencial_climático/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
@@ -487,7 +467,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_frescor_nocturno/{z}/{x}/{y}.vector.pbf',
+        `${baseUrl}/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_frescor_nocturno/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
@@ -523,7 +503,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_sequia/{z}/{x}/{y}.vector.pbf',
+        `${baseUrl}/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_sequia/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
@@ -561,7 +541,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_huglin/{z}/{x}/{y}.vector.pbf',
+        `${baseUrl}/MBTiles/Zonas_alto_potencial_climático_viñedo/indice_huglin/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
@@ -601,9 +581,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Indicadores_dehesa/dehesa_dry_spells/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Indicadores_dehesa/dehesa_dry_spells/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -643,9 +621,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Indicadores_dehesa/dehesa_fire_danger/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Indicadores_dehesa/dehesa_fire_danger/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -691,9 +667,7 @@ export const LAYERS = [
     type: 'vector',
     source: {
       type: 'vector',
-      tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf',
-      ],
+      tiles: [`${baseUrl}/MBTiles/Aridez/{{geoType}}/{z}/{x}/{y}.vector.pbf`],
       promoteId: '{{promoteId}}',
     },
     render: {
@@ -733,7 +707,7 @@ export const LAYERS = [
     source: {
       type: 'vector',
       tiles: [
-        'https://storage.googleapis.com/ecf-agricultural-climate-impact/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf',
+        `${baseUrl}/MBTiles/Precipitacion_trimestre_mas_humedo/{{geoType}}/{z}/{x}/{y}.vector.pbf`,
       ],
       promoteId: '{{promoteId}}',
     },
