@@ -57,7 +57,12 @@ export const CultivoCulturaResiliencia: FC = () => {
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  <Button theme="secondary-alt" size="l">
+                  <Button
+                    theme="secondary-alt"
+                    size="l"
+                    href="https://coag.com.es/Informe_Impactos_Cambio_Climatico_en_la_Agricultura.pdf"
+                    target="_blank"
+                  >
                     Descargar el estudio
                   </Button>
                 </div>
@@ -127,7 +132,12 @@ export const CultivoCulturaResiliencia: FC = () => {
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  <Button theme="secondary-alt" size="l">
+                  <Button
+                    theme="secondary-alt"
+                    size="l"
+                    href="https://coag.com.es/Informe_Impactos_Cambio_Climatico_en_la_Agricultura.pdf"
+                    target="_blank"
+                  >
                     Descargar el estudio
                   </Button>
                 </div>
