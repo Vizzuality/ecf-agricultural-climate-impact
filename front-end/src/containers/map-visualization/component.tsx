@@ -194,7 +194,7 @@ const MapVisualization: FC<MapVisualizationType> = ({
       <div className="absolute top-0 left-0 right-0 h-full">
         <Map
           mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-          mapStyle="mapbox://styles/aslribeiro/cl1l03yhp000514pi3penba92"
+          mapStyle="mapbox://styles/coag/cl2yxfk0h002p14p6g6jg75u4"
           viewport={viewport}
           onMapViewportChange={handleViewport}
           scrollZoom={allowZoom}
